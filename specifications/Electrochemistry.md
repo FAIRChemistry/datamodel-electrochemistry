@@ -4,7 +4,7 @@
 
 + name* 
   + Type: string
-  + Description: Descriptive name of the dataset
+  + Description: Name of the dataset
 
 + date*
   + Type: datetime
@@ -37,7 +37,13 @@ Container for information regarding the CV-Setup and parameters
 +  working electrode*
    + Type: string
    + Description: Name of the used working electrode
-<!-- +  electrochemical windows*
-   + Type: float
-   + Description: Used electrochemical window
-   +  -->
++ reference*
++ Type: string
++ Description: Name of the reference
+  
+
+Units
+```python
+VOLTAGE = "V"
+AMPERE = "I"
+```
