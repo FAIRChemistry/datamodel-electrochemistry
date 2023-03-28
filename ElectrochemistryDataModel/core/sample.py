@@ -1,35 +1,39 @@
 import sdRDM
 
-from typing import Optional, Union
 from typing import Optional
-from pydantic import PrivateAttr
-from pydantic import Field
-from sdRDM.base.listplus import ListPlus
+from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 @forge_signature
 class Sample(sdRDM.DataModel):
+
+    """"""
+
     id: str = Field(
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("sampleINDEX"),
         xml="@id",
     )
 
-    name: Optional[str] = Field(description="The name of the product", default=None)
-
-    chemical_formula: Optional[str] = Field(
-        description="The chemical formula of the product", default=None
+    name: str = Field(
+        ...,
+        description="The name of the product",
     )
 
-    synthesis: Optional[str] = Field(
-        description="The synthesis of the product", default=None
+    chemical_formula: str = Field(
+        ...,
+        description="The chemical formula of the product",
+    )
+
+    synthesis: str = Field(
+        ...,
+        description="The synthesis of the product",
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
-
     __commit__: Optional[str] = PrivateAttr(
-        default="13982d7f8d090f24efad599ad4367f0392db1d10"
+        default="c0540e6a757834315393517404154ebaac8c74e1"
     )
