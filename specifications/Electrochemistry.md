@@ -54,8 +54,9 @@
 - __potential_sec__
   - Type: Potential_units
   - Description: Second potential which was used
- 
-
+- __time_between_switch__
+  - Type: Time_units
+  - Description: The time between switching the potentials
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __solvent__
@@ -108,14 +109,17 @@ Container for information regarding persons who worked on a dataset.
   - Description: Contact e-mail address of the author
 
 
+
+
  #### Time_units
  ```python
 SEC = "s"
 MILLI_SEC = "ms"
 MICRO_SEC = "us"
 MIN= "min"
-```  
 
+
+```  
 
 
 #### Concentration_units
