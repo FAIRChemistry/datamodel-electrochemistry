@@ -14,10 +14,7 @@
 -  __analysis__
    - Type: Analysis
    - Description: The method which is used to gain the data 
-### Analysis
-- __cv__
-   - Type: string
-   - Description: test
+
 
 
 ### Author
