@@ -56,12 +56,12 @@ class CV(sdRDM.DataModel):
         description="The total cycle number", default=None
     )
 
-    max_potential: Optional[float] = Field(
-        description="The maximum value of the potential in V", default=None
+    start_potential: Optional[float] = Field(
+        description="The starting value of the potential in V", default=None
     )
 
-    minimum_potential: Optional[float] = Field(
-        description="The minimum value of the potential in V", default=None
+    stop_potential: Optional[float] = Field(
+        description="The stop value of the potential in V", default=None
     )
 
     __repo__: Optional[str] = PrivateAttr(
@@ -69,5 +69,5 @@ class CV(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="299c848548566fe76746b4e632f7b59a3eaa4856"
+        default="b3db07fcf3813ae61424d8b5bd61f0531e6a3ccc"
     )

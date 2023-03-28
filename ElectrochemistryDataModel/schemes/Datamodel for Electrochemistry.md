@@ -21,8 +21,8 @@ classDiagram
         +float conducting_salt_concentration
         +float halfe_wave_potential
         +float scan_rate
-        +float max_potential
-        +float minimum_potential
+        +float start_potential
+        +float stop_potential
         +float i_pc
         +float i_pa
         +float potential_E_pc

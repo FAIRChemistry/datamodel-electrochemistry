@@ -48,11 +48,11 @@
       "scan_rate": {
         "description": "The scan rate of the measurement in mV/s"
       },
-      "max_potential": {
-        "description": "The maximum value of the potential in V"
+      "start_potential": {
+        "description": "The starting value of the potential in V"
       },
-      "minimum_potential": {
-        "description": "The minimum value of the potential in V"
+      "stop_potential": {
+        "description": "The stop value of the potential in V"
       },
       "i_pc": {
         "description": "The current at the maximum of the cathodic peak in A"
