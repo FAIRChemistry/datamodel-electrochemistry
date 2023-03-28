@@ -46,8 +46,8 @@
   - Type: string
   - Description: Name of the used salt
 - __conducting_salt_concentration__
-  - Type: float
-  - Description: Concentration of the conducting salt in mol/l
+  - Type: Concentration_units
+  - Description: Concentration of the conducting salt
 
 ### CV
 Container for information regarding the CV-Setup and parameters
@@ -58,8 +58,8 @@ Container for information regarding the CV-Setup and parameters
   - Type: string
   - Description: Name of the used salt
 - __conducting_salt_concentration__
-  - Type: float
-  - Description: Concentration of the conducting salt in mol/l
+  - Type: Concentration_units
+  - Description: Concentration of the conducting salt 
 - __halfe_wave_potential__
   - Type: float
   - Description: The half-wave potential of the measurement in V 
@@ -120,4 +120,8 @@ GRAMLITER = "g / l"
 MILLIGRAMLITER = "mg / l"
 MICROGRAMLITER = "ug / l"
 NANGRAMLITER = "ng / l"
+``` 
+#### Scan_rate_units
+```python
+MILLI_VOLT_SEC = "V / s"
 ``` 
