@@ -5,8 +5,7 @@
   - Type: string
   - Description: Name of the dataset
 - __date*__
-  - Type: datetime
-  - Default_factory: datetime.now
+  - Type: date
   - Description: Date/time when the dataset was created
 - __parameter*__
   - Type: Parameter
@@ -20,7 +19,7 @@ Container for information regarding persons who worked on a dataset.
   - Type: string
   - Description: Full name of the author
 
-### Parameters
+### Parameter
 Container for information regarding the CV-Setup and parameters
 
 - __solvent*__
