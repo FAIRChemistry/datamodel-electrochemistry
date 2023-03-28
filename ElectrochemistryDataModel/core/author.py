@@ -20,12 +20,12 @@ class Author(sdRDM.DataModel):
 
     name: Optional[str] = Field(description="Full name of the author", default=None)
 
-    affiliation: Optional[str] = Field(
-        description="Organisation the author is affiliated with", default=None
-    )
-
     email: Optional[str] = Field(
         description="Contact e-mail address of the author", default=None
+    )
+
+    affiliation: Optional[str] = Field(
+        description="Organization the author is affiliated with", default=None
     )
 
     __repo__: Optional[str] = PrivateAttr(
@@ -33,5 +33,5 @@ class Author(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="d7121bf41f09ba61ab158bd322edea73e7269933"
+        default="3b10d8e0b69d8690001b1825f7af74b4bbbd17dd"
     )

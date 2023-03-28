@@ -102,11 +102,11 @@
       "i_pa": {
         "description": "The current at the maximum of the anodic peak"
       },
-      "potential_E_pc": {
-        "description": "Potential at the maximum of the cathodic peak"
+      "red_potential_E_pc": {
+        "description": "Potential at the maximum of the cathodic peak (reduction)"
       },
-      "potential_E_pa": {
-        "description": "The current at the maximum of the anodic peak"
+      "ox_potential_E_pa": {
+        "description": "The current at the maximum of the anodic peak (oxidation)"
       },
       "total_cycle_number": {
         "description": "The total cycle number"
@@ -120,7 +120,7 @@
         "description": "Full name of the author"
       },
       "affiliation": {
-        "description": "Organisation the author is affiliated with"
+        "description": "Organization the author is affiliated with"
       },
       "email": {
         "description": "Contact e-mail address of the author"

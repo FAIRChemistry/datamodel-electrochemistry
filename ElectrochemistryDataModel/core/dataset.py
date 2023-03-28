@@ -44,7 +44,7 @@ class Dataset(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="d7121bf41f09ba61ab158bd322edea73e7269933"
+        default="3b10d8e0b69d8690001b1825f7af74b4bbbd17dd"
     )
 
     def add_to_author(
@@ -66,7 +66,7 @@ class Dataset(sdRDM.DataModel):
             name (Optional[str]): Full name of the author. Defaults to None
 
 
-            affiliation (Optional[str]): Organisation the author is affiliated with. Defaults to None
+            affiliation (Optional[str]): Organization the author is affiliated with. Defaults to None
 
 
             email (Optional[str]): Contact e-mail address of the author. Defaults to None
