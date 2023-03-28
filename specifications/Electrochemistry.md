@@ -11,23 +11,10 @@
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset
-- __product__
-  - Type: Product
-  - Multiple: True
-  - Description: The product which was measured 
 - __analysis__
   - Type: Analysis
   - Description: The method which is used to gain the data 
-### Product
-- __name__
-  - Type: String
-  - Description: The name of the product
-- __chemical_formula__
-  - Type: String
-  - Description: The chemical formula of the product
-- __synthesis__
-  - Type: String
-  - Description: The synthesis of the product 
+
 
 ### Analysis
 - __cv__
