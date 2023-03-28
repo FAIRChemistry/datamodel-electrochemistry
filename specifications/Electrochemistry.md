@@ -64,10 +64,10 @@ Container for information regarding the CV-Setup and parameters
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
-- conducting_salt
+- __conducting_salt__
   - Type: string
   - Description: Name of the used salt
-- conducting_salt_concentration
+- __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt 
 
