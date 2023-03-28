@@ -33,5 +33,5 @@ class CV(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="b4b13d706bab08b361c44d78a4b1e8110831152d"
+        default="13982d7f8d090f24efad599ad4367f0392db1d10"
     )

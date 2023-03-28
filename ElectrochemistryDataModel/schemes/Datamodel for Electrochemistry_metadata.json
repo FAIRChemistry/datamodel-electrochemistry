@@ -75,6 +75,9 @@
       },
       "potential_sec": {
         "description": "Second potential which was used"
+      },
+      "time_between_switch": {
+        "description": "The time between switching the potentials"
       }
     },
     "docstring": null
