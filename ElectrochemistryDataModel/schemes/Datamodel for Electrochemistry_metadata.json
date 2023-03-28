@@ -16,9 +16,9 @@
         "multiple": "True",
         "description": "Persons who worked on the dataset"
       },
-      "product": {
+      "sample": {
         "multiple": "True",
-        "description": "The product which was measured"
+        "description": "The sample which was measured"
       },
       "analysis": {
         "description": "The method which is used to gain the data"
@@ -26,7 +26,7 @@
     },
     "docstring": null
   },
-  "Product": {
+  "Sample": {
     "attributes": {
       "name": {
         "description": "The name of the product"
@@ -45,6 +45,24 @@
       "cv": {
         "multiple": "True",
         "description": "cv"
+      },
+      "cp": {
+        "multiple": "True",
+        "description": "cp"
+      }
+    },
+    "docstring": null
+  },
+  "CP": {
+    "attributes": {
+      "solvent": {
+        "description": "Name of the solvent"
+      },
+      "conducting_salt": {
+        "description": "Name of the used salt"
+      },
+      "conducting_salt_concentration": {
+        "description": "Concentration of the conducting salt in mol/l"
       }
     },
     "docstring": null

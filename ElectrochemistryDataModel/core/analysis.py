@@ -8,6 +8,7 @@ from pydantic import Field
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 from .cv import CV
+from .cp import CP
 
 
 @forge_signature
@@ -20,12 +21,14 @@ class Analysis(sdRDM.DataModel):
 
     cv: List[CV] = Field(description="cv", default_factory=ListPlus)
 
+    cp: List[CP] = Field(description="cp", default_factory=ListPlus)
+
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="615441ab6cb6d376edde4cf0afb09fdbd20d2d34"
+        default="0627d0403a37c9162e0946dfdd475759f6682aac"
     )
 
     def add_to_cv(
@@ -107,3 +110,38 @@ class Analysis(sdRDM.DataModel):
             params["id"] = id
         cv = [CV(**params)]
         self.cv = self.cv + cv
+
+    def add_to_cp(
+        self,
+        solvent: Optional[str] = None,
+        conducting_salt: Optional[str] = None,
+        conducting_salt_concentration: Optional[float] = None,
+        id: Optional[str] = None,
+    ) -> None:
+        """
+        Adds an instance of 'CP' to the attribute 'cp'.
+
+        Args:
+
+
+            id (str): Unique identifier of the 'CP' object. Defaults to 'None'.
+
+
+            solvent (Optional[str]): Name of the solvent. Defaults to None
+
+
+            conducting_salt (Optional[str]): Name of the used salt. Defaults to None
+
+
+            conducting_salt_concentration (Optional[float]): Concentration of the conducting salt in mol/l. Defaults to None
+        """
+
+        params = {
+            "solvent": solvent,
+            "conducting_salt": conducting_salt,
+            "conducting_salt_concentration": conducting_salt_concentration,
+        }
+        if id is not None:
+            params["id"] = id
+        cp = [CP(**params)]
+        self.cp = self.cp + cp

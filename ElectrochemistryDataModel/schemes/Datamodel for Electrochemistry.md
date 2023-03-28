@@ -1,19 +1,20 @@
 ```mermaid
 classDiagram
     Dataset *-- Author
-    Dataset *-- Product
+    Dataset *-- Sample
     Dataset *-- Analysis
     Analysis *-- CV
+    Analysis *-- CP
     
     class Dataset {
         +string name
         +date date
         +Author[0..*] author
-        +Product[0..*] product
+        +Sample[0..*] sample
         +Analysis analysis
     }
     
-    class Product {
+    class Sample {
         +string name
         +string chemical_formula
         +string synthesis
@@ -21,6 +22,13 @@ classDiagram
     
     class Analysis {
         +CV[0..*] cv
+        +CP[0..*] cp
+    }
+    
+    class CP {
+        +string solvent
+        +string conducting_salt
+        +float conducting_salt_concentration
     }
     
     class CV {

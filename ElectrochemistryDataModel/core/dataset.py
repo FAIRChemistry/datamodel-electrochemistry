@@ -10,7 +10,7 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 from datetime import datetime
 from .author import Author
 from .analysis import Analysis
-from .product import Product
+from .sample import Sample
 
 
 @forge_signature
@@ -35,8 +35,8 @@ class Dataset(sdRDM.DataModel):
         description="The method which is used to gain the data", default=None
     )
 
-    product: List[Product] = Field(
-        description="The product which was measured", default_factory=ListPlus
+    sample: List[Sample] = Field(
+        description="The sample which was measured", default_factory=ListPlus
     )
 
     __repo__: Optional[str] = PrivateAttr(
@@ -44,7 +44,7 @@ class Dataset(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="615441ab6cb6d376edde4cf0afb09fdbd20d2d34"
+        default="0627d0403a37c9162e0946dfdd475759f6682aac"
     )
 
     def add_to_author(
@@ -78,7 +78,7 @@ class Dataset(sdRDM.DataModel):
         author = [Author(**params)]
         self.author = self.author + author
 
-    def add_to_product(
+    def add_to_sample(
         self,
         name: Optional[str] = None,
         chemical_formula: Optional[str] = None,
@@ -86,12 +86,12 @@ class Dataset(sdRDM.DataModel):
         id: Optional[str] = None,
     ) -> None:
         """
-        Adds an instance of 'Product' to the attribute 'product'.
+        Adds an instance of 'Sample' to the attribute 'sample'.
 
         Args:
 
 
-            id (str): Unique identifier of the 'Product' object. Defaults to 'None'.
+            id (str): Unique identifier of the 'Sample' object. Defaults to 'None'.
 
 
             name (Optional[str]): The name of the product. Defaults to None
@@ -110,5 +110,5 @@ class Dataset(sdRDM.DataModel):
         }
         if id is not None:
             params["id"] = id
-        product = [Product(**params)]
-        self.product = self.product + product
+        sample = [Sample(**params)]
+        self.sample = self.sample + sample
