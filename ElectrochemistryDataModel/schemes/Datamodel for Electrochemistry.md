@@ -103,4 +103,20 @@ classDiagram
         +NANO_AMPERE = "nA"
     }
     
+    class Current_units {
+        << Enumeration >>
+        +AMPERE = "A"
+        +MILLI_AMPERE = "mA"
+        +MICRO_AMPERE = "uA"
+        +NANO_AMPERE = "nA"
+    }
+    
+    class Potential_units {
+        << Enumeration >>
+        +VOLT = "V"
+        +MILLI_VOLT = "mV"
+        +MICRO_VOLT = "uV"
+        +NANO_VOLT = "nV"
+    }
+    
 ```

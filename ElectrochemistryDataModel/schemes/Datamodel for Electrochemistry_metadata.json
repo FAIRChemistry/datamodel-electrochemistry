@@ -5,7 +5,9 @@
     "Concentration_units",
     "Scan_rate_units",
     "Scan_rate_units",
-    "Current_units"
+    "Current_units",
+    "Current_units",
+    "Potential_units"
   ],
   "external": {},
   "Dataset": {

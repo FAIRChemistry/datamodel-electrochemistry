@@ -5,6 +5,7 @@ from .cp import CP
 from .current_units import Current_units
 from .cv import CV
 from .dataset import Dataset
+from .potential_units import Potential_units
 from .sample import Sample
 from .scan_rate_units import Scan_rate_units
 
@@ -18,6 +19,7 @@ __all__ = [
     "Current_units",
     "CV",
     "Dataset",
+    "Potential_units",
     "Sample",
     "Scan_rate_units",
 ]
