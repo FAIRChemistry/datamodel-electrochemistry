@@ -1,25 +1,44 @@
 # Datamodel for Electrochemistry
  
 ### Dataset
-- __name*__ 
+- __name__ 
   - Type: string
   - Description: Name of the dataset
 - __date__
   - Type: date
   - Description: Date/time when the dataset was created
-- __parameter__
-  - Type: Parameter
-  - Multiple: True
-  - Description: Name of the parameter
 - __author__
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset
--  __method__
+-  __Analysis__
+   - Type: string
+   - Description: The method which is used to gain the data 
+### Analysis
+ __Cyclic_Voltammetry__
+   - Type: CV
+   - Description: ...
+
+### CV
+Container for information regarding the CV-Setup and parameters
+- __solvent__
   - Type: string
-  - Description: The method which is used to gain the data 
-
-
+  - Description: Name of the solvent    
+- __conducting_salt__
+  - Type: string
+  - Description: Name of the used salt
+- __conducting_salt_concentration__
+  - Type: float
+  - Description: Concentration of the conducting salt in mol/l
+- __scan_rate__
+  - Type: float
+  - Description: Scan rate in mV/s
+- __working_electrode__
+  - Type: string
+  - Description: Name of the used working electrode
+- __reference__
+  - Type: string
+  - Description: Name of the reference
 ### Author
 Container for information regarding persons who worked on a dataset.
 
@@ -32,24 +51,10 @@ Container for information regarding persons who worked on a dataset.
 - __email__
   - Type: string
   - Description: Contact e-mail address of the author
-### Parameter
-Container for information regarding the CV-Setup and parameters
 
-- __solvent*__
-  - Type: string
-  - Description: Name of the solvent    
-- __conducting_salt*__
-  - Type: string
-  - Description: Name of the used salt
-- __scan_rate*__
-  - Type: int
-  - Description: Name of the used scan rate 
-- __working_electrode*__
-  - Type: string
-  - Description: Name of the used working electrode
-- __reference*__
-  - Type: string
-  - Description: Name of the reference
+
+
+
   
 
 #### Units
