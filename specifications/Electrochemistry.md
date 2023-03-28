@@ -54,6 +54,7 @@
 - __potential_sec__
   - Type: Potential_units
   - Description: Second potential which was used
+ 
 
 ### CV
 Container for information regarding the CV-Setup and parameters
@@ -107,7 +108,13 @@ Container for information regarding persons who worked on a dataset.
   - Description: Contact e-mail address of the author
 
 
-
+ #### Time_units
+ ```python
+SEC = "s"
+MILLI_SEC = "ms"
+MICRO_SEC = "us"
+MIN= "min"
+```  
 
 
 
