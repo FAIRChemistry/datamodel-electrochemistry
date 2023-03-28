@@ -22,14 +22,10 @@ class CP(sdRDM.DataModel):
         description="Name of the used salt", default=None
     )
 
-    conducting_salt_concentration: Optional[float] = Field(
-        description="Concentration of the conducting salt in mol/l", default=None
-    )
-
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="c11230660bb1ac2ecc6100d0e3d62f5489172bd0"
+        default="3df7365ac524b41a672dd2d0773312d33f306f9d"
     )

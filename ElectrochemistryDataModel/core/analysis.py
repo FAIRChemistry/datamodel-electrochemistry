@@ -28,14 +28,13 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="c11230660bb1ac2ecc6100d0e3d62f5489172bd0"
+        default="3df7365ac524b41a672dd2d0773312d33f306f9d"
     )
 
     def add_to_cv(
         self,
         solvent: Optional[str] = None,
         conducting_salt: Optional[str] = None,
-        conducting_salt_concentration: Optional[float] = None,
         halfe_wave_potential: Optional[float] = None,
         scan_rate: Optional[float] = None,
         start_potential: Optional[float] = None,
@@ -60,9 +59,6 @@ class Analysis(sdRDM.DataModel):
 
 
             conducting_salt (Optional[str]): Name of the used salt. Defaults to None
-
-
-            conducting_salt_concentration (Optional[float]): Concentration of the conducting salt in mol/l. Defaults to None
 
 
             halfe_wave_potential (Optional[float]): The half-wave potential of the measurement in V. Defaults to None
@@ -95,7 +91,6 @@ class Analysis(sdRDM.DataModel):
         params = {
             "solvent": solvent,
             "conducting_salt": conducting_salt,
-            "conducting_salt_concentration": conducting_salt_concentration,
             "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
             "start_potential": start_potential,
@@ -115,7 +110,6 @@ class Analysis(sdRDM.DataModel):
         self,
         solvent: Optional[str] = None,
         conducting_salt: Optional[str] = None,
-        conducting_salt_concentration: Optional[float] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -131,16 +125,9 @@ class Analysis(sdRDM.DataModel):
 
 
             conducting_salt (Optional[str]): Name of the used salt. Defaults to None
-
-
-            conducting_salt_concentration (Optional[float]): Concentration of the conducting salt in mol/l. Defaults to None
         """
 
-        params = {
-            "solvent": solvent,
-            "conducting_salt": conducting_salt,
-            "conducting_salt_concentration": conducting_salt_concentration,
-        }
+        params = {"solvent": solvent, "conducting_salt": conducting_salt}
         if id is not None:
             params["id"] = id
         cp = [CP(**params)]

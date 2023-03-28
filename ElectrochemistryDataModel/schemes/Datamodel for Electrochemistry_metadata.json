@@ -3,7 +3,9 @@
   "enums": [
     "Units",
     "Units",
-    "Concentration_units"
+    "Concentration_units",
+    "Concentration_units",
+    "Scan_rate_units"
   ],
   "external": {},
   "Dataset": {
@@ -64,7 +66,7 @@
         "description": "Name of the used salt"
       },
       "conducting_salt_concentration": {
-        "description": "Concentration of the conducting salt in mol/l"
+        "description": "Concentration of the conducting salt"
       }
     },
     "docstring": null
@@ -78,7 +80,7 @@
         "description": "Name of the used salt"
       },
       "conducting_salt_concentration": {
-        "description": "Concentration of the conducting salt in mol/l"
+        "description": "Concentration of the conducting salt"
       },
       "halfe_wave_potential": {
         "description": "The half-wave potential of the measurement in V"

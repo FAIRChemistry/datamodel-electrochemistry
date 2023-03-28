@@ -5,6 +5,8 @@ classDiagram
     Dataset *-- Analysis
     Analysis *-- CV
     Analysis *-- CP
+    CP *-- Concentration_units
+    CV *-- Concentration_units
     
     class Dataset {
         +string name
@@ -28,13 +30,13 @@ classDiagram
     class CP {
         +string solvent
         +string conducting_salt
-        +float conducting_salt_concentration
+        +Concentration_units conducting_salt_concentration
     }
     
     class CV {
         +string solvent
         +string conducting_salt
-        +float conducting_salt_concentration
+        +Concentration_units conducting_salt_concentration
         +float halfe_wave_potential
         +float scan_rate
         +float start_potential
@@ -74,6 +76,23 @@ classDiagram
         +MILLIGRAMLITER = "mg / l"
         +MICROGRAMLITER = "ug / l"
         +NANGRAMLITER = "ng / l"
+    }
+    
+    class Concentration_units {
+        << Enumeration >>
+        +MOLAR = "mole / l"
+        +MILLIMOLAR = "mmole / l"
+        +MICROMOLAR = "umole / l"
+        +NANAMOLAR = "nmole / l"
+        +GRAMLITER = "g / l"
+        +MILLIGRAMLITER = "mg / l"
+        +MICROGRAMLITER = "ug / l"
+        +NANGRAMLITER = "ng / l"
+    }
+    
+    class Scan_rate_units {
+        << Enumeration >>
+        +MILLI_VOLT_SEC = "V / s"
     }
     
 ```

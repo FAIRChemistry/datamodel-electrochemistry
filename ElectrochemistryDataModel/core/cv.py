@@ -36,10 +36,6 @@ class CV(sdRDM.DataModel):
         description="The current at the maximum of the anodic peak in A", default=None
     )
 
-    conducting_salt_concentration: Optional[float] = Field(
-        description="Concentration of the conducting salt in mol/l", default=None
-    )
-
     halfe_wave_potential: Optional[float] = Field(
         description="The half-wave potential of the measurement in V", default=None
     )
@@ -69,5 +65,5 @@ class CV(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="c11230660bb1ac2ecc6100d0e3d62f5489172bd0"
+        default="3df7365ac524b41a672dd2d0773312d33f306f9d"
     )
