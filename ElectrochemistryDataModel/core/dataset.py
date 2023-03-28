@@ -10,6 +10,7 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 from datetime import datetime
 from .author import Author
 from .analysis import Analysis
+from .product import Product
 
 
 @forge_signature
@@ -34,12 +35,16 @@ class Dataset(sdRDM.DataModel):
         description="The method which is used to gain the data", default=None
     )
 
+    product: List[Product] = Field(
+        description="The product which was measured", default_factory=ListPlus
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="677da7542c321b8f6e240be33fe2f0cd5cb3158a"
+        default="615441ab6cb6d376edde4cf0afb09fdbd20d2d34"
     )
 
     def add_to_author(
@@ -72,3 +77,38 @@ class Dataset(sdRDM.DataModel):
             params["id"] = id
         author = [Author(**params)]
         self.author = self.author + author
+
+    def add_to_product(
+        self,
+        name: Optional[str] = None,
+        chemical_formula: Optional[str] = None,
+        synthesis: Optional[str] = None,
+        id: Optional[str] = None,
+    ) -> None:
+        """
+        Adds an instance of 'Product' to the attribute 'product'.
+
+        Args:
+
+
+            id (str): Unique identifier of the 'Product' object. Defaults to 'None'.
+
+
+            name (Optional[str]): The name of the product. Defaults to None
+
+
+            chemical_formula (Optional[str]): The chemical formula of the product. Defaults to None
+
+
+            synthesis (Optional[str]): The synthesis of the product. Defaults to None
+        """
+
+        params = {
+            "name": name,
+            "chemical_formula": chemical_formula,
+            "synthesis": synthesis,
+        }
+        if id is not None:
+            params["id"] = id
+        product = [Product(**params)]
+        self.product = self.product + product

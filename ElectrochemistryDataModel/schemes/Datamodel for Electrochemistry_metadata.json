@@ -16,8 +16,26 @@
         "multiple": "True",
         "description": "Persons who worked on the dataset"
       },
+      "product": {
+        "multiple": "True",
+        "description": "The product which was measured"
+      },
       "analysis": {
         "description": "The method which is used to gain the data"
+      }
+    },
+    "docstring": null
+  },
+  "Product": {
+    "attributes": {
+      "name": {
+        "description": "The name of the product"
+      },
+      "chemical_formula": {
+        "description": "The chemical formula of the product"
+      },
+      "synthesis": {
+        "description": "The synthesis of the product"
       }
     },
     "docstring": null

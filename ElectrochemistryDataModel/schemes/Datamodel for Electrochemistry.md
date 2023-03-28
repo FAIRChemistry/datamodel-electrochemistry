@@ -1,6 +1,7 @@
 ```mermaid
 classDiagram
     Dataset *-- Author
+    Dataset *-- Product
     Dataset *-- Analysis
     Analysis *-- CV
     
@@ -8,7 +9,14 @@ classDiagram
         +string name
         +date date
         +Author[0..*] author
+        +Product[0..*] product
         +Analysis analysis
+    }
+    
+    class Product {
+        +string name
+        +string chemical_formula
+        +string synthesis
     }
     
     class Analysis {
