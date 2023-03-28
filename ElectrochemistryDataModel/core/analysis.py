@@ -28,7 +28,7 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="706ff2b8762a34aa453e8d96f49386d51b2214f9"
+        default="b4b13d706bab08b361c44d78a4b1e8110831152d"
     )
 
     def add_to_cv(
@@ -70,6 +70,7 @@ class Analysis(sdRDM.DataModel):
         self,
         solvent: Optional[str] = None,
         conducting_salt: Optional[str] = None,
+        potential_sec: Optional[str] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -85,9 +86,16 @@ class Analysis(sdRDM.DataModel):
 
 
             conducting_salt (Optional[str]): Name of the used salt. Defaults to None
+
+
+            potential_sec (Optional[str]): The time between switching the potentials. Defaults to None
         """
 
-        params = {"solvent": solvent, "conducting_salt": conducting_salt}
+        params = {
+            "solvent": solvent,
+            "conducting_salt": conducting_salt,
+            "potential_sec": potential_sec,
+        }
         if id is not None:
             params["id"] = id
         cp = [CP(**params)]
