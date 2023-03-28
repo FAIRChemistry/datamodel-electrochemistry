@@ -8,7 +8,6 @@ from pydantic import Field
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 from datetime import datetime
-from .parameter import Parameter
 from .author import Author
 
 
@@ -20,12 +19,6 @@ class Dataset(sdRDM.DataModel):
         xml="@id",
     )
 
-    name: str = Field(..., description="Name of the dataset")
-
-    parameter: List[Parameter] = Field(
-        description="Name of the parameter", default_factory=ListPlus
-    )
-
     date: Optional[datetime] = Field(
         description="Date/time when the dataset was created", default=None
     )
@@ -34,58 +27,15 @@ class Dataset(sdRDM.DataModel):
         description="Persons who worked on the dataset", default_factory=ListPlus
     )
 
+    name: Optional[str] = Field(description="Name of the dataset", default=None)
+
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="51895a81cf68d0ad170cee3cd6f1d9fca991cc9e"
+        default="f0c8032a495d0194e674d8cc621303a8c5a1418f"
     )
-
-    def add_to_parameter(
-        self,
-        solvent: str,
-        conducting_salt: str,
-        scan_rate: int,
-        working_electrode: str,
-        reference: str,
-        id: Optional[str] = None,
-    ) -> None:
-        """
-        Adds an instance of 'Parameter' to the attribute 'parameter'.
-
-        Args:
-
-
-            id (str): Unique identifier of the 'Parameter' object. Defaults to 'None'.
-
-
-            solvent (str): Name of the solvent.
-
-
-            conducting_salt (str): Name of the used salt.
-
-
-            scan_rate (int): Name of the used scan rate.
-
-
-            working_electrode (str): Name of the used working electrode.
-
-
-            reference (str): Name of the reference.
-        """
-
-        params = {
-            "solvent": solvent,
-            "conducting_salt": conducting_salt,
-            "scan_rate": scan_rate,
-            "working_electrode": working_electrode,
-            "reference": reference,
-        }
-        if id is not None:
-            params["id"] = id
-        parameter = [Parameter(**params)]
-        self.parameter = self.parameter + parameter
 
     def add_to_author(
         self,
