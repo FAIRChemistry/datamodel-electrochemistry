@@ -64,8 +64,8 @@ Container for information regarding the CV-Setup and parameters
   - Type: float
   - Description: The half-wave potential of the measurement in V 
 - __scan_rate__
-  - Type: float
-  - Description: The scan rate of the measurement in mV/s
+  - Type: Scan_rate_units
+  - Description: The scan rate of the measurement 
 - __start_potential__
   - Type: float
   - Description: The starting value of the potential in V 
@@ -73,10 +73,10 @@ Container for information regarding the CV-Setup and parameters
   - Type: float
   - Description: The stop value of the potential in V 
 - __i_pc__
-  - Type: float
+  - Type: Current_units
   - Description: The current at the maximum of the cathodic peak in A
 - __i_pa__
-  - Type: float
+  - Type: Current_units
   - Description: The current at the maximum of the anodic peak in A 
 - __potential_E_pc__
   - Type: float
@@ -105,23 +105,28 @@ Container for information regarding persons who worked on a dataset.
 
   
 
-#### Units
-```python
-VOLTAGE = "V"
-AMPERE = "I"
-``` 
+
 #### Concentration_units
 ```python
 MOLAR = "mole / l"
-MILLIMOLAR = "mmole / l"
-MICROMOLAR = "umole / l"
-NANAMOLAR = "nmole / l"
-GRAMLITER = "g / l"
-MILLIGRAMLITER = "mg / l"
-MICROGRAMLITER = "ug / l"
-NANGRAMLITER = "ng / l"
+MILLI_MOLAR = "mmole / _l"
+MICRO_MOLAR = "umole / l"
+NANO_MOLAR = "nmole / l"
+GRAM_LITER = "g / l"
+MILLIGRAM_LITER = "mg / l"
+MICROGRAM_LITER = "ug / l"
+NANGRAM_LITER = "ng / l"
 ``` 
 #### Scan_rate_units
 ```python
-MILLI_VOLT_SEC = "V / s"
+VOLT_SEC = "V / s"
+MILLI_VOLT_SEC = "mV / s"
+MICRO_VOLT_SEC = "uV / s"
+``` 
+#### Current_units
+```python
+AMPERE = "A"
+MILLI_AMPERE = "mV / s"
+MICRO_AMPERE = "uV / s"
+NANO_AMPERE = "nV /s"
 ``` 
