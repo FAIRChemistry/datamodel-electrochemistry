@@ -72,12 +72,12 @@ Container for information regarding the CV-Setup and parameters
 - __stop_potential__
   - Type: Potential_units
   - Description: The stop value of the potential 
-- __i_pc__
+- __i_pc_ox__
   - Type: Current_units
-  - Description: The current at the maximum of the cathodic peak 
-- __i_pa__
+  - Description: The current at the maximum of the cathodic peak (oxidation)
+- __i_pa_red__
   - Type: Current_units
-  - Description: The current at the maximum of the anodic peak 
+  - Description: The current at the maximum of the anodic peak (reduction)
 - __ox_potential_E_pc__
   - Type: Potential_units
   - Description: Potential at the maximum of the cathodic peak (reduction)
