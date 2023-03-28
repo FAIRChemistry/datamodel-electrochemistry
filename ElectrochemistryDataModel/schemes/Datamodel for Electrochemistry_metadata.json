@@ -72,6 +72,9 @@
       },
       "potential_first": {
         "description": "First potential which was used"
+      },
+      "potential_sec": {
+        "description": "Second potential which was used"
       }
     },
     "docstring": null
