@@ -70,9 +70,7 @@ Container for information regarding the CV-Setup and parameters
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt 
-- __conducting_salt_concentration2__
-  - Type: Concentration_units
-  - Description: Concentration of the conducting salt
+
 - __halfe_wave_potential__
   - Type: Potential_units
   - Description: The half-wave potential of the measurement  
