@@ -58,4 +58,22 @@ classDiagram
         +AMPERE = "I"
     }
     
+    class Units {
+        << Enumeration >>
+        +VOLTAGE = "V"
+        +AMPERE = "I"
+    }
+    
+    class Concentration_units {
+        << Enumeration >>
+        +MOLAR = "mole / l"
+        +MILLIMOLAR = "mmole / l"
+        +MICROMOLAR = "umole / l"
+        +NANAMOLAR = "nmole / l"
+        +GRAMLITER = "g / l"
+        +MILLIGRAMLITER = "mg / l"
+        +MICROGRAMLITER = "ug / l"
+        +NANGRAMLITER = "ng / l"
+    }
+    
 ```
