@@ -48,17 +48,7 @@
 - __conducting_salt_concentration__
   - Type: float
   - Description: Concentration of the conducting salt in mol/l
-### Concentration_units
-```python
-MOLAR = "mole / l"
-MILLIMOLAR = "mmole / l"
-MICROMOLAR = "umole / l"
-NANAMOLAR = "nmole / l"
-GRAMLITER = "g / l"
-MILLIGRAMLITER = "mg / l"
-MICROGRAMLITER = "ug / l"
-NANGRAMLITER = "ng / l"
-``` 
+
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __solvent__
@@ -119,4 +109,15 @@ Container for information regarding persons who worked on a dataset.
 ```python
 VOLTAGE = "V"
 AMPERE = "I"
+``` 
+#### Concentration_units
+```python
+MOLAR = "mole / l"
+MILLIMOLAR = "mmole / l"
+MICROMOLAR = "umole / l"
+NANAMOLAR = "nmole / l"
+GRAMLITER = "g / l"
+MILLIGRAMLITER = "mg / l"
+MICROGRAMLITER = "ug / l"
+NANGRAMLITER = "ng / l"
 ``` 
