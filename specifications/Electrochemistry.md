@@ -33,27 +33,7 @@ Container for information regarding the CV-Setup and parameters
 - __conducting_salt_concentration__
   - Type: float
   - Description: Concentration of the conducting salt in mol/l
-- __halfe_wave_potential__
-  - Type: float
-  - Description: The half-wave potential of the measurement in V 
-- __scan_rate__
-  - Type: float
-  - Description: The scan rate of the measurement in mV/s
-- __i_pc__
-  - Type: float
-  - Description: The current at the maximum of the cathodic peak in A
-- __i_pa__
-  - Type: float
-  - Description: The current at the maximum of the anodic peak in A 
-- __potential_E_pc__
-  - Type: float
-  - Description: Potential at the maximum of the cathodic peak in  V
-- __potential_E_pa__
-  - Type: float
-  - Description: The current at the maximum of the anodic peak in V
-- __total_cycle_number__
-  - Type: number
-  - Description: The total cycle number
+
 ### Author
 Container for information regarding persons who worked on a dataset.
 
