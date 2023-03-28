@@ -35,5 +35,5 @@ class Author(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="08e75d3306c1c388beebd7396e684d10cc8d7344"
+        default="f53382213c396beeccf99a9df0d9362ac190c4b2"
     )

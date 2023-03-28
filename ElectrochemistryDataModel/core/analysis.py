@@ -6,12 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potential_units import Potential_units
 from .cv import CV
-from .current_units import Current_units
-from .scan_rate_units import Scan_rate_units
-from .concentration_units import Concentration_units
 from .cp import CP
+from .scan_rate_units import Scan_rate_units
+from .potential_units import Potential_units
+from .current_units import Current_units
+from .concentration_units import Concentration_units
 
 
 @forge_signature
@@ -41,14 +41,14 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="08e75d3306c1c388beebd7396e684d10cc8d7344"
+        default="f53382213c396beeccf99a9df0d9362ac190c4b2"
     )
 
     def add_cv_to_cv(
         self,
         solvent: str,
         conducting_salt: str,
-        conducting_salt_concentration: Concentration_units,
+        conducting_salt_concentration_test: Concentration_units,
         halfe_wave_potential: Potential_units,
         scan_rate: Scan_rate_units,
         start_potential: Potential_units,
@@ -67,7 +67,7 @@ class Analysis(sdRDM.DataModel):
             id (str): Unique identifier of the 'CV' object. Defaults to 'None'.
             solvent (): Name of the solvent.
             conducting_salt (): Name of the used salt.
-            conducting_salt_concentration (): Concentration of the conducting salt.
+            conducting_salt_concentration_test (): Concentration of the conducting salt.
             halfe_wave_potential (): The half-wave potential of the measurement.
             scan_rate (): The scan rate of the measurement.
             start_potential (): The starting value of the potential.
@@ -82,7 +82,7 @@ class Analysis(sdRDM.DataModel):
         params = {
             "solvent": solvent,
             "conducting_salt": conducting_salt,
-            "conducting_salt_concentration": conducting_salt_concentration,
+            "conducting_salt_concentration_test": conducting_salt_concentration_test,
             "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
             "start_potential": start_potential,

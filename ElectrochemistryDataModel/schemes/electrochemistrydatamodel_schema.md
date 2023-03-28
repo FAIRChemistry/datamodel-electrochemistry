@@ -43,7 +43,7 @@ classDiagram
     class CV {
         +string solvent*
         +string conducting_salt*
-        +Concentration_units conducting_salt_concentration*
+        +Concentration_units conducting_salt_concentration_test*
         +Potential_units halfe_wave_potential*
         +Scan_rate_units scan_rate*
         +Potential_units start_potential*
