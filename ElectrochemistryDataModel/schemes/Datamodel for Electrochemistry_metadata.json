@@ -41,6 +41,27 @@
       },
       "conducting_salt_concentration": {
         "description": "Concentration of the conducting salt in mol/l"
+      },
+      "halfe_wave_potential": {
+        "description": "The half-wave potential of the measurement in V"
+      },
+      "scan_rate": {
+        "description": "The scan rate of the measurement in mV/s"
+      },
+      "i_pc": {
+        "description": "The current at the maximum of the cathodic peak in A"
+      },
+      "i_pa": {
+        "description": "The current at the maximum of the anodic peak in A"
+      },
+      "potential_E_pc": {
+        "description": "Potential at the maximum of the cathodic peak in  V"
+      },
+      "potential_E_pa": {
+        "description": "The current at the maximum of the anodic peak in V"
+      },
+      "total_cycle_number": {
+        "description": "The total cycle number"
       }
     },
     "docstring": "Container for information regarding the CV-Setup and parameters\n"

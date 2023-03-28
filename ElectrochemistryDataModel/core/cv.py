@@ -24,10 +24,6 @@ class CV(sdRDM.DataModel):
         description="Name of the used salt", default=None
     )
 
-    conducting_salt_concentration: Optional[float] = Field(
-        description="The half-wave potential of the measurement in V", default=None
-    )
-
     scan_rate: Optional[float] = Field(
         description="The scan rate of the measurement in mV/s", default=None
     )
@@ -44,7 +40,19 @@ class CV(sdRDM.DataModel):
         description="Potential at the maximum of the cathodic peak in  V", default=None
     )
 
-    potential_E_pa: Optional[int] = Field(
+    conducting_salt_concentration: Optional[float] = Field(
+        description="Concentration of the conducting salt in mol/l", default=None
+    )
+
+    halfe_wave_potential: Optional[float] = Field(
+        description="The half-wave potential of the measurement in V", default=None
+    )
+
+    potential_E_pa: Optional[float] = Field(
+        description="The current at the maximum of the anodic peak in V", default=None
+    )
+
+    total_cycle_number: Optional[int] = Field(
         description="The total cycle number", default=None
     )
 
@@ -53,5 +61,5 @@ class CV(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="99c493f86086acaae86fb0441b9aad3c98ea4dc5"
+        default="bc5943f2bbdcae6aa77d1b2d8a473ad9ebf35bde"
     )

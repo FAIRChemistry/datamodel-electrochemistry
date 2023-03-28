@@ -25,7 +25,7 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="99c493f86086acaae86fb0441b9aad3c98ea4dc5"
+        default="bc5943f2bbdcae6aa77d1b2d8a473ad9ebf35bde"
     )
 
     def add_to_cv(
@@ -33,11 +33,13 @@ class Analysis(sdRDM.DataModel):
         solvent: Optional[str] = None,
         conducting_salt: Optional[str] = None,
         conducting_salt_concentration: Optional[float] = None,
+        halfe_wave_potential: Optional[float] = None,
         scan_rate: Optional[float] = None,
         i_pc: Optional[float] = None,
         i_pa: Optional[float] = None,
         potential_E_pc: Optional[float] = None,
-        potential_E_pa: Optional[int] = None,
+        potential_E_pa: Optional[float] = None,
+        total_cycle_number: Optional[int] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -55,7 +57,10 @@ class Analysis(sdRDM.DataModel):
             conducting_salt (Optional[str]): Name of the used salt. Defaults to None
 
 
-            conducting_salt_concentration (Optional[float]): The half-wave potential of the measurement in V. Defaults to None
+            conducting_salt_concentration (Optional[float]): Concentration of the conducting salt in mol/l. Defaults to None
+
+
+            halfe_wave_potential (Optional[float]): The half-wave potential of the measurement in V. Defaults to None
 
 
             scan_rate (Optional[float]): The scan rate of the measurement in mV/s. Defaults to None
@@ -70,18 +75,23 @@ class Analysis(sdRDM.DataModel):
             potential_E_pc (Optional[float]): Potential at the maximum of the cathodic peak in  V. Defaults to None
 
 
-            potential_E_pa (Optional[int]): The total cycle number. Defaults to None
+            potential_E_pa (Optional[float]): The current at the maximum of the anodic peak in V. Defaults to None
+
+
+            total_cycle_number (Optional[int]): The total cycle number. Defaults to None
         """
 
         params = {
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,
+            "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
             "i_pc": i_pc,
             "i_pa": i_pa,
             "potential_E_pc": potential_E_pc,
             "potential_E_pa": potential_E_pa,
+            "total_cycle_number": total_cycle_number,
         }
         if id is not None:
             params["id"] = id
