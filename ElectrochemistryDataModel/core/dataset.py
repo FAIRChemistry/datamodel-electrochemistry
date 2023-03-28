@@ -7,9 +7,9 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from datetime import date
 
+from .sample import Sample
 from .author import Author
 from .analysis import Analysis
-from .sample import Sample
 
 
 @forge_signature
@@ -54,7 +54,7 @@ class Dataset(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="c0540e6a757834315393517404154ebaac8c74e1"
+        default="25941a46648b5578fa88ae8a744fc125395b6b19"
     )
 
     def add_author_to_author(

@@ -44,6 +44,7 @@ classDiagram
         +string solvent*
         +string conducting_salt*
         +Concentration_units conducting_salt_concentration*
+        +Concentration_units conducting_salt_concentration2*
         +Potential_units halfe_wave_potential*
         +Scan_rate_units scan_rate*
         +Potential_units start_potential*
@@ -75,7 +76,7 @@ classDiagram
     
     class Scan_rate_units {
         << Enumeration >>
-        +VOLT_SEC
+        +VOLT_PER_SEC
         +MILLI_VOLT_SEC
         +MICRO_VOLT_SEC
     }
