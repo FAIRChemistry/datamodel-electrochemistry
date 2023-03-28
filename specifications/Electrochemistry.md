@@ -70,6 +70,9 @@ Container for information regarding the CV-Setup and parameters
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt 
+- __conducting_salt_concentration2__
+  - Type: Concentration_units
+  - Description: Concentration of the conducting salt
 - __halfe_wave_potential__
   - Type: Potential_units
   - Description: The half-wave potential of the measurement  
@@ -126,7 +129,7 @@ NANGRAM_LITER = "ng / l"
 ``` 
 ### Scan_rate_units
 ```python
-VOLT_SEC = "V / s"
+VOLT_PER_SEC = "V / s"
 MILLI_VOLT_SEC = "mV / s"
 MICRO_VOLT_SEC = "uV / s"
 ``` 
