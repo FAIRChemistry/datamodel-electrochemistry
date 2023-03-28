@@ -25,13 +25,13 @@ Container for information regarding the CV-Setup and parameters
 - __solvent*__
   - Type: string
   - Description: Name of the solvent    
-- __conducting salt*__
+- __conducting_salt*__
   - Type: string
   - Description: Name of the used salt
-- __scan rate*__
+- __scan_rate*__
   - Type: int
   - Description: Name of the used scan rate 
-- __working electrode*__
+- __working_electrode*__
   - Type: string
   - Description: Name of the used working electrode
 - __reference*__
