@@ -78,12 +78,12 @@ Container for information regarding the CV-Setup and parameters
 - __i_pa__
   - Type: Current_units
   - Description: The current at the maximum of the anodic peak 
-- __potential_E_pc__
+- __red_potential_E_pc__
   - Type: Potential_units
-  - Description: Potential at the maximum of the cathodic peak 
-- __potential_E_pa__
+  - Description: Potential at the maximum of the cathodic peak (reduction)
+- __ox_potential_E_pa__
   - Type: Potential_units
-  - Description: The current at the maximum of the anodic peak 
+  - Description: The current at the maximum of the anodic peak (oxidation)
 - __total_cycle_number__
   - Type: int
   - Description: The total cycle number
@@ -95,7 +95,7 @@ Container for information regarding persons who worked on a dataset.
   - Description: Full name of the author
 - __affiliation__
   - Type: string
-  - Description: Organisation the author is affiliated with
+  - Description: Organization the author is affiliated with
 - __email__
   - Type: string
   - Description: Contact e-mail address of the author
