@@ -22,6 +22,8 @@ classDiagram
         +float scan_rate
         +float i_pc
         +float i_pa
+        +float potential_E_pc
+        +float potential_E_pa
     }
     
     class Author {

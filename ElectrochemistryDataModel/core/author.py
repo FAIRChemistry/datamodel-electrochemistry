@@ -33,5 +33,5 @@ class Author(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="3b2ff760caea088f6a765fe8498dd9ccea93167d"
+        default="d12abd455d75c80e4c6639677f5596e7060b9e61"
     )

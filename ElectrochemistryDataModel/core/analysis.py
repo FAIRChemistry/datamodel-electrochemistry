@@ -25,7 +25,7 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="3b2ff760caea088f6a765fe8498dd9ccea93167d"
+        default="d12abd455d75c80e4c6639677f5596e7060b9e61"
     )
 
     def add_to_cv(
@@ -36,6 +36,8 @@ class Analysis(sdRDM.DataModel):
         scan_rate: Optional[float] = None,
         i_pc: Optional[float] = None,
         i_pa: Optional[float] = None,
+        potential_E_pc: Optional[float] = None,
+        potential_E_pa: Optional[float] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -63,6 +65,12 @@ class Analysis(sdRDM.DataModel):
 
 
             i_pa (Optional[float]): The current at the maximum of the anodic peak in A. Defaults to None
+
+
+            potential_E_pc (Optional[float]): Potential at the maximum of the cathodic peak in  V. Defaults to None
+
+
+            potential_E_pa (Optional[float]): The current at the maximum of the anodic peak in V. Defaults to None
         """
 
         params = {
@@ -72,6 +80,8 @@ class Analysis(sdRDM.DataModel):
             "scan_rate": scan_rate,
             "i_pc": i_pc,
             "i_pa": i_pa,
+            "potential_E_pc": potential_E_pc,
+            "potential_E_pa": potential_E_pa,
         }
         if id is not None:
             params["id"] = id
