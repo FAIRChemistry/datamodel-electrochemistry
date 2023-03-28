@@ -33,6 +33,13 @@ Container for information regarding the CV-Setup and parameters
 - __conducting_salt_concentration__
   - Type: float
   - Description: Concentration of the conducting salt in mol/l
+ - __halfe_wave_potential__
+  - Type: float
+  - Description: The half-wave potential of the measurement in V 
+- __scan_rate__
+  - Type: float
+  - Description: The scan rate of the measurement in mV/s
+
 
 ### Author
 Container for information regarding persons who worked on a dataset.
