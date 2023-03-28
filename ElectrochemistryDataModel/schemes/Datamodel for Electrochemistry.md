@@ -51,8 +51,8 @@ classDiagram
         +Potential_units stop_potential
         +Current_units i_pc
         +Current_units i_pa
-        +Potential_units red_potential_E_pc
-        +Potential_units ox_potential_E_pa
+        +Potential_units potential_E_pc
+        +Potential_units potential_E_pa
         +int total_cycle_number
     }
     

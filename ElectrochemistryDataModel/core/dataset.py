@@ -44,7 +44,7 @@ class Dataset(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="3b10d8e0b69d8690001b1825f7af74b4bbbd17dd"
+        default="bfc6df30a04d4f1a1e1e3eb62fe9a5062a6eda81"
     )
 
     def add_to_author(
