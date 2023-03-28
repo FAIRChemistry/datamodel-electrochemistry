@@ -12,7 +12,7 @@ classDiagram
     }
     
     class Analysis {
-        +CV cv
+        +CV[0..*] cv
     }
     
     class CV {

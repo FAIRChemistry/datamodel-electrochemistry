@@ -25,7 +25,8 @@
   "Analysis": {
     "attributes": {
       "cv": {
-        "description": "This is a test"
+        "multiple": "True",
+        "description": "CV"
       }
     },
     "docstring": null
