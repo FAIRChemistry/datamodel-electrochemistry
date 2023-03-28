@@ -11,7 +11,13 @@
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset
-
+-  __Analysis__
+  - Type: string
+  - Description: The method which is used to gain the data 
+### Analysis
+ __Cyclic_Voltammetry__
+  - Type: CV
+  - Description: ...
 ### Author
 Container for information regarding persons who worked on a dataset.
 
