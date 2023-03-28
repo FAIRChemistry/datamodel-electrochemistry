@@ -19,7 +19,7 @@
   - Type: Analysis
   - Description: The method which is used to gain the data 
 ### Product
-- __product_name__
+- __name__
   - Type: String
   - Description: The name of the product
 - __chemical_formula__
@@ -52,12 +52,12 @@ Container for information regarding the CV-Setup and parameters
 - __scan_rate__
   - Type: float
   - Description: The scan rate of the measurement in mV/s
-- __max_potential__
+- __start_potential__
   - Type: float
-  - Description: The maximum value of the potential in V 
-- __minimum_potential__
+  - Description: The starting value of the potential in V 
+- __stop_potential__
   - Type: float
-  - Description: The minimum value of the potential in V 
+  - Description: The stop value of the potential in V 
 - __i_pc__
   - Type: float
   - Description: The current at the maximum of the cathodic peak in A
