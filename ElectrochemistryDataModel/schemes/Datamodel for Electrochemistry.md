@@ -6,6 +6,7 @@ classDiagram
     Analysis *-- CV
     Analysis *-- CP
     CP *-- Concentration_units
+    CP *-- Potential_units
     CV *-- Concentration_units
     CV *-- Potential_units
     CV *-- Scan_rate_units
@@ -39,6 +40,7 @@ classDiagram
         +string solvent
         +string conducting_salt
         +Concentration_units conducting_salt_concentration
+        +Potential_units potential_first
     }
     
     class CV {

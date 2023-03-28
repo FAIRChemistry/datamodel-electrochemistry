@@ -69,6 +69,9 @@
       },
       "conducting_salt_concentration": {
         "description": "Concentration of the conducting salt"
+      },
+      "potential_first": {
+        "description": "First potential which was used"
       }
     },
     "docstring": null
