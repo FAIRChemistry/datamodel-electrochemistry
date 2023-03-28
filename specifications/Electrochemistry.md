@@ -55,7 +55,7 @@
   - Type: Potential_units
   - Description: Second potential which was used
 - __time_between_switch__
-  - Type: Time_units
+  - Type: string
   - Description: The time between switching the potentials
 ### CV
 Container for information regarding the CV-Setup and parameters
