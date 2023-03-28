@@ -56,4 +56,3 @@ Container for information regarding persons who worked on a dataset.
 VOLTAGE = "V"
 AMPERE = "I"
 ``` 
-``` 
