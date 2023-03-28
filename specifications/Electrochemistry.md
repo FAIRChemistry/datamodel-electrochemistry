@@ -45,6 +45,12 @@ Container for information regarding the CV-Setup and parameters
 - __i_pa__
   - Type: float
   - Description: The current at the maximum of the anodic peak in A 
+- __potential_E_pc__
+  - Type: float
+  - Description: Potential at the maximum of the cathodic peak in  V
+- __potential_E_pa__
+  - Type: float
+  - Description: The current at the maximum of the anodic peak in V
 
 
 ### Author
