@@ -15,6 +15,17 @@
       "author": {
         "multiple": "True",
         "description": "Persons who worked on the dataset"
+      },
+      "analysis": {
+        "description": "The method which is used to gain the data"
+      }
+    },
+    "docstring": null
+  },
+  "Analysis": {
+    "attributes": {
+      "cv": {
+        "description": "This is a test"
       }
     },
     "docstring": null
