@@ -11,10 +11,10 @@
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset
-- __product__
-  - Type: Product
+- __sample__
+  - Type: Sample
   - Multiple: True
-  - Description: The product which was measured 
+  - Description: The sample which was measured 
 - __analysis__
   - Type: Analysis
   - Description: The method which is used to gain the data 
@@ -34,6 +34,20 @@
   - Type: CV
   - Multiple: True
   - Description: cv
+- __cp__
+  - Type: CP
+  - Multiple: True
+  - Description: cp
+### CP
+- __solvent__
+  - Type: string
+  - Description: Name of the solvent    
+- __conducting_salt__
+  - Type: string
+  - Description: Name of the used salt
+- __conducting_salt_concentration__
+  - Type: float
+  - Description: Concentration of the conducting salt in mol/l
   
 ### CV
 Container for information regarding the CV-Setup and parameters
