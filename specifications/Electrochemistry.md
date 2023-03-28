@@ -18,9 +18,19 @@
 
 ### Analysis
 - __cv__
-  - Type: string
+  - Type: CV
   - Description: This is a test 
-
+### CV
+Container for information regarding the CV-Setup and parameters
+- __solvent__
+  - Type: string
+  - Description: Name of the solvent    
+- __conducting_salt__
+  - Type: string
+  - Description: Name of the used salt
+- __conducting_salt_c__
+  - Type: float
+  - Description: Concentration of the conducting salt in mol/l
 
 ### Author
 Container for information regarding persons who worked on a dataset.
