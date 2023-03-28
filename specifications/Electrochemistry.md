@@ -67,7 +67,7 @@ Container for information regarding the CV-Setup and parameters
 - __conducting_salt__
   - Type: string
   - Description: Name of the used salt
-- __conducting_salt_concentration__
+- __conducting_salt_concentration_test__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt 
 
