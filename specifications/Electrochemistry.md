@@ -20,15 +20,14 @@
   - Description: The method which is used to gain the data 
 ### Product
 - __name__
-  - Type: String
+  - Type: string
   - Description: The name of the product
 - __chemical_formula__
-  - Type: String
+  - Type: string  
   - Description: The chemical formula of the product
 - __synthesis__
-  - Type: String
+  - Type: string
   - Description: The synthesis of the product 
-
 
 ### Analysis
 - __cv__
