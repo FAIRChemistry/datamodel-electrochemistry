@@ -1,5 +1,5 @@
 {
-  "docstring": "",
+  "docstring": "```",
   "enums": [
     "Units"
   ],
@@ -15,6 +15,10 @@
       "parameter": {
         "multiple": "True",
         "description": "Name of the parameter"
+      },
+      "author": {
+        "multiple": "True",
+        "description": "Persons who worked on the dataset"
       }
     },
     "docstring": null
@@ -23,6 +27,12 @@
     "attributes": {
       "name": {
         "description": "Full name of the author"
+      },
+      "affiliation": {
+        "description": "Organisation the author is affiliated with"
+      },
+      "email": {
+        "description": "Contact e-mail address of the author"
       }
     },
     "docstring": "Container for information regarding persons who worked on a dataset.\n"

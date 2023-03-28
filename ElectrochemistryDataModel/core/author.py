@@ -1,16 +1,15 @@
 import sdRDM
 
 from typing import Optional, Union
+from typing import Optional
 from pydantic import PrivateAttr
+from pydantic import Field
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
-
-from pydantic import Field
 
 
 @forge_signature
 class Author(sdRDM.DataModel):
-
     """Container for information regarding persons who worked on a dataset."""
 
     id: str = Field(
@@ -18,14 +17,21 @@ class Author(sdRDM.DataModel):
         default_factory=IDGenerator("authorINDEX"),
         xml="@id",
     )
-    name: str = Field(
-        ...,
-        description="Full name of the author",
+
+    name: Optional[str] = Field(description="Full name of the author", default=None)
+
+    affiliation: Optional[str] = Field(
+        description="Organisation the author is affiliated with", default=None
+    )
+
+    email: Optional[str] = Field(
+        description="Contact e-mail address of the author", default=None
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
+
     __commit__: Optional[str] = PrivateAttr(
-        default="f9140a168ff03af2a895467198a6fb7086f1f069"
+        default="51895a81cf68d0ad170cee3cd6f1d9fca991cc9e"
     )
