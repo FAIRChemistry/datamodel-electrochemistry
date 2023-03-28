@@ -126,7 +126,7 @@ MICRO_VOLT_SEC = "uV / s"
 #### Current_units
 ```python
 AMPERE = "A"
-MILLI_AMPERE = "mV / s"
-MICRO_AMPERE = "uV / s"
-NANO_AMPERE = "nV /s"
+MILLI_AMPERE = "mA"
+MICRO_AMPERE = "uA"
+NANO_AMPERE = "nA"
 ``` 
