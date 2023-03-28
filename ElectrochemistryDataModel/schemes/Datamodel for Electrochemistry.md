@@ -60,7 +60,7 @@ classDiagram
     class Concentration_units {
         << Enumeration >>
         +MOLAR = "mole / l"
-        +MILLI_MOLAR = "mmole / _l"
+        +MILLI_MOLAR = "mmole / l"
         +MICRO_MOLAR = "umole / l"
         +NANO_MOLAR = "nmole / l"
         +GRAM_LITER = "g / l"
@@ -72,7 +72,7 @@ classDiagram
     class Concentration_units {
         << Enumeration >>
         +MOLAR = "mole / l"
-        +MILLI_MOLAR = "mmole / _l"
+        +MILLI_MOLAR = "mmole / l"
         +MICRO_MOLAR = "umole / l"
         +NANO_MOLAR = "nmole / l"
         +GRAM_LITER = "g / l"
