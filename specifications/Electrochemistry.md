@@ -19,7 +19,8 @@
 ### Analysis
 - __cv__
   - Type: CV
-  - Description: This is a test 
+  - Multiple: True
+  - Description: CV 
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __solvent__
