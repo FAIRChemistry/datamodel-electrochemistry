@@ -116,9 +116,7 @@ Container for information regarding persons who worked on a dataset.
 SEC = "s"
 MILLI_SEC = "ms"
 MICRO_SEC = "us"
-MIN= "min"
-
-
+MIN = "min"
 ```  
 
 
