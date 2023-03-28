@@ -2,6 +2,7 @@
 classDiagram
     Dataset *-- Author
     Dataset *-- Analysis
+    Analysis *-- CV
     
     class Dataset {
         +string name
@@ -11,7 +12,13 @@ classDiagram
     }
     
     class Analysis {
-        +string cv
+        +CV cv
+    }
+    
+    class CV {
+        +string solvent
+        +string conducting_salt
+        +float conducting_salt_c
     }
     
     class Author {

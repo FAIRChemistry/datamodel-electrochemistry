@@ -1,37 +1,42 @@
 import sdRDM
 
 from typing import Optional, Union
-from typing import Optional
 from pydantic import PrivateAttr
-from pydantic import Field
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
+from pydantic import Field
+from typing import Optional
+
 
 @forge_signature
-class Author(sdRDM.DataModel):
-    """Container for information regarding persons who worked on a dataset."""
+class CV(sdRDM.DataModel):
+
+    """Container for information regarding the CV-Setup and parameters"""
 
     id: str = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("authorINDEX"),
+        default_factory=IDGenerator("cvINDEX"),
         xml="@id",
     )
-
-    name: Optional[str] = Field(description="Full name of the author", default=None)
-
-    affiliation: Optional[str] = Field(
-        description="Organisation the author is affiliated with", default=None
+    solvent: Optional[str] = Field(
+        description="Name of the solvent",
+        default=None,
     )
 
-    email: Optional[str] = Field(
-        description="Contact e-mail address of the author", default=None
+    conducting_salt: Optional[str] = Field(
+        description="Name of the used salt",
+        default=None,
+    )
+
+    conducting_salt_c: Optional[float] = Field(
+        description="Concentration of the conducting salt in mol/l",
+        default=None,
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
-
     __commit__: Optional[str] = PrivateAttr(
         default="45ab805561cb30ec578fdf838617134280a81899"
     )
