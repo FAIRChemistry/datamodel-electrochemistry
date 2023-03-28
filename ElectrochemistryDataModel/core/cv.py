@@ -5,10 +5,10 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .current_units import Current_units
-from .potential_units import Potential_units
-from .scan_rate_units import Scan_rate_units
 from .concentration_units import Concentration_units
+from .potential_units import Potential_units
+from .current_units import Current_units
+from .scan_rate_units import Scan_rate_units
 
 
 @forge_signature
@@ -27,13 +27,13 @@ class CV(sdRDM.DataModel):
         description="Name of the solvent",
     )
 
-    conducting_salt: str = Field(
-        ...,
+    conducting_salt: Optional[str] = Field(
+        default=None,
         description="Name of the used salt",
     )
 
-    conducting_salt_concentration_test: Concentration_units = Field(
-        ...,
+    conducting_salt_concentration: Optional[Concentration_units] = Field(
+        default=None,
         description="Concentration of the conducting salt",
     )
 
@@ -86,5 +86,5 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="4656d90d1c67e93e8de6208160d45362941b15ff"
+        default="6deef7e7f104bc589432a520f7d6b01bf1ad5577"
     )
