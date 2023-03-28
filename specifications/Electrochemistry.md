@@ -52,7 +52,7 @@ Container for information regarding the CV-Setup and parameters
   - Type: float
   - Description: The current at the maximum of the anodic peak in V
  - __total_cycle_number__
-  - Type: num
+  - Type: int
   - Description: The total cycle number
 
 
