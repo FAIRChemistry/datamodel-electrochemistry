@@ -44,6 +44,12 @@
       },
       "scan_rate": {
         "description": "The scan rate of the measurement in mV/s"
+      },
+      "i_pc": {
+        "description": "The current at the maximum of the cathodic peak in A"
+      },
+      "i_pa": {
+        "description": "The current at the maximum of the anodic peak in A"
       }
     },
     "docstring": "Container for information regarding the CV-Setup and parameters\n"

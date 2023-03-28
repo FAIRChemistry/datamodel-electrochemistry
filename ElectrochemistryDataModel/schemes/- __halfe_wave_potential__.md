@@ -20,6 +20,8 @@ classDiagram
         +string conducting_salt
         +float conducting_salt_concentration
         +float scan_rate
+        +float i_pc
+        +float i_pa
     }
     
     class Author {

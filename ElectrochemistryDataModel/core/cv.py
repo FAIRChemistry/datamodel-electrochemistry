@@ -32,10 +32,18 @@ class CV(sdRDM.DataModel):
         description="The scan rate of the measurement in mV/s", default=None
     )
 
+    i_pc: Optional[float] = Field(
+        description="The current at the maximum of the cathodic peak in A", default=None
+    )
+
+    i_pa: Optional[float] = Field(
+        description="The current at the maximum of the anodic peak in A", default=None
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="ed4c6f7e177cc673b1f908e179a25f315168168c"
+        default="3b2ff760caea088f6a765fe8498dd9ccea93167d"
     )

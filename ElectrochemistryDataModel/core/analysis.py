@@ -25,7 +25,7 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="ed4c6f7e177cc673b1f908e179a25f315168168c"
+        default="3b2ff760caea088f6a765fe8498dd9ccea93167d"
     )
 
     def add_to_cv(
@@ -34,6 +34,8 @@ class Analysis(sdRDM.DataModel):
         conducting_salt: Optional[str] = None,
         conducting_salt_concentration: Optional[float] = None,
         scan_rate: Optional[float] = None,
+        i_pc: Optional[float] = None,
+        i_pa: Optional[float] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -55,6 +57,12 @@ class Analysis(sdRDM.DataModel):
 
 
             scan_rate (Optional[float]): The scan rate of the measurement in mV/s. Defaults to None
+
+
+            i_pc (Optional[float]): The current at the maximum of the cathodic peak in A. Defaults to None
+
+
+            i_pa (Optional[float]): The current at the maximum of the anodic peak in A. Defaults to None
         """
 
         params = {
@@ -62,6 +70,8 @@ class Analysis(sdRDM.DataModel):
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,
             "scan_rate": scan_rate,
+            "i_pc": i_pc,
+            "i_pa": i_pa,
         }
         if id is not None:
             params["id"] = id
