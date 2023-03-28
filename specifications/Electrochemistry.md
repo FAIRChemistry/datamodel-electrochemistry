@@ -34,21 +34,7 @@
   - Type: CV
   - Multiple: True
   - Description: cv
-- __cp__
-  - Type: CP
-  - Multiple: True
-  - Description: cp
-### CP
-- __solvent__
-  - Type: string
-  - Description: Name of the solvent    
-- __conducting_salt__
-  - Type: string
-  - Description: Name of the used salt
-- __conducting_salt_concentration__
-  - Type: float
-  - Description: Concentration of the conducting salt in mol/l
-  
+
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __solvent__
