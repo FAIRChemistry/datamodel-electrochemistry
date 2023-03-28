@@ -25,7 +25,11 @@ class CV(sdRDM.DataModel):
     )
 
     conducting_salt_concentration: Optional[float] = Field(
-        description="Concentration of the conducting salt in mol/l", default=None
+        description="The half-wave potential of the measurement in V", default=None
+    )
+
+    scan_rate: Optional[float] = Field(
+        description="The scan rate of the measurement in mV/s", default=None
     )
 
     __repo__: Optional[str] = PrivateAttr(
@@ -33,5 +37,5 @@ class CV(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="827b9d7f19851a081cf41ba2e9af9f1b707e5a38"
+        default="ed4c6f7e177cc673b1f908e179a25f315168168c"
     )

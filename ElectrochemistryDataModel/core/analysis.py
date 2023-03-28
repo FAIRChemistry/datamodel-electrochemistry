@@ -25,7 +25,7 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="827b9d7f19851a081cf41ba2e9af9f1b707e5a38"
+        default="ed4c6f7e177cc673b1f908e179a25f315168168c"
     )
 
     def add_to_cv(
@@ -33,6 +33,7 @@ class Analysis(sdRDM.DataModel):
         solvent: Optional[str] = None,
         conducting_salt: Optional[str] = None,
         conducting_salt_concentration: Optional[float] = None,
+        scan_rate: Optional[float] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -50,13 +51,17 @@ class Analysis(sdRDM.DataModel):
             conducting_salt (Optional[str]): Name of the used salt. Defaults to None
 
 
-            conducting_salt_concentration (Optional[float]): Concentration of the conducting salt in mol/l. Defaults to None
+            conducting_salt_concentration (Optional[float]): The half-wave potential of the measurement in V. Defaults to None
+
+
+            scan_rate (Optional[float]): The scan rate of the measurement in mV/s. Defaults to None
         """
 
         params = {
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,
+            "scan_rate": scan_rate,
         }
         if id is not None:
             params["id"] = id
