@@ -50,8 +50,8 @@
   - Description: Concentration of the conducting salt in mol/l
 ### Concentration_units
 ```python
-MOLAR = "mole/l"
-MILLIMOLAR = "mmol/l"
+MOLAR = "mole / l"
+MILLIMOLAR = "mmole / l"
 MICROMOLAR = "umole / l"
 NANAMOLAR = "nmole / l"
 GRAMLITER = "g / l"
