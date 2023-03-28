@@ -130,3 +130,10 @@ MILLI_AMPERE = "mA"
 MICRO_AMPERE = "uA"
 NANO_AMPERE = "nA"
 ``` 
+#### Potential_units
+```python
+VOLT = "V"
+MILLI_VOLT = "mV"
+MICRO_VOLT = "uV"
+NANO_VOLT = "nV"
+``` 
