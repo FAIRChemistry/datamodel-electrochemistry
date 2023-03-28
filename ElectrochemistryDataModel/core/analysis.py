@@ -25,7 +25,7 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="b3db07fcf3813ae61424d8b5bd61f0531e6a3ccc"
+        default="677da7542c321b8f6e240be33fe2f0cd5cb3158a"
     )
 
     def add_to_cv(
@@ -80,7 +80,7 @@ class Analysis(sdRDM.DataModel):
             i_pa (Optional[float]): The current at the maximum of the anodic peak in A. Defaults to None
 
 
-            potential_E_pc (Optional[float]): Potential at the maximum of the cathodic peak in  V. Defaults to None
+            potential_E_pc (Optional[float]): Potential at the maximum of the cathodic peak in V. Defaults to None
 
 
             potential_E_pa (Optional[float]): The current at the maximum of the anodic peak in V. Defaults to None

@@ -61,7 +61,7 @@
         "description": "The current at the maximum of the anodic peak in A"
       },
       "potential_E_pc": {
-        "description": "Potential at the maximum of the cathodic peak in  V"
+        "description": "Potential at the maximum of the cathodic peak in V"
       },
       "potential_E_pa": {
         "description": "The current at the maximum of the anodic peak in V"

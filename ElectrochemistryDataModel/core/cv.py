@@ -36,10 +36,6 @@ class CV(sdRDM.DataModel):
         description="The current at the maximum of the anodic peak in A", default=None
     )
 
-    potential_E_pc: Optional[float] = Field(
-        description="Potential at the maximum of the cathodic peak in  V", default=None
-    )
-
     conducting_salt_concentration: Optional[float] = Field(
         description="Concentration of the conducting salt in mol/l", default=None
     )
@@ -64,10 +60,14 @@ class CV(sdRDM.DataModel):
         description="The stop value of the potential in V", default=None
     )
 
+    potential_E_pc: Optional[float] = Field(
+        description="Potential at the maximum of the cathodic peak in V", default=None
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="b3db07fcf3813ae61424d8b5bd61f0531e6a3ccc"
+        default="677da7542c321b8f6e240be33fe2f0cd5cb3158a"
     )
