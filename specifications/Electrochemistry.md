@@ -48,7 +48,9 @@
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt
-
+- __potential_first__
+  - Type: Potential_units
+  - Description: First potential which was used  
 
 ### CV
 Container for information regarding the CV-Setup and parameters
