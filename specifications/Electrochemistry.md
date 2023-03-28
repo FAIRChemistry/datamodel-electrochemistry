@@ -11,9 +11,6 @@
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset
--  __analysis__
-   - Type: Analysis
-   - Description: The method which is used to gain the data 
 
 
 
