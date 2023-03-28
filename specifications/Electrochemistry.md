@@ -13,12 +13,11 @@
   - Description: Persons who worked on the dataset
 -  __analysis__
   - Type: Analysis
-  - Multiple: True
   - Description: The method which is used to gain the data 
 ### Analysis
 - __cv__
   - Type: string
-  - Description: CV
+  - Description: This is a test 
 
 
 ### Author
