@@ -6,11 +6,11 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .potential_units import Potential_units
+from .cv import CV
+from .current_units import Current_units
 from .scan_rate_units import Scan_rate_units
 from .concentration_units import Concentration_units
-from .potential_units import Potential_units
-from .current_units import Current_units
-from .cv import CV
 from .cp import CP
 
 
@@ -41,7 +41,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="09862b591fc9c8bd1c8c57032f8dd6737d2317ee"
+        default="08e75d3306c1c388beebd7396e684d10cc8d7344"
     )
 
     def add_cv_to_cv(
@@ -49,7 +49,6 @@ class Analysis(sdRDM.DataModel):
         solvent: str,
         conducting_salt: str,
         conducting_salt_concentration: Concentration_units,
-        conducting_salt_concentration2: Concentration_units,
         halfe_wave_potential: Potential_units,
         scan_rate: Scan_rate_units,
         start_potential: Potential_units,
@@ -69,7 +68,6 @@ class Analysis(sdRDM.DataModel):
             solvent (): Name of the solvent.
             conducting_salt (): Name of the used salt.
             conducting_salt_concentration (): Concentration of the conducting salt.
-            conducting_salt_concentration2 (): Concentration of the conducting salt.
             halfe_wave_potential (): The half-wave potential of the measurement.
             scan_rate (): The scan rate of the measurement.
             start_potential (): The starting value of the potential.
@@ -85,7 +83,6 @@ class Analysis(sdRDM.DataModel):
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,
-            "conducting_salt_concentration2": conducting_salt_concentration2,
             "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
             "start_potential": start_potential,
