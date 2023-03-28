@@ -85,28 +85,28 @@
         "description": "Concentration of the conducting salt"
       },
       "halfe_wave_potential": {
-        "description": "The half-wave potential of the measurement in V"
+        "description": "The half-wave potential of the measurement"
       },
       "scan_rate": {
         "description": "The scan rate of the measurement"
       },
       "start_potential": {
-        "description": "The starting value of the potential in V"
+        "description": "The starting value of the potential"
       },
       "stop_potential": {
-        "description": "The stop value of the potential in V"
+        "description": "The stop value of the potential"
       },
       "i_pc": {
-        "description": "The current at the maximum of the cathodic peak in A"
+        "description": "The current at the maximum of the cathodic peak"
       },
       "i_pa": {
-        "description": "The current at the maximum of the anodic peak in A"
+        "description": "The current at the maximum of the anodic peak"
       },
       "potential_E_pc": {
-        "description": "Potential at the maximum of the cathodic peak in V"
+        "description": "Potential at the maximum of the cathodic peak"
       },
       "potential_E_pa": {
-        "description": "The current at the maximum of the anodic peak in V"
+        "description": "The current at the maximum of the anodic peak"
       },
       "total_cycle_number": {
         "description": "The total cycle number"

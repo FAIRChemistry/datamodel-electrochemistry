@@ -28,18 +28,13 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="3f30fa47fe038a454cfef8de3e58dbd5636173c6"
+        default="d7121bf41f09ba61ab158bd322edea73e7269933"
     )
 
     def add_to_cv(
         self,
         solvent: Optional[str] = None,
         conducting_salt: Optional[str] = None,
-        halfe_wave_potential: Optional[float] = None,
-        start_potential: Optional[float] = None,
-        stop_potential: Optional[float] = None,
-        potential_E_pc: Optional[float] = None,
-        potential_E_pa: Optional[float] = None,
         total_cycle_number: Optional[int] = None,
         id: Optional[str] = None,
     ) -> None:
@@ -58,32 +53,12 @@ class Analysis(sdRDM.DataModel):
             conducting_salt (Optional[str]): Name of the used salt. Defaults to None
 
 
-            halfe_wave_potential (Optional[float]): The half-wave potential of the measurement in V. Defaults to None
-
-
-            start_potential (Optional[float]): The starting value of the potential in V. Defaults to None
-
-
-            stop_potential (Optional[float]): The stop value of the potential in V. Defaults to None
-
-
-            potential_E_pc (Optional[float]): Potential at the maximum of the cathodic peak in V. Defaults to None
-
-
-            potential_E_pa (Optional[float]): The current at the maximum of the anodic peak in V. Defaults to None
-
-
             total_cycle_number (Optional[int]): The total cycle number. Defaults to None
         """
 
         params = {
             "solvent": solvent,
             "conducting_salt": conducting_salt,
-            "halfe_wave_potential": halfe_wave_potential,
-            "start_potential": start_potential,
-            "stop_potential": stop_potential,
-            "potential_E_pc": potential_E_pc,
-            "potential_E_pa": potential_E_pa,
             "total_cycle_number": total_cycle_number,
         }
         if id is not None:

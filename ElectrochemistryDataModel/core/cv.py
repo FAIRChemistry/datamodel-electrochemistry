@@ -24,28 +24,8 @@ class CV(sdRDM.DataModel):
         description="Name of the used salt", default=None
     )
 
-    halfe_wave_potential: Optional[float] = Field(
-        description="The half-wave potential of the measurement in V", default=None
-    )
-
-    potential_E_pa: Optional[float] = Field(
-        description="The current at the maximum of the anodic peak in V", default=None
-    )
-
     total_cycle_number: Optional[int] = Field(
         description="The total cycle number", default=None
-    )
-
-    start_potential: Optional[float] = Field(
-        description="The starting value of the potential in V", default=None
-    )
-
-    stop_potential: Optional[float] = Field(
-        description="The stop value of the potential in V", default=None
-    )
-
-    potential_E_pc: Optional[float] = Field(
-        description="Potential at the maximum of the cathodic peak in V", default=None
     )
 
     __repo__: Optional[str] = PrivateAttr(
@@ -53,5 +33,5 @@ class CV(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="3f30fa47fe038a454cfef8de3e58dbd5636173c6"
+        default="d7121bf41f09ba61ab158bd322edea73e7269933"
     )

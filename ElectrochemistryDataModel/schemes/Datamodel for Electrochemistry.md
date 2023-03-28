@@ -7,9 +7,14 @@ classDiagram
     Analysis *-- CP
     CP *-- Concentration_units
     CV *-- Concentration_units
+    CV *-- Potential_units
     CV *-- Scan_rate_units
+    CV *-- Potential_units
+    CV *-- Potential_units
     CV *-- Current_units
     CV *-- Current_units
+    CV *-- Potential_units
+    CV *-- Potential_units
     
     class Dataset {
         +string name
@@ -40,14 +45,14 @@ classDiagram
         +string solvent
         +string conducting_salt
         +Concentration_units conducting_salt_concentration
-        +float halfe_wave_potential
+        +Potential_units halfe_wave_potential
         +Scan_rate_units scan_rate
-        +float start_potential
-        +float stop_potential
+        +Potential_units start_potential
+        +Potential_units stop_potential
         +Current_units i_pc
         +Current_units i_pa
-        +float potential_E_pc
-        +float potential_E_pa
+        +Potential_units potential_E_pc
+        +Potential_units potential_E_pa
         +int total_cycle_number
     }
     
