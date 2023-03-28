@@ -49,8 +49,8 @@ classDiagram
         +Scan_rate_units scan_rate
         +Potential_units start_potential
         +Potential_units stop_potential
-        +Current_units i_pc
-        +Current_units i_pa
+        +Current_units i_pc_ox
+        +Current_units i_pa_red
         +Potential_units ox_potential_E_pc
         +Potential_units red_potential_E_pa
         +int total_cycle_number

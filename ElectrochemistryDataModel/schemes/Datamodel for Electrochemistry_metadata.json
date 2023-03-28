@@ -96,11 +96,11 @@
       "stop_potential": {
         "description": "The stop value of the potential"
       },
-      "i_pc": {
-        "description": "The current at the maximum of the cathodic peak"
+      "i_pc_ox": {
+        "description": "The current at the maximum of the cathodic peak (oxidation)"
       },
-      "i_pa": {
-        "description": "The current at the maximum of the anodic peak"
+      "i_pa_red": {
+        "description": "The current at the maximum of the anodic peak (reduction)"
       },
       "ox_potential_E_pc": {
         "description": "Potential at the maximum of the cathodic peak (reduction)"
