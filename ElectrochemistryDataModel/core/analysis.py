@@ -25,7 +25,7 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="7484ab5d4386124ce99c8d220fb93a4ed15e38de"
+        default="299c848548566fe76746b4e632f7b59a3eaa4856"
     )
 
     def add_to_cv(
@@ -35,6 +35,8 @@ class Analysis(sdRDM.DataModel):
         conducting_salt_concentration: Optional[float] = None,
         halfe_wave_potential: Optional[float] = None,
         scan_rate: Optional[float] = None,
+        max_potential: Optional[float] = None,
+        minimum_potential: Optional[float] = None,
         i_pc: Optional[float] = None,
         i_pa: Optional[float] = None,
         potential_E_pc: Optional[float] = None,
@@ -66,6 +68,12 @@ class Analysis(sdRDM.DataModel):
             scan_rate (Optional[float]): The scan rate of the measurement in mV/s. Defaults to None
 
 
+            max_potential (Optional[float]): The maximum value of the potential in V. Defaults to None
+
+
+            minimum_potential (Optional[float]): The minimum value of the potential in V. Defaults to None
+
+
             i_pc (Optional[float]): The current at the maximum of the cathodic peak in A. Defaults to None
 
 
@@ -87,6 +95,8 @@ class Analysis(sdRDM.DataModel):
             "conducting_salt_concentration": conducting_salt_concentration,
             "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
+            "max_potential": max_potential,
+            "minimum_potential": minimum_potential,
             "i_pc": i_pc,
             "i_pa": i_pa,
             "potential_E_pc": potential_E_pc,
