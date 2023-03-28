@@ -1,12 +1,11 @@
 # Datamodel for Electrochemistry
  
 ### Dataset
-
 + __name*__ 
   + Type: string
   + Description: Name of the dataset
 
-+__date*__
++ __date*__
   + Type: datetime
   + Default_factory: datetime.now
   + Description: Date/time when the dataset was created
