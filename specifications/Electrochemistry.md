@@ -4,7 +4,6 @@
 - __name*__ 
   - Type: string
   - Description: Name of the dataset
-
 - __date*__
   - Type: datetime
   - Default_factory: datetime.now
@@ -27,15 +26,15 @@ Container for information regarding the CV-Setup and parameters
 - __solvent*__
   - Type: string
   - Description: Name of the solvent    
-+ __conducting salt*__
+- __conducting salt*__
   - Type: string
   - Description: Name of the used salt
 - __scan rate*__
   - Type: int
   - Description: Name of the used scan rate 
--  __working electrode*__
-   - Type: string
-   - Description: Name of the used working electrode
+- __working electrode*__
+  - Type: string
+  - Description: Name of the used working electrode
 - __reference*__
   - Type: string
   - Description: Name of the reference
