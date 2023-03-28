@@ -44,8 +44,8 @@ class CV(sdRDM.DataModel):
         description="Potential at the maximum of the cathodic peak in  V", default=None
     )
 
-    potential_E_pa: Optional[float] = Field(
-        description="The current at the maximum of the anodic peak in V", default=None
+    potential_E_pa: Optional[int] = Field(
+        description="The total cycle number", default=None
     )
 
     __repo__: Optional[str] = PrivateAttr(
@@ -53,5 +53,5 @@ class CV(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="d12abd455d75c80e4c6639677f5596e7060b9e61"
+        default="99c493f86086acaae86fb0441b9aad3c98ea4dc5"
     )
