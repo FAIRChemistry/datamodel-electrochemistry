@@ -39,6 +39,12 @@ Container for information regarding the CV-Setup and parameters
 - __scan_rate__
   - Type: float
   - Description: The scan rate of the measurement in mV/s
+- __i_pc__
+  - Type: float
+  - Description: The current at the maximum of the cathodic peak in A
+- __i_pa__
+  - Type: float
+  - Description: The current at the maximum of the anodic peak in A 
 
 
 ### Author
