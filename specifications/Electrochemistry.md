@@ -48,7 +48,15 @@
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt
-
+- __potential_1__
+  - Type: Potential_units
+  - Description: First potential which was used  
+- __potential_2__
+  - Type: Potential_units
+  - Description: Second potential which was used
+- __time_between_switch__
+  - Type: Time_units
+  - Description: The time between switching of the potentials
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __solvent__
@@ -103,7 +111,15 @@ Container for information regarding persons who worked on a dataset.
 
 
 
-  
+ #### Time_units
+ ```python
+SEC = "s"
+MILLI_SEC = "ms"
+MICRO_SEC = "us"
+MIN= "min"
+
+
+```  
 
 
 #### Concentration_units
