@@ -109,7 +109,7 @@ Container for information regarding persons who worked on a dataset.
 #### Concentration_units
 ```python
 MOLAR = "mole / l"
-MILLI_MOLAR = "mmole / _l"
+MILLI_MOLAR = "mmole / l"
 MICRO_MOLAR = "umole / l"
 NANO_MOLAR = "nmole / l"
 GRAM_LITER = "g / l"
