@@ -1,5 +1,7 @@
-# Datamodel for Electrochemistry
+# Data model for Electrochemistry
  
+## Objects
+
 ### Dataset
 - __name__ 
   - Type: string
@@ -104,17 +106,14 @@ Container for information regarding persons who worked on a dataset.
 - __affiliation__
   - Type: string
   - Description: Organization the author is affiliated with
-- __email__
+- email
   - Type: string
   - Description: Contact e-mail address of the author
 
 
+## Enumerations
 
-
-
-
-
-#### Concentration_units
+### Concentration_units
 ```python
 MOLAR = "mole / l"
 MILLI_MOLAR = "mmole / l"
@@ -125,20 +124,20 @@ MILLIGRAM_LITER = "mg / l"
 MICROGRAM_LITER = "ug / l"
 NANGRAM_LITER = "ng / l"
 ``` 
-#### Scan_rate_units
+### Scan_rate_units
 ```python
 VOLT_SEC = "V / s"
 MILLI_VOLT_SEC = "mV / s"
 MICRO_VOLT_SEC = "uV / s"
 ``` 
-#### Current_units
+### Current_units
 ```python
 AMPERE = "A"
 MILLI_AMPERE = "mA"
 MICRO_AMPERE = "uA"
 NANO_AMPERE = "nA"
 ``` 
-#### Potential_units
+### Potential_units
 ```python
 VOLT = "V"
 MILLI_VOLT = "mV"
