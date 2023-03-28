@@ -9,12 +9,12 @@
   + Type: datetime
   + Default_factory: datetime.now
   + Description: Date/time when the dataset was created
-+ __parameter*__
+<!-- + __parameter*__
   + Type: Parameter
   + Multiple: True
-  + Description: Name of the parameter
+  + Description: Name of the parameter -->
   
-### Author
+<!-- ### Author
 Container for information regarding persons who worked on a dataset.
 
 + __name*__
@@ -31,7 +31,7 @@ Container for information regarding the CV-Setup and parameters
   + Type: string
   + Description: Name of the used salt
 + __scan rate*__
-  + Type: integer
+  + Type: int
   + Description: Name of the used scan rate 
 +  __working electrode*__
    + Type: string
@@ -45,4 +45,4 @@ Units
 ```python
 VOLTAGE = "V"
 AMPERE = "I"
-```
+``` -->
