@@ -51,6 +51,9 @@ Container for information regarding the CV-Setup and parameters
 - __potential_E_pa__
   - Type: float
   - Description: The current at the maximum of the anodic peak in V
+ - __total_cycle_number__
+  - Type: num
+  - Description: The total cycle number
 
 
 ### Author
