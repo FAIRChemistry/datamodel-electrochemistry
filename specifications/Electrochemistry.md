@@ -11,6 +11,14 @@
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset
+-  __analysis__
+   - Type: Analysis
+   - Description: The method which is used to gain the data 
+### Analysis
+- __cv__
+   - Type: string
+   - Description: ...
+
 
 ### Author
 Container for information regarding persons who worked on a dataset.
