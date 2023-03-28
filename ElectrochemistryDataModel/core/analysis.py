@@ -28,7 +28,7 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="3df7365ac524b41a672dd2d0773312d33f306f9d"
+        default="be4d0149c78a05ed7e807f53e3a1db3f79eab1d0"
     )
 
     def add_to_cv(
@@ -36,11 +36,8 @@ class Analysis(sdRDM.DataModel):
         solvent: Optional[str] = None,
         conducting_salt: Optional[str] = None,
         halfe_wave_potential: Optional[float] = None,
-        scan_rate: Optional[float] = None,
         start_potential: Optional[float] = None,
         stop_potential: Optional[float] = None,
-        i_pc: Optional[float] = None,
-        i_pa: Optional[float] = None,
         potential_E_pc: Optional[float] = None,
         potential_E_pa: Optional[float] = None,
         total_cycle_number: Optional[int] = None,
@@ -64,19 +61,10 @@ class Analysis(sdRDM.DataModel):
             halfe_wave_potential (Optional[float]): The half-wave potential of the measurement in V. Defaults to None
 
 
-            scan_rate (Optional[float]): The scan rate of the measurement in mV/s. Defaults to None
-
-
             start_potential (Optional[float]): The starting value of the potential in V. Defaults to None
 
 
             stop_potential (Optional[float]): The stop value of the potential in V. Defaults to None
-
-
-            i_pc (Optional[float]): The current at the maximum of the cathodic peak in A. Defaults to None
-
-
-            i_pa (Optional[float]): The current at the maximum of the anodic peak in A. Defaults to None
 
 
             potential_E_pc (Optional[float]): Potential at the maximum of the cathodic peak in V. Defaults to None
@@ -92,11 +80,8 @@ class Analysis(sdRDM.DataModel):
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "halfe_wave_potential": halfe_wave_potential,
-            "scan_rate": scan_rate,
             "start_potential": start_potential,
             "stop_potential": stop_potential,
-            "i_pc": i_pc,
-            "i_pa": i_pa,
             "potential_E_pc": potential_E_pc,
             "potential_E_pa": potential_E_pa,
             "total_cycle_number": total_cycle_number,

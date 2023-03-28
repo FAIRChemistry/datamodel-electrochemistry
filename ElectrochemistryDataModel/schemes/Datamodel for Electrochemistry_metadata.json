@@ -1,11 +1,11 @@
 {
   "docstring": "",
   "enums": [
-    "Units",
-    "Units",
     "Concentration_units",
     "Concentration_units",
-    "Scan_rate_units"
+    "Scan_rate_units",
+    "Scan_rate_units",
+    "Current_units"
   ],
   "external": {},
   "Dataset": {
@@ -86,7 +86,7 @@
         "description": "The half-wave potential of the measurement in V"
       },
       "scan_rate": {
-        "description": "The scan rate of the measurement in mV/s"
+        "description": "The scan rate of the measurement"
       },
       "start_potential": {
         "description": "The starting value of the potential in V"

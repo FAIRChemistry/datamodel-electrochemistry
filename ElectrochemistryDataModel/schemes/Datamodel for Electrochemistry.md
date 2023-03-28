@@ -7,6 +7,9 @@ classDiagram
     Analysis *-- CP
     CP *-- Concentration_units
     CV *-- Concentration_units
+    CV *-- Scan_rate_units
+    CV *-- Current_units
+    CV *-- Current_units
     
     class Dataset {
         +string name
@@ -38,11 +41,11 @@ classDiagram
         +string conducting_salt
         +Concentration_units conducting_salt_concentration
         +float halfe_wave_potential
-        +float scan_rate
+        +Scan_rate_units scan_rate
         +float start_potential
         +float stop_potential
-        +float i_pc
-        +float i_pa
+        +Current_units i_pc
+        +Current_units i_pa
         +float potential_E_pc
         +float potential_E_pa
         +int total_cycle_number
@@ -54,45 +57,50 @@ classDiagram
         +string email
     }
     
-    class Units {
+    class Concentration_units {
         << Enumeration >>
-        +VOLTAGE = "V"
-        +AMPERE = "I"
-    }
-    
-    class Units {
-        << Enumeration >>
-        +VOLTAGE = "V"
-        +AMPERE = "I"
+        +MOLAR = "mole / l"
+        +MILLI_MOLAR = "mmole / _l"
+        +MICRO_MOLAR = "umole / l"
+        +NANO_MOLAR = "nmole / l"
+        +GRAM_LITER = "g / l"
+        +MILLIGRAM_LITER = "mg / l"
+        +MICROGRAM_LITER = "ug / l"
+        +NANGRAM_LITER = "ng / l"
     }
     
     class Concentration_units {
         << Enumeration >>
         +MOLAR = "mole / l"
-        +MILLIMOLAR = "mmole / l"
-        +MICROMOLAR = "umole / l"
-        +NANAMOLAR = "nmole / l"
-        +GRAMLITER = "g / l"
-        +MILLIGRAMLITER = "mg / l"
-        +MICROGRAMLITER = "ug / l"
-        +NANGRAMLITER = "ng / l"
-    }
-    
-    class Concentration_units {
-        << Enumeration >>
-        +MOLAR = "mole / l"
-        +MILLIMOLAR = "mmole / l"
-        +MICROMOLAR = "umole / l"
-        +NANAMOLAR = "nmole / l"
-        +GRAMLITER = "g / l"
-        +MILLIGRAMLITER = "mg / l"
-        +MICROGRAMLITER = "ug / l"
-        +NANGRAMLITER = "ng / l"
+        +MILLI_MOLAR = "mmole / _l"
+        +MICRO_MOLAR = "umole / l"
+        +NANO_MOLAR = "nmole / l"
+        +GRAM_LITER = "g / l"
+        +MILLIGRAM_LITER = "mg / l"
+        +MICROGRAM_LITER = "ug / l"
+        +NANGRAM_LITER = "ng / l"
     }
     
     class Scan_rate_units {
         << Enumeration >>
-        +MILLI_VOLT_SEC = "V / s"
+        +VOLT_SEC = "V / s"
+        +MILLI_VOLT_SEC = "mV / s"
+        +MICRO_VOLT_SEC = "uV / s"
+    }
+    
+    class Scan_rate_units {
+        << Enumeration >>
+        +VOLT_SEC = "V / s"
+        +MILLI_VOLT_SEC = "mV / s"
+        +MICRO_VOLT_SEC = "uV / s"
+    }
+    
+    class Current_units {
+        << Enumeration >>
+        +AMPERE = "A"
+        +MILLI_AMPERE = "mV / s"
+        +MICRO_AMPERE = "uV / s"
+        +NANO_AMPERE = "nV /s"
     }
     
 ```

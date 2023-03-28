@@ -3,10 +3,10 @@ from enum import Enum
 
 class Concentration_units(Enum):
     MOLAR = "mole / l"
-    MILLIMOLAR = "mmole / l"
-    MICROMOLAR = "umole / l"
-    NANAMOLAR = "nmole / l"
-    GRAMLITER = "g / l"
-    MILLIGRAMLITER = "mg / l"
-    MICROGRAMLITER = "ug / l"
-    NANGRAMLITER = "ng / l"
+    MILLI_MOLAR = "mmole / _l"
+    MICRO_MOLAR = "umole / l"
+    NANO_MOLAR = "nmole / l"
+    GRAM_LITER = "g / l"
+    MILLIGRAM_LITER = "mg / l"
+    MICROGRAM_LITER = "ug / l"
+    NANGRAM_LITER = "ng / l"
