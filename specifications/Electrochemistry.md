@@ -54,6 +54,9 @@
 - __potential_sec__
   - Type: Potential_units
   - Description: Second potential which was used
+ - __time__
+  - Type: string
+  - Description: The time between switching the potentials
 
 ### CV
 Container for information regarding the CV-Setup and parameters
