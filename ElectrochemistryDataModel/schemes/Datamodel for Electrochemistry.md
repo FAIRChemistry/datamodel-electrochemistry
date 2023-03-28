@@ -18,7 +18,7 @@ classDiagram
     class CV {
         +string solvent
         +string conducting_salt
-        +float conducting_salt_c
+        +float conducting_salt_concentration
     }
     
     class Author {

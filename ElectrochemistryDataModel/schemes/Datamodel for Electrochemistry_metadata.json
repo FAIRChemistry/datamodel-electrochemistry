@@ -26,7 +26,7 @@
     "attributes": {
       "cv": {
         "multiple": "True",
-        "description": "CV"
+        "description": "cv"
       }
     },
     "docstring": null
@@ -39,7 +39,7 @@
       "conducting_salt": {
         "description": "Name of the used salt"
       },
-      "conducting_salt_c": {
+      "conducting_salt_concentration": {
         "description": "Concentration of the conducting salt in mol/l"
       }
     },

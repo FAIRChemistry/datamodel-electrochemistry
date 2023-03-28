@@ -18,21 +18,21 @@ class Analysis(sdRDM.DataModel):
         xml="@id",
     )
 
-    cv: List[CV] = Field(description="CV", default_factory=ListPlus)
+    cv: List[CV] = Field(description="cv", default_factory=ListPlus)
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="cde0270c4f1ed253a2f4e5c02d1ebcd8ea05eb6d"
+        default="827b9d7f19851a081cf41ba2e9af9f1b707e5a38"
     )
 
     def add_to_cv(
         self,
         solvent: Optional[str] = None,
         conducting_salt: Optional[str] = None,
-        conducting_salt_c: Optional[float] = None,
+        conducting_salt_concentration: Optional[float] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -50,13 +50,13 @@ class Analysis(sdRDM.DataModel):
             conducting_salt (Optional[str]): Name of the used salt. Defaults to None
 
 
-            conducting_salt_c (Optional[float]): Concentration of the conducting salt in mol/l. Defaults to None
+            conducting_salt_concentration (Optional[float]): Concentration of the conducting salt in mol/l. Defaults to None
         """
 
         params = {
             "solvent": solvent,
             "conducting_salt": conducting_salt,
-            "conducting_salt_c": conducting_salt_c,
+            "conducting_salt_concentration": conducting_salt_concentration,
         }
         if id is not None:
             params["id"] = id
