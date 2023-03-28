@@ -27,13 +27,13 @@ class CV(sdRDM.DataModel):
         description="Name of the solvent",
     )
 
-    conducting_salt: Optional[str] = Field(
-        default=None,
+    conducting_salt: str = Field(
+        ...,
         description="Name of the used salt",
     )
 
-    conducting_salt_concentration: Optional[Concentration_units] = Field(
-        default=None,
+    conducting_salt_concentration: Concentration_units = Field(
+        ...,
         description="Concentration of the conducting salt",
     )
 
@@ -86,5 +86,5 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="6deef7e7f104bc589432a520f7d6b01bf1ad5577"
+        default="525309ff08ba4dbda5b11d1e30fff31d44961f81"
     )

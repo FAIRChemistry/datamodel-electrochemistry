@@ -6,10 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .cp import CP
 from .concentration_units import Concentration_units
 from .cv import CV
 from .potential_units import Potential_units
+from .cp import CP
 from .current_units import Current_units
 from .scan_rate_units import Scan_rate_units
 
@@ -41,12 +41,14 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="6deef7e7f104bc589432a520f7d6b01bf1ad5577"
+        default="525309ff08ba4dbda5b11d1e30fff31d44961f81"
     )
 
     def add_cv_to_cv(
         self,
         solvent: str,
+        conducting_salt: str,
+        conducting_salt_concentration: Concentration_units,
         halfe_wave_potential: Potential_units,
         scan_rate: Scan_rate_units,
         start_potential: Potential_units,
@@ -56,8 +58,6 @@ class Analysis(sdRDM.DataModel):
         ox_potential_E_pc: Potential_units,
         red_potential_E_pa: Potential_units,
         total_cycle_number: int,
-        conducting_salt: Optional[str] = None,
-        conducting_salt_concentration: Optional[Concentration_units] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -66,6 +66,8 @@ class Analysis(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'CV' object. Defaults to 'None'.
             solvent (): Name of the solvent.
+            conducting_salt (): Name of the used salt.
+            conducting_salt_concentration (): Concentration of the conducting salt.
             halfe_wave_potential (): The half-wave potential of the measurement.
             scan_rate (): The scan rate of the measurement.
             start_potential (): The starting value of the potential.
@@ -75,12 +77,12 @@ class Analysis(sdRDM.DataModel):
             ox_potential_E_pc (): Potential at the maximum of the cathodic peak (reduction).
             red_potential_E_pa (): The current at the maximum of the anodic peak (oxidation).
             total_cycle_number (): The total cycle number.
-            conducting_salt (): Name of the used salt. Defaults to None
-            conducting_salt_concentration (): Concentration of the conducting salt. Defaults to None
         """
 
         params = {
             "solvent": solvent,
+            "conducting_salt": conducting_salt,
+            "conducting_salt_concentration": conducting_salt_concentration,
             "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
             "start_potential": start_potential,
@@ -90,8 +92,6 @@ class Analysis(sdRDM.DataModel):
             "ox_potential_E_pc": ox_potential_E_pc,
             "red_potential_E_pa": red_potential_E_pa,
             "total_cycle_number": total_cycle_number,
-            "conducting_salt": conducting_salt,
-            "conducting_salt_concentration": conducting_salt_concentration,
         }
 
         if id is not None:
