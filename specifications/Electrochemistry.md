@@ -78,10 +78,10 @@ Container for information regarding the CV-Setup and parameters
 - __i_pa__
   - Type: Current_units
   - Description: The current at the maximum of the anodic peak 
-- __potential_E_pc__
+- __ox_potential_E_pc__
   - Type: Potential_units
   - Description: Potential at the maximum of the cathodic peak (reduction)
-- __potential_E_pa__
+- __red_potential_E_pa__
   - Type: Potential_units
   - Description: The current at the maximum of the anodic peak (oxidation)
 - __total_cycle_number__
