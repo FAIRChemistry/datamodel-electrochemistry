@@ -7,7 +7,7 @@
 - __date__
   - Type: date
   - Description: Date/time when the dataset was created
-- __parameter*__
+- __parameter__
   - Type: Parameter
   - Multiple: True
   - Description: Name of the parameter
@@ -15,7 +15,11 @@
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset
-  
+-  __method__
+  - Type: string
+  - Description: The method which is used to gain the data 
+
+
 ### Author
 Container for information regarding persons who worked on a dataset.
 
