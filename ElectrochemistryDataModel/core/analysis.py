@@ -25,7 +25,7 @@ class Analysis(sdRDM.DataModel):
     )
 
     __commit__: Optional[str] = PrivateAttr(
-        default="f85e3718a57a3c8617ff82c83b9645671501b4f7"
+        default="cde0270c4f1ed253a2f4e5c02d1ebcd8ea05eb6d"
     )
 
     def add_to_cv(
