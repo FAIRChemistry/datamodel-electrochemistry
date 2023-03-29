@@ -58,6 +58,7 @@
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt
+
 - __induced_current_first__
   - Type: Current_units
   - Description: The first induced current  
@@ -67,6 +68,8 @@
 - __time_duration__
   - Type: Time_units
   - Description: The duration time of the induced current
+
+
 
 ### CA
 - __solvent__
@@ -89,6 +92,9 @@
   - Description: The duration time of the induced potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
+- __medium__
+  - Type: Medium
+  - Description: The medium of the measurement
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
