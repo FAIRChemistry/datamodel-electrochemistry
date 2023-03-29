@@ -6,10 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .scan_rate_units import Scan_rate_units
+from .current_units import Current_units
 from .ferrocene_reference import Ferrocene_reference
 from .potential_units import Potential_units
-from .current_units import Current_units
+from .scan_rate_units import Scan_rate_units
 
 
 @forge_signature
@@ -24,13 +24,14 @@ class CV(sdRDM.DataModel):
     )
 
     ferrocene_reference: List[Ferrocene_reference] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="Parameters of the ferocene reference measurement",
-        default_factory=ListPlus,
     )
 
-    halfe_wave_potential: Potential_units = Field(
-        ...,
+    halfe_wave_potential: List[Potential_units] = Field(
+        default_factory=ListPlus,
+        multiple=True,
         description="The half-wave potential of the measurement",
     )
 
@@ -54,8 +55,8 @@ class CV(sdRDM.DataModel):
         description="The lower limit of the potential",
     )
 
-    potential_upper_limit: Optional[Potential_units] = Field(
-        default=None,
+    potential_upper_limit: Potential_units = Field(
+        ...,
         description="The upper limit of the potential",
     )
 
@@ -92,7 +93,7 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="291a9ade199207bc15bada70ebbff243eb8f3f8e"
+        default="f6f6a0fddc60856503220ae62521552dcd0f085e"
     )
 
     def add_ferrocene_reference_to_ferrocene_reference(

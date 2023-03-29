@@ -6,14 +6,14 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .time_units import Time_units
-from .cv import CV
-from .scan_rate_units import Scan_rate_units
-from .ca import CA
-from .cp import CP
-from .ferrocene_reference import Ferrocene_reference
-from .potential_units import Potential_units
 from .current_units import Current_units
+from .time_units import Time_units
+from .cp import CP
+from .cv import CV
+from .ferrocene_reference import Ferrocene_reference
+from .ca import CA
+from .potential_units import Potential_units
+from .scan_rate_units import Scan_rate_units
 
 
 @forge_signature
@@ -49,18 +49,18 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="291a9ade199207bc15bada70ebbff243eb8f3f8e"
+        default="f6f6a0fddc60856503220ae62521552dcd0f085e"
     )
 
     def add_cv_to_cv(
         self,
-        halfe_wave_potential: Potential_units,
         scan_rate: Scan_rate_units,
         start_potential: Potential_units,
         stop_potential: Potential_units,
         potential_lower_limit: Potential_units,
+        potential_upper_limit: Potential_units,
         ferrocene_reference: List[Ferrocene_reference] = ListPlus(),
-        potential_upper_limit: Optional[Potential_units] = None,
+        halfe_wave_potential: List[Potential_units] = ListPlus(),
         i_pc_ox: List[Current_units] = ListPlus(),
         i_pa_red: List[Current_units] = ListPlus(),
         ox_potential_E_pc: List[Potential_units] = ListPlus(),
@@ -73,13 +73,13 @@ class Analysis(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'CV' object. Defaults to 'None'.
-            halfe_wave_potential (): The half-wave potential of the measurement.
             scan_rate (): The scan rate of the measurement.
             start_potential (): The starting value of the potential.
             stop_potential (): The stop value of the potential.
             potential_lower_limit (): The lower limit of the potential.
+            potential_upper_limit (): The upper limit of the potential.
             ferrocene_reference (): Parameters of the ferocene reference measurement. Defaults to ListPlus()
-            potential_upper_limit (): The upper limit of the potential. Defaults to None
+            halfe_wave_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
             i_pc_ox (): The current at the maximum of the cathodic peak (oxidation). Defaults to ListPlus()
             i_pa_red (): The current at the maximum of the anodic peak (reduction). Defaults to ListPlus()
             ox_potential_E_pc (): Potential at the maximum of the cathodic peak (reduction). Defaults to ListPlus()
@@ -88,13 +88,13 @@ class Analysis(sdRDM.DataModel):
         """
 
         params = {
-            "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
             "start_potential": start_potential,
             "stop_potential": stop_potential,
             "potential_lower_limit": potential_lower_limit,
-            "ferrocene_reference": ferrocene_reference,
             "potential_upper_limit": potential_upper_limit,
+            "ferrocene_reference": ferrocene_reference,
+            "halfe_wave_potential": halfe_wave_potential,
             "i_pc_ox": i_pc_ox,
             "i_pa_red": i_pa_red,
             "ox_potential_E_pc": ox_potential_E_pc,
