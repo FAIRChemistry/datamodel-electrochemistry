@@ -44,18 +44,18 @@
   - Type: Film_preparation
   - Description: The film preparation of the product
 ### Film_preparation
-- spin_coating
+- __spin_coating__
   - Type: Spin_coating
   - Multiple: True
   - Description: Spin coating parameter
 ### Spin_coating
-- volume
+- __volume__
   - Type: Volume_units
   - Description: The volume which was used for the film 
-- rotation
+- __rotation__
   - Type: float
   - Description: The rotation speed for the film
-- time
+- __time__
   - Type: Time_units
   - Description: The rotation time 
 - annealing_temperature
@@ -71,15 +71,15 @@
 
 
 ### Analysis
-- cv
+- __cv__
   - Type: CV
   - Multiple: True
   - Description: Cyclic voltammetry
-- ca
-  - Type: CA
+- __ca__
+  - Type: CA__
   - Multiple: True
   - Description: Chronoamperometry
-- cp
+- __cp__
   - Type: CP
   - Multiple: True
   - Description: Chronopotentiometry
@@ -160,6 +160,17 @@ Container for information regarding the CV-Setup and parameters
 - __halfe_wave_potential_ferrocene__
   - Type: Potential_units
   - Description: The half-wave potential of the ferrocene measurement 
+
+### Elektrode_setup
+- working_electrode
+  - Type: "String"
+  - Description: Name of the used working electrode
+- counter_electrode
+  - Type: "String"
+  - Description: Name of the used counter electrode  
+- Reference_electrode
+  - Type: "String"
+  - Description: Name of the used reference electrode 
 
 ### Author
 Container for information regarding persons who worked on a dataset.
