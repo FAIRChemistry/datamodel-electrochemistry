@@ -6,15 +6,14 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .time_units import Time_units
-from .elektrode_setup import Elektrode_setup
+from .ca import CA
 from .scan_rate_units import Scan_rate_units
 from .current_units import Current_units
-from .cv import CV
 from .ferrocene_reference import Ferrocene_reference
 from .potential_units import Potential_units
 from .cp import CP
-from .ca import CA
+from .cv import CV
+from .time_units import Time_units
 
 
 @forge_signature
@@ -50,12 +49,11 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="f7bda00987d9745b6e532491534c6fb55777ff96"
+        default="74f1d2bd51945e4f923c4bdc69721a8af615999c"
     )
 
     def add_cv_to_cv(
         self,
-        electrode_setup: Elektrode_setup,
         halfe_wave_potential: Potential_units,
         scan_rate: Scan_rate_units,
         start_potential: Potential_units,
@@ -75,7 +73,6 @@ class Analysis(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'CV' object. Defaults to 'None'.
-            electrode_setup (): Name of the used electrod materials.
             halfe_wave_potential (): The half-wave potential of the measurement.
             scan_rate (): The scan rate of the measurement.
             start_potential (): The starting value of the potential.
@@ -91,7 +88,6 @@ class Analysis(sdRDM.DataModel):
         """
 
         params = {
-            "electrode_setup": electrode_setup,
             "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
             "start_potential": start_potential,

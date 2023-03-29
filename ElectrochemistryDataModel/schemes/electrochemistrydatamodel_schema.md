@@ -3,6 +3,7 @@ classDiagram
     Dataset *-- Concentration_units
     Dataset *-- Sample
     Dataset *-- Analysis
+    Dataset *-- Electrode_setup
     Dataset *-- Author
     Sample *-- Molecular_weight_units
     Sample *-- Film_preparation
@@ -21,7 +22,6 @@ classDiagram
     CV *-- Current_units
     CV *-- Potential_units
     CV *-- Ferrocene_reference
-    CV *-- Elektrode_setup
     Ferrocene_reference *-- Potential_units
     
     class Dataset {
@@ -33,6 +33,7 @@ classDiagram
         +string solvent*
         +string conducting_salt*
         +Concentration_units conducting_salt_concentration*
+        +Electrode_setup electrode_setup*
     }
     
     class Sample {
@@ -74,7 +75,6 @@ classDiagram
     }
     
     class CV {
-        +Elektrode_setup electrode_setup*
         +Ferrocene_reference[0..*] ferrocene_reference*
         +Potential_units halfe_wave_potential*
         +Scan_rate_units scan_rate*
@@ -95,7 +95,7 @@ classDiagram
         +Potential_units halfe_wave_potential_ferrocene*
     }
     
-    class Elektrode_setup {
+    class Electrode_setup {
         +string working_electrode
         +string counter_electrode
         +string Reference_electrode

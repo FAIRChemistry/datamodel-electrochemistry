@@ -6,7 +6,6 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .elektrode_setup import Elektrode_setup
 from .scan_rate_units import Scan_rate_units
 from .current_units import Current_units
 from .ferrocene_reference import Ferrocene_reference
@@ -22,11 +21,6 @@ class CV(sdRDM.DataModel):
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("cvINDEX"),
         xml="@id",
-    )
-
-    electrode_setup: Elektrode_setup = Field(
-        ...,
-        description="Name of the used electrod materials",
     )
 
     ferrocene_reference: List[Ferrocene_reference] = Field(
@@ -94,7 +88,7 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="f7bda00987d9745b6e532491534c6fb55777ff96"
+        default="74f1d2bd51945e4f923c4bdc69721a8af615999c"
     )
 
     def add_ferrocene_reference_to_ferrocene_reference(
