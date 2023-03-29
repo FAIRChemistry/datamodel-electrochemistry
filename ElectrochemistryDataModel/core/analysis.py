@@ -6,15 +6,15 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .ca import CA
+from .elektrode_setup import Elektrode_setup
 from .cp import CP
+from .scan_rate_units import Scan_rate_units
 from .time_units import Time_units
+from .potential_units import Potential_units
+from .cv import CV
 from .current_units import Current_units
 from .ferrocene_reference import Ferrocene_reference
-from .cv import CV
-from .elektrode_setup import Elektrode_setup
-from .potential_units import Potential_units
-from .scan_rate_units import Scan_rate_units
-from .ca import CA
 
 
 @forge_signature
@@ -50,7 +50,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="3c9c90aff9c0fc31c9d2efdd4bf5569f531d292d"
+        default="bfbc977f9bcbcf049a18735fa16ca6fe07c68f7b"
     )
 
     def add_cv_to_cv(
@@ -142,8 +142,8 @@ class Analysis(sdRDM.DataModel):
     def add_cp_to_cp(
         self,
         induced_current_first: Current_units,
-        induced_current_second: Current_units,
         time_duration: Time_units,
+        induced_current_second: Optional[Current_units] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -152,14 +152,14 @@ class Analysis(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'CP' object. Defaults to 'None'.
             induced_current_first (): The first induced current.
-            induced_current_second (): The first induced current.
             time_duration (): The duration time of the induced current.
+            induced_current_second (): The first induced current. Defaults to None
         """
 
         params = {
             "induced_current_first": induced_current_first,
-            "induced_current_second": induced_current_second,
             "time_duration": time_duration,
+            "induced_current_second": induced_current_second,
         }
 
         if id is not None:

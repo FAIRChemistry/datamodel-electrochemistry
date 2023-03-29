@@ -5,8 +5,8 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .time_units import Time_units
 from .current_units import Current_units
+from .time_units import Time_units
 
 
 @forge_signature
@@ -25,8 +25,8 @@ class CP(sdRDM.DataModel):
         description="The first induced current",
     )
 
-    induced_current_second: Current_units = Field(
-        ...,
+    induced_current_second: Optional[Current_units] = Field(
+        default=None,
         description="The first induced current",
     )
 
@@ -39,5 +39,5 @@ class CP(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="3c9c90aff9c0fc31c9d2efdd4bf5569f531d292d"
+        default="bfbc977f9bcbcf049a18735fa16ca6fe07c68f7b"
     )

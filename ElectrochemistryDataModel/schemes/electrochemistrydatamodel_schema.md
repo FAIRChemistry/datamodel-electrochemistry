@@ -61,7 +61,7 @@ classDiagram
     
     class CP {
         +Current_units induced_current_first*
-        +Current_units induced_current_second*
+        +Current_units induced_current_second
         +Time_units time_duration*
     }
     
