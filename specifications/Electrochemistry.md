@@ -61,9 +61,7 @@
  - __induced_current_first__
   - Type: Current_units
   - Description: The first induced current  
-- __induced_current_second__
-  - Type: Current_units
-  - Description: The second induced current
+
 
 
 ### CA
