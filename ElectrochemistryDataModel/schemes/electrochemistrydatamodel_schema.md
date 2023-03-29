@@ -6,6 +6,9 @@ classDiagram
     Dataset *-- Author
     Sample *-- Film_preparation
     Film_preparation *-- Spin_coating
+    Spin_coating *-- Temperature_units
+    Spin_coating *-- Volume_units
+    Spin_coating *-- Time_units
     Analysis *-- CP
     Analysis *-- CA
     Analysis *-- CV
@@ -43,7 +46,11 @@ classDiagram
     }
     
     class Spin_coating {
-        +float volume*
+        +Volume_units volume*
+        +float rotation*
+        +Time_units time*
+        +Temperature_units annealing_temperature*
+        +Time_units annealing_time*
     }
     
     class Analysis {
@@ -91,8 +98,22 @@ classDiagram
         +string email
     }
     
+    class Temperature_units {
+        << Enumeration >>
+        +CELCIUS
+        +KELVIN
+    }
+    
+    class Volume_units {
+        << Enumeration >>
+        +MILLI_LITER
+        +MICRO_LITER
+        +NANO_LITER
+    }
+    
     class Time_units {
         << Enumeration >>
+        +HOUR
         +MIN
         +SEC
         +MILLI_SEC

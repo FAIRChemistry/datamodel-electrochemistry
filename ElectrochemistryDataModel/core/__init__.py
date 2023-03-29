@@ -8,6 +8,8 @@ from .ca import CA
 from .cv import CV
 from .ferrocene_reference import Ferrocene_reference
 from .author import Author
+from .temperature_units import Temperature_units
+from .volume_units import Volume_units
 from .time_units import Time_units
 from .concentration_units import Concentration_units
 from .scan_rate_units import Scan_rate_units
@@ -27,6 +29,8 @@ __all__ = [
     "CV",
     "Ferrocene_reference",
     "Author",
+    "Temperature_units",
+    "Volume_units",
     "Time_units",
     "Concentration_units",
     "Scan_rate_units",

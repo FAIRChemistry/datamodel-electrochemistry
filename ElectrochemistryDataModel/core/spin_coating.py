@@ -5,6 +5,11 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .temperature_units import Temperature_units
+from .time_units import Time_units
+from .volume_units import Volume_units
+
+
 @forge_signature
 class Spin_coating(sdRDM.DataModel):
 
@@ -16,14 +21,34 @@ class Spin_coating(sdRDM.DataModel):
         xml="@id",
     )
 
-    volume: float = Field(
+    volume: Volume_units = Field(
         ...,
         description="The volume which was used for the film",
+    )
+
+    rotation: float = Field(
+        ...,
+        description="The rotation speed for the film",
+    )
+
+    time: Time_units = Field(
+        ...,
+        description="The rotation time",
+    )
+
+    annealing_temperature: Temperature_units = Field(
+        ...,
+        description="The anealing temperature for the film",
+    )
+
+    annealing_time: Time_units = Field(
+        ...,
+        description="The anealing time for the film",
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="947d6e485af252858b1b3c61b6f067dcf951dca0"
+        default="c9e810d24f9b92bbb25f1b7dbf425cd64e3c3e79"
     )
