@@ -7,13 +7,14 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .ca import CA
-from .scan_rate_units import Scan_rate_units
 from .concentration_units import Concentration_units
-from .potential_units import Potential_units
-from .current_units import Current_units
 from .cp import CP
+from .current_units import Current_units
+from .ferrocene import Ferrocene
+from .scan_rate_units import Scan_rate_units
 from .cv import CV
 from .time_units import Time_units
+from .potential_units import Potential_units
 
 
 @forge_signature
@@ -49,7 +50,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="2404b220433c495183c8fa6f80e363965226e07f"
+        default="dd1882d934bee8cce03649e97bbaa4b129ccff09"
     )
 
     def add_cv_to_cv(
@@ -68,6 +69,7 @@ class Analysis(sdRDM.DataModel):
         ox_potential_E_pc: Potential_units,
         red_potential_E_pa: Potential_units,
         total_cycle_number: int,
+        ferrocene_reference: List[Ferrocene] = ListPlus(),
         id: Optional[str] = None,
     ) -> None:
         """
@@ -89,6 +91,7 @@ class Analysis(sdRDM.DataModel):
             ox_potential_E_pc (): Potential at the maximum of the cathodic peak (reduction).
             red_potential_E_pa (): The current at the maximum of the anodic peak (oxidation).
             total_cycle_number (): The total cycle number.
+            ferrocene_reference (): Parameters of the ferocene reference measurement. Defaults to ListPlus()
         """
 
         params = {
@@ -106,6 +109,7 @@ class Analysis(sdRDM.DataModel):
             "ox_potential_E_pc": ox_potential_E_pc,
             "red_potential_E_pa": red_potential_E_pa,
             "total_cycle_number": total_cycle_number,
+            "ferrocene_reference": ferrocene_reference,
         }
 
         if id is not None:

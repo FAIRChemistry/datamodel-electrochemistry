@@ -16,6 +16,8 @@ classDiagram
     CV *-- Scan_rate_units
     CV *-- Current_units
     CV *-- Potential_units
+    CV *-- Ferrocene
+    Ferrocene *-- Potential_units
     
     class Dataset {
         +string name*
@@ -57,6 +59,7 @@ classDiagram
     }
     
     class CV {
+        +Ferrocene[0..*] ferrocene_reference*
         +string solvent*
         +string conducting_salt*
         +Concentration_units conducting_salt_concentration*
@@ -71,6 +74,12 @@ classDiagram
         +Potential_units ox_potential_E_pc*
         +Potential_units red_potential_E_pa*
         +int total_cycle_number*
+    }
+    
+    class Ferrocene {
+        +Potential_units ox_potential_E_pc_ferrocene*
+        +Potential_units red_potential_E_pa_ferrocene*
+        +Potential_units halfe_wave_potential_ferrocene*
     }
     
     class Author {
