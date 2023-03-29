@@ -160,16 +160,7 @@ Container for information regarding the CV-Setup and parameters
 - __halfe_wave_potential_ferrocene__
   - Type: Potential_units
   - Description: The half-wave potential of the ferrocene measurement 
-### Elektrode_setup
-- working_electrode
-  - Type: "String"
-  - Description: Name of the used working electrode
-- counter_electrode
-  - Type: "String"
-  - Description: Name of the used counter electrode  
-- __Reference_electrode__
-  - Type: "String"
-  - Description: Name of the used reference electrode 
+
 ### Author
 Container for information regarding persons who worked on a dataset.
 
