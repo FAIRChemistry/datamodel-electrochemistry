@@ -116,12 +116,13 @@
   - Description: The duration time of the induced potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
-- __ferrocene_reference__
+- ferrocene_reference
   - Type: Ferrocene_reference
   - Multiple: True
   - Description: Parameters of the ferocene reference measurement
-- __halfe_wave_potential__
+- halfe_wave_potential
   - Type: Potential_units
+  - Multiple: True
   - Description: The half-wave potential of the measurement  
 - __scan_rate__
   - Type: Scan_rate_units
@@ -135,7 +136,7 @@ Container for information regarding the CV-Setup and parameters
 - __potential_lower_limit__
   - Type: Potential_units
   - Description: The lower limit of the potential
-- potential_upper_limit
+- __potential_upper_limit__
   - Type: Potential_units
   - Description: The upper limit of the potential
 - i_pc_ox
