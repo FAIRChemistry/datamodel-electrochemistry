@@ -97,6 +97,8 @@ Container for information regarding the CV-Setup and parameters
   - Type: Ferrocene
   - Multiple: True
   - Description: Parameters of the ferocene reference measurement
+
+
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
