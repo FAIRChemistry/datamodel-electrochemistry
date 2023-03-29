@@ -1,13 +1,14 @@
 import sdRDM
 
-from typing import Optional
+from typing import List, Optional
 from pydantic import Field, PrivateAttr
+from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .volume_units import Volume_units
 from .time_units import Time_units
 from .temperature_units import Temperature_units
+from .volume_units import Volume_units
 
 
 @forge_signature
@@ -26,9 +27,10 @@ class Spin_coating(sdRDM.DataModel):
         description="The volume which was used for the film",
     )
 
-    rotation: float = Field(
-        ...,
-        description="The rotation speed for the film",
+    rotation: List[float] = Field(
+        multiple=True,
+        description="The rotation speed of the spin coating process",
+        default_factory=ListPlus,
     )
 
     time: Time_units = Field(
@@ -50,5 +52,5 @@ class Spin_coating(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="08f0cd23a355152e3fc4211f5cdcbcad3355695a"
+        default="8a7a1e56e674a5fc7dd4e4c3f3f3a2d61b1bf3da"
     )

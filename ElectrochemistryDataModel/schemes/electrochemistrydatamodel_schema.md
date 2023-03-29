@@ -63,7 +63,7 @@ classDiagram
     
     class Spin_coating {
         +Volume_units volume*
-        +float rotation*
+        +float[0..*] rotation*
         +Time_units time*
         +Temperature_units annealing_temperature
         +Time_units annealing_time
