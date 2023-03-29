@@ -56,9 +56,9 @@
 - __potential_sec__
   - Type: Potential_units
   - Description: Second potential which was used
-- __time_between_switch__
+- __time_duration__
   - Type: Time_units
-  - Description: The time between switching the potentials
+  - Description: The time duration of the potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __solvent__
