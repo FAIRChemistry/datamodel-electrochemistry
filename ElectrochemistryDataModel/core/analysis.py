@@ -6,13 +6,13 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .cv import CV
 from .concentration_units import Concentration_units
+from .cv import CV
 from .time_units import Time_units
-from .potential_units import Potential_units
 from .scan_rate_units import Scan_rate_units
-from .current_units import Current_units
 from .cp import CP
+from .potential_units import Potential_units
+from .current_units import Current_units
 
 
 @forge_signature
@@ -42,7 +42,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="723b7621cb273f11a5d3bf188d93df0af6426495"
+        default="aaf505b0f82cfdf29660ea71a3ef6197b8340c77"
     )
 
     def add_cv_to_cv(
@@ -107,7 +107,7 @@ class Analysis(sdRDM.DataModel):
         conducting_salt_concentration: Concentration_units,
         potential_first: Potential_units,
         potential_sec: Potential_units,
-        time_between_switch: Time_units,
+        time_duration: Time_units,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -120,7 +120,7 @@ class Analysis(sdRDM.DataModel):
             conducting_salt_concentration (): Concentration of the conducting salt.
             potential_first (): First potential which was used.
             potential_sec (): Second potential which was used.
-            time_between_switch (): The time between switching the potentials.
+            time_duration (): The time duration of the potential.
         """
 
         params = {
@@ -129,7 +129,7 @@ class Analysis(sdRDM.DataModel):
             "conducting_salt_concentration": conducting_salt_concentration,
             "potential_first": potential_first,
             "potential_sec": potential_sec,
-            "time_between_switch": time_between_switch,
+            "time_duration": time_duration,
         }
 
         if id is not None:

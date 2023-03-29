@@ -38,7 +38,7 @@ classDiagram
         +Concentration_units conducting_salt_concentration*
         +Potential_units potential_first*
         +Potential_units potential_sec*
-        +Time_units time_between_switch*
+        +Time_units time_duration*
     }
     
     class CV {
