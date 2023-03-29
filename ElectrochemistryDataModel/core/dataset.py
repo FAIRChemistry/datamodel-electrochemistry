@@ -7,12 +7,13 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from datetime import date
 
-from .molecular_weight_units import Molecular_weight_units
 from .author import Author
 from .film_preparation import Film_preparation
-from .analysis import Analysis
 from .concentration_units import Concentration_units
+from .molecular_weight_units import Molecular_weight_units
+from .analysis import Analysis
 from .sample import Sample
+from .electrode_setup import Electrode_setup
 
 
 @forge_signature
@@ -68,11 +69,16 @@ class Dataset(sdRDM.DataModel):
         description="Concentration of the conducting salt",
     )
 
+    electrode_setup: Electrode_setup = Field(
+        ...,
+        description="Name of the used electrode materials",
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="f7bda00987d9745b6e532491534c6fb55777ff96"
+        default="74f1d2bd51945e4f923c4bdc69721a8af615999c"
     )
 
     def add_author_to_author(

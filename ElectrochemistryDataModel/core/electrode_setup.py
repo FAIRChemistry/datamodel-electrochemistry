@@ -6,29 +6,29 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 @forge_signature
-class Author(sdRDM.DataModel):
+class Electrode_setup(sdRDM.DataModel):
 
-    """Container for information regarding persons who worked on a dataset."""
+    """"""
 
     id: str = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("authorINDEX"),
+        default_factory=IDGenerator("electrode_setupINDEX"),
         xml="@id",
     )
 
-    name: str = Field(
-        ...,
-        description="Full name of the author",
-    )
-
-    affiliation: str = Field(
-        ...,
-        description="Organization the author is affiliated with",
-    )
-
-    email: Optional[str] = Field(
+    working_electrode: Optional[str] = Field(
         default=None,
-        description="Contact e-mail address of the author",
+        description="Name of the used working electrode",
+    )
+
+    counter_electrode: Optional[str] = Field(
+        default=None,
+        description="Name of the used counter electrode",
+    )
+
+    Reference_electrode: Optional[str] = Field(
+        default=None,
+        description="Name of the used reference electrode",
     )
 
     __repo__: Optional[str] = PrivateAttr(
