@@ -29,6 +29,9 @@
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt 
+- __electrode_setup__
+  - Type: Electrode_setup
+  - Description: Name of the used electrode materials
 
 ### Sample
 - __name_product__
@@ -113,9 +116,6 @@
   - Description: The duration time of the induced potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
-- __electrode_setup__
-  - Type: Electrode_setup
-  - Description: Name of the used electrod materials
 - __ferrocene_reference__
   - Type: Ferrocene_reference
   - Multiple: True
