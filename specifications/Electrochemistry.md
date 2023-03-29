@@ -190,9 +190,10 @@ Container for information regarding persons who worked on a dataset.
 
 
 ## Enumerations
+
 ### Molecular_weight_units
 ```python
-GRAM-PER-MOLE = "g / mole "
+GRAM_PER_MOLE = "g / mole "
 GRAM_PER_MILLI_MOLE = "g / mmole"
 ```
 ### Temperature_units
