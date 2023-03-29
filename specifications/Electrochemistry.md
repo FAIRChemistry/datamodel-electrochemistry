@@ -116,7 +116,10 @@ Container for information regarding persons who worked on a dataset.
 
 ### Time_units
 ```python
+MIN = "min"
 SEC = "s" 
+MILLI_SEC = "ms"
+MICRO_SEC = "us"
 ```
 ### Concentration_units
 ```python
