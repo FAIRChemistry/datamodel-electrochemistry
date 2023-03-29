@@ -23,7 +23,7 @@
 - __analysis__
   - Type: Analysis
   - Description: The method which is used to gain the data
-  -  
+  
 ### Sample
 - __name__
   - Type: string
