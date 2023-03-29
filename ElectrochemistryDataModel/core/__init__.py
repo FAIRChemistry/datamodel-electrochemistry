@@ -4,7 +4,7 @@ from .analysis import Analysis
 from .cp import CP
 from .ca import CA
 from .cv import CV
-from .ferrocene import Ferrocene
+from .ferrocene_reference import Ferrocene_reference
 from .author import Author
 from .time_units import Time_units
 from .concentration_units import Concentration_units
@@ -21,7 +21,7 @@ __all__ = [
     "CP",
     "CA",
     "CV",
-    "Ferrocene",
+    "Ferrocene_reference",
     "Author",
     "Time_units",
     "Concentration_units",
