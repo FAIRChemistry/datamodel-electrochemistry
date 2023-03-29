@@ -6,8 +6,8 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .potential_units import Potential_units
-from .concentration_units import Concentration_units
 from .time_units import Time_units
+from .concentration_units import Concentration_units
 
 
 @forge_signature
@@ -36,14 +36,24 @@ class CP(sdRDM.DataModel):
         description="Concentration of the conducting salt",
     )
 
-    potential_first: Potential_units = Field(
+    potential_start: Potential_units = Field(
         ...,
-        description="First potential which was used",
+        description="The potential where the measurement starts",
     )
 
-    potential_sec: Potential_units = Field(
+    potential_stop: Potential_units = Field(
         ...,
-        description="Second potential which was used",
+        description="The potential where the measurement ends",
+    )
+
+    potential_lower_limit: Potential_units = Field(
+        ...,
+        description="The lower limit of the potential",
+    )
+
+    potential_upper_limit: Potential_units = Field(
+        ...,
+        description="The upper limit of the potential",
     )
 
     time_duration: Time_units = Field(
@@ -55,5 +65,5 @@ class CP(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="aaf505b0f82cfdf29660ea71a3ef6197b8340c77"
+        default="bedb286cf489fcf39a63b25075c21d587b2f0558"
     )

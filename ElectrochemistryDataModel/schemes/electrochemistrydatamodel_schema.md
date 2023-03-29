@@ -36,8 +36,10 @@ classDiagram
         +string solvent*
         +string conducting_salt*
         +Concentration_units conducting_salt_concentration*
-        +Potential_units potential_first*
-        +Potential_units potential_sec*
+        +Potential_units potential_start*
+        +Potential_units potential_stop*
+        +Potential_units potential_lower_limit*
+        +Potential_units potential_upper_limit*
         +Time_units time_duration*
     }
     
