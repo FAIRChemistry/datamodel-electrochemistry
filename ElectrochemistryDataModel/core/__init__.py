@@ -1,5 +1,7 @@
 from .dataset import Dataset
 from .sample import Sample
+from .film_preparation import Film_preparation
+from .spin_coating import Spin_coating
 from .analysis import Analysis
 from .cp import CP
 from .ca import CA
@@ -17,6 +19,8 @@ __doc__ = ""
 __all__ = [
     "Dataset",
     "Sample",
+    "Film_preparation",
+    "Spin_coating",
     "Analysis",
     "CP",
     "CA",

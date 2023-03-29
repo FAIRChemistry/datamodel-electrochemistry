@@ -5,34 +5,20 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .current_units import Current_units
-from .time_units import Time_units
-
-
 @forge_signature
-class CP(sdRDM.DataModel):
+class Spin_coating(sdRDM.DataModel):
 
     """"""
 
     id: str = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("cpINDEX"),
+        default_factory=IDGenerator("spin_coatingINDEX"),
         xml="@id",
     )
 
-    induced_current_first: Current_units = Field(
+    volume: float = Field(
         ...,
-        description="The first induced current",
-    )
-
-    induced_current_second: Current_units = Field(
-        ...,
-        description="The first induced current",
-    )
-
-    time_duration: Time_units = Field(
-        ...,
-        description="The duration time of the induced current",
+        description="The volume which was used for the film",
     )
 
     __repo__: Optional[str] = PrivateAttr(

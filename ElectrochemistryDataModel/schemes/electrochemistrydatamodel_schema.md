@@ -4,6 +4,8 @@ classDiagram
     Dataset *-- Sample
     Dataset *-- Analysis
     Dataset *-- Author
+    Sample *-- Film_preparation
+    Film_preparation *-- Spin_coating
     Analysis *-- CP
     Analysis *-- CA
     Analysis *-- CV
@@ -33,6 +35,15 @@ classDiagram
         +string name_product*
         +string chemical_formula*
         +string synthesis*
+        +Film_preparation film_preparation*
+    }
+    
+    class Film_preparation {
+        +Spin_coating[0..*] spin_coating*
+    }
+    
+    class Spin_coating {
+        +float volume*
     }
     
     class Analysis {
