@@ -5,6 +5,7 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .molecular_weight_units import Molecular_weight_units
 from .film_preparation import Film_preparation
 
 
@@ -29,6 +30,11 @@ class Sample(sdRDM.DataModel):
         description="The chemical formula of the product",
     )
 
+    molecular_weight: Optional[Molecular_weight_units] = Field(
+        default=None,
+        description="The molecular weight of the product",
+    )
+
     synthesis: Optional[str] = Field(
         default=None,
         description="The synthesis of the product",
@@ -43,5 +49,5 @@ class Sample(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="cbe2e3ade6b85084c1be6082f5dd8f9e9ac58066"
+        default="f7bda00987d9745b6e532491534c6fb55777ff96"
     )
