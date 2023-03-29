@@ -11,6 +11,7 @@ classDiagram
     Synthesis *-- Physical_parameters
     Physical_parameters *-- pressure_units
     Physical_parameters *-- Temperature_units
+    Physical_parameters *-- Time_units
     Film_preparation *-- Spin_coating
     Spin_coating *-- Temperature_units
     Spin_coating *-- Volume_units
@@ -57,6 +58,7 @@ classDiagram
     class Physical_parameters {
         +Temperature_units temperature
         +pressure_units pressure
+        +Time_units time
     }
     
     class Film_preparation {
