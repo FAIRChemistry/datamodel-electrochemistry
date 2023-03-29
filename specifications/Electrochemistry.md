@@ -163,13 +163,13 @@ Container for information regarding the CV-Setup and parameters
 
 ### Elektrode_setup
 - working_electrode
-  - Type: "String"
+  - Type: string
   - Description: Name of the used working electrode
 - counter_electrode
-  - Type: "String"
+  - Type: string
   - Description: Name of the used counter electrode  
 - Reference_electrode
-  - Type: "String"
+  - Type: string
   - Description: Name of the used reference electrode 
 
 ### Author
