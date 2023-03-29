@@ -6,14 +6,14 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potential_units import Potential_units
-from .time_units import Time_units
-from .cv import CV
-from .current_units import Current_units
-from .scan_rate_units import Scan_rate_units
-from .cp import CP
-from .concentration_units import Concentration_units
 from .ca import CA
+from .current_units import Current_units
+from .time_units import Time_units
+from .potential_units import Potential_units
+from .scan_rate_units import Scan_rate_units
+from .concentration_units import Concentration_units
+from .cp import CP
+from .cv import CV
 
 
 @forge_signature
@@ -49,7 +49,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="78c465007b8de34e949508a7fc31e7aab8fcbbfa"
+        default="65605ffa785f58e33ac051d39841c6f47a381923"
     )
 
     def add_cv_to_cv(
@@ -155,6 +155,9 @@ class Analysis(sdRDM.DataModel):
         solvent: str,
         conducting_salt: str,
         conducting_salt_concentration: Concentration_units,
+        induced_current_first: Current_units,
+        induced_current_second: Current_units,
+        time_duration: Time_units,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -165,12 +168,18 @@ class Analysis(sdRDM.DataModel):
             solvent (): Name of the solvent.
             conducting_salt (): Name of the used salt.
             conducting_salt_concentration (): Concentration of the conducting salt.
+            induced_current_first (): The first induced current.
+            induced_current_second (): The first induced current.
+            time_duration (): The duration time of the induced current.
         """
 
         params = {
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,
+            "induced_current_first": induced_current_first,
+            "induced_current_second": induced_current_second,
+            "time_duration": time_duration,
         }
 
         if id is not None:

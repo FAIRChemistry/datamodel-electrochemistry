@@ -6,7 +6,9 @@ classDiagram
     Analysis *-- CP
     Analysis *-- CA
     Analysis *-- CV
+    CP *-- Time_units
     CP *-- Concentration_units
+    CP *-- Current_units
     CA *-- Time_units
     CA *-- Concentration_units
     CA *-- Potential_units
@@ -40,6 +42,9 @@ classDiagram
         +string solvent*
         +string conducting_salt*
         +Concentration_units conducting_salt_concentration*
+        +Current_units induced_current_first*
+        +Current_units induced_current_second*
+        +Time_units time_duration*
     }
     
     class CA {
