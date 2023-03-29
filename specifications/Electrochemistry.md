@@ -135,22 +135,26 @@ Container for information regarding the CV-Setup and parameters
 - __potential_lower_limit__
   - Type: Potential_units
   - Description: The lower limit of the potential
-- __potential_upper_limit__
+- potential_upper_limit
   - Type: Potential_units
   - Description: The upper limit of the potential
-- __i_pc_ox__
+- i_pc_ox
   - Type: Current_units
+  - Multiple: True
   - Description: The current at the maximum of the cathodic peak (oxidation)
-- __i_pa_red__
+- i_pa_red
   - Type: Current_units
+  - Multiple: True 
   - Description: The current at the maximum of the anodic peak (reduction)
-- __ox_potential_E_pc__
+- ox_potential_E_pc
   - Type: Potential_units
+  - Multiple: True
   - Description: Potential at the maximum of the cathodic peak (reduction)
-- __red_potential_E_pa__
+- red_potential_E_pa
   - Type: Potential_units
+  - Multiple: True
   - Description: The current at the maximum of the anodic peak (oxidation)
-- __total_cycle_number__
+- total_cycle_number
   - Type: int
   - Description: The total cycle number
 ### Ferrocene_reference
