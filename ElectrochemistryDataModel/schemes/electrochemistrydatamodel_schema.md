@@ -20,6 +20,7 @@ classDiagram
     CV *-- Current_units
     CV *-- Potential_units
     CV *-- Ferrocene_reference
+    CV *-- Elektrode_setup
     Ferrocene_reference *-- Potential_units
     
     class Dataset {
@@ -27,7 +28,6 @@ classDiagram
         +date date*
         +Author[0..*] author*
         +Sample[0..*] sample*
-        +string electrode_material*
         +Analysis analysis*
         +string solvent*
         +string conducting_salt*
@@ -36,9 +36,9 @@ classDiagram
     
     class Sample {
         +string name_product*
-        +string chemical_formula*
-        +string synthesis*
-        +Film_preparation film_preparation*
+        +string chemical_formula
+        +string synthesis
+        +Film_preparation film_preparation
     }
     
     class Film_preparation {
@@ -49,14 +49,14 @@ classDiagram
         +Volume_units volume*
         +float rotation*
         +Time_units time*
-        +Temperature_units annealing_temperature*
-        +Time_units annealing_time*
+        +Temperature_units annealing_temperature
+        +Time_units annealing_time
     }
     
     class Analysis {
-        +CV[0..*] cv
-        +CA[0..*] ca
-        +CP[0..*] cp
+        +CV[0..*] cv*
+        +CA[0..*] ca*
+        +CP[0..*] cp*
     }
     
     class CP {
@@ -72,6 +72,7 @@ classDiagram
     }
     
     class CV {
+        +Elektrode_setup electrode_setup*
         +Ferrocene_reference[0..*] ferrocene_reference*
         +Potential_units halfe_wave_potential*
         +Scan_rate_units scan_rate*
@@ -90,6 +91,12 @@ classDiagram
         +Potential_units ox_potential_E_pc_ferrocene*
         +Potential_units red_potential_E_pa_ferrocene*
         +Potential_units halfe_wave_potential_ferrocene*
+    }
+    
+    class Elektrode_setup {
+        +string working_electrode
+        +string counter_electrode
+        +string Reference_electrode
     }
     
     class Author {

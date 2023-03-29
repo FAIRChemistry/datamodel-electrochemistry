@@ -5,34 +5,30 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .time_units import Time_units
-from .current_units import Current_units
-
-
 @forge_signature
-class CP(sdRDM.DataModel):
+class Elektrode_setup(sdRDM.DataModel):
 
     """"""
 
     id: str = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("cpINDEX"),
+        default_factory=IDGenerator("elektrode_setupINDEX"),
         xml="@id",
     )
 
-    induced_current_first: Current_units = Field(
-        ...,
-        description="The first induced current",
+    working_electrode: Optional[str] = Field(
+        default=None,
+        description="Name of the used working electrode",
     )
 
-    induced_current_second: Current_units = Field(
-        ...,
-        description="The first induced current",
+    counter_electrode: Optional[str] = Field(
+        default=None,
+        description="Name of the used counter electrode",
     )
 
-    time_duration: Time_units = Field(
-        ...,
-        description="The duration time of the induced current",
+    Reference_electrode: Optional[str] = Field(
+        default=None,
+        description="Name of the used reference electrode",
     )
 
     __repo__: Optional[str] = PrivateAttr(

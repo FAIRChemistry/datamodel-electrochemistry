@@ -71,15 +71,15 @@
 
 
 ### Analysis
-- cv
+- __cv__
   - Type: CV
   - Multiple: True
   - Description: Cyclic voltammetry
-- ca
+- __ca__
   - Type: CA
   - Multiple: True
   - Description: Chronoamperometry
-- cp
+- __cp__
   - Type: CP
   - Multiple: True
   - Description: Chronopotentiometry

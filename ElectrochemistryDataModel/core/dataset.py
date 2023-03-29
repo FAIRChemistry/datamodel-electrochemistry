@@ -7,11 +7,11 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from datetime import date
 
-from .sample import Sample
-from .analysis import Analysis
 from .concentration_units import Concentration_units
-from .author import Author
+from .sample import Sample
 from .film_preparation import Film_preparation
+from .analysis import Analysis
+from .author import Author
 
 
 @forge_signature
@@ -47,11 +47,6 @@ class Dataset(sdRDM.DataModel):
         default_factory=ListPlus,
     )
 
-    electrode_material: str = Field(
-        ...,
-        description="Name of the used electrode material",
-    )
-
     analysis: Analysis = Field(
         ...,
         description="The method which is used to gain the data",
@@ -76,7 +71,7 @@ class Dataset(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d16fe602160546e991642e771d00e8ef338b6b94"
+        default="3c9c90aff9c0fc31c9d2efdd4bf5569f531d292d"
     )
 
     def add_author_to_author(
@@ -110,9 +105,9 @@ class Dataset(sdRDM.DataModel):
     def add_sample_to_sample(
         self,
         name_product: str,
-        chemical_formula: str,
-        synthesis: str,
-        film_preparation: Film_preparation,
+        chemical_formula: Optional[str] = None,
+        synthesis: Optional[str] = None,
+        film_preparation: Optional[Film_preparation] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -121,9 +116,9 @@ class Dataset(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'Sample' object. Defaults to 'None'.
             name_product (): The name of the product.
-            chemical_formula (): The chemical formula of the product.
-            synthesis (): The synthesis of the product.
-            film_preparation (): The film preparation of the product.
+            chemical_formula (): The chemical formula of the product. Defaults to None
+            synthesis (): The synthesis of the product. Defaults to None
+            film_preparation (): The film preparation of the product. Defaults to None
         """
 
         params = {

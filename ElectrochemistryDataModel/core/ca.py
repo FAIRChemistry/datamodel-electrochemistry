@@ -5,8 +5,8 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .time_units import Time_units
 from .potential_units import Potential_units
+from .time_units import Time_units
 
 
 @forge_signature
@@ -39,5 +39,5 @@ class CA(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d16fe602160546e991642e771d00e8ef338b6b94"
+        default="3c9c90aff9c0fc31c9d2efdd4bf5569f531d292d"
     )

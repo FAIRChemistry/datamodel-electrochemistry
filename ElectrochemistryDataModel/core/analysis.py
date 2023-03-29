@@ -7,13 +7,14 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .cp import CP
-from .ferrocene_reference import Ferrocene_reference
-from .current_units import Current_units
-from .scan_rate_units import Scan_rate_units
-from .potential_units import Potential_units
 from .time_units import Time_units
-from .ca import CA
+from .current_units import Current_units
+from .ferrocene_reference import Ferrocene_reference
 from .cv import CV
+from .elektrode_setup import Elektrode_setup
+from .potential_units import Potential_units
+from .scan_rate_units import Scan_rate_units
+from .ca import CA
 
 
 @forge_signature
@@ -28,32 +29,33 @@ class Analysis(sdRDM.DataModel):
     )
 
     cv: List[CV] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="Cyclic voltammetry",
+        default_factory=ListPlus,
     )
 
     ca: List[CA] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="Chronoamperometry",
+        default_factory=ListPlus,
     )
 
     cp: List[CP] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="Chronopotentiometry",
+        default_factory=ListPlus,
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d16fe602160546e991642e771d00e8ef338b6b94"
+        default="3c9c90aff9c0fc31c9d2efdd4bf5569f531d292d"
     )
 
     def add_cv_to_cv(
         self,
+        electrode_setup: Elektrode_setup,
         halfe_wave_potential: Potential_units,
         scan_rate: Scan_rate_units,
         start_potential: Potential_units,
@@ -73,6 +75,7 @@ class Analysis(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'CV' object. Defaults to 'None'.
+            electrode_setup (): Name of the used electrod materials.
             halfe_wave_potential (): The half-wave potential of the measurement.
             scan_rate (): The scan rate of the measurement.
             start_potential (): The starting value of the potential.
@@ -88,6 +91,7 @@ class Analysis(sdRDM.DataModel):
         """
 
         params = {
+            "electrode_setup": electrode_setup,
             "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
             "start_potential": start_potential,
