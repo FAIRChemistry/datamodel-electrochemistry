@@ -40,11 +40,11 @@
   - Type: CV
   - Multiple: True
   - Description: Cyclic Voltammetry
-- __cp__
-  - Type: CP
+- __ca__
+  - Type: CA
   - Multiple: True
   - Description: Chronoamperometry
-### CP
+### CA
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
