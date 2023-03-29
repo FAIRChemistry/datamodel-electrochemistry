@@ -44,13 +44,27 @@
   - Type: Molecular_weight_units
   - Description: The molecular weight of the product 
 - synthesis
-  - Type: string
+  - Type: Synthesis
   - Description: The synthesis of the product 
 - film_preparation
   - Type: Film_preparation
   - Description: The film preparation of the product
+### Synthesis
+- __reagents__
+  - Type: string
+  - Description: The reagents of the product
+- solvent
+  - Type: string
+  - Description: The solvent of the synthesis
+- physical_parameters
+  - Type: Physical_parameters
+  - Description: The physical parameters of the synthesis
+### Physical_parameters
+- temperature
+  - Type: Temperature_units
+  - Description: The temperature of the synthesis
 ### Film_preparation
-- __spin_coating__
+- spin_coating
   - Type: Spin_coating
   - Multiple: True
   - Description: Spin coating parameter
@@ -108,7 +122,7 @@
 - __induced_potential_first__
   - Type: Potential_units
   - Description: The first induced potential  
-- __induced_potential_second__
+- induced_potential_second
   - Type: Potential_units
   - Description: The second induced potential
 - __time_duration__
