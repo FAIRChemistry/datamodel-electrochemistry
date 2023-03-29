@@ -5,8 +5,8 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .concentration_units import Concentration_units
 from .potential_units import Potential_units
+from .concentration_units import Concentration_units
 from .time_units import Time_units
 
 
@@ -46,14 +46,14 @@ class CP(sdRDM.DataModel):
         description="Second potential which was used",
     )
 
-    time_between_switch: Time_units = Field(
+    time_duration: Time_units = Field(
         ...,
-        description="The time between switching the potentials",
+        description="The time duration of the potential",
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="723b7621cb273f11a5d3bf188d93df0af6426495"
+        default="aaf505b0f82cfdf29660ea71a3ef6197b8340c77"
     )
