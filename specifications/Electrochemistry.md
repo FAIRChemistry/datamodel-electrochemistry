@@ -23,9 +23,18 @@
 - __analysis__
   - Type: Analysis
   - Description: The method which is used to gain the data
+- __solvent__
+  - Type: string
+  - Description: Name of the solvent    
+- __conducting_salt__
+  - Type: string
+  - Description: Name of the used salt
+- __conducting_salt_concentration__
+  - Type: Concentration_units
+  - Description: Concentration of the conducting salt 
   
 ### Sample
-- __name__
+- __name_product__
   - Type: string
   - Description: The name of the product
 - __chemical_formula__
@@ -49,15 +58,6 @@
   - Multiple: True
   - Description: Chronopotentiometry
 ### CP
-- __solvent__
-  - Type: string
-  - Description: Name of the solvent    
-- __conducting_salt__
-  - Type: string
-  - Description: Name of the used salt
-- __conducting_salt_concentration__
-  - Type: Concentration_units
-  - Description: Concentration of the conducting salt
 
 - __induced_current_first__
   - Type: Current_units
@@ -72,15 +72,7 @@
 
 
 ### CA
-- __solvent__
-  - Type: string
-  - Description: Name of the solvent    
-- __conducting_salt__
-  - Type: string
-  - Description: Name of the used salt
-- __conducting_salt_concentration__
-  - Type: Concentration_units
-  - Description: Concentration of the conducting salt
+
 - __induced_potential_first__
   - Type: Potential_units
   - Description: The first induced potential  
@@ -96,15 +88,6 @@ Container for information regarding the CV-Setup and parameters
   - Type: Ferrocene_reference
   - Multiple: True
   - Description: Parameters of the ferocene reference measurement
-- __solvent__
-  - Type: string
-  - Description: Name of the solvent    
-- __conducting_salt__
-  - Type: string
-  - Description: Name of the used salt
-- __conducting_salt_concentration__
-  - Type: Concentration_units
-  - Description: Concentration of the conducting salt 
 - __halfe_wave_potential__
   - Type: Potential_units
   - Description: The half-wave potential of the measurement  
