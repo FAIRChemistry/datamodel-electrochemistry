@@ -17,9 +17,13 @@
   - Type: Sample
   - Multiple: True
   - Description: The sample which was measured 
+- __electrode_material__
+  - Type: string
+  - Description: Name of the used electrode material
 - __analysis__
   - Type: Analysis
-  - Description: The method which is used to gain the data 
+  - Description: The method which is used to gain the data
+  -  
 ### Sample
 - __name__
   - Type: string
@@ -41,9 +45,6 @@
   - Multiple: True
   - Description: Chronoamperometry
 ### CP
-- __electrode_material__
-  - Type: string
-  - Description: Name of the used electrode material
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
@@ -64,9 +65,6 @@
   - Description: The time duration of the potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
-- __electrode_material__
-  - Type: string
-  - Description: Name of the used electrode material
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
