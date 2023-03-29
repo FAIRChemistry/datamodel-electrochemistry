@@ -81,12 +81,12 @@ classDiagram
         +Potential_units start_potential*
         +Potential_units stop_potential*
         +Potential_units potential_lower_limit*
-        +Potential_units potential_upper_limit*
-        +Current_units i_pc_ox*
-        +Current_units i_pa_red*
-        +Potential_units ox_potential_E_pc*
-        +Potential_units red_potential_E_pa*
-        +int total_cycle_number*
+        +Potential_units potential_upper_limit
+        +Current_units[0..*] i_pc_ox
+        +Current_units[0..*] i_pa_red
+        +Potential_units[0..*] ox_potential_E_pc
+        +Potential_units[0..*] red_potential_E_pa
+        +int total_cycle_number
     }
     
     class Ferrocene_reference {

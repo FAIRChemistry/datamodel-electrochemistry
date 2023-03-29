@@ -7,9 +7,9 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .scan_rate_units import Scan_rate_units
-from .current_units import Current_units
 from .ferrocene_reference import Ferrocene_reference
 from .potential_units import Potential_units
+from .current_units import Current_units
 
 
 @forge_signature
@@ -54,33 +54,37 @@ class CV(sdRDM.DataModel):
         description="The lower limit of the potential",
     )
 
-    potential_upper_limit: Potential_units = Field(
-        ...,
+    potential_upper_limit: Optional[Potential_units] = Field(
+        default=None,
         description="The upper limit of the potential",
     )
 
-    i_pc_ox: Current_units = Field(
-        ...,
+    i_pc_ox: List[Current_units] = Field(
+        default_factory=ListPlus,
+        multiple=True,
         description="The current at the maximum of the cathodic peak (oxidation)",
     )
 
-    i_pa_red: Current_units = Field(
-        ...,
+    i_pa_red: List[Current_units] = Field(
+        default_factory=ListPlus,
+        multiple=True,
         description="The current at the maximum of the anodic peak (reduction)",
     )
 
-    ox_potential_E_pc: Potential_units = Field(
-        ...,
+    ox_potential_E_pc: List[Potential_units] = Field(
+        default_factory=ListPlus,
+        multiple=True,
         description="Potential at the maximum of the cathodic peak (reduction)",
     )
 
-    red_potential_E_pa: Potential_units = Field(
-        ...,
+    red_potential_E_pa: List[Potential_units] = Field(
+        default_factory=ListPlus,
+        multiple=True,
         description="The current at the maximum of the anodic peak (oxidation)",
     )
 
-    total_cycle_number: int = Field(
-        ...,
+    total_cycle_number: Optional[int] = Field(
+        default=None,
         description="The total cycle number",
     )
 
@@ -88,7 +92,7 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="74f1d2bd51945e4f923c4bdc69721a8af615999c"
+        default="291a9ade199207bc15bada70ebbff243eb8f3f8e"
     )
 
     def add_ferrocene_reference_to_ferrocene_reference(
