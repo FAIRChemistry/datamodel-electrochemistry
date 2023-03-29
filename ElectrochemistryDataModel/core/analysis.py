@@ -6,13 +6,13 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .scan_rate_units import Scan_rate_units
+from .ca import CA
+from .cv import CV
 from .current_units import Current_units
 from .time_units import Time_units
 from .concentration_units import Concentration_units
 from .potential_units import Potential_units
-from .cv import CV
-from .cp import CP
-from .scan_rate_units import Scan_rate_units
 
 
 @forge_signature
@@ -32,7 +32,7 @@ class Analysis(sdRDM.DataModel):
         default_factory=ListPlus,
     )
 
-    cp: List[CP] = Field(
+    ca: List[CA] = Field(
         multiple=True,
         description="Chronoamperometry",
         default_factory=ListPlus,
@@ -42,7 +42,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="27720fe53e75be5f127fbc5d8fdd87e96a4f4036"
+        default="59a84e4a29e464beaf9c8e90cf2ff0a12da042ed"
     )
 
     def add_cv_to_cv(
@@ -106,7 +106,7 @@ class Analysis(sdRDM.DataModel):
 
         self.cv.append(CV(**params))
 
-    def add_cp_to_cp(
+    def add_ca_to_ca(
         self,
         solvent: str,
         conducting_salt: str,
@@ -117,10 +117,10 @@ class Analysis(sdRDM.DataModel):
         id: Optional[str] = None,
     ) -> None:
         """
-        This method adds an object of type 'CP' to attribute cp
+        This method adds an object of type 'CA' to attribute ca
 
         Args:
-            id (str): Unique identifier of the 'CP' object. Defaults to 'None'.
+            id (str): Unique identifier of the 'CA' object. Defaults to 'None'.
             solvent (): Name of the solvent.
             conducting_salt (): Name of the used salt.
             conducting_salt_concentration (): Concentration of the conducting salt.
@@ -141,4 +141,4 @@ class Analysis(sdRDM.DataModel):
         if id is not None:
             params["id"] = id
 
-        self.cp.append(CP(**params))
+        self.ca.append(CA(**params))
