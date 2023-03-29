@@ -43,6 +43,18 @@
 - __synthesis__
   - Type: string
   - Description: The synthesis of the product 
+- __film_preparation__
+  - Type: Film_preparation
+  - Description: The film preparation of the product
+### Film_preparation
+- __spin_coating__
+  - Type: Spin_coating
+  - Multiple: True
+  - Description: Spin coating parameter
+### Spin_coating
+- __volume__
+  - Type: float
+  - Description: The volume which was used for the film
 
 
 
