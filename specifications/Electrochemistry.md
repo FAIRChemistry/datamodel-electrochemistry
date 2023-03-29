@@ -50,18 +50,13 @@
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt
-- __potential_start__
+- __potential_first__
   - Type: Potential_units
-  - Description: The potential where the measurement starts  
-- __potential_stop__
+  - Description: The first induced potential  
+- __potential_second__
   - Type: Potential_units
-  - Description: The potential where the measurement ends
-- __potential_lower_limit__
-  - Type: Potential_units
-  - Description: The lower limit of the potential
-- __potential_upper_limit__
-  - Type: Potential_units
-  - Description: The upper limit of the potential
+  - Description: The second induced potential
+
 - __time_duration__
   - Type: Time_units
   - Description: The time duration of the potential 
@@ -89,6 +84,12 @@ Container for information regarding the CV-Setup and parameters
 - __stop_potential__
   - Type: Potential_units
   - Description: The stop value of the potential 
+- __potential_lower_limit__
+  - Type: Potential_units
+  - Description: The lower limit of the potential
+- __potential_upper_limit__
+  - Type: Potential_units
+  - Description: The upper limit of the potential
 - __i_pc_ox__
   - Type: Current_units
   - Description: The current at the maximum of the cathodic peak (oxidation)
