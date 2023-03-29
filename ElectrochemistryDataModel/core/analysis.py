@@ -6,13 +6,13 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .cp import CP
 from .concentration_units import Concentration_units
+from .cp import CP
+from .scan_rate_units import Scan_rate_units
+from .potential_units import Potential_units
 from .cv import CV
 from .current_units import Current_units
 from .time_units import Time_units
-from .scan_rate_units import Scan_rate_units
-from .potential_units import Potential_units
 
 
 @forge_signature
@@ -42,11 +42,12 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="451c5209710bc4ea75569dc591f7f1e9b7d3b67b"
+        default="32d178071e5fb3a810cab716ec136f2683546f94"
     )
 
     def add_cv_to_cv(
         self,
+        electrode_material: str,
         solvent: str,
         conducting_salt: str,
         conducting_salt_concentration: Concentration_units,
@@ -68,6 +69,7 @@ class Analysis(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'CV' object. Defaults to 'None'.
+            electrode_material (): Name of the used electrode material.
             solvent (): Name of the solvent.
             conducting_salt (): Name of the used salt.
             conducting_salt_concentration (): Concentration of the conducting salt.
@@ -85,6 +87,7 @@ class Analysis(sdRDM.DataModel):
         """
 
         params = {
+            "electrode_material": electrode_material,
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,
@@ -108,6 +111,7 @@ class Analysis(sdRDM.DataModel):
 
     def add_cp_to_cp(
         self,
+        electrode_material: str,
         solvent: str,
         conducting_salt: str,
         conducting_salt_concentration: Concentration_units,
@@ -121,6 +125,7 @@ class Analysis(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'CP' object. Defaults to 'None'.
+            electrode_material (): Name of the used electrode material.
             solvent (): Name of the solvent.
             conducting_salt (): Name of the used salt.
             conducting_salt_concentration (): Concentration of the conducting salt.
@@ -130,6 +135,7 @@ class Analysis(sdRDM.DataModel):
         """
 
         params = {
+            "electrode_material": electrode_material,
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,

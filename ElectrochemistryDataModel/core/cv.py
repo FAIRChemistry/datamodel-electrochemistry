@@ -6,9 +6,9 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .concentration_units import Concentration_units
-from .current_units import Current_units
 from .scan_rate_units import Scan_rate_units
 from .potential_units import Potential_units
+from .current_units import Current_units
 
 
 @forge_signature
@@ -20,6 +20,11 @@ class CV(sdRDM.DataModel):
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("cvINDEX"),
         xml="@id",
+    )
+
+    electrode_material: str = Field(
+        ...,
+        description="Name of the used electrode material",
     )
 
     solvent: str = Field(
@@ -96,5 +101,5 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="451c5209710bc4ea75569dc591f7f1e9b7d3b67b"
+        default="32d178071e5fb3a810cab716ec136f2683546f94"
     )
