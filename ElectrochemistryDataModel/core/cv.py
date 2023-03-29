@@ -8,9 +8,8 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from .ferrocene_reference import Ferrocene_reference
 from .scan_rate_units import Scan_rate_units
-from .current_units import Current_units
 from .potential_units import Potential_units
-from .concentration_units import Concentration_units
+from .current_units import Current_units
 
 
 @forge_signature
@@ -28,21 +27,6 @@ class CV(sdRDM.DataModel):
         multiple=True,
         description="Parameters of the ferocene reference measurement",
         default_factory=ListPlus,
-    )
-
-    solvent: str = Field(
-        ...,
-        description="Name of the solvent",
-    )
-
-    conducting_salt: str = Field(
-        ...,
-        description="Name of the used salt",
-    )
-
-    conducting_salt_concentration: Concentration_units = Field(
-        ...,
-        description="Concentration of the conducting salt",
     )
 
     halfe_wave_potential: Potential_units = Field(
@@ -104,7 +88,7 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="14534bc5e660034633fe7b05b138782133e620a3"
+        default="a2c1245141f071cb3365890d65b3d05da7caaee3"
     )
 
     def add_ferrocene_reference_to_ferrocene_reference(

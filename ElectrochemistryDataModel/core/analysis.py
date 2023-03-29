@@ -7,14 +7,13 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .ferrocene_reference import Ferrocene_reference
-from .time_units import Time_units
-from .scan_rate_units import Scan_rate_units
-from .current_units import Current_units
-from .potential_units import Potential_units
 from .cp import CP
-from .cv import CV
-from .concentration_units import Concentration_units
+from .scan_rate_units import Scan_rate_units
+from .potential_units import Potential_units
 from .ca import CA
+from .time_units import Time_units
+from .current_units import Current_units
+from .cv import CV
 
 
 @forge_signature
@@ -50,14 +49,11 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="14534bc5e660034633fe7b05b138782133e620a3"
+        default="a2c1245141f071cb3365890d65b3d05da7caaee3"
     )
 
     def add_cv_to_cv(
         self,
-        solvent: str,
-        conducting_salt: str,
-        conducting_salt_concentration: Concentration_units,
         halfe_wave_potential: Potential_units,
         scan_rate: Scan_rate_units,
         start_potential: Potential_units,
@@ -77,9 +73,6 @@ class Analysis(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'CV' object. Defaults to 'None'.
-            solvent (): Name of the solvent.
-            conducting_salt (): Name of the used salt.
-            conducting_salt_concentration (): Concentration of the conducting salt.
             halfe_wave_potential (): The half-wave potential of the measurement.
             scan_rate (): The scan rate of the measurement.
             start_potential (): The starting value of the potential.
@@ -95,9 +88,6 @@ class Analysis(sdRDM.DataModel):
         """
 
         params = {
-            "solvent": solvent,
-            "conducting_salt": conducting_salt,
-            "conducting_salt_concentration": conducting_salt_concentration,
             "halfe_wave_potential": halfe_wave_potential,
             "scan_rate": scan_rate,
             "start_potential": start_potential,
@@ -119,9 +109,6 @@ class Analysis(sdRDM.DataModel):
 
     def add_ca_to_ca(
         self,
-        solvent: str,
-        conducting_salt: str,
-        conducting_salt_concentration: Concentration_units,
         induced_potential_first: Potential_units,
         induced_potential_second: Potential_units,
         time_duration: Time_units,
@@ -132,18 +119,12 @@ class Analysis(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'CA' object. Defaults to 'None'.
-            solvent (): Name of the solvent.
-            conducting_salt (): Name of the used salt.
-            conducting_salt_concentration (): Concentration of the conducting salt.
             induced_potential_first (): The first induced potential.
             induced_potential_second (): The second induced potential.
             time_duration (): The duration time of the induced potential.
         """
 
         params = {
-            "solvent": solvent,
-            "conducting_salt": conducting_salt,
-            "conducting_salt_concentration": conducting_salt_concentration,
             "induced_potential_first": induced_potential_first,
             "induced_potential_second": induced_potential_second,
             "time_duration": time_duration,
@@ -156,9 +137,6 @@ class Analysis(sdRDM.DataModel):
 
     def add_cp_to_cp(
         self,
-        solvent: str,
-        conducting_salt: str,
-        conducting_salt_concentration: Concentration_units,
         induced_current_first: Current_units,
         induced_current_second: Current_units,
         time_duration: Time_units,
@@ -169,18 +147,12 @@ class Analysis(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'CP' object. Defaults to 'None'.
-            solvent (): Name of the solvent.
-            conducting_salt (): Name of the used salt.
-            conducting_salt_concentration (): Concentration of the conducting salt.
             induced_current_first (): The first induced current.
             induced_current_second (): The first induced current.
             time_duration (): The duration time of the induced current.
         """
 
         params = {
-            "solvent": solvent,
-            "conducting_salt": conducting_salt,
-            "conducting_salt_concentration": conducting_salt_concentration,
             "induced_current_first": induced_current_first,
             "induced_current_second": induced_current_second,
             "time_duration": time_duration,

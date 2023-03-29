@@ -6,7 +6,6 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .time_units import Time_units
-from .concentration_units import Concentration_units
 from .current_units import Current_units
 
 
@@ -19,21 +18,6 @@ class CP(sdRDM.DataModel):
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("cpINDEX"),
         xml="@id",
-    )
-
-    solvent: str = Field(
-        ...,
-        description="Name of the solvent",
-    )
-
-    conducting_salt: str = Field(
-        ...,
-        description="Name of the used salt",
-    )
-
-    conducting_salt_concentration: Concentration_units = Field(
-        ...,
-        description="Concentration of the conducting salt",
     )
 
     induced_current_first: Current_units = Field(
@@ -55,5 +39,5 @@ class CP(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="14534bc5e660034633fe7b05b138782133e620a3"
+        default="a2c1245141f071cb3365890d65b3d05da7caaee3"
     )

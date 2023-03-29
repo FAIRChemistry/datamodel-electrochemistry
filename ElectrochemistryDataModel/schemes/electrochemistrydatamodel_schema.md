@@ -1,5 +1,6 @@
 ```mermaid
 classDiagram
+    Dataset *-- Concentration_units
     Dataset *-- Sample
     Dataset *-- Analysis
     Dataset *-- Author
@@ -7,12 +8,9 @@ classDiagram
     Analysis *-- CA
     Analysis *-- CV
     CP *-- Time_units
-    CP *-- Concentration_units
     CP *-- Current_units
     CA *-- Time_units
-    CA *-- Concentration_units
     CA *-- Potential_units
-    CV *-- Concentration_units
     CV *-- Scan_rate_units
     CV *-- Current_units
     CV *-- Potential_units
@@ -26,10 +24,13 @@ classDiagram
         +Sample[0..*] sample*
         +string electrode_material*
         +Analysis analysis*
+        +string solvent*
+        +string conducting_salt*
+        +Concentration_units conducting_salt_concentration*
     }
     
     class Sample {
-        +string name*
+        +string name_product*
         +string chemical_formula*
         +string synthesis*
     }
@@ -41,18 +42,12 @@ classDiagram
     }
     
     class CP {
-        +string solvent*
-        +string conducting_salt*
-        +Concentration_units conducting_salt_concentration*
         +Current_units induced_current_first*
         +Current_units induced_current_second*
         +Time_units time_duration*
     }
     
     class CA {
-        +string solvent*
-        +string conducting_salt*
-        +Concentration_units conducting_salt_concentration*
         +Potential_units induced_potential_first*
         +Potential_units induced_potential_second*
         +Time_units time_duration*
@@ -60,9 +55,6 @@ classDiagram
     
     class CV {
         +Ferrocene_reference[0..*] ferrocene_reference*
-        +string solvent*
-        +string conducting_salt*
-        +Concentration_units conducting_salt_concentration*
         +Potential_units halfe_wave_potential*
         +Scan_rate_units scan_rate*
         +Potential_units start_potential*

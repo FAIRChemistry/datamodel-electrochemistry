@@ -8,8 +8,9 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 from datetime import date
 
 from .sample import Sample
-from .analysis import Analysis
+from .concentration_units import Concentration_units
 from .author import Author
+from .analysis import Analysis
 
 
 @forge_signature
@@ -55,11 +56,26 @@ class Dataset(sdRDM.DataModel):
         description="The method which is used to gain the data",
     )
 
+    solvent: str = Field(
+        ...,
+        description="Name of the solvent",
+    )
+
+    conducting_salt: str = Field(
+        ...,
+        description="Name of the used salt",
+    )
+
+    conducting_salt_concentration: Concentration_units = Field(
+        ...,
+        description="Concentration of the conducting salt",
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="14534bc5e660034633fe7b05b138782133e620a3"
+        default="a2c1245141f071cb3365890d65b3d05da7caaee3"
     )
 
     def add_author_to_author(
@@ -91,20 +107,24 @@ class Dataset(sdRDM.DataModel):
         self.author.append(Author(**params))
 
     def add_sample_to_sample(
-        self, name: str, chemical_formula: str, synthesis: str, id: Optional[str] = None
+        self,
+        name_product: str,
+        chemical_formula: str,
+        synthesis: str,
+        id: Optional[str] = None,
     ) -> None:
         """
         This method adds an object of type 'Sample' to attribute sample
 
         Args:
             id (str): Unique identifier of the 'Sample' object. Defaults to 'None'.
-            name (): The name of the product.
+            name_product (): The name of the product.
             chemical_formula (): The chemical formula of the product.
             synthesis (): The synthesis of the product.
         """
 
         params = {
-            "name": name,
+            "name_product": name_product,
             "chemical_formula": chemical_formula,
             "synthesis": synthesis,
         }
