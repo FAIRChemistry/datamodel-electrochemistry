@@ -53,8 +53,22 @@
   - Description: Spin coating parameter
 ### Spin_coating
 - __volume__
+  - Type: Volume_units
+  - Description: The volume which was used for the film 
+- __rotation__
   - Type: float
-  - Description: The volume which was used for the film
+  - Description: The rotation speed for the film
+- __time__
+  - Type: Time_units
+  - Description: The rotation time 
+- __annealing_temperature__
+  - Type: Temperature_units
+  - Description: The anealing temperature for the film
+- __annealing_time__
+  - Type: Time_units
+  - Description: The anealing time for the film
+
+  
 
 
 
@@ -161,9 +175,20 @@ Container for information regarding persons who worked on a dataset.
 
 
 ## Enumerations
-
+### Temperature_units
+```python
+CELCIUS = "C"
+KELVIN = "K"
+```
+### Volume_units
+```python
+MILLI_LITER = "ml"
+MICRO_LITER = "ul" 
+NANO_LITER = "nl"
+```
 ### Time_units
 ```python
+HOUR = "h"
 MIN = "min"
 SEC = "s" 
 MILLI_SEC = "ms"
