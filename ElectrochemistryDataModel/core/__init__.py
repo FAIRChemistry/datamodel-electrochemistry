@@ -1,7 +1,7 @@
 from .dataset import Dataset
 from .sample import Sample
 from .analysis import Analysis
-from .cp import CP
+from .ca import CA
 from .cv import CV
 from .author import Author
 from .time_units import Time_units
@@ -16,7 +16,7 @@ __all__ = [
     "Dataset",
     "Sample",
     "Analysis",
-    "CP",
+    "CA",
     "CV",
     "Author",
     "Time_units",
