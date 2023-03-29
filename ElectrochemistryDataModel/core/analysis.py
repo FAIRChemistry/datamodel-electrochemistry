@@ -6,12 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .concentration_units import Concentration_units
-from .cv import CV
 from .time_units import Time_units
-from .scan_rate_units import Scan_rate_units
-from .cp import CP
 from .potential_units import Potential_units
+from .cv import CV
+from .cp import CP
+from .concentration_units import Concentration_units
+from .scan_rate_units import Scan_rate_units
 from .current_units import Current_units
 
 
@@ -28,13 +28,13 @@ class Analysis(sdRDM.DataModel):
 
     cv: List[CV] = Field(
         multiple=True,
-        description="cv",
+        description="Cyclic Voltammetry",
         default_factory=ListPlus,
     )
 
     cp: List[CP] = Field(
         multiple=True,
-        description="cp",
+        description="Chronoamperometry",
         default_factory=ListPlus,
     )
 
@@ -42,7 +42,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="aaf505b0f82cfdf29660ea71a3ef6197b8340c77"
+        default="bedb286cf489fcf39a63b25075c21d587b2f0558"
     )
 
     def add_cv_to_cv(
@@ -105,8 +105,10 @@ class Analysis(sdRDM.DataModel):
         solvent: str,
         conducting_salt: str,
         conducting_salt_concentration: Concentration_units,
-        potential_first: Potential_units,
-        potential_sec: Potential_units,
+        potential_start: Potential_units,
+        potential_stop: Potential_units,
+        potential_lower_limit: Potential_units,
+        potential_upper_limit: Potential_units,
         time_duration: Time_units,
         id: Optional[str] = None,
     ) -> None:
@@ -118,8 +120,10 @@ class Analysis(sdRDM.DataModel):
             solvent (): Name of the solvent.
             conducting_salt (): Name of the used salt.
             conducting_salt_concentration (): Concentration of the conducting salt.
-            potential_first (): First potential which was used.
-            potential_sec (): Second potential which was used.
+            potential_start (): The potential where the measurement starts.
+            potential_stop (): The potential where the measurement ends.
+            potential_lower_limit (): The lower limit of the potential.
+            potential_upper_limit (): The upper limit of the potential.
             time_duration (): The time duration of the potential.
         """
 
@@ -127,8 +131,10 @@ class Analysis(sdRDM.DataModel):
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,
-            "potential_first": potential_first,
-            "potential_sec": potential_sec,
+            "potential_start": potential_start,
+            "potential_stop": potential_stop,
+            "potential_lower_limit": potential_lower_limit,
+            "potential_upper_limit": potential_upper_limit,
             "time_duration": time_duration,
         }
 
