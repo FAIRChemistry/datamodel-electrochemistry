@@ -64,7 +64,10 @@ classDiagram
     
     class Time_units {
         << Enumeration >>
+        +MIN
         +SEC
+        +MILLI_SEC
+        +MICRO_SEC
     }
     
     class Concentration_units {
