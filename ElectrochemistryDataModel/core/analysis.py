@@ -6,13 +6,14 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .scan_rate_units import Scan_rate_units
-from .ca import CA
-from .cv import CV
-from .current_units import Current_units
 from .time_units import Time_units
-from .concentration_units import Concentration_units
 from .potential_units import Potential_units
+from .current_units import Current_units
+from .cp import CP
+from .scan_rate_units import Scan_rate_units
+from .cv import CV
+from .concentration_units import Concentration_units
+from .ca import CA
 
 
 @forge_signature
@@ -28,7 +29,7 @@ class Analysis(sdRDM.DataModel):
 
     cv: List[CV] = Field(
         multiple=True,
-        description="Cyclic Voltammetry",
+        description="Cyclic voltammetry",
         default_factory=ListPlus,
     )
 
@@ -38,11 +39,17 @@ class Analysis(sdRDM.DataModel):
         default_factory=ListPlus,
     )
 
+    cp: List[CP] = Field(
+        multiple=True,
+        description="Chronopotentiometry",
+        default_factory=ListPlus,
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="59a84e4a29e464beaf9c8e90cf2ff0a12da042ed"
+        default="0e43514b8429bb85611734e1b552164136f060bc"
     )
 
     def add_cv_to_cv(
@@ -111,8 +118,8 @@ class Analysis(sdRDM.DataModel):
         solvent: str,
         conducting_salt: str,
         conducting_salt_concentration: Concentration_units,
-        potential_first: Potential_units,
-        potential_second: Potential_units,
+        induced_potential_first: Potential_units,
+        induced_potential_second: Potential_units,
         time_duration: Time_units,
         id: Optional[str] = None,
     ) -> None:
@@ -124,17 +131,17 @@ class Analysis(sdRDM.DataModel):
             solvent (): Name of the solvent.
             conducting_salt (): Name of the used salt.
             conducting_salt_concentration (): Concentration of the conducting salt.
-            potential_first (): The first induced potential.
-            potential_second (): The second induced potential.
-            time_duration (): The time duration of the potential.
+            induced_potential_first (): The first induced potential.
+            induced_potential_second (): The second induced potential.
+            time_duration (): The duration time of the induced potential.
         """
 
         params = {
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,
-            "potential_first": potential_first,
-            "potential_second": potential_second,
+            "induced_potential_first": induced_potential_first,
+            "induced_potential_second": induced_potential_second,
             "time_duration": time_duration,
         }
 
@@ -142,3 +149,40 @@ class Analysis(sdRDM.DataModel):
             params["id"] = id
 
         self.ca.append(CA(**params))
+
+    def add_cp_to_cp(
+        self,
+        solvent: str,
+        conducting_salt: str,
+        conducting_salt_concentration: Concentration_units,
+        induced_current_first: Current_units,
+        induced_current_second: Current_units,
+        time_duration: Time_units,
+        id: Optional[str] = None,
+    ) -> None:
+        """
+        This method adds an object of type 'CP' to attribute cp
+
+        Args:
+            id (str): Unique identifier of the 'CP' object. Defaults to 'None'.
+            solvent (): Name of the solvent.
+            conducting_salt (): Name of the used salt.
+            conducting_salt_concentration (): Concentration of the conducting salt.
+            induced_current_first (): The first induced current.
+            induced_current_second (): The second induced current.
+            time_duration (): The duration time of the induced current.
+        """
+
+        params = {
+            "solvent": solvent,
+            "conducting_salt": conducting_salt,
+            "conducting_salt_concentration": conducting_salt_concentration,
+            "induced_current_first": induced_current_first,
+            "induced_current_second": induced_current_second,
+            "time_duration": time_duration,
+        }
+
+        if id is not None:
+            params["id"] = id
+
+        self.cp.append(CP(**params))

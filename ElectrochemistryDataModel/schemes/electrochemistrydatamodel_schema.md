@@ -3,8 +3,12 @@ classDiagram
     Dataset *-- Sample
     Dataset *-- Analysis
     Dataset *-- Author
+    Analysis *-- CP
     Analysis *-- CA
     Analysis *-- CV
+    CP *-- Time_units
+    CP *-- Concentration_units
+    CP *-- Current_units
     CA *-- Time_units
     CA *-- Concentration_units
     CA *-- Potential_units
@@ -31,14 +35,24 @@ classDiagram
     class Analysis {
         +CV[0..*] cv*
         +CA[0..*] ca*
+        +CP[0..*] cp*
+    }
+    
+    class CP {
+        +string solvent*
+        +string conducting_salt*
+        +Concentration_units conducting_salt_concentration*
+        +Current_units induced_current_first*
+        +Current_units induced_current_second*
+        +Time_units time_duration*
     }
     
     class CA {
         +string solvent*
         +string conducting_salt*
         +Concentration_units conducting_salt_concentration*
-        +Potential_units potential_first*
-        +Potential_units potential_second*
+        +Potential_units induced_potential_first*
+        +Potential_units induced_potential_second*
         +Time_units time_duration*
     }
     
