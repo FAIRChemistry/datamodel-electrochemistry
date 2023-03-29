@@ -6,13 +6,13 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .time_units import Time_units
-from .potential_units import Potential_units
-from .cv import CV
 from .cp import CP
 from .concentration_units import Concentration_units
-from .scan_rate_units import Scan_rate_units
+from .cv import CV
 from .current_units import Current_units
+from .time_units import Time_units
+from .scan_rate_units import Scan_rate_units
+from .potential_units import Potential_units
 
 
 @forge_signature
@@ -42,7 +42,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="bedb286cf489fcf39a63b25075c21d587b2f0558"
+        default="451c5209710bc4ea75569dc591f7f1e9b7d3b67b"
     )
 
     def add_cv_to_cv(
@@ -54,6 +54,8 @@ class Analysis(sdRDM.DataModel):
         scan_rate: Scan_rate_units,
         start_potential: Potential_units,
         stop_potential: Potential_units,
+        potential_lower_limit: Potential_units,
+        potential_upper_limit: Potential_units,
         i_pc_ox: Current_units,
         i_pa_red: Current_units,
         ox_potential_E_pc: Potential_units,
@@ -73,6 +75,8 @@ class Analysis(sdRDM.DataModel):
             scan_rate (): The scan rate of the measurement.
             start_potential (): The starting value of the potential.
             stop_potential (): The stop value of the potential.
+            potential_lower_limit (): The lower limit of the potential.
+            potential_upper_limit (): The upper limit of the potential.
             i_pc_ox (): The current at the maximum of the cathodic peak (oxidation).
             i_pa_red (): The current at the maximum of the anodic peak (reduction).
             ox_potential_E_pc (): Potential at the maximum of the cathodic peak (reduction).
@@ -88,6 +92,8 @@ class Analysis(sdRDM.DataModel):
             "scan_rate": scan_rate,
             "start_potential": start_potential,
             "stop_potential": stop_potential,
+            "potential_lower_limit": potential_lower_limit,
+            "potential_upper_limit": potential_upper_limit,
             "i_pc_ox": i_pc_ox,
             "i_pa_red": i_pa_red,
             "ox_potential_E_pc": ox_potential_E_pc,
@@ -105,10 +111,8 @@ class Analysis(sdRDM.DataModel):
         solvent: str,
         conducting_salt: str,
         conducting_salt_concentration: Concentration_units,
-        potential_start: Potential_units,
-        potential_stop: Potential_units,
-        potential_lower_limit: Potential_units,
-        potential_upper_limit: Potential_units,
+        potential_first: Potential_units,
+        potential_second: Potential_units,
         time_duration: Time_units,
         id: Optional[str] = None,
     ) -> None:
@@ -120,10 +124,8 @@ class Analysis(sdRDM.DataModel):
             solvent (): Name of the solvent.
             conducting_salt (): Name of the used salt.
             conducting_salt_concentration (): Concentration of the conducting salt.
-            potential_start (): The potential where the measurement starts.
-            potential_stop (): The potential where the measurement ends.
-            potential_lower_limit (): The lower limit of the potential.
-            potential_upper_limit (): The upper limit of the potential.
+            potential_first (): The first induced potential.
+            potential_second (): The second induced potential.
             time_duration (): The time duration of the potential.
         """
 
@@ -131,10 +133,8 @@ class Analysis(sdRDM.DataModel):
             "solvent": solvent,
             "conducting_salt": conducting_salt,
             "conducting_salt_concentration": conducting_salt_concentration,
-            "potential_start": potential_start,
-            "potential_stop": potential_stop,
-            "potential_lower_limit": potential_lower_limit,
-            "potential_upper_limit": potential_upper_limit,
+            "potential_first": potential_first,
+            "potential_second": potential_second,
             "time_duration": time_duration,
         }
 

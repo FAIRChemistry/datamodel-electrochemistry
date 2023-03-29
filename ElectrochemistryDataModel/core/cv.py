@@ -5,10 +5,10 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potential_units import Potential_units
 from .concentration_units import Concentration_units
-from .scan_rate_units import Scan_rate_units
 from .current_units import Current_units
+from .scan_rate_units import Scan_rate_units
+from .potential_units import Potential_units
 
 
 @forge_signature
@@ -57,6 +57,16 @@ class CV(sdRDM.DataModel):
         description="The stop value of the potential",
     )
 
+    potential_lower_limit: Potential_units = Field(
+        ...,
+        description="The lower limit of the potential",
+    )
+
+    potential_upper_limit: Potential_units = Field(
+        ...,
+        description="The upper limit of the potential",
+    )
+
     i_pc_ox: Current_units = Field(
         ...,
         description="The current at the maximum of the cathodic peak (oxidation)",
@@ -86,5 +96,5 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="bedb286cf489fcf39a63b25075c21d587b2f0558"
+        default="451c5209710bc4ea75569dc591f7f1e9b7d3b67b"
     )
