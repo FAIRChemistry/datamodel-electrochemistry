@@ -39,11 +39,34 @@
 - __cv__
   - Type: CV
   - Multiple: True
-  - Description: Cyclic Voltammetry
+  - Description: Cyclic voltammetry
 - __ca__
   - Type: CA
   - Multiple: True
   - Description: Chronoamperometry
+- __cp__
+  - Type: CP
+  - Multiple: True
+  - Description: Chronopotentiometry
+### CP
+- __solvent__
+  - Type: string
+  - Description: Name of the solvent    
+- __conducting_salt__
+  - Type: string
+  - Description: Name of the used salt
+- __conducting_salt_concentration__
+  - Type: Concentration_units
+  - Description: Concentration of the conducting salt
+- __induced_current_first__
+  - Type: Potential_units
+  - Description: The first induced current  
+- __induced_current_second__
+  - Type: Potential_units
+  - Description: The second induced current
+- __time_duration__
+  - Type: Time_units
+  - Description: The duration time of the induced current
 ### CA
 - __solvent__
   - Type: string
@@ -54,15 +77,15 @@
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt
-- __potential_first__
+- __induced_potential_first__
   - Type: Potential_units
   - Description: The first induced potential  
-- __potential_second__
+- __induced_potential_second__
   - Type: Potential_units
   - Description: The second induced potential
 - __time_duration__
   - Type: Time_units
-  - Description: The time duration of the potential 
+  - Description: The duration time of the induced potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __solvent__
