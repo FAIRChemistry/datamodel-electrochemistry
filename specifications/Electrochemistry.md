@@ -92,6 +92,14 @@
   - Description: The duration time of the induced potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
+<<<<<<< HEAD
+- __ferrocene_reference__
+  - Type: Ferrocene
+  - Multiple: True
+  - Description: Parameters of the ferocene reference measurement
+  
+=======
+>>>>>>> 529e691bf498b06811ef5106e038aa443eeacb1f
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
@@ -134,6 +142,16 @@ Container for information regarding the CV-Setup and parameters
 - __total_cycle_number__
   - Type: int
   - Description: The total cycle number
+### Ferrocene
+- __ox_potential_E_pc_ferrocene__
+  - Type: Potential_units
+  - Description: Potential at the maximum of the cathodic peak (reduction) of the ferrocene reference
+- __red_potential_E_pa_ferrocene__
+  - Type: Potential_units
+  - Description: The current at the maximum of the anodic peak (oxidation) of the ferrocene reference
+- __halfe_wave_potential_ferrocene__
+  - Type: Potential_units
+  - Description: The half-wave potential of the ferrocene measurement  
 ### Author
 Container for information regarding persons who worked on a dataset.
 
