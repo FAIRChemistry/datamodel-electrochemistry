@@ -92,9 +92,6 @@
   - Description: The duration time of the induced potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
-- __medium__
-  - Type: Medium
-  - Description: The medium of the measurement
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
