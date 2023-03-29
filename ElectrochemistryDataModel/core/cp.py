@@ -5,8 +5,6 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .time_units import Time_units
-from .potential_units import Potential_units
 from .concentration_units import Concentration_units
 
 
@@ -36,24 +34,9 @@ class CP(sdRDM.DataModel):
         description="Concentration of the conducting salt",
     )
 
-    potential_first: Potential_units = Field(
-        ...,
-        description="The first induced potential",
-    )
-
-    potential_second: Potential_units = Field(
-        ...,
-        description="The second induced potential",
-    )
-
-    time_duration: Time_units = Field(
-        ...,
-        description="The time duration of the potential",
-    )
-
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="27720fe53e75be5f127fbc5d8fdd87e96a4f4036"
+        default="a9cad9dbb771ff3b79882ed4386148d229bb9c71"
     )
