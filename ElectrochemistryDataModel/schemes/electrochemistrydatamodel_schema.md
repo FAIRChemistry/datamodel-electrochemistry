@@ -18,6 +18,7 @@ classDiagram
         +date date*
         +Author[0..*] author*
         +Sample[0..*] sample*
+        +string electrode_material*
         +Analysis analysis*
     }
     
@@ -33,7 +34,6 @@ classDiagram
     }
     
     class CP {
-        +string electrode_material*
         +string solvent*
         +string conducting_salt*
         +Concentration_units conducting_salt_concentration*
@@ -43,7 +43,6 @@ classDiagram
     }
     
     class CV {
-        +string electrode_material*
         +string solvent*
         +string conducting_salt*
         +Concentration_units conducting_salt_concentration*

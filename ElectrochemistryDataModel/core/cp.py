@@ -5,9 +5,9 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .concentration_units import Concentration_units
 from .time_units import Time_units
 from .potential_units import Potential_units
+from .concentration_units import Concentration_units
 
 
 @forge_signature
@@ -19,11 +19,6 @@ class CP(sdRDM.DataModel):
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("cpINDEX"),
         xml="@id",
-    )
-
-    electrode_material: str = Field(
-        ...,
-        description="Name of the used electrode material",
     )
 
     solvent: str = Field(
@@ -60,5 +55,5 @@ class CP(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="32d178071e5fb3a810cab716ec136f2683546f94"
+        default="27720fe53e75be5f127fbc5d8fdd87e96a4f4036"
     )
