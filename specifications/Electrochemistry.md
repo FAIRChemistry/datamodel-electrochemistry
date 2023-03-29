@@ -114,7 +114,7 @@
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __electrode_setup__
-  - Type: Elektrode_setup
+  - Type: Electrode_setup
   - Description: Name of the used electrod materials
 - __ferrocene_reference__
   - Type: Ferrocene_reference
@@ -164,7 +164,7 @@ Container for information regarding the CV-Setup and parameters
   - Type: Potential_units
   - Description: The half-wave potential of the ferrocene measurement 
 
-### Elektrode_setup
+### Electrode_setup
 - working_electrode
   - Type: string
   - Description: Name of the used working electrode
