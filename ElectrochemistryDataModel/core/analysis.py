@@ -7,11 +7,12 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .concentration_units import Concentration_units
-from .cv import CV
-from .potential_units import Potential_units
-from .cp import CP
 from .current_units import Current_units
+from .cp import CP
+from .time_units import Time_units
 from .scan_rate_units import Scan_rate_units
+from .potential_units import Potential_units
+from .cv import CV
 
 
 @forge_signature
@@ -41,7 +42,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="525309ff08ba4dbda5b11d1e30fff31d44961f81"
+        default="def7541a119af366e3a906ab3b92245081af3799"
     )
 
     def add_cv_to_cv(
@@ -106,7 +107,7 @@ class Analysis(sdRDM.DataModel):
         conducting_salt_concentration: Concentration_units,
         potential_first: Potential_units,
         potential_sec: Potential_units,
-        time_between_switch: str,
+        time_between_switch: Time_units,
         id: Optional[str] = None,
     ) -> None:
         """

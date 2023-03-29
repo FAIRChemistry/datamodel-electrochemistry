@@ -5,6 +5,7 @@ classDiagram
     Dataset *-- Author
     Analysis *-- CP
     Analysis *-- CV
+    CP *-- Time_units
     CP *-- Concentration_units
     CP *-- Potential_units
     CV *-- Concentration_units
@@ -37,7 +38,7 @@ classDiagram
         +Concentration_units conducting_salt_concentration*
         +Potential_units potential_first*
         +Potential_units potential_sec*
-        +string time_between_switch*
+        +Time_units time_between_switch*
     }
     
     class CV {
@@ -59,6 +60,11 @@ classDiagram
         +string name*
         +string affiliation*
         +string email
+    }
+    
+    class Time_units {
+        << Enumeration >>
+        +SEC
     }
     
     class Concentration_units {
