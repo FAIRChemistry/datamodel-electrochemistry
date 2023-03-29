@@ -76,7 +76,7 @@
   - Multiple: True
   - Description: Cyclic voltammetry
 - __ca__
-  - Type: CA__
+  - Type: CA
   - Multiple: True
   - Description: Chronoamperometry
 - __cp__
