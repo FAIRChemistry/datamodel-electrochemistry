@@ -6,7 +6,10 @@ classDiagram
     Dataset *-- Electrode_setup
     Dataset *-- Author
     Sample *-- Molecular_weight_units
+    Sample *-- Synthesis
     Sample *-- Film_preparation
+    Synthesis *-- Physical_parameters
+    Physical_parameters *-- Temperature_units
     Film_preparation *-- Spin_coating
     Spin_coating *-- Temperature_units
     Spin_coating *-- Volume_units
@@ -40,12 +43,22 @@ classDiagram
         +string name_product*
         +string chemical_formula
         +Molecular_weight_units molecular_weight
-        +string synthesis
+        +Synthesis synthesis
         +Film_preparation film_preparation
     }
     
+    class Synthesis {
+        +string reagents*
+        +string solvent
+        +Physical_parameters physical_parameters
+    }
+    
+    class Physical_parameters {
+        +Temperature_units temperature
+    }
+    
     class Film_preparation {
-        +Spin_coating[0..*] spin_coating*
+        +Spin_coating[0..*] spin_coating
     }
     
     class Spin_coating {
@@ -70,7 +83,7 @@ classDiagram
     
     class CA {
         +Potential_units induced_potential_first*
-        +Potential_units induced_potential_second*
+        +Potential_units induced_potential_second
         +Time_units time_duration*
     }
     
