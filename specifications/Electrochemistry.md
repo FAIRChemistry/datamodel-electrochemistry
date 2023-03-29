@@ -65,7 +65,10 @@
   - Description: The used temperature for the synthesis 
 - pressure
   - Type: pressure_units
-  - Description: The used pressure for the synthesis  
+  - Description: The used pressure for the synthesis 
+- time
+  - Type: Time_units
+  - Description: The used time for the synthesis  
 ### Film_preparation
 - spin_coating
   - Type: Spin_coating
@@ -213,6 +216,7 @@ Container for information regarding persons who worked on a dataset.
 
 
 ## Enumerations
+
 ### pressure_units
 ```python
 PASCAL = "Pa "
