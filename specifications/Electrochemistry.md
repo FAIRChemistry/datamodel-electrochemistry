@@ -93,7 +93,7 @@
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __ferrocene_reference__
-  - Type: Ferrocene
+  - Type: Ferrocene_reference
   - Multiple: True
   - Description: Parameters of the ferocene reference measurement
 - __solvent__
@@ -138,7 +138,7 @@ Container for information regarding the CV-Setup and parameters
 - __total_cycle_number__
   - Type: int
   - Description: The total cycle number
-### Ferrocene
+### Ferrocene_reference
 - __ox_potential_E_pc_ferrocene__
   - Type: Potential_units
   - Description: Potential at the maximum of the cathodic peak (reduction) of the ferrocene reference
