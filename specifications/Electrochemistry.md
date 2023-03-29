@@ -37,6 +37,9 @@
 - chemical_formula
   - Type: string  
   - Description: The chemical formula of the product
+- molecular_weight
+  - Type: Molecular_weight_units
+  - Description: The molecular weight of the product 
 - synthesis
   - Type: string
   - Description: The synthesis of the product 
@@ -187,6 +190,11 @@ Container for information regarding persons who worked on a dataset.
 
 
 ## Enumerations
+### Molecular_weight_units
+```python
+GRAM-PER-MOLE = "g / mole "
+GRAM_PER_MILLI_MOLE = "g / mmole"
+```
 ### Temperature_units
 ```python
 CELCIUS = "C"
