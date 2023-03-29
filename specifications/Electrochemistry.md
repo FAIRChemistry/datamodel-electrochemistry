@@ -88,7 +88,7 @@
 - __induced_current_first__
   - Type: Current_units
   - Description: The first induced current  
-- __induced_current_second__
+- induced_current_second
   - Type: Current_units
   - Description: The first induced current  
 - __time_duration__
@@ -160,16 +160,18 @@ Container for information regarding the CV-Setup and parameters
 - __halfe_wave_potential_ferrocene__
   - Type: Potential_units
   - Description: The half-wave potential of the ferrocene measurement 
+
 ### Elektrode_setup
 - working_electrode
-  - Type: "String"
+  - Type: string
   - Description: Name of the used working electrode
 - counter_electrode
-  - Type: "String"
+  - Type: string
   - Description: Name of the used counter electrode  
 - Reference_electrode
-  - Type: "String"
+  - Type: string
   - Description: Name of the used reference electrode 
+
 ### Author
 Container for information regarding persons who worked on a dataset.
 
