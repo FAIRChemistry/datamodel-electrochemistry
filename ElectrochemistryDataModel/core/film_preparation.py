@@ -7,9 +7,9 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .temperature_units import Temperature_units
-from .spin_coating import Spin_coating
-from .volume_units import Volume_units
 from .time_units import Time_units
+from .volume_units import Volume_units
+from .spin_coating import Spin_coating
 
 
 @forge_signature
@@ -33,7 +33,7 @@ class Film_preparation(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d16fe602160546e991642e771d00e8ef338b6b94"
+        default="3c9c90aff9c0fc31c9d2efdd4bf5569f531d292d"
     )
 
     def add_spin_coating_to_spin_coating(
@@ -41,8 +41,8 @@ class Film_preparation(sdRDM.DataModel):
         volume: Volume_units,
         rotation: float,
         time: Time_units,
-        annealing_temperature: Temperature_units,
-        annealing_time: Time_units,
+        annealing_temperature: Optional[Temperature_units] = None,
+        annealing_time: Optional[Time_units] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -53,8 +53,8 @@ class Film_preparation(sdRDM.DataModel):
             volume (): The volume which was used for the film.
             rotation (): The rotation speed for the film.
             time (): The rotation time.
-            annealing_temperature (): The anealing temperature for the film.
-            annealing_time (): The anealing time for the film.
+            annealing_temperature (): The annealing temperature for the film. Defaults to None
+            annealing_time (): The annealing time for the film. Defaults to None
         """
 
         params = {

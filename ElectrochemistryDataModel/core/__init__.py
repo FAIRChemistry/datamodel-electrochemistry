@@ -7,6 +7,7 @@ from .cp import CP
 from .ca import CA
 from .cv import CV
 from .ferrocene_reference import Ferrocene_reference
+from .elektrode_setup import Elektrode_setup
 from .author import Author
 from .temperature_units import Temperature_units
 from .volume_units import Volume_units
@@ -28,6 +29,7 @@ __all__ = [
     "CA",
     "CV",
     "Ferrocene_reference",
+    "Elektrode_setup",
     "Author",
     "Temperature_units",
     "Volume_units",
