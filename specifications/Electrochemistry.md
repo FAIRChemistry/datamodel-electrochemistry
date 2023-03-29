@@ -74,7 +74,7 @@
 
 
 ### Analysis
-- __cv__
+- cv
   - Type: CV
   - Multiple: True
   - Description: Cyclic voltammetry
