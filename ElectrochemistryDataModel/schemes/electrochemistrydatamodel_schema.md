@@ -4,6 +4,7 @@ classDiagram
     Dataset *-- Sample
     Dataset *-- Analysis
     Dataset *-- Author
+    Sample *-- Molecular_weight_units
     Sample *-- Film_preparation
     Film_preparation *-- Spin_coating
     Spin_coating *-- Temperature_units
@@ -37,6 +38,7 @@ classDiagram
     class Sample {
         +string name_product*
         +string chemical_formula
+        +Molecular_weight_units molecular_weight
         +string synthesis
         +Film_preparation film_preparation
     }
@@ -103,6 +105,12 @@ classDiagram
         +string name*
         +string affiliation*
         +string email
+    }
+    
+    class Molecular_weight_units {
+        << Enumeration >>
+        +GRAM_PER_MOLE
+        +GRAM_PER_MILLI_MOLE
     }
     
     class Temperature_units {

@@ -9,6 +9,7 @@ from .cv import CV
 from .ferrocene_reference import Ferrocene_reference
 from .elektrode_setup import Elektrode_setup
 from .author import Author
+from .molecular_weight_units import Molecular_weight_units
 from .temperature_units import Temperature_units
 from .volume_units import Volume_units
 from .time_units import Time_units
@@ -31,6 +32,7 @@ __all__ = [
     "Ferrocene_reference",
     "Elektrode_setup",
     "Author",
+    "Molecular_weight_units",
     "Temperature_units",
     "Volume_units",
     "Time_units",

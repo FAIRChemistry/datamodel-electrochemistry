@@ -7,11 +7,12 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from datetime import date
 
-from .analysis import Analysis
-from .sample import Sample
-from .film_preparation import Film_preparation
+from .molecular_weight_units import Molecular_weight_units
 from .author import Author
+from .film_preparation import Film_preparation
+from .analysis import Analysis
 from .concentration_units import Concentration_units
+from .sample import Sample
 
 
 @forge_signature
@@ -71,7 +72,7 @@ class Dataset(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="cbe2e3ade6b85084c1be6082f5dd8f9e9ac58066"
+        default="f7bda00987d9745b6e532491534c6fb55777ff96"
     )
 
     def add_author_to_author(
@@ -106,6 +107,7 @@ class Dataset(sdRDM.DataModel):
         self,
         name_product: str,
         chemical_formula: Optional[str] = None,
+        molecular_weight: Optional[Molecular_weight_units] = None,
         synthesis: Optional[str] = None,
         film_preparation: Optional[Film_preparation] = None,
         id: Optional[str] = None,
@@ -117,6 +119,7 @@ class Dataset(sdRDM.DataModel):
             id (str): Unique identifier of the 'Sample' object. Defaults to 'None'.
             name_product (): The name of the product.
             chemical_formula (): The chemical formula of the product. Defaults to None
+            molecular_weight (): The molecular weight of the product. Defaults to None
             synthesis (): The synthesis of the product. Defaults to None
             film_preparation (): The film preparation of the product. Defaults to None
         """
@@ -124,6 +127,7 @@ class Dataset(sdRDM.DataModel):
         params = {
             "name_product": name_product,
             "chemical_formula": chemical_formula,
+            "molecular_weight": molecular_weight,
             "synthesis": synthesis,
             "film_preparation": film_preparation,
         }
