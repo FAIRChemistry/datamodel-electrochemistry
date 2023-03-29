@@ -74,7 +74,8 @@
   - Description: The volume which was used for the film 
 - __rotation__
   - Type: float
-  - Description: The rotation speed for the film
+  - Multiple: True
+  - Description: The rotation speed of the spin coating process
 - __time__
   - Type: Time_units
   - Description: The rotation time 
