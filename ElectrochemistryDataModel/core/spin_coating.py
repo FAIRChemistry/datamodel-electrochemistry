@@ -5,8 +5,8 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .time_units import Time_units
 from .temperature_units import Temperature_units
+from .time_units import Time_units
 from .volume_units import Volume_units
 
 
@@ -50,5 +50,5 @@ class Spin_coating(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="bfbc977f9bcbcf049a18735fa16ca6fe07c68f7b"
+        default="cbe2e3ade6b85084c1be6082f5dd8f9e9ac58066"
     )
