@@ -57,7 +57,7 @@
   - Type: Potential_units
   - Description: Second potential which was used
 - __time_between_switch__
-  - Type: string
+  - Type: Time_units
   - Description: The time between switching the potentials
 ### CV
 Container for information regarding the CV-Setup and parameters
@@ -114,6 +114,10 @@ Container for information regarding persons who worked on a dataset.
 
 ## Enumerations
 
+### Time_units
+```python
+SEC = "s" 
+```
 ### Concentration_units
 ```python
 MOLAR = "mole / l"
