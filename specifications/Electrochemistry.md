@@ -62,7 +62,10 @@
 ### Physical_parameters
 - temperature
   - Type: Temperature_units
-  - Description: The temperature of the synthesis
+  - Description: The used temperature for the synthesis 
+- pressure
+  - Type: pressure_units
+  - Description: The used pressure for the synthesis  
 ### Film_preparation
 - spin_coating
   - Type: Spin_coating
@@ -210,7 +213,12 @@ Container for information regarding persons who worked on a dataset.
 
 
 ## Enumerations
-
+### pressure_units
+```python
+PASCAL = "Pa "
+BAR = "bar"
+MILLI_BAR = "mbar"
+```
 ### Molecular_weight_units
 ```python
 GRAM_PER_MOLE = "g / mole "
