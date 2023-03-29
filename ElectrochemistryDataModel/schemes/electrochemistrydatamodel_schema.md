@@ -54,7 +54,7 @@ classDiagram
     }
     
     class Analysis {
-        +CV[0..*] cv*
+        +CV[0..*] cv
         +CA[0..*] ca*
         +CP[0..*] cp*
     }
