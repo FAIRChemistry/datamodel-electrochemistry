@@ -41,6 +41,9 @@
   - Multiple: True
   - Description: Chronoamperometry
 ### CP
+- __electrode_material__
+  - Type: string
+  - Description: Name of the used electrode material
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
@@ -56,12 +59,14 @@
 - __potential_second__
   - Type: Potential_units
   - Description: The second induced potential
-
 - __time_duration__
   - Type: Time_units
   - Description: The time duration of the potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
+- __electrode_material__
+  - Type: string
+  - Description: Name of the used electrode material
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
@@ -71,7 +76,6 @@ Container for information regarding the CV-Setup and parameters
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt 
-
 - __halfe_wave_potential__
   - Type: Potential_units
   - Description: The half-wave potential of the measurement  
