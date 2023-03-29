@@ -75,13 +75,13 @@ classDiagram
     }
     
     class CV {
-        +Ferrocene_reference[0..*] ferrocene_reference*
-        +Potential_units halfe_wave_potential*
+        +Ferrocene_reference[0..*] ferrocene_reference
+        +Potential_units[0..*] halfe_wave_potential
         +Scan_rate_units scan_rate*
         +Potential_units start_potential*
         +Potential_units stop_potential*
         +Potential_units potential_lower_limit*
-        +Potential_units potential_upper_limit
+        +Potential_units potential_upper_limit*
         +Current_units[0..*] i_pc_ox
         +Current_units[0..*] i_pa_red
         +Potential_units[0..*] ox_potential_E_pc
