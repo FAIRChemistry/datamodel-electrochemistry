@@ -111,8 +111,8 @@ classDiagram
     class Scan_rate_units {
         << Enumeration >>
         +VOLT_PER_SEC
-        +MILLI_VOLT_SEC
-        +MICRO_VOLT_SEC
+        +MILLI_VOLT_PER_SEC
+        +MICRO_VOLT_PER_SEC
     }
     
     class Current_units {
