@@ -5,6 +5,7 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .pressure_units import pressure_units
 from .temperature_units import Temperature_units
 
 
@@ -21,12 +22,17 @@ class Physical_parameters(sdRDM.DataModel):
 
     temperature: Optional[Temperature_units] = Field(
         default=None,
-        description="The temperature of the synthesis",
+        description="The used temperature for the synthesis",
+    )
+
+    pressure: Optional[pressure_units] = Field(
+        default=None,
+        description="The used pressure for the synthesis",
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="8a7a1e56e674a5fc7dd4e4c3f3f3a2d61b1bf3da"
+        default="a21291b5dfb651f21de54ccf3046d77ebb56df90"
     )

@@ -9,6 +9,7 @@ classDiagram
     Sample *-- Synthesis
     Sample *-- Film_preparation
     Synthesis *-- Physical_parameters
+    Physical_parameters *-- pressure_units
     Physical_parameters *-- Temperature_units
     Film_preparation *-- Spin_coating
     Spin_coating *-- Temperature_units
@@ -55,6 +56,7 @@ classDiagram
     
     class Physical_parameters {
         +Temperature_units temperature
+        +pressure_units pressure
     }
     
     class Film_preparation {
@@ -118,6 +120,13 @@ classDiagram
         +string name*
         +string affiliation*
         +string email
+    }
+    
+    class pressure_units {
+        << Enumeration >>
+        +PASCAL
+        +BAR
+        +MILLI_BAR
     }
     
     class Molecular_weight_units {
