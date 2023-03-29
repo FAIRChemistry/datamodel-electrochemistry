@@ -58,9 +58,7 @@
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt
- - __induced_current_first__
-  - Type: Current_units
-  - Description: The first induced current  
+
 
 
 
