@@ -44,18 +44,18 @@
   - Type: Film_preparation
   - Description: The film preparation of the product
 ### Film_preparation
-- spin_coating
+- __spin_coating__
   - Type: Spin_coating
   - Multiple: True
   - Description: Spin coating parameter
 ### Spin_coating
-- volume
+- __volume__
   - Type: Volume_units
   - Description: The volume which was used for the film 
-- rotation
+- __rotation__
   - Type: float
   - Description: The rotation speed for the film
-- time
+- __time__
   - Type: Time_units
   - Description: The rotation time 
 - annealing_temperature
@@ -167,7 +167,7 @@ Container for information regarding the CV-Setup and parameters
 - counter_electrode
   - Type: "String"
   - Description: Name of the used counter electrode  
-- __Reference_electrode__
+- Reference_electrode
   - Type: "String"
   - Description: Name of the used reference electrode 
 ### Author
