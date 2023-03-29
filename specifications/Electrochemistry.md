@@ -59,6 +59,15 @@
   - Type: Concentration_units
   - Description: Concentration of the conducting salt
 
+- __induced_current_first__
+  - Type: Current_units
+  - Description: The first induced current  
+- __induced_current_second__
+  - Type: Current_units
+  - Description: The first induced current  
+- __time_duration__
+  - Type: Time_units
+  - Description: The duration time of the induced current
 
 
 
