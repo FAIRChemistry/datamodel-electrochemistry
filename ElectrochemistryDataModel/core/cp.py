@@ -6,6 +6,7 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .potential_units import Potential_units
+from .time_units import Time_units
 from .concentration_units import Concentration_units
 
 
@@ -45,7 +46,7 @@ class CP(sdRDM.DataModel):
         description="Second potential which was used",
     )
 
-    time_between_switch: str = Field(
+    time_between_switch: Time_units = Field(
         ...,
         description="The time between switching the potentials",
     )
@@ -54,5 +55,5 @@ class CP(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="525309ff08ba4dbda5b11d1e30fff31d44961f81"
+        default="def7541a119af366e3a906ab3b92245081af3799"
     )

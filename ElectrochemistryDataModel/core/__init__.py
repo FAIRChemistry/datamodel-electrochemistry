@@ -4,6 +4,7 @@ from .analysis import Analysis
 from .cp import CP
 from .cv import CV
 from .author import Author
+from .time_units import Time_units
 from .concentration_units import Concentration_units
 from .scan_rate_units import Scan_rate_units
 from .current_units import Current_units
@@ -18,6 +19,7 @@ __all__ = [
     "CP",
     "CV",
     "Author",
+    "Time_units",
     "Concentration_units",
     "Scan_rate_units",
     "Current_units",
