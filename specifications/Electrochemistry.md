@@ -92,14 +92,13 @@
   - Description: The duration time of the induced potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
-<<<<<<< HEAD
+
 - __ferrocene_reference__
   - Type: Ferrocene
   - Multiple: True
   - Description: Parameters of the ferocene reference measurement
-  
-=======
->>>>>>> 529e691bf498b06811ef5106e038aa443eeacb1f
+
+
 - __solvent__
   - Type: string
   - Description: Name of the solvent    
