@@ -17,9 +17,6 @@
   - Type: Sample
   - Multiple: True
   - Description: The sample which was measured 
-- __electrode_material__
-  - Type: string
-  - Description: Name of the used electrode material
 - __analysis__
   - Type: Analysis
   - Description: The method which is used to gain the data
@@ -32,41 +29,41 @@
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt 
-  
+
 ### Sample
 - __name_product__
   - Type: string
   - Description: The name of the product
-- __chemical_formula__
+- chemical_formula
   - Type: string  
   - Description: The chemical formula of the product
-- __synthesis__
+- synthesis
   - Type: string
   - Description: The synthesis of the product 
-- __film_preparation__
+- film_preparation
   - Type: Film_preparation
   - Description: The film preparation of the product
 ### Film_preparation
-- __spin_coating__
+- spin_coating
   - Type: Spin_coating
   - Multiple: True
   - Description: Spin coating parameter
 ### Spin_coating
-- __volume__
+- volume
   - Type: Volume_units
   - Description: The volume which was used for the film 
-- __rotation__
+- rotation
   - Type: float
   - Description: The rotation speed for the film
-- __time__
+- time
   - Type: Time_units
   - Description: The rotation time 
-- __annealing_temperature__
+- annealing_temperature
   - Type: Temperature_units
-  - Description: The anealing temperature for the film
-- __annealing_time__
+  - Description: The annealing temperature for the film
+- annealing_time
   - Type: Time_units
-  - Description: The anealing time for the film
+  - Description: The annealing time for the film
 
   
 
@@ -113,6 +110,9 @@
   - Description: The duration time of the induced potential 
 ### CV
 Container for information regarding the CV-Setup and parameters
+- __electrode_setup__
+  - Type: Elektrode_setup
+  - Description: Name of the used electrod materials
 - __ferrocene_reference__
   - Type: Ferrocene_reference
   - Multiple: True
@@ -159,7 +159,17 @@ Container for information regarding the CV-Setup and parameters
   - Description: The current at the maximum of the anodic peak (oxidation) of the ferrocene reference
 - __halfe_wave_potential_ferrocene__
   - Type: Potential_units
-  - Description: The half-wave potential of the ferrocene measurement  
+  - Description: The half-wave potential of the ferrocene measurement 
+### Elektrode_setup
+- working_electrode
+  - Type: "String"
+  - Description: Name of the used working electrode
+- counter_electrode
+  - Type: "String"
+  - Description: Name of the used counter electrode  
+- __Reference_electrode__
+  - Type: "String"
+  - Description: Name of the used reference electrode 
 ### Author
 Container for information regarding persons who worked on a dataset.
 
