@@ -35,11 +35,11 @@
 - __cv__
   - Type: CV
   - Multiple: True
-  - Description: cv
+  - Description: Cyclic Voltammetry
 - __cp__
   - Type: CP
   - Multiple: True
-  - Description: cp
+  - Description: Chronoamperometry
 ### CP
 - __solvent__
   - Type: string
@@ -50,12 +50,18 @@
 - __conducting_salt_concentration__
   - Type: Concentration_units
   - Description: Concentration of the conducting salt
-- __potential_first__
+- __potential_start__
   - Type: Potential_units
-  - Description: First potential which was used  
-- __potential_sec__
+  - Description: The potential where the measurement starts  
+- __potential_stop__
   - Type: Potential_units
-  - Description: Second potential which was used
+  - Description: The potential where the measurement ends
+- __potential_lower_limit__
+  - Type: Potential_units
+  - Description: The lower limit of the potential
+- __potential_upper_limit__
+  - Type: Potential_units
+  - Description: The upper limit of the potential
 - __time_duration__
   - Type: Time_units
   - Description: The time duration of the potential 
