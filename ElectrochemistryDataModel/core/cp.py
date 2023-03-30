@@ -5,10 +5,10 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .charge_density_units import charge_density_units
-from .potential_units import Potential_units
 from .time_units import Time_units
+from .charge_density_units import Charge_density_units
 from .current_units import Current_units
+from .potential_units import Potential_units
 
 
 @forge_signature
@@ -42,7 +42,7 @@ class CP(sdRDM.DataModel):
         description="The potential value at the end of the measurement",
     )
 
-    charge_density: Optional[charge_density_units] = Field(
+    charge_density: Optional[Charge_density_units] = Field(
         default=None,
         description="The charge density of the measurement",
     )
@@ -51,5 +51,5 @@ class CP(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="4eea0b28792bb1fc20515eaf7d212d761f0a56ce"
+        default="789703f5a8c2f3b7eba0c313daa06113bad72a05"
     )

@@ -9,7 +9,7 @@ classDiagram
     Sample *-- Synthesis
     Sample *-- Film_preparation
     Synthesis *-- Physical_parameters
-    Physical_parameters *-- pressure_units
+    Physical_parameters *-- Pressure_units
     Physical_parameters *-- Temperature_units
     Physical_parameters *-- Time_units
     Film_preparation *-- Spin_coating
@@ -19,7 +19,7 @@ classDiagram
     Analysis *-- CP
     Analysis *-- CA
     Analysis *-- CV
-    CP *-- charge_density_units
+    CP *-- Charge_density_units
     CP *-- Time_units
     CP *-- Current_units
     CP *-- Potential_units
@@ -59,7 +59,7 @@ classDiagram
     
     class Physical_parameters {
         +Temperature_units temperature
-        +pressure_units pressure
+        +Pressure_units pressure
         +Time_units time
     }
     
@@ -86,7 +86,7 @@ classDiagram
         +Current_units induced_current_second
         +Time_units time_duration*
         +Potential_units potential_end_value
-        +charge_density_units charge_density
+        +Charge_density_units charge_density
     }
     
     class CA {
@@ -129,12 +129,12 @@ classDiagram
         +string orcid
     }
     
-    class charge_density_units {
+    class Charge_density_units {
         << Enumeration >>
         +COULOMB_PER_CUBIC_METER
     }
     
-    class pressure_units {
+    class Pressure_units {
         << Enumeration >>
         +PASCAL
         +BAR
