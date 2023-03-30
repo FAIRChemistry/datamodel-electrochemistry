@@ -125,7 +125,7 @@
   - Type: Potential_units
   - Description: The potential value at the end of the measurement
 - charge_density
-  - Type: Charge_density_units
+  - Type: charge_density_units
   - Description: The charge density of the measurement 
 
 
@@ -226,9 +226,10 @@ Container for information regarding persons who worked on a dataset.
 
 
 ## Enumerations
+
 ### charge_density_units
 ``` python
-COULOMB_PER_CUBIC_METER = "C / m**3"
+COULOMB_PER_CUBIC_METER = "C / m"
 ```
 
 ### pressure_units
