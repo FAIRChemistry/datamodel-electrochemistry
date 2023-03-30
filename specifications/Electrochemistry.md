@@ -226,7 +226,7 @@ Container for information regarding persons who worked on a dataset.
 
 
 ## Enumerations
-### charge_dencity_units
+### charge_density_units
 ``` python
 COULOMB_PER_CUBIC_METER = "C / m**3"
 ```
