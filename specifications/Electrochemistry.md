@@ -121,6 +121,10 @@
 - __time_duration__
   - Type: Time_units
   - Description: The duration time of the induced current
+- potential_end_value
+  - Type: Potential_units
+  - Description: The potential value at the end of the measurement
+
 
 
 
@@ -207,12 +211,15 @@ Container for information regarding persons who worked on a dataset.
 - __name__
   - Type: string
   - Description: Full name of the author
-- __affiliation__
+- affiliation
   - Type: string
   - Description: Organization the author is affiliated with
 - email
   - Type: string
   - Description: Contact e-mail address of the author
+- orcid
+  - Type: string
+  - Description: The ORCID of the author
 
 
 ## Enumerations
