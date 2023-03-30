@@ -64,7 +64,7 @@
   - Type: Temperature_units
   - Description: The used temperature for the synthesis 
 - pressure
-  - Type: pressure_units
+  - Type: Pressure_units
   - Description: The used pressure for the synthesis 
 - time
   - Type: Time_units
@@ -125,7 +125,7 @@
   - Type: Potential_units
   - Description: The potential value at the end of the measurement
 - charge_density
-  - Type: charge_density_units
+  - Type: Charge_density_units
   - Description: The charge density of the measurement 
 
 
@@ -227,12 +227,12 @@ Container for information regarding persons who worked on a dataset.
 
 ## Enumerations
 
-### charge_density_units
+### Charge_density_units
 ``` python
 COULOMB_PER_CUBIC_METER = "C / m"
 ```
 
-### pressure_units
+### Pressure_units
 ```python
 PASCAL = "Pa "
 BAR = "bar"
