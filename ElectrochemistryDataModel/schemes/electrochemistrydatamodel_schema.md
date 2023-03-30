@@ -19,6 +19,7 @@ classDiagram
     Analysis *-- CP
     Analysis *-- CA
     Analysis *-- CV
+    CP *-- charge_density_units
     CP *-- Time_units
     CP *-- Current_units
     CP *-- Potential_units
@@ -85,6 +86,7 @@ classDiagram
         +Current_units induced_current_second
         +Time_units time_duration*
         +Potential_units potential_end_value
+        +charge_density_units charge_density
     }
     
     class CA {
@@ -125,6 +127,11 @@ classDiagram
         +string affiliation
         +string email
         +string orcid
+    }
+    
+    class charge_density_units {
+        << Enumeration >>
+        +COULOMB_PER_CUBIC_METER
     }
     
     class pressure_units {

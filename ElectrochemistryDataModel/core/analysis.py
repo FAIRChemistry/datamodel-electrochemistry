@@ -6,14 +6,15 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .ca import CA
-from .cv import CV
-from .current_units import Current_units
 from .scan_rate_units import Scan_rate_units
-from .cp import CP
-from .potential_units import Potential_units
 from .time_units import Time_units
+from .ca import CA
+from .charge_density_units import charge_density_units
+from .potential_units import Potential_units
 from .ferrocene_reference import Ferrocene_reference
+from .cv import CV
+from .cp import CP
+from .current_units import Current_units
 
 
 @forge_signature
@@ -49,7 +50,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="b141394c40d502b4343fba8b144c94ede3340688"
+        default="4eea0b28792bb1fc20515eaf7d212d761f0a56ce"
     )
 
     def add_cv_to_cv(
@@ -141,6 +142,7 @@ class Analysis(sdRDM.DataModel):
         time_duration: Time_units,
         induced_current_second: Optional[Current_units] = None,
         potential_end_value: Optional[Potential_units] = None,
+        charge_density: Optional[charge_density_units] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -152,6 +154,7 @@ class Analysis(sdRDM.DataModel):
             time_duration (): The duration time of the induced current.
             induced_current_second (): The first induced current. Defaults to None
             potential_end_value (): The potential value at the end of the measurement. Defaults to None
+            charge_density (): The charge density of the measurement. Defaults to None
         """
 
         params = {
@@ -159,6 +162,7 @@ class Analysis(sdRDM.DataModel):
             "time_duration": time_duration,
             "induced_current_second": induced_current_second,
             "potential_end_value": potential_end_value,
+            "charge_density": charge_density,
         }
 
         if id is not None:
