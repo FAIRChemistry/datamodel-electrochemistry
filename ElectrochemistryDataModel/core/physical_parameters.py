@@ -6,7 +6,7 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .temperature_units import Temperature_units
-from .pressure_units import pressure_units
+from .pressure_units import Pressure_units
 from .time_units import Time_units
 
 
@@ -26,7 +26,7 @@ class Physical_parameters(sdRDM.DataModel):
         description="The used temperature for the synthesis",
     )
 
-    pressure: Optional[pressure_units] = Field(
+    pressure: Optional[Pressure_units] = Field(
         default=None,
         description="The used pressure for the synthesis",
     )
@@ -40,5 +40,5 @@ class Physical_parameters(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="4eea0b28792bb1fc20515eaf7d212d761f0a56ce"
+        default="789703f5a8c2f3b7eba0c313daa06113bad72a05"
     )
