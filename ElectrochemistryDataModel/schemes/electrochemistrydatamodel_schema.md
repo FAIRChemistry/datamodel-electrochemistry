@@ -86,7 +86,7 @@ classDiagram
         +Current_units induced_current_second
         +Time_units time_duration*
         +Potential_units potential_end_value
-        +Charge_density_units charge_density
+        +Charge_density_units[0..*] charge_density
     }
     
     class CA {
