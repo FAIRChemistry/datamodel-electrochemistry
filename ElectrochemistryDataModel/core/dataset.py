@@ -7,14 +7,14 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from datetime import date
 
-from .synthesis import Synthesis
-from .molecular_weight_units import Molecular_weight_units
-from .sample import Sample
-from .electrode_setup import Electrode_setup
-from .analysis import Analysis
-from .film_preparation import Film_preparation
 from .concentration_units import Concentration_units
+from .electrode_setup import Electrode_setup
 from .author import Author
+from .analysis import Analysis
+from .molecular_weight_units import Molecular_weight_units
+from .synthesis import Synthesis
+from .sample import Sample
+from .film_preparation import Film_preparation
 
 
 @forge_signature
@@ -79,14 +79,15 @@ class Dataset(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="6835f338d00ae2568a3ac55f3de6d551554cf377"
+        default="b141394c40d502b4343fba8b144c94ede3340688"
     )
 
     def add_author_to_author(
         self,
         name: str,
-        affiliation: str,
+        affiliation: Optional[str] = None,
         email: Optional[str] = None,
+        orcid: Optional[str] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -95,14 +96,16 @@ class Dataset(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'Author' object. Defaults to 'None'.
             name (): Full name of the author.
-            affiliation (): Organization the author is affiliated with.
+            affiliation (): Organization the author is affiliated with. Defaults to None
             email (): Contact e-mail address of the author. Defaults to None
+            orcid (): The ORCID of the author. Defaults to None
         """
 
         params = {
             "name": name,
             "affiliation": affiliation,
             "email": email,
+            "orcid": orcid,
         }
 
         if id is not None:

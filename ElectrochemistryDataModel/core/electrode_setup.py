@@ -35,5 +35,5 @@ class Electrode_setup(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="6835f338d00ae2568a3ac55f3de6d551554cf377"
+        default="b141394c40d502b4343fba8b144c94ede3340688"
     )

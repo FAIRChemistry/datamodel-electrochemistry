@@ -21,6 +21,7 @@ classDiagram
     Analysis *-- CV
     CP *-- Time_units
     CP *-- Current_units
+    CP *-- Potential_units
     CA *-- Time_units
     CA *-- Potential_units
     CV *-- Scan_rate_units
@@ -83,6 +84,7 @@ classDiagram
         +Current_units induced_current_first*
         +Current_units induced_current_second
         +Time_units time_duration*
+        +Potential_units potential_end_value
     }
     
     class CA {
@@ -120,8 +122,9 @@ classDiagram
     
     class Author {
         +string name*
-        +string affiliation*
+        +string affiliation
         +string email
+        +string orcid
     }
     
     class pressure_units {
