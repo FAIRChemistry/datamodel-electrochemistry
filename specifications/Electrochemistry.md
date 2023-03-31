@@ -142,7 +142,10 @@
   - Description: The second induced potential
 - __time_duration__
   - Type: Time_units
-  - Description: The duration time of the induced potential 
+  - Description: The duration time of the induced potential
+- current_end_value
+  - Type: Current_units
+  - Description: The current value at the end of the measurement 
 ### CV
 Container for information regarding the CV-Setup and parameters
 - ferrocene_reference
