@@ -24,6 +24,7 @@ classDiagram
     CP *-- Current_units
     CP *-- Potential_units
     CA *-- Time_units
+    CA *-- Current_units
     CA *-- Potential_units
     CV *-- Scan_rate_units
     CV *-- Current_units
@@ -93,6 +94,7 @@ classDiagram
         +Potential_units induced_potential_first*
         +Potential_units induced_potential_second
         +Time_units time_duration*
+        +Current_units current_end_value
     }
     
     class CV {

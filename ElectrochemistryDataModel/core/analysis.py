@@ -6,15 +6,15 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .scan_rate_units import Scan_rate_units
-from .charge_density_units import Charge_density_units
-from .ca import CA
+from .cv import CV
 from .time_units import Time_units
-from .current_units import Current_units
 from .ferrocene_reference import Ferrocene_reference
+from .charge_density_units import Charge_density_units
 from .potential_units import Potential_units
 from .cp import CP
-from .cv import CV
+from .scan_rate_units import Scan_rate_units
+from .current_units import Current_units
+from .ca import CA
 
 
 @forge_signature
@@ -50,7 +50,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="c9dae0c50cc4669678bf80d0d8711bffa04571a0"
+        default="96e417be59affe17d20a9ae32b138af3c95a93a7"
     )
 
     def add_cv_to_cv(
@@ -113,6 +113,7 @@ class Analysis(sdRDM.DataModel):
         induced_potential_first: Potential_units,
         time_duration: Time_units,
         induced_potential_second: Optional[Potential_units] = None,
+        current_end_value: Optional[Current_units] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -123,12 +124,14 @@ class Analysis(sdRDM.DataModel):
             induced_potential_first (): The first induced potential.
             time_duration (): The duration time of the induced potential.
             induced_potential_second (): The second induced potential. Defaults to None
+            current_end_value (): The current value at the end of the measurement. Defaults to None
         """
 
         params = {
             "induced_potential_first": induced_potential_first,
             "time_duration": time_duration,
             "induced_potential_second": induced_potential_second,
+            "current_end_value": current_end_value,
         }
 
         if id is not None:
