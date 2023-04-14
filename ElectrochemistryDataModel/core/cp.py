@@ -6,9 +6,9 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .current_units import Current_units
 from .time_units import Time_units
 from .charge_density_units import Charge_density_units
+from .current_units import Current_units
 from .potential_units import Potential_units
 
 
@@ -28,8 +28,8 @@ class CP(sdRDM.DataModel):
         description="The first induced current",
     )
 
-    induced_current_second: Optional[Current_units] = Field(
-        default=None,
+    induced_current_second: Current_units = Field(
+        ...,
         description="The first induced current",
     )
 
@@ -38,20 +38,20 @@ class CP(sdRDM.DataModel):
         description="The duration time of the induced current",
     )
 
-    potential_end_value: Optional[Potential_units] = Field(
-        default=None,
+    potential_end_value: Potential_units = Field(
+        ...,
         description="The potential value at the end of the measurement",
     )
 
     charge_density: List[Charge_density_units] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="The charge density of the measurement",
+        default_factory=ListPlus,
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="941d6e5c18c7b90cd32b5009b1c0515ee94a47db"
+        default="6554a2e922d0b3b07b953d3e331372ff9b7ec468"
     )

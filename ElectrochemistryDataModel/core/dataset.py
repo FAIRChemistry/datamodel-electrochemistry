@@ -7,14 +7,14 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from datetime import date
 
-from .analysis import Analysis
 from .sample import Sample
-from .electrode_setup import Electrode_setup
-from .author import Author
-from .concentration_units import Concentration_units
-from .synthesis import Synthesis
 from .molecular_weight_units import Molecular_weight_units
+from .author import Author
 from .film_preparation import Film_preparation
+from .electrode_setup import Electrode_setup
+from .synthesis import Synthesis
+from .concentration_units import Concentration_units
+from .analysis import Analysis
 
 
 @forge_signature
@@ -79,15 +79,15 @@ class Dataset(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="941d6e5c18c7b90cd32b5009b1c0515ee94a47db"
+        default="6554a2e922d0b3b07b953d3e331372ff9b7ec468"
     )
 
     def add_author_to_author(
         self,
         name: str,
-        affiliation: Optional[str] = None,
-        email: Optional[str] = None,
-        orcid: Optional[str] = None,
+        affiliation: str,
+        email: str,
+        orcid: str,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -96,9 +96,9 @@ class Dataset(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'Author' object. Defaults to 'None'.
             name (): Full name of the author.
-            affiliation (): Organization the author is affiliated with. Defaults to None
-            email (): Contact e-mail address of the author. Defaults to None
-            orcid (): The ORCID of the author. Defaults to None
+            affiliation (): Organization the author is affiliated with.
+            email (): Contact e-mail address of the author.
+            orcid (): The ORCID of the author.
         """
 
         params = {
@@ -116,10 +116,10 @@ class Dataset(sdRDM.DataModel):
     def add_sample_to_sample(
         self,
         name_product: str,
-        chemical_formula: Optional[str] = None,
-        molecular_weight: Optional[Molecular_weight_units] = None,
-        synthesis: Optional[Synthesis] = None,
-        film_preparation: Optional[Film_preparation] = None,
+        chemical_formula: str,
+        molecular_weight: Molecular_weight_units,
+        synthesis: Synthesis,
+        film_preparation: Film_preparation,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -128,10 +128,10 @@ class Dataset(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'Sample' object. Defaults to 'None'.
             name_product (): The name of the product.
-            chemical_formula (): The chemical formula of the product. Defaults to None
-            molecular_weight (): The molecular weight of the product. Defaults to None
-            synthesis (): The synthesis of the product. Defaults to None
-            film_preparation (): The film preparation of the product. Defaults to None
+            chemical_formula (): The chemical formula of the product.
+            molecular_weight (): The molecular weight of the product.
+            synthesis (): The synthesis of the product.
+            film_preparation (): The film preparation of the product.
         """
 
         params = {

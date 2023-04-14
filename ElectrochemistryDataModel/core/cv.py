@@ -6,10 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .ferrocene_reference import Ferrocene_reference
 from .scan_rate_units import Scan_rate_units
-from .current_units import Current_units
+from .ferrocene_reference import Ferrocene_reference
 from .potential_units import Potential_units
+from .current_units import Current_units
 
 
 @forge_signature
@@ -24,15 +24,15 @@ class CV(sdRDM.DataModel):
     )
 
     ferrocene_reference: List[Ferrocene_reference] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="Parameters of the ferocene reference measurement",
+        default_factory=ListPlus,
     )
 
     halfe_wave_potential: List[Potential_units] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="The half-wave potential of the measurement",
+        default_factory=ListPlus,
     )
 
     scan_rate: Scan_rate_units = Field(
@@ -61,31 +61,31 @@ class CV(sdRDM.DataModel):
     )
 
     i_pc_ox: List[Current_units] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="The current at the maximum of the cathodic peak (oxidation)",
+        default_factory=ListPlus,
     )
 
     i_pa_red: List[Current_units] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="The current at the maximum of the anodic peak (reduction)",
+        default_factory=ListPlus,
     )
 
     ox_potential_E_pc: List[Potential_units] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="Potential at the maximum of the cathodic peak (reduction)",
+        default_factory=ListPlus,
     )
 
     red_potential_E_pa: List[Potential_units] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="The current at the maximum of the anodic peak (oxidation)",
+        default_factory=ListPlus,
     )
 
-    total_cycle_number: Optional[int] = Field(
-        default=None,
+    total_cycle_number: int = Field(
+        ...,
         description="The total cycle number",
     )
 
@@ -93,7 +93,7 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="941d6e5c18c7b90cd32b5009b1c0515ee94a47db"
+        default="6554a2e922d0b3b07b953d3e331372ff9b7ec468"
     )
 
     def add_ferrocene_reference_to_ferrocene_reference(

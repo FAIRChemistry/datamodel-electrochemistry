@@ -26,23 +26,23 @@ class Sample(sdRDM.DataModel):
         description="The name of the product",
     )
 
-    chemical_formula: Optional[str] = Field(
-        default=None,
+    chemical_formula: str = Field(
+        ...,
         description="The chemical formula of the product",
     )
 
-    molecular_weight: Optional[Molecular_weight_units] = Field(
-        default=None,
+    molecular_weight: Molecular_weight_units = Field(
+        ...,
         description="The molecular weight of the product",
     )
 
-    synthesis: Optional[Synthesis] = Field(
-        default=None,
+    synthesis: Synthesis = Field(
+        ...,
         description="The synthesis of the product",
     )
 
-    film_preparation: Optional[Film_preparation] = Field(
-        default=None,
+    film_preparation: Film_preparation = Field(
+        ...,
         description="The film preparation of the product",
     )
 
@@ -50,5 +50,5 @@ class Sample(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="941d6e5c18c7b90cd32b5009b1c0515ee94a47db"
+        default="6554a2e922d0b3b07b953d3e331372ff9b7ec468"
     )

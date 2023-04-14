@@ -46,70 +46,70 @@ classDiagram
     
     class Sample {
         +string name_product*
-        +string chemical_formula
-        +Molecular_weight_units molecular_weight
-        +Synthesis synthesis
-        +Film_preparation film_preparation
+        +string chemical_formula*
+        +Molecular_weight_units molecular_weight*
+        +Synthesis synthesis*
+        +Film_preparation film_preparation*
     }
     
     class Synthesis {
         +string reagents*
-        +string solvent
-        +Physical_parameters physical_parameters
+        +string solvent*
+        +Physical_parameters physical_parameters*
     }
     
     class Physical_parameters {
-        +Temperature_units temperature
-        +Pressure_units pressure
-        +Time_units time
+        +Temperature_units temperature*
+        +Pressure_units pressure*
+        +Time_units time*
     }
     
     class Film_preparation {
-        +Spin_coating[0..*] spin_coating
+        +Spin_coating[0..*] spin_coating*
     }
     
     class Spin_coating {
         +Volume_units volume*
         +float[0..*] rotation*
         +Time_units time*
-        +Temperature_units annealing_temperature
-        +Time_units annealing_time
+        +Temperature_units annealing_temperature*
+        +Time_units annealing_time*
     }
     
     class Analysis {
-        +CV[0..*] cv
-        +CA[0..*] ca
-        +CP[0..*] cp
+        +CV[0..*] cv*
+        +CA[0..*] ca*
+        +CP[0..*] cp*
     }
     
     class CP {
         +Current_units induced_current_first*
-        +Current_units induced_current_second
+        +Current_units induced_current_second*
         +Time_units time_duration*
-        +Potential_units potential_end_value
-        +Charge_density_units[0..*] charge_density
+        +Potential_units potential_end_value*
+        +Charge_density_units[0..*] charge_density*
     }
     
     class CA {
         +Potential_units induced_potential_first*
         +Potential_units induced_potential_second
         +Time_units time_duration*
-        +Current_units current_end_value
+        +Current_units current_end_value*
     }
     
     class CV {
-        +Ferrocene_reference[0..*] ferrocene_reference
-        +Potential_units[0..*] halfe_wave_potential
+        +Ferrocene_reference[0..*] ferrocene_reference*
+        +Potential_units[0..*] halfe_wave_potential*
         +Scan_rate_units scan_rate*
         +Potential_units start_potential*
         +Potential_units stop_potential*
         +Potential_units potential_lower_limit*
         +Potential_units potential_upper_limit*
-        +Current_units[0..*] i_pc_ox
-        +Current_units[0..*] i_pa_red
-        +Potential_units[0..*] ox_potential_E_pc
-        +Potential_units[0..*] red_potential_E_pa
-        +int total_cycle_number
+        +Current_units[0..*] i_pc_ox*
+        +Current_units[0..*] i_pa_red*
+        +Potential_units[0..*] ox_potential_E_pc*
+        +Potential_units[0..*] red_potential_E_pa*
+        +int total_cycle_number*
     }
     
     class Ferrocene_reference {
@@ -119,16 +119,16 @@ classDiagram
     }
     
     class Electrode_setup {
-        +string working_electrode
-        +string counter_electrode
-        +string Reference_electrode
+        +string working_electrode*
+        +string counter_electrode*
+        +string Reference_electrode*
     }
     
     class Author {
         +string name*
-        +string affiliation
-        +string email
-        +string orcid
+        +string affiliation*
+        +string email*
+        +string orcid*
     }
     
     class Charge_density_units {

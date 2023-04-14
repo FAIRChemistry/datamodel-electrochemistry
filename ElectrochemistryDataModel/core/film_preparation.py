@@ -6,10 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .time_units import Time_units
 from .spin_coating import Spin_coating
-from .temperature_units import Temperature_units
 from .volume_units import Volume_units
+from .time_units import Time_units
+from .temperature_units import Temperature_units
 
 
 @forge_signature
@@ -24,25 +24,25 @@ class Film_preparation(sdRDM.DataModel):
     )
 
     spin_coating: List[Spin_coating] = Field(
-        default_factory=ListPlus,
         multiple=True,
         description="Spin coating parameter",
+        default_factory=ListPlus,
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="941d6e5c18c7b90cd32b5009b1c0515ee94a47db"
+        default="6554a2e922d0b3b07b953d3e331372ff9b7ec468"
     )
 
     def add_spin_coating_to_spin_coating(
         self,
         volume: Volume_units,
         time: Time_units,
+        annealing_temperature: Temperature_units,
+        annealing_time: Time_units,
         rotation: List[float] = ListPlus(),
-        annealing_temperature: Optional[Temperature_units] = None,
-        annealing_time: Optional[Time_units] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -52,17 +52,17 @@ class Film_preparation(sdRDM.DataModel):
             id (str): Unique identifier of the 'Spin_coating' object. Defaults to 'None'.
             volume (): The volume which was used for the film.
             time (): The rotation time.
+            annealing_temperature (): The annealing temperature for the film.
+            annealing_time (): The annealing time for the film.
             rotation (): The rotation speed of the spin coating process. Defaults to ListPlus()
-            annealing_temperature (): The annealing temperature for the film. Defaults to None
-            annealing_time (): The annealing time for the film. Defaults to None
         """
 
         params = {
             "volume": volume,
             "time": time,
-            "rotation": rotation,
             "annealing_temperature": annealing_temperature,
             "annealing_time": annealing_time,
+            "rotation": rotation,
         }
 
         if id is not None:

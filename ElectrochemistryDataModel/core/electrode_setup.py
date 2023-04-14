@@ -16,18 +16,18 @@ class Electrode_setup(sdRDM.DataModel):
         xml="@id",
     )
 
-    working_electrode: Optional[str] = Field(
-        default=None,
+    working_electrode: str = Field(
+        ...,
         description="Name of the used working electrode",
     )
 
-    counter_electrode: Optional[str] = Field(
-        default=None,
+    counter_electrode: str = Field(
+        ...,
         description="Name of the used counter electrode",
     )
 
-    Reference_electrode: Optional[str] = Field(
-        default=None,
+    Reference_electrode: str = Field(
+        ...,
         description="Name of the used reference electrode",
     )
 
@@ -35,5 +35,5 @@ class Electrode_setup(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="941d6e5c18c7b90cd32b5009b1c0515ee94a47db"
+        default="6554a2e922d0b3b07b953d3e331372ff9b7ec468"
     )
