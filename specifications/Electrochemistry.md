@@ -1,6 +1,4 @@
 # Data model for Electrochemistry
- 
-## Objects
 
 ### Dataset
 - __name__ 
@@ -92,11 +90,6 @@
   - Type: Time_units
   - Description: The annealing time for the film
 
-  
-
-
-
-
 ### Analysis
 - __cv__
   - Type: CV
@@ -128,8 +121,6 @@
   - Type: Charge_density_units
   - Multiple: True
   - Description: The charge density of the measurement 
-
-
 
 
 ### CA
