@@ -137,7 +137,7 @@
 - __induced_potential_first__
   - Type: Potential_units
   - Description: The first induced potential  
-- induced_potential_second
+- __induced_potential_second__
   - Type: Potential_units
   - Description: The second induced potential
 - __time_duration__
