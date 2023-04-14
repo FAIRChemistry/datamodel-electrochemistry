@@ -7,9 +7,9 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .ferrocene_reference import Ferrocene_reference
-from .scan_rate_units import Scan_rate_units
-from .potential_units import Potential_units
-from .current_units import Current_units
+from .currentunits import CurrentUnits
+from .scanrateunits import ScanRateUnits
+from .potentialunits import PotentialUnits
 
 
 @forge_signature
@@ -24,68 +24,68 @@ class CV(sdRDM.DataModel):
     )
 
     ferrocene_reference: List[Ferrocene_reference] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="Parameters of the ferocene reference measurement",
-        default_factory=ListPlus,
     )
 
-    halfe_wave_potential: List[Potential_units] = Field(
+    halfe_wave_potential: List[PotentialUnits] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="The half-wave potential of the measurement",
-        default_factory=ListPlus,
     )
 
-    scan_rate: Scan_rate_units = Field(
-        ...,
+    scan_rate: Optional[ScanRateUnits] = Field(
+        default=None,
         description="The scan rate of the measurement",
     )
 
-    start_potential: Potential_units = Field(
-        ...,
+    start_potential: Optional[PotentialUnits] = Field(
+        default=None,
         description="The starting value of the potential",
     )
 
-    stop_potential: Potential_units = Field(
-        ...,
+    stop_potential: Optional[PotentialUnits] = Field(
+        default=None,
         description="The stop value of the potential",
     )
 
-    potential_lower_limit: Potential_units = Field(
-        ...,
+    potential_lower_limit: Optional[PotentialUnits] = Field(
+        default=None,
         description="The lower limit of the potential",
     )
 
-    potential_upper_limit: Potential_units = Field(
-        ...,
+    potential_upper_limit: Optional[PotentialUnits] = Field(
+        default=None,
         description="The upper limit of the potential",
     )
 
-    i_pc_ox: List[Current_units] = Field(
+    i_pc_ox: List[CurrentUnits] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="The current at the maximum of the cathodic peak (oxidation)",
-        default_factory=ListPlus,
     )
 
-    i_pa_red: List[Current_units] = Field(
+    i_pa_red: List[CurrentUnits] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="The current at the maximum of the anodic peak (reduction)",
-        default_factory=ListPlus,
     )
 
-    ox_potential_E_pc: List[Potential_units] = Field(
+    ox_potential_E_pc: List[PotentialUnits] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="Potential at the maximum of the cathodic peak (reduction)",
-        default_factory=ListPlus,
     )
 
-    red_potential_E_pa: List[Potential_units] = Field(
+    red_potential_E_pa: List[PotentialUnits] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="The current at the maximum of the anodic peak (oxidation)",
-        default_factory=ListPlus,
     )
 
-    total_cycle_number: int = Field(
-        ...,
+    total_cycle_number: Optional[int] = Field(
+        default=None,
         description="The total cycle number",
     )
 
@@ -93,14 +93,14 @@ class CV(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="0aa8beaf1f7d7a9a3e2dcefc9d4c1fb735a1df97"
+        default="20dbf0b641016843c2093cd6e5f46d991659add4"
     )
 
-    def add_ferrocene_reference_to_ferrocene_reference(
+    def add_to_ferrocene_reference(
         self,
-        ox_potential_E_pc_ferrocene: Potential_units,
-        red_potential_E_pa_ferrocene: Potential_units,
-        halfe_wave_potential_ferrocene: Potential_units,
+        ox_potential_E_pc_ferrocene: Optional[PotentialUnits] = None,
+        red_potential_E_pa_ferrocene: Optional[PotentialUnits] = None,
+        halfe_wave_potential_ferrocene: Optional[PotentialUnits] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -108,9 +108,9 @@ class CV(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'Ferrocene_reference' object. Defaults to 'None'.
-            ox_potential_E_pc_ferrocene (): Potential at the maximum of the cathodic peak (reduction) of the ferrocene reference.
-            red_potential_E_pa_ferrocene (): The current at the maximum of the anodic peak (oxidation) of the ferrocene reference.
-            halfe_wave_potential_ferrocene (): The half-wave potential of the ferrocene measurement.
+            ox_potential_E_pc_ferrocene (): Potential at the maximum of the cathodic peak (reduction) of the ferrocene reference. Defaults to None
+            red_potential_E_pa_ferrocene (): The current at the maximum of the anodic peak (oxidation) of the ferrocene reference. Defaults to None
+            halfe_wave_potential_ferrocene (): The half-wave potential of the ferrocene measurement. Defaults to None
         """
 
         params = {

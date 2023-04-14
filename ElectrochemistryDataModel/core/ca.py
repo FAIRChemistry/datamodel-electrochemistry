@@ -5,9 +5,9 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potential_units import Potential_units
-from .current_units import Current_units
-from .time_units import Time_units
+from .timeunits import TimeUnits
+from .currentunits import CurrentUnits
+from .potentialunits import PotentialUnits
 
 
 @forge_signature
@@ -21,23 +21,23 @@ class CA(sdRDM.DataModel):
         xml="@id",
     )
 
-    induced_potential_first: Potential_units = Field(
-        ...,
+    induced_potential_first: Optional[PotentialUnits] = Field(
+        default=None,
         description="The first induced potential",
     )
 
-    induced_potential_second: Potential_units = Field(
-        ...,
+    induced_potential_second: Optional[PotentialUnits] = Field(
+        default=None,
         description="The second induced potential",
     )
 
-    time_duration: Time_units = Field(
-        ...,
+    time_duration: Optional[TimeUnits] = Field(
+        default=None,
         description="The duration time of the induced potential",
     )
 
-    current_end_value: Current_units = Field(
-        ...,
+    current_end_value: Optional[CurrentUnits] = Field(
+        default=None,
         description="The current value at the end of the measurement",
     )
 
@@ -45,5 +45,5 @@ class CA(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="0aa8beaf1f7d7a9a3e2dcefc9d4c1fb735a1df97"
+        default="20dbf0b641016843c2093cd6e5f46d991659add4"
     )

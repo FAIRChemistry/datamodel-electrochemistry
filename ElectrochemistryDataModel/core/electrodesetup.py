@@ -6,13 +6,13 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 @forge_signature
-class Elektrode_setup(sdRDM.DataModel):
+class ElectrodeSetup(sdRDM.DataModel):
 
     """"""
 
     id: str = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("elektrode_setupINDEX"),
+        default_factory=IDGenerator("electrodesetupINDEX"),
         xml="@id",
     )
 
@@ -35,5 +35,5 @@ class Elektrode_setup(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="f7bda00987d9745b6e532491534c6fb55777ff96"
+        default="20dbf0b641016843c2093cd6e5f46d991659add4"
     )

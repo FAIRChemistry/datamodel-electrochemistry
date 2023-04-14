@@ -5,7 +5,7 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potential_units import Potential_units
+from .potentialunits import PotentialUnits
 
 
 @forge_signature
@@ -19,24 +19,24 @@ class Ferrocene_reference(sdRDM.DataModel):
         xml="@id",
     )
 
-    ox_potential_E_pc_ferrocene: Potential_units = Field(
-        ...,
+    ox_potential_E_pc_ferrocene: Optional[PotentialUnits] = Field(
+        default=None,
         description=(
             "Potential at the maximum of the cathodic peak (reduction) of the ferrocene"
             " reference"
         ),
     )
 
-    red_potential_E_pa_ferrocene: Potential_units = Field(
-        ...,
+    red_potential_E_pa_ferrocene: Optional[PotentialUnits] = Field(
+        default=None,
         description=(
             "The current at the maximum of the anodic peak (oxidation) of the ferrocene"
             " reference"
         ),
     )
 
-    halfe_wave_potential_ferrocene: Potential_units = Field(
-        ...,
+    halfe_wave_potential_ferrocene: Optional[PotentialUnits] = Field(
+        default=None,
         description="The half-wave potential of the ferrocene measurement",
     )
 
@@ -44,5 +44,5 @@ class Ferrocene_reference(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="0aa8beaf1f7d7a9a3e2dcefc9d4c1fb735a1df97"
+        default="20dbf0b641016843c2093cd6e5f46d991659add4"
     )

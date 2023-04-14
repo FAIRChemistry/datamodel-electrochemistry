@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Potential_units(Enum):
+class PotentialUnits(Enum):
     VOLT = "V"
     MILLI_VOLT = "mV"
     MICRO_VOLT = "uV"

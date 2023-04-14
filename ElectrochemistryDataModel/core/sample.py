@@ -6,8 +6,8 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .synthesis import Synthesis
-from .molecular_weight_units import Molecular_weight_units
-from .film_preparation import Film_preparation
+from .filmpreparation import FilmPreparation
+from .molecularweightunits import MolecularWeightUnits
 
 
 @forge_signature
@@ -21,28 +21,28 @@ class Sample(sdRDM.DataModel):
         xml="@id",
     )
 
-    name_product: str = Field(
-        ...,
+    name_product: Optional[str] = Field(
+        default=None,
         description="The name of the product",
     )
 
-    chemical_formula: str = Field(
-        ...,
+    chemical_formula: Optional[str] = Field(
+        default=None,
         description="The chemical formula of the product",
     )
 
-    molecular_weight: Molecular_weight_units = Field(
-        ...,
+    molecular_weight: Optional[MolecularWeightUnits] = Field(
+        default=None,
         description="The molecular weight of the product",
     )
 
-    synthesis: Synthesis = Field(
-        ...,
+    synthesis: Optional[Synthesis] = Field(
+        default=None,
         description="The synthesis of the product",
     )
 
-    film_preparation: Film_preparation = Field(
-        ...,
+    film_preparation: Optional[FilmPreparation] = Field(
+        default=None,
         description="The film preparation of the product",
     )
 
@@ -50,5 +50,5 @@ class Sample(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="0aa8beaf1f7d7a9a3e2dcefc9d4c1fb735a1df97"
+        default="20dbf0b641016843c2093cd6e5f46d991659add4"
     )

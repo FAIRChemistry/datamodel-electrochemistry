@@ -1,6 +1,6 @@
 from enum import Enum
 
 
-class Temperature_units(Enum):
+class TemperatureUnits(Enum):
     CELCIUS = "C"
     KELVIN = "K"

@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Current_units(Enum):
+class CurrentUnits(Enum):
     AMPERE = "A"
     MILLI_AMPERE = "mA"
     MICRO_AMPERE = "uA"

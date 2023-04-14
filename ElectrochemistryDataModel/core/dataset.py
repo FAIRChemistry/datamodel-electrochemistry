@@ -8,13 +8,13 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 from datetime import date
 
 from .synthesis import Synthesis
+from .filmpreparation import FilmPreparation
+from .molecularweightunits import MolecularWeightUnits
+from .electrodesetup import ElectrodeSetup
+from .concentrationunits import ConcentrationUnits
 from .author import Author
 from .sample import Sample
-from .concentration_units import Concentration_units
-from .molecular_weight_units import Molecular_weight_units
-from .electrode_setup import Electrode_setup
 from .analysis import Analysis
-from .film_preparation import Film_preparation
 
 
 @forge_signature
@@ -28,50 +28,50 @@ class Dataset(sdRDM.DataModel):
         xml="@id",
     )
 
-    name: str = Field(
-        ...,
+    name: Optional[str] = Field(
+        default=None,
         description="Name of the dataset",
     )
 
-    date: date = Field(
-        ...,
+    date_created: Optional[date] = Field(
+        default=None,
         description="Date/time when the dataset was created",
     )
 
     author: List[Author] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="Persons who worked on the dataset",
-        default_factory=ListPlus,
     )
 
     sample: List[Sample] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="The sample which was measured",
-        default_factory=ListPlus,
     )
 
-    analysis: Analysis = Field(
-        ...,
+    analysis: Optional[Analysis] = Field(
+        default=None,
         description="The method which is used to gain the data",
     )
 
-    solvent: str = Field(
-        ...,
+    solvent: Optional[str] = Field(
+        default=None,
         description="Name of the solvent",
     )
 
-    conducting_salt: str = Field(
-        ...,
+    conducting_salt: Optional[str] = Field(
+        default=None,
         description="Name of the used salt",
     )
 
-    conducting_salt_concentration: Concentration_units = Field(
-        ...,
+    conducting_salt_concentration: Optional[ConcentrationUnits] = Field(
+        default=None,
         description="Concentration of the conducting salt",
     )
 
-    electrode_setup: Electrode_setup = Field(
-        ...,
+    electrode_setup: Optional[ElectrodeSetup] = Field(
+        default=None,
         description="Name of the used electrode materials",
     )
 
@@ -79,15 +79,15 @@ class Dataset(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="0aa8beaf1f7d7a9a3e2dcefc9d4c1fb735a1df97"
+        default="20dbf0b641016843c2093cd6e5f46d991659add4"
     )
 
-    def add_author_to_author(
+    def add_to_author(
         self,
-        name: str,
-        affiliation: str,
-        email: str,
-        orcid: str,
+        name: Optional[str] = None,
+        affiliation: Optional[str] = None,
+        email: Optional[str] = None,
+        orcid: Optional[str] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -95,10 +95,10 @@ class Dataset(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'Author' object. Defaults to 'None'.
-            name (): Full name of the author.
-            affiliation (): Organization the author is affiliated with.
-            email (): Contact e-mail address of the author.
-            orcid (): The ORCID of the author.
+            name (): Full name of the author. Defaults to None
+            affiliation (): Organization the author is affiliated with. Defaults to None
+            email (): Contact e-mail address of the author. Defaults to None
+            orcid (): The ORCID of the author. Defaults to None
         """
 
         params = {
@@ -113,13 +113,13 @@ class Dataset(sdRDM.DataModel):
 
         self.author.append(Author(**params))
 
-    def add_sample_to_sample(
+    def add_to_sample(
         self,
-        name_product: str,
-        chemical_formula: str,
-        molecular_weight: Molecular_weight_units,
-        synthesis: Synthesis,
-        film_preparation: Film_preparation,
+        name_product: Optional[str] = None,
+        chemical_formula: Optional[str] = None,
+        molecular_weight: Optional[MolecularWeightUnits] = None,
+        synthesis: Optional[Synthesis] = None,
+        film_preparation: Optional[FilmPreparation] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -127,11 +127,11 @@ class Dataset(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'Sample' object. Defaults to 'None'.
-            name_product (): The name of the product.
-            chemical_formula (): The chemical formula of the product.
-            molecular_weight (): The molecular weight of the product.
-            synthesis (): The synthesis of the product.
-            film_preparation (): The film preparation of the product.
+            name_product (): The name of the product. Defaults to None
+            chemical_formula (): The chemical formula of the product. Defaults to None
+            molecular_weight (): The molecular weight of the product. Defaults to None
+            synthesis (): The synthesis of the product. Defaults to None
+            film_preparation (): The film preparation of the product. Defaults to None
         """
 
         params = {

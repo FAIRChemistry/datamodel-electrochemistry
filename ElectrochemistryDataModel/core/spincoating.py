@@ -6,45 +6,45 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .temperature_units import Temperature_units
-from .time_units import Time_units
-from .volume_units import Volume_units
+from .timeunits import TimeUnits
+from .volumeunits import VolumeUnits
+from .temperatureunits import TemperatureUnits
 
 
 @forge_signature
-class Spin_coating(sdRDM.DataModel):
+class SpinCoating(sdRDM.DataModel):
 
     """"""
 
     id: str = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("spin_coatingINDEX"),
+        default_factory=IDGenerator("spincoatingINDEX"),
         xml="@id",
     )
 
-    volume: Volume_units = Field(
-        ...,
+    volume: Optional[VolumeUnits] = Field(
+        default=None,
         description="The volume which was used for the film",
     )
 
     rotation: List[float] = Field(
+        default_factory=ListPlus,
         multiple=True,
         description="The rotation speed of the spin coating process",
-        default_factory=ListPlus,
     )
 
-    time: Time_units = Field(
-        ...,
+    time: Optional[TimeUnits] = Field(
+        default=None,
         description="The rotation time",
     )
 
-    annealing_temperature: Temperature_units = Field(
-        ...,
+    annealing_temperature: Optional[TemperatureUnits] = Field(
+        default=None,
         description="The annealing temperature for the film",
     )
 
-    annealing_time: Time_units = Field(
-        ...,
+    annealing_time: Optional[TimeUnits] = Field(
+        default=None,
         description="The annealing time for the film",
     )
 
@@ -52,5 +52,5 @@ class Spin_coating(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="0aa8beaf1f7d7a9a3e2dcefc9d4c1fb735a1df97"
+        default="20dbf0b641016843c2093cd6e5f46d991659add4"
     )

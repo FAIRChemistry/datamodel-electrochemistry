@@ -5,7 +5,7 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .physical_parameters import Physical_parameters
+from .physicalparameters import PhysicalParameters
 
 
 @forge_signature
@@ -19,18 +19,18 @@ class Synthesis(sdRDM.DataModel):
         xml="@id",
     )
 
-    reagents: str = Field(
-        ...,
+    reagents: Optional[str] = Field(
+        default=None,
         description="The reagents of the product",
     )
 
-    solvent: str = Field(
-        ...,
+    solvent: Optional[str] = Field(
+        default=None,
         description="The solvent of the synthesis",
     )
 
-    physical_parameters: Physical_parameters = Field(
-        ...,
+    physical_parameters: Optional[PhysicalParameters] = Field(
+        default=None,
         description="The physical parameters of the synthesis",
     )
 
@@ -38,5 +38,5 @@ class Synthesis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="0aa8beaf1f7d7a9a3e2dcefc9d4c1fb735a1df97"
+        default="20dbf0b641016843c2093cd6e5f46d991659add4"
     )

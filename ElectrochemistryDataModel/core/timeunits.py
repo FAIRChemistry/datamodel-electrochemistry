@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Time_units(Enum):
+class TimeUnits(Enum):
     HOUR = "h"
     MIN = "min"
     SEC = "s"
