@@ -7,14 +7,14 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from datetime import date
 
-from .sample import Sample
 from .analysis import Analysis
-from .film_preparation import Film_preparation
+from .sample import Sample
+from .electrode_setup import Electrode_setup
 from .author import Author
-from .molecular_weight_units import Molecular_weight_units
 from .concentration_units import Concentration_units
 from .synthesis import Synthesis
-from .electrode_setup import Electrode_setup
+from .molecular_weight_units import Molecular_weight_units
+from .film_preparation import Film_preparation
 
 
 @forge_signature
@@ -79,7 +79,7 @@ class Dataset(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="96e417be59affe17d20a9ae32b138af3c95a93a7"
+        default="941d6e5c18c7b90cd32b5009b1c0515ee94a47db"
     )
 
     def add_author_to_author(
