@@ -92,7 +92,7 @@ classDiagram
     
     class CA {
         +Potential_units induced_potential_first*
-        +Potential_units induced_potential_second
+        +Potential_units induced_potential_second*
         +Time_units time_duration*
         +Current_units current_end_value*
     }

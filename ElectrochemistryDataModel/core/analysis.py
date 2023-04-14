@@ -6,15 +6,15 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .scan_rate_units import Scan_rate_units
-from .ca import CA
 from .ferrocene_reference import Ferrocene_reference
-from .time_units import Time_units
+from .ca import CA
+from .scan_rate_units import Scan_rate_units
+from .cp import CP
 from .charge_density_units import Charge_density_units
 from .potential_units import Potential_units
-from .cp import CP
-from .current_units import Current_units
+from .time_units import Time_units
 from .cv import CV
+from .current_units import Current_units
 
 
 @forge_signature
@@ -50,7 +50,7 @@ class Analysis(sdRDM.DataModel):
         default="git://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="6554a2e922d0b3b07b953d3e331372ff9b7ec468"
+        default="0aa8beaf1f7d7a9a3e2dcefc9d4c1fb735a1df97"
     )
 
     def add_cv_to_cv(
@@ -111,9 +111,9 @@ class Analysis(sdRDM.DataModel):
     def add_ca_to_ca(
         self,
         induced_potential_first: Potential_units,
+        induced_potential_second: Potential_units,
         time_duration: Time_units,
         current_end_value: Current_units,
-        induced_potential_second: Optional[Potential_units] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -122,16 +122,16 @@ class Analysis(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'CA' object. Defaults to 'None'.
             induced_potential_first (): The first induced potential.
+            induced_potential_second (): The second induced potential.
             time_duration (): The duration time of the induced potential.
             current_end_value (): The current value at the end of the measurement.
-            induced_potential_second (): The second induced potential. Defaults to None
         """
 
         params = {
             "induced_potential_first": induced_potential_first,
+            "induced_potential_second": induced_potential_second,
             "time_duration": time_duration,
             "current_end_value": current_end_value,
-            "induced_potential_second": induced_potential_second,
         }
 
         if id is not None:
