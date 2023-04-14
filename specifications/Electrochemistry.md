@@ -1,151 +1,153 @@
 # Data model for Electrochemistry
 
+## Objects
+
 ### Dataset
 
-- __name__
+- name
   - Type: string
   - Description: Name of the dataset
-- __date__
+- date_created
   - Type: date
   - Description: Date/time when the dataset was created
-- __author__
+- author
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset
-- __sample__
+- sample
   - Type: Sample
   - Multiple: True
   - Description: The sample which was measured
-- __analysis__
+- analysis
   - Type: Analysis
   - Description: The method which is used to gain the data
-- __solvent__
+- solvent
   - Type: string
   - Description: Name of the solvent
-- __conducting_salt__
+- conducting_salt
   - Type: string
   - Description: Name of the used salt
-- __conducting_salt_concentration__
+- conducting_salt_concentration
   - Type: ConcentrationUnits
   - Description: Concentration of the conducting salt
-- __electrode_setup__
+- electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
 
 ### Sample
 
-- __name_product__
+- name_product
   - Type: string
   - Description: The name of the product
-- __chemical_formula__
+- chemical_formula
   - Type: string  
   - Description: The chemical formula of the product
-- __molecular_weight__
+- molecular_weight
   - Type: MolecularWeightUnits
   - Description: The molecular weight of the product
-- __synthesis__
+- synthesis
   - Type: Synthesis
   - Description: The synthesis of the product
-- __film_preparation__
+- film_preparation
   - Type: FilmPreparation
   - Description: The film preparation of the product
 
 ### Synthesis
 
-- __reagents__
+- reagents
   - Type: string
   - Description: The reagents of the product
-- __solvent__
+- solvent
   - Type: string
   - Description: The solvent of the synthesis
-- __physical_parameters__
+- physical_parameters
   - Type: PhysicalParameters
   - Description: The physical parameters of the synthesis
 
 ### PhysicalParameters
 
-- __temperature__
+- temperature
   - Type: TemperatureUnits
   - Description: The used temperature for the synthesis
-- __pressure__
+- pressure
   - Type: PressureUnits
   - Description: The used pressure for the synthesis
-- __time__
+- time
   - Type: TimeUnits
   - Description: The used time for the synthesis  
 
 ### FilmPreparation
 
-- __spin_coating__
+- spin_coating
   - Type: SpinCoating
   - Multiple: True
   - Description: Spin coating parameter
 
 ### SpinCoating
 
-- __volume__
+- volume
   - Type: VolumeUnits
   - Description: The volume which was used for the film
-- __rotation__
+- rotation
   - Type: float
   - Multiple: True
   - Description: The rotation speed of the spin coating process
-- __time__
+- time
   - Type: TimeUnits
   - Description: The rotation time
-- __annealing_temperature__
+- annealing_temperature
   - Type: TemperatureUnits
   - Description: The annealing temperature for the film
-- __annealing_time__
+- annealing_time
   - Type: TimeUnits
   - Description: The annealing time for the film
 
 ### Analysis
 
-- __cv__
+- cv
   - Type: CV
   - Multiple: True
   - Description: Cyclic voltammetry
-- __ca__
+- ca
   - Type: CA
   - Multiple: True
   - Description: Chronoamperometry
-- __cp__
+- cp
   - Type: CP
   - Multiple: True
   - Description: Chronopotentiometry
 
 ### CP
 
-- __induced_current_first__
+- induced_current_first
   - Type: CurrentUnits
   - Description: The first induced current  
-- __induced_current_second__
+- induced_current_second
   - Type: CurrentUnits
   - Description: The first induced current  
-- __time_duration__
+- time_duration
   - Type: TimeUnits
   - Description: The duration time of the induced current
-- __potential_end_value__
+- potential_end_value
   - Type: PotentialUnits
   - Description: The potential value at the end of the measurement
-- __charge_density__
+- charge_density
   - Type: ChargeDensityUnits
   - Multiple: True
   - Description: The charge density of the measurement
 
 ### CA
 
-- __induced_potential_first__
+- induced_potential_first
   - Type: PotentialUnits
   - Description: The first induced potential  
-- __induced_potential_second__
+- induced_potential_second
   - Type: PotentialUnits
   - Description: The second induced potential
-- __time_duration__
+- time_duration
   - Type: TimeUnits
   - Description: The duration time of the induced potential
-- __current_end_value__
+- current_end_value
   - Type: CurrentUnits
   - Description: The current value at the end of the measurement
 
@@ -153,70 +155,70 @@
 
 Container for information regarding the CV-Setup and parameters
 
-- __ferrocene_reference__
+- ferrocene_reference
   - Type: Ferrocene_reference
   - Multiple: True
   - Description: Parameters of the ferocene reference measurement
-- __halfe_wave_potential__
+- halfe_wave_potential
   - Type: PotentialUnits
   - Multiple: True
   - Description: The half-wave potential of the measurement  
-- __scan_rate__
+- scan_rate
   - Type: ScanRateUnits
   - Description: The scan rate of the measurement
-- __start_potential__
+- start_potential
   - Type: PotentialUnits
   - Description: The starting value of the potential
-- __stop_potential__
+- stop_potential
   - Type: PotentialUnits
   - Description: The stop value of the potential
-- __potential_lower_limit__
+- potential_lower_limit
   - Type: PotentialUnits
   - Description: The lower limit of the potential
-- __potential_upper_limit__
+- potential_upper_limit
   - Type: PotentialUnits
   - Description: The upper limit of the potential
-- __i_pc_ox__
+- i_pc_ox
   - Type: CurrentUnits
   - Multiple: True
   - Description: The current at the maximum of the cathodic peak (oxidation)
-- __i_pa_red__
+- i_pa_red
   - Type: CurrentUnits
   - Multiple: True
   - Description: The current at the maximum of the anodic peak (reduction)
-- __ox_potential_E_pc__
+- ox_potential_E_pc
   - Type: PotentialUnits
   - Multiple: True
   - Description: Potential at the maximum of the cathodic peak (reduction)
-- __red_potential_E_pa__
+- red_potential_E_pa
   - Type: PotentialUnits
   - Multiple: True
   - Description: The current at the maximum of the anodic peak (oxidation)
-- __total_cycle_number__
+- total_cycle_number
   - Type: int
   - Description: The total cycle number
 
 ### Ferrocene_reference
 
-- __ox_potential_E_pc_ferrocene__
+- ox_potential_E_pc_ferrocene
   - Type: PotentialUnits
   - Description: Potential at the maximum of the cathodic peak (reduction) of the ferrocene reference
-- __red_potential_E_pa_ferrocene__
+- red_potential_E_pa_ferrocene
   - Type: PotentialUnits
   - Description: The current at the maximum of the anodic peak (oxidation) of the ferrocene reference
-- __halfe_wave_potential_ferrocene__
+- halfe_wave_potential_ferrocene
   - Type: PotentialUnits
   - Description: The half-wave potential of the ferrocene measurement
 
 ### ElectrodeSetup
 
-- __working_electrode__
+- working_electrode
   - Type: string
   - Description: Name of the used working electrode
-- __counter_electrode__
+- counter_electrode
   - Type: string
   - Description: Name of the used counter electrode  
-- __Reference_electrode__
+- Reference_electrode
   - Type: string
   - Description: Name of the used reference electrode
 
@@ -224,26 +226,28 @@ Container for information regarding the CV-Setup and parameters
 
 Container for information regarding persons who worked on a dataset.
 
-- __name__
+- name
   - Type: string
   - Description: Full name of the author
-- __affiliation__
+- affiliation
   - Type: string
   - Description: Organization the author is affiliated with
-- __email__
+- email
   - Type: string
   - Description: Contact e-mail address of the author
-- __orcid__
+- orcid
   - Type: string
   - Description: The ORCID of the author
 
-#### ChargeDensityUnits
+## Enumerations
+
+### ChargeDensityUnits
 
 ``` python
 COULOMB_PER_CUBIC_METER = "C / m**3"
 ```
 
-#### PressureUnits
+### PressureUnits
 
 ```python
 PASCAL = "Pa "
@@ -251,21 +255,21 @@ BAR = "bar"
 MILLI_BAR = "mbar"
 ```
 
-#### MolecularWeightUnits
+### MolecularWeightUnits
 
 ```python
 GRAM_PER_MOLE = "g / mole "
 GRAM_PER_MILLI_MOLE = "g / mmole"
 ```
 
-#### TemperatureUnits
+### TemperatureUnits
 
 ```python
 CELCIUS = "C"
 KELVIN = "K"
 ```
 
-#### VolumeUnits
+### VolumeUnits
 
 ```python
 MILLI_LITER = "ml"
@@ -273,7 +277,7 @@ MICRO_LITER = "ul"
 NANO_LITER = "nl"
 ```
 
-#### TimeUnits
+### TimeUnits
 
 ```python
 HOUR = "h"
@@ -283,7 +287,7 @@ MILLI_SEC = "ms"
 MICRO_SEC = "us"
 ```
 
-#### ConcentrationUnits
+### ConcentrationUnits
 
 ```python
 MOLAR = "mole / l"
@@ -296,7 +300,7 @@ MICROGRAM_LITER = "ug / l"
 NANGRAM_LITER = "ng / l"
 ```
 
-#### ScanRateUnits
+### ScanRateUnits
 
 ```python
 VOLT_PER_SEC = "V / s"
@@ -304,7 +308,7 @@ MILLI_VOLT_PER_SEC = "mV / s"
 MICRO_VOLT_PER_SEC = "uV / s"
 ```
 
-#### CurrentUnits
+### CurrentUnits
 
 ```python
 AMPERE = "A"
@@ -313,7 +317,7 @@ MICRO_AMPERE = "uA"
 NANO_AMPERE = "nA"
 ```
 
-#### PotentialUnits
+### PotentialUnits
 
 ```python
 VOLT = "V"
