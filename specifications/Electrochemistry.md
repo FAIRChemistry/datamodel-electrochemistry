@@ -55,9 +55,9 @@
   - Type: string
   - Description: The solvent of the synthesis
 - __physical_parameters__
-  - Type: Physical_parameters
+  - Type: Physical_parameters_class
   - Description: The physical parameters of the synthesis
-### Physical_parameters
+### Physical_parameters_class
 - __temperature__
   - Type: Temperature_units
   - Description: The used temperature for the synthesis 
