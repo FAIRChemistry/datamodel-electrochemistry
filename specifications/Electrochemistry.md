@@ -229,36 +229,34 @@ Container for information regarding persons who worked on a dataset.
   - Description: The ORCID of the author
 
 
-## Enumerations
-
-### Charge_density_units
+#### Charge_density_units
 ``` python
 COULOMB_PER_CUBIC_METER = "C / m**3"
 ```
 
-### Pressure_units
+#### Pressure_units
 ```python
 PASCAL = "Pa "
 BAR = "bar"
 MILLI_BAR = "mbar"
 ```
-### Molecular_weight_units
+#### Molecular_weight_units
 ```python
 GRAM_PER_MOLE = "g / mole "
 GRAM_PER_MILLI_MOLE = "g / mmole"
 ```
-### Temperature_units
+#### Temperature_units
 ```python
 CELCIUS = "C"
 KELVIN = "K"
 ```
-### Volume_units
+#### Volume_units
 ```python
 MILLI_LITER = "ml"
 MICRO_LITER = "ul" 
 NANO_LITER = "nl"
 ```
-### Time_units
+#### Time_units
 ```python
 HOUR = "h"
 MIN = "min"
@@ -266,7 +264,7 @@ SEC = "s"
 MILLI_SEC = "ms"
 MICRO_SEC = "us"
 ```
-### Concentration_units
+#### Concentration_units
 ```python
 MOLAR = "mole / l"
 MILLI_MOLAR = "mmole / l"
@@ -277,20 +275,20 @@ MILLIGRAM_LITER = "mg / l"
 MICROGRAM_LITER = "ug / l"
 NANGRAM_LITER = "ng / l"
 ``` 
-### Scan_rate_units
+#### Scan_rate_units
 ```python
 VOLT_PER_SEC = "V / s"
 MILLI_VOLT_PER_SEC = "mV / s"
 MICRO_VOLT_PER_SEC = "uV / s"
 ``` 
-### Current_units
+#### Current_units
 ```python
 AMPERE = "A"
 MILLI_AMPERE = "mA"
 MICRO_AMPERE = "uA"
 NANO_AMPERE = "nA"
 ``` 
-### Potential_units
+#### Potential_units
 ```python
 VOLT = "V"
 MILLI_VOLT = "mV"
