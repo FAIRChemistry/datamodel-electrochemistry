@@ -47,6 +47,7 @@
 - __film_preparation__
   - Type: Film_preparation
   - Description: The film preparation of the product
+
 ### Synthesis
 - __reagents__
   - Type: string
@@ -57,6 +58,7 @@
 - __physical_parameters__
   - Type: Physical_parametersclass
   - Description: The physical parameters of the synthesis
+
 ### Physical_parametersclass
 - __temperature__
   - Type: Temperature_units
@@ -67,11 +69,13 @@
 - __time__
   - Type: Time_units
   - Description: The used time for the synthesis  
+
 ### Film_preparation
 - __spin_coating__
   - Type: Spin_coating
   - Multiple: True
   - Description: Spin coating parameter
+
 ### Spin_coating
 - __volume__
   - Type: Volume_units
@@ -103,8 +107,8 @@
   - Type: CP
   - Multiple: True
   - Description: Chronopotentiometry
-### CP
 
+### CP
 - __induced_current_first__
   - Type: Current_units
   - Description: The first induced current  
@@ -122,9 +126,7 @@
   - Multiple: True
   - Description: The charge density of the measurement 
 
-
 ### CA
-
 - __induced_potential_first__
   - Type: Potential_units
   - Description: The first induced potential  
@@ -137,6 +139,7 @@
 - __current_end_value__
   - Type: Current_units
   - Description: The current value at the end of the measurement 
+
 ### CV
 Container for information regarding the CV-Setup and parameters
 - __ferrocene_reference__
@@ -181,6 +184,7 @@ Container for information regarding the CV-Setup and parameters
 - __total_cycle_number__
   - Type: int
   - Description: The total cycle number
+
 ### Ferrocene_reference
 - __ox_potential_E_pc_ferrocene__
   - Type: Potential_units
@@ -205,7 +209,6 @@ Container for information regarding the CV-Setup and parameters
 
 ### Author
 Container for information regarding persons who worked on a dataset.
-
 - __name__
   - Type: string
   - Description: Full name of the author
@@ -219,7 +222,6 @@ Container for information regarding persons who worked on a dataset.
   - Type: string
   - Description: The ORCID of the author
 
-
 #### Charge_density_units
 ``` python
 COULOMB_PER_CUBIC_METER = "C / m**3"
@@ -231,22 +233,26 @@ PASCAL = "Pa "
 BAR = "bar"
 MILLI_BAR = "mbar"
 ```
+
 #### Molecular_weight_units
 ```python
 GRAM_PER_MOLE = "g / mole "
 GRAM_PER_MILLI_MOLE = "g / mmole"
 ```
+
 #### Temperature_units
 ```python
 CELCIUS = "C"
 KELVIN = "K"
 ```
+
 #### Volume_units
 ```python
 MILLI_LITER = "ml"
 MICRO_LITER = "ul" 
 NANO_LITER = "nl"
 ```
+
 #### Time_units
 ```python
 HOUR = "h"
@@ -255,6 +261,7 @@ SEC = "s"
 MILLI_SEC = "ms"
 MICRO_SEC = "us"
 ```
+
 #### Concentration_units
 ```python
 MOLAR = "mole / l"
@@ -266,12 +273,14 @@ MILLIGRAM_LITER = "mg / l"
 MICROGRAM_LITER = "ug / l"
 NANGRAM_LITER = "ng / l"
 ``` 
+
 #### Scan_rate_units
 ```python
 VOLT_PER_SEC = "V / s"
 MILLI_VOLT_PER_SEC = "mV / s"
 MICRO_VOLT_PER_SEC = "uV / s"
-``` 
+```
+
 #### Current_units
 ```python
 AMPERE = "A"
@@ -279,6 +288,7 @@ MILLI_AMPERE = "mA"
 MICRO_AMPERE = "uA"
 NANO_AMPERE = "nA"
 ``` 
+
 #### Potential_units
 ```python
 VOLT = "V"
