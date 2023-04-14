@@ -37,40 +37,40 @@
 - __name_product__
   - Type: string
   - Description: The name of the product
-- chemical_formula
+- __chemical_formula__
   - Type: string  
   - Description: The chemical formula of the product
-- molecular_weight
+- __molecular_weight__
   - Type: Molecular_weight_units
   - Description: The molecular weight of the product 
-- synthesis
+- __synthesis__
   - Type: Synthesis
   - Description: The synthesis of the product 
-- film_preparation
+- __film_preparation__
   - Type: Film_preparation
   - Description: The film preparation of the product
 ### Synthesis
 - __reagents__
   - Type: string
   - Description: The reagents of the product
-- solvent
+- __solvent__
   - Type: string
   - Description: The solvent of the synthesis
-- physical_parameters
+- __physical_parameters__
   - Type: Physical_parameters
   - Description: The physical parameters of the synthesis
 ### Physical_parameters
-- temperature
+- __temperature__
   - Type: Temperature_units
   - Description: The used temperature for the synthesis 
-- pressure
+- __pressure__
   - Type: Pressure_units
   - Description: The used pressure for the synthesis 
-- time
+- __time__
   - Type: Time_units
   - Description: The used time for the synthesis  
 ### Film_preparation
-- spin_coating
+- __spin_coating__
   - Type: Spin_coating
   - Multiple: True
   - Description: Spin coating parameter
@@ -85,10 +85,10 @@
 - __time__
   - Type: Time_units
   - Description: The rotation time 
-- annealing_temperature
+- __annealing_temperature__
   - Type: Temperature_units
   - Description: The annealing temperature for the film
-- annealing_time
+- __annealing_time__
   - Type: Time_units
   - Description: The annealing time for the film
 
@@ -98,15 +98,15 @@
 
 
 ### Analysis
-- cv
+- __cv__
   - Type: CV
   - Multiple: True
   - Description: Cyclic voltammetry
-- ca
+- __ca__
   - Type: CA
   - Multiple: True
   - Description: Chronoamperometry
-- cp
+- __cp__
   - Type: CP
   - Multiple: True
   - Description: Chronopotentiometry
@@ -115,16 +115,16 @@
 - __induced_current_first__
   - Type: Current_units
   - Description: The first induced current  
-- induced_current_second
+- __induced_current_second__
   - Type: Current_units
   - Description: The first induced current  
 - __time_duration__
   - Type: Time_units
   - Description: The duration time of the induced current
-- potential_end_value
+- __potential_end_value__
   - Type: Potential_units
   - Description: The potential value at the end of the measurement
-- charge_density
+- __charge_density__
   - Type: Charge_density_units
   - Multiple: True
   - Description: The charge density of the measurement 
@@ -143,16 +143,16 @@
 - __time_duration__
   - Type: Time_units
   - Description: The duration time of the induced potential
-- current_end_value
+- __current_end_value__
   - Type: Current_units
   - Description: The current value at the end of the measurement 
 ### CV
 Container for information regarding the CV-Setup and parameters
-- ferrocene_reference
+- __ferrocene_reference__
   - Type: Ferrocene_reference
   - Multiple: True
   - Description: Parameters of the ferocene reference measurement
-- halfe_wave_potential
+- __halfe_wave_potential__
   - Type: Potential_units
   - Multiple: True
   - Description: The half-wave potential of the measurement  
@@ -171,23 +171,23 @@ Container for information regarding the CV-Setup and parameters
 - __potential_upper_limit__
   - Type: Potential_units
   - Description: The upper limit of the potential
-- i_pc_ox
+- __i_pc_ox__
   - Type: Current_units
   - Multiple: True
   - Description: The current at the maximum of the cathodic peak (oxidation)
-- i_pa_red
+- __i_pa_red__
   - Type: Current_units
   - Multiple: True 
   - Description: The current at the maximum of the anodic peak (reduction)
-- ox_potential_E_pc
+- __ox_potential_E_pc__
   - Type: Potential_units
   - Multiple: True
   - Description: Potential at the maximum of the cathodic peak (reduction)
-- red_potential_E_pa
+- __red_potential_E_pa__
   - Type: Potential_units
   - Multiple: True
   - Description: The current at the maximum of the anodic peak (oxidation)
-- total_cycle_number
+- __total_cycle_number__
   - Type: int
   - Description: The total cycle number
 ### Ferrocene_reference
@@ -202,13 +202,13 @@ Container for information regarding the CV-Setup and parameters
   - Description: The half-wave potential of the ferrocene measurement 
 
 ### Electrode_setup
-- working_electrode
+- __working_electrode__
   - Type: string
   - Description: Name of the used working electrode
-- counter_electrode
+- __counter_electrode__
   - Type: string
   - Description: Name of the used counter electrode  
-- Reference_electrode
+- __Reference_electrode__
   - Type: string
   - Description: Name of the used reference electrode 
 
@@ -218,13 +218,13 @@ Container for information regarding persons who worked on a dataset.
 - __name__
   - Type: string
   - Description: Full name of the author
-- affiliation
+- __affiliation__
   - Type: string
   - Description: Organization the author is affiliated with
-- email
+- __email__
   - Type: string
   - Description: Contact e-mail address of the author
-- orcid
+- __orcid__
   - Type: string
   - Description: The ORCID of the author
 
