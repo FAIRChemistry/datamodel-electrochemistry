@@ -218,7 +218,7 @@ Container for information regarding the CV-Setup and parameters
 - CE
   - Type: string
   - Description: Name of the used counter electrode  
-- RW
+- RE
   - Type: string
   - Description: Name of the used reference electrode
 
