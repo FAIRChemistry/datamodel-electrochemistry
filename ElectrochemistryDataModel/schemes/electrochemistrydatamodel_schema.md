@@ -119,9 +119,9 @@ classDiagram
     }
     
     class ElectrodeSetup {
-        +string working_electrode
-        +string counter_electrode
-        +string Reference_electrode
+        +string WE
+        +string CE
+        +string RW
     }
     
     class Author {
