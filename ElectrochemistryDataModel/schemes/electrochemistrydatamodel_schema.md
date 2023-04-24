@@ -121,7 +121,7 @@ classDiagram
     class ElectrodeSetup {
         +string WE
         +string CE
-        +string RW
+        +string RE
     }
     
     class Author {
