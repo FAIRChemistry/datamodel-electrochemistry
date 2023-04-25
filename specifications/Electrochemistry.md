@@ -33,6 +33,11 @@
 - electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
+### Experiments
+- experiments
+  - Type: string
+  - Multiple: True
+  - Description: Name of the experiment files
 
 ### Sample
 
