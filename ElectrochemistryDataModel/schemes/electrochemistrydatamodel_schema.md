@@ -42,10 +42,7 @@ classDiagram
         +string conducting_salt
         +ConcentrationUnits conducting_salt_concentration
         +ElectrodeSetup electrode_setup
-    }
-    
-    class Experiments {
-        +string[0..*] experiments
+        +string[0..*] experiment
     }
     
     class Sample {
