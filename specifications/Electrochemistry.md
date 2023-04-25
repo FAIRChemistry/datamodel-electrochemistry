@@ -116,7 +116,11 @@
   - Type: CP
   - Multiple: True
   - Description: Chronopotentiometry
-
+### Experiments
+- experiments
+  - Type: String
+  - Multiple: True
+  - Description: Experiment names
 ### CP
 
 - induced_current_first
