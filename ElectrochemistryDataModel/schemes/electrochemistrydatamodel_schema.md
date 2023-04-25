@@ -44,6 +44,10 @@ classDiagram
         +ElectrodeSetup electrode_setup
     }
     
+    class Experiments {
+        +string[0..*] experiments
+    }
+    
     class Sample {
         +string name_product
         +string chemical_formula

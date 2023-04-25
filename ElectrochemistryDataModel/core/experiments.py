@@ -1,34 +1,26 @@
 import sdRDM
 
-from typing import Optional
+from typing import List, Optional
 from pydantic import Field, PrivateAttr
+from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 @forge_signature
-class ElectrodeSetup(sdRDM.DataModel):
+class Experiments(sdRDM.DataModel):
 
     """"""
 
     id: str = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("electrodesetupINDEX"),
+        default_factory=IDGenerator("experimentsINDEX"),
         xml="@id",
     )
 
-    WE: Optional[str] = Field(
-        default=None,
-        description="Name of the used working electrode",
-    )
-
-    CE: Optional[str] = Field(
-        default=None,
-        description="Name of the used counter electrode",
-    )
-
-    RE: Optional[str] = Field(
-        default=None,
-        description="Name of the used reference electrode",
+    experiments: List[str] = Field(
+        default_factory=ListPlus,
+        multiple=True,
+        description="Name of the experiment files",
     )
 
     __repo__: Optional[str] = PrivateAttr(
