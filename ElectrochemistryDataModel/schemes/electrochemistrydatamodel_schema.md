@@ -83,6 +83,16 @@ classDiagram
         +CP[0..*] cp
     }
     
+    class Dataset_for_plots {
+        +string filename
+        +string reference
+        +string name
+        +string conducting_salt
+        +string conducting_salt_concentration
+        +string solvent
+        +string scan_rate
+    }
+    
     class CP {
         +CurrentUnits induced_current_first
         +CurrentUnits induced_current_second
