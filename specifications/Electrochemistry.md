@@ -135,7 +135,7 @@
 - conducting_salt
   - Type: string
   - Description: The conducting_salt
-- conducting_salt_concentration
+- concentration
   - Type: string
   - Description: The conducted_salt_concentration
 - solvent
