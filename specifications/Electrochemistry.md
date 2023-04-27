@@ -141,6 +141,9 @@
 - solvent
   - Type: string
   - Description: The solvent
+- pH
+  - Type: string
+  - Description: The pH value
 - scan_rate
   - Type: string
   - Description: The scan rate
