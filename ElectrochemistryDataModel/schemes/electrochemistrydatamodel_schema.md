@@ -1,6 +1,5 @@
 ```mermaid
 classDiagram
-    Dataset *-- ConcentrationUnits
     Dataset *-- Sample
     Dataset *-- Analysis
     Dataset *-- ElectrodeSetup
@@ -40,7 +39,7 @@ classDiagram
         +Analysis analysis
         +string solvent
         +string conducting_salt
-        +ConcentrationUnits conducting_salt_concentration
+        +enum conducting_salt_concentration
         +ElectrodeSetup electrode_setup
         +string[0..*] experiment
     }

@@ -6,15 +6,15 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 from datetime import date
+from pydantic.types import Enum
 
-from .molecularweightunits import MolecularWeightUnits
-from .concentrationunits import ConcentrationUnits
-from .filmpreparation import FilmPreparation
 from .sample import Sample
-from .author import Author
+from .molecularweightunits import MolecularWeightUnits
 from .electrodesetup import ElectrodeSetup
+from .author import Author
 from .analysis import Analysis
 from .synthesis import Synthesis
+from .filmpreparation import FilmPreparation
 
 
 @forge_signature
@@ -65,7 +65,7 @@ class Dataset(sdRDM.DataModel):
         description="Name of the used salt",
     )
 
-    conducting_salt_concentration: Optional[ConcentrationUnits] = Field(
+    conducting_salt_concentration: Optional[Enum] = Field(
         default=None,
         description="Concentration of the conducting salt",
     )
@@ -85,7 +85,7 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="6532f9135c0824e76db4a4537b76f2f6b9f2971e"
+        default="a349d4a7294495f575bc43ecb7acf15804cef296"
     )
 
     def add_to_author(

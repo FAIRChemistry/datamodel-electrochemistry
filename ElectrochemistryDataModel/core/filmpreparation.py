@@ -7,9 +7,9 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .temperatureunits import TemperatureUnits
+from .volumeunits import VolumeUnits
 from .spincoating import SpinCoating
 from .timeunits import TimeUnits
-from .volumeunits import VolumeUnits
 
 
 @forge_signature
@@ -33,7 +33,7 @@ class FilmPreparation(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="6532f9135c0824e76db4a4537b76f2f6b9f2971e"
+        default="a349d4a7294495f575bc43ecb7acf15804cef296"
     )
 
     def add_to_spin_coating(
