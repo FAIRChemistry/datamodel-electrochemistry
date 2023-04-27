@@ -122,7 +122,28 @@
   - Type: CP
   - Multiple: True
   - Description: Chronopotentiometry
-
+### Dataset_for_plots
+- filename
+  - Type: string
+  - Description: The filename with path
+- reference
+  - Type: string
+  - Description: The reference
+- name
+  - Type: string
+  - Description: The name
+- conducting_salt
+  - Type: string
+  - Description: The conducting_salt
+- conducting_salt_concentration
+  - Type: string
+  - Description: The conducted_salt_concentration
+- solvent
+  - Type: string
+  - Description: The solvent
+- scan_rate
+  - Type: string
+  - Description: The scan rate
 ### CP
 
 - induced_current_first
