@@ -46,6 +46,11 @@ class Dataset_for_plots(sdRDM.DataModel):
         description="The solvent",
     )
 
+    pH: Optional[str] = Field(
+        default=None,
+        description="The pH value",
+    )
+
     scan_rate: Optional[str] = Field(
         default=None,
         description="The scan rate",
@@ -55,5 +60,5 @@ class Dataset_for_plots(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="c548633cc6d3a7d2ef92893ff5152843a8d55206"
+        default="6532f9135c0824e76db4a4537b76f2f6b9f2971e"
     )
