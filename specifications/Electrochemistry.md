@@ -28,7 +28,7 @@
   - Type: string
   - Description: Name of the used salt
 - conducting_salt_concentration
-  - Type: ConcentrationUnits
+  - Type: enum
   - Description: Concentration of the conducting salt
 - electrode_setup
   - Type: ElectrodeSetup
