@@ -88,7 +88,7 @@ classDiagram
         +string reference
         +string name
         +string conducting_salt
-        +string conducting_salt_concentration
+        +string concentration
         +string solvent
         +string scan_rate
     }
