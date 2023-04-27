@@ -90,6 +90,7 @@ classDiagram
         +string conducting_salt
         +string concentration
         +string solvent
+        +string pH
         +string scan_rate
     }
     

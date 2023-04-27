@@ -1,3 +1,3 @@
 
 __URL__ = "https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
-__COMMIT__ = "c548633cc6d3a7d2ef92893ff5152843a8d55206"
+__COMMIT__ = "6532f9135c0824e76db4a4537b76f2f6b9f2971e"
