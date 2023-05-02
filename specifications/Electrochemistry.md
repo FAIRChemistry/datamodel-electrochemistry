@@ -152,7 +152,7 @@
   - Description: name of the substrate (WE)
 -area_WE:
   - Type: string
-  - Description: name of the substrate (WE)
+  - Description: The area of the WE
 ### CP
 
 - induced_current_first
