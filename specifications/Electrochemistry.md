@@ -147,6 +147,12 @@
 - scan_rate
   - Type: string
   - Description: The scan rate
+- substrate
+  - Type: string
+  - Description: name of the substrate (WE)
+-area_WE:
+  - Type: string
+  - Description: name of the substrate (WE)
 ### CP
 
 - induced_current_first
