@@ -91,6 +91,7 @@ classDiagram
         +string solvent
         +string pH
         +string scan_rate
+        +string substrate
     }
     
     class CP {
