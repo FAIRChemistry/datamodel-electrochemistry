@@ -92,6 +92,7 @@ classDiagram
         +string pH
         +string scan_rate
         +string substrate
+        +string area_WE:
     }
     
     class CP {
