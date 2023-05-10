@@ -122,7 +122,7 @@
   - Type: CP
   - Multiple: True
   - Description: Chronopotentiometry
-### Dataset_for_plots
+### DatasetForPlots
 - filename
   - Type: string
   - Description: The filename with path
