@@ -8,13 +8,13 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 from datetime import date
 from pydantic.types import Enum
 
+from .analysis import Analysis
 from .filmpreparation import FilmPreparation
 from .molecularweightunits import MolecularWeightUnits
-from .author import Author
 from .electrodesetup import ElectrodeSetup
-from .analysis import Analysis
-from .sample import Sample
+from .author import Author
 from .synthesis import Synthesis
+from .sample import Sample
 
 
 @forge_signature
@@ -85,7 +85,7 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="522e0c5e9cc3081b74a6acdc2ca26ef673f987b0"
+        default="c9fb9a562cf67ca1228fc39bbdb54606f1ddbcb2"
     )
 
     def add_to_author(

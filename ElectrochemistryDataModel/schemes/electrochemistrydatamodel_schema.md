@@ -82,7 +82,7 @@ classDiagram
         +CP[0..*] cp
     }
     
-    class Dataset_for_plots {
+    class DatasetForPlots {
         +string filename
         +string reference
         +string name

@@ -6,10 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .ferrocene_reference import Ferrocene_reference
 from .currentunits import CurrentUnits
-from .potentialunits import PotentialUnits
 from .scanrateunits import ScanRateUnits
+from .ferrocene_reference import Ferrocene_reference
+from .potentialunits import PotentialUnits
 
 
 @forge_signature
@@ -93,7 +93,7 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="522e0c5e9cc3081b74a6acdc2ca26ef673f987b0"
+        default="c9fb9a562cf67ca1228fc39bbdb54606f1ddbcb2"
     )
 
     def add_to_ferrocene_reference(
