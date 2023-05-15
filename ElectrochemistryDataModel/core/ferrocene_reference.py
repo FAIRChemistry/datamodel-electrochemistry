@@ -44,5 +44,5 @@ class Ferrocene_reference(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="c9fb9a562cf67ca1228fc39bbdb54606f1ddbcb2"
+        default="8cd271c42a5fbca8bacdeff187fc58e721ebb014"
     )
