@@ -164,7 +164,7 @@ class ChronoAmperometry(Analysis):
          return c
      
      def end_value(self):
-         last_values = self.df.tail(20)["E"].values[0]
+         last_values = self.df.tail(20)["I"].values[0]
          average =last_values.mean()
          return average
 class MultiChronoAmperometry(Analysis):
