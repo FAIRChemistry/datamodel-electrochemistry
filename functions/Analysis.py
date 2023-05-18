@@ -94,7 +94,9 @@ class ChronoPotentiometry(Analysis):
         return c
     
     def end_value(self):
-        return self.df.tail(1)["E"].values[0]
+        last_values = self.df.tail(20)["E"].values[0]
+        average = last_values.mean()
+        return average 
     
 class MultiChronoPotentiometry(Analysis):
     def __init__(self, metadata_list,change_reference=False):
@@ -162,7 +164,10 @@ class ChronoAmperometry(Analysis):
          return c
      
      def end_value(self):
-        return self.df.tail(1)["I"].values[0]
+         last_values = self.df.tail(20)["I"].values[0]
+         average = last_values.mean()
+         return average 
+     
 class MultiChronoAmperometry(Analysis):
     def __init__(self, metadata_list,current_density=False):
         self.reference = metadata_list[0].reference
