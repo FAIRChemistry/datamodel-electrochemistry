@@ -65,5 +65,5 @@ class DatasetForPlots(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="bf932f16222ff26e3bfe2c69151523db7c2ac916"
+        default="90548f8761f683c901d77a87e58c17c2a3289a0a"
     )
