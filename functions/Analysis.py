@@ -129,7 +129,7 @@ class ChronoAmperometry(Analysis):
      def __init__(self, metadata,current_density=False):
          if metadata.filename.endswith(".csv"):
             self.df = pd.read_csv(metadata.filename, sep=",", header=4, skipfooter=1, names=["t", "I"],engine="python")
-         elif metadata.filename.endswith("DTA"):
+         elif metadata.filename.endswith(".dat"):
              self.df = pd.read_csv(metadata.filename, sep="\s", header=0, names=["t", "I"],engine="python")
          self.name= metadata.name if metadata.name is not None else "" 
          self.solvent = metadata.solvent if metadata.solvent is not None else "H$_2$O"
@@ -170,38 +170,39 @@ class ChronoAmperometry(Analysis):
          last_values = self.df.tail(20)["I"].values[0]
          average =last_values.mean()
          return average
-# class MultiChronoAmperometry(Analysis):
-#     def __init__(self, metadata_list,current_density=False):
-#         self.reference = metadata_list[0].reference
-#         self.metadata_list = metadata_list
-#         self.xlabel="$t$ (s)"
-#         self.ylabel="$I$ (A)"
-#         if current_density:
-#             self.A=float(input("Enter the WE area:"))
-#             J_unit= input("Enter the unit of your current density (Use $ symbols for exponent eg. A/cm$^2$ ): ")
-#             self.ylabel= f"$J$  ({J_unit})"
-#         else:
-#             self.A=1
-#     def plot(self,save=False,label=False):
-#         xlabel=self.xlabel
-#         ylabel=self.ylabel
-#         if label:
-#             xlabel= input("enter new xlabel: ")
-#             ylabel= input("enter new ylabel: ")
-#         fig, ax = plt.subplots()
-#         for metadata in self.metadata_list:
-#             if metadata.filename.endswith(".csv"):
-#                 df = pd.read_csv(metadata.filename, sep=",", header=4, skipfooter=1,names=["t", "I"],engine="python")
-#             elif metadata.filename.endswith("DTA"):
-#                 df = pd.read_csv(metadata.filename, sep="\s", header=0, names=["t", "I"],engine="python")
-#         ax.plot(df["t"], df["I"]/self.A,label=metadata.name)
-#         ax.set_xlabel(xlabel)
-#         ax.set_ylabel(ylabel)
-#         ax.legend(loc="best",frameon=False)
-#         plt.show()
-#         if save:
-#             plotname=input("Enter the name of the plot: ")
-#             fig.savefig(plotname,bbox_inches='tight') 
+class MultiChronoAmperometry(Analysis):
+    def __init__(self, metadata_list,current_density=False):
+        self.reference = metadata_list[0].reference
+        self.metadata_list = metadata_list
+        self.xlabel="$t$ (s)"
+        self.ylabel="$I$ (A)"
+        if current_density:
+            self.A=float(input("Enter the WE area:"))
+            J_unit= input("Enter the unit of your current density (Use $ symbols for exponent eg. A/cm$^2$ ): ")
+            self.ylabel= f"$J$  ({J_unit})"
+        else:
+            self.A=1
+        print( self.metadata_list)
+    def plot(self,save=False,label=False):
+        xlabel=self.xlabel
+        ylabel=self.ylabel
+        if label:
+            xlabel= input("enter new xlabel: ")
+            ylabel= input("enter new ylabel: ")
+        fig, ax = plt.subplots()
+        for metadata in self.metadata_list:
+            if metadata.filename.endswith(".csv"):
+                df = pd.read_csv(metadata.filename, sep=",", header=4, skipfooter=1, names=["t", "I"],engine="python")
+            elif metadata.filename.endswith(".dat"):
+                df = pd.read_csv(metadata.filename, sep="\s", header=0, names=["t", "I"],engine="python")
+            ax.plot(df["t"], df["I"]/self.A,label=metadata.name)
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
+        ax.legend(loc="best",frameon=False)
+        plt.show()
+        if save:
+            plotname=input("Enter the name of the plot:")
+            fig.savefig(plotname,bbox_inches='tight') 
 class CyclicVoltammetry(Analysis):
     def __init__(self,metadata,cycles=None,current_density=False,change_reference=False):
         self.df = pd.read_csv(metadata.filename,header=5,skipfooter=1,engine="python")
