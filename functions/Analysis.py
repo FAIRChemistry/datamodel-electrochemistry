@@ -127,18 +127,21 @@ class MultiChronoPotentiometry(Analysis):
             fig.savefig(plotname,bbox_inches='tight') 
 class ChronoAmperometry(Analysis):
      def __init__(self, metadata,current_density=False):
-        self.df = pd.read_csv(metadata.filename, sep=",", header=4, skipfooter=1, names=["t", "I"],engine="python")
-        self.name= metadata.name if metadata.name is not None else "" 
-        self.solvent = metadata.solvent if metadata.solvent is not None else "H$_2$O"
-        self.concentration = metadata.concentration if metadata.concentration is not None else "0.1 M"
-        self.conducting_salt= metadata.conducting_salt if metadata.conducting_salt is not None else " KOH"
-         #self.reference = metadata["reference"] if metadata["reference"] is not None else "Hg/HgO"
-        self.xlabel="$t$ (s)"
-        self.ylabel="$I$ (A)"
-        if current_density:
-            self.A=float(input("Enter the WE area:"))
-            J_unit= input("Enter the unit of your current density (Use $ symbols for exponent eg. A/cm$^2$ ): ")
-            self.ylabel= f"$J$  ({J_unit})"   
+         if metadata.filename.endswith(".csv"):
+            self.df = pd.read_csv(metadata.filename, sep=",", header=4, skipfooter=1, names=["t", "I"],engine="python")
+         elif metadata.filename.endswith("DTA"):
+             self.df = pd.read_csv(metadata.filename, sep="\s", header=0, names=["t", "I"],engine="python")
+         self.name= metadata.name if metadata.name is not None else "" 
+         self.solvent = metadata.solvent if metadata.solvent is not None else "H$_2$O"
+         self.concentration = metadata.concentration if metadata.concentration is not None else "0.1 M"
+         self.conducting_salt= metadata.conducting_salt if metadata.conducting_salt is not None else " KOH"
+         self.reference = metadata.reference if metadata.reference is not None else "Hg/HgO"
+         self.xlabel="$t$ (s)"
+         self.ylabel="$I$ (A)"
+         if current_density:
+             self.A=float(input("Enter the WE area:"))
+             J_unit= input("Enter the unit of your current density (Use $ symbols for exponent eg. A/cm$^2$ ): ")
+             self.ylabel= f"$J$  ({J_unit})"   
 
      def plot(self,save=False,label=False):
          xlabel=self.xlabel 
@@ -187,8 +190,10 @@ class MultiChronoAmperometry(Analysis):
             ylabel= input("enter new ylabel: ")
         fig, ax = plt.subplots()
         for metadata in self.metadata_list:
-            #name= metadata_list[1]["name"]
-            df = pd.read_csv(metadata.filename, sep=",", header=4, skipfooter=1,names=["t", "I"],engine="python")
+            if metadata.filename.endswith(".csv"):
+                df = pd.read_csv(metadata.filename, sep=",", header=4, skipfooter=1,names=["t", "I"],engine="python")
+            elif metadata.filename.endswith("DTA"):
+                df = pd.read_csv(metadata.filename, sep="\s", header=0, names=["t", "I"],engine="python")
             ax.plot(df["t"], df["I"]/self.A,label=metadata.name)
         ax.set_xlabel(xlabel)
         ax.set_ylabel(ylabel)
