@@ -6,8 +6,8 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .filmpreparation import FilmPreparation
-from .synthesis import Synthesis
 from .molecularweightunits import MolecularWeightUnits
+from .synthesis import Synthesis
 
 
 @forge_signature
@@ -50,5 +50,5 @@ class Sample(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="0171e4e7cc68b3230bff2ecc515b5d7f5b60b7fd"
+        default="99cff7d0eb440b6236a6ff20214e483b7aff3c78"
     )
