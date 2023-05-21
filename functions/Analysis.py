@@ -140,6 +140,7 @@ class ChronoAmperometry(Analysis):
          self.ylabel="$I$ (A)"
          if current_density:
              self.A=float(input("Enter the WE area:"))
+             self.df["I"]=self.df["I"]/self.A
              J_unit= input("Enter the unit of your current density (Use $ symbols for exponent eg. A/cm$^2$ ): ")
              self.ylabel= f"$J$  ({J_unit})"   
 
