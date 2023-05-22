@@ -38,5 +38,5 @@ class Synthesis(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="90548f8761f683c901d77a87e58c17c2a3289a0a"
+        default="2e29b8b6ef074071bcd402f8662ee4390a267188"
     )
