@@ -8,12 +8,13 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 from pydantic.types import Enum
 from datetime import date
 
-from .analysis import Analysis
-from .author import Author
-from .molecularweightunits import MolecularWeightUnits
-from .filmpreparation import FilmPreparation
-from .electrodesetup import ElectrodeSetup
 from .sample import Sample
+from .author import Author
+from .analysis import Analysis
+from .molecularweightunits import MolecularWeightUnits
+from .electrodesetup import ElectrodeSetup
+from .filmpreparation import FilmPreparation
+from .experiment import Experiment
 from .synthesis import Synthesis
 
 
@@ -75,17 +76,17 @@ class Dataset(sdRDM.DataModel):
         description="Name of the used electrode materials",
     )
 
-    experiment: List[str] = Field(
+    experiments: List[Experiment] = Field(
         default_factory=ListPlus,
         multiple=True,
-        description="Name of the experiment files",
+        description="experiments",
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="2e29b8b6ef074071bcd402f8662ee4390a267188"
+        default="e12cdd7d1cecbd5b55e603c47a87e2ffad4109b7"
     )
 
     def add_to_author(
@@ -152,3 +153,23 @@ class Dataset(sdRDM.DataModel):
             params["id"] = id
 
         self.sample.append(Sample(**params))
+
+    def add_to_experiments(
+        self, experiment_name: Optional[str] = None, id: Optional[str] = None
+    ) -> None:
+        """
+        This method adds an object of type 'Experiment' to attribute experiments
+
+        Args:
+            id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
+            experiment_name (): Name of the experiment. Defaults to None
+        """
+
+        params = {
+            "experiment_name": experiment_name,
+        }
+
+        if id is not None:
+            params["id"] = id
+
+        self.experiments.append(Experiment(**params))

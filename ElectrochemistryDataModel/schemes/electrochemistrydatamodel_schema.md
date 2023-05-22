@@ -1,5 +1,6 @@
 ```mermaid
 classDiagram
+    Dataset *-- Experiment
     Dataset *-- Sample
     Dataset *-- Analysis
     Dataset *-- ElectrodeSetup
@@ -41,7 +42,11 @@ classDiagram
         +string conducting_salt
         +enum conducting_salt_concentration
         +ElectrodeSetup electrode_setup
-        +string[0..*] experiment
+        +Experiment[0..*] experiments
+    }
+    
+    class Experiment {
+        +string experiment_name
     }
     
     class Sample {

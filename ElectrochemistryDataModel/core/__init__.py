@@ -1,4 +1,5 @@
 from .dataset import Dataset
+from .experiment import Experiment
 from .sample import Sample
 from .synthesis import Synthesis
 from .physicalparameters import PhysicalParameters
@@ -27,6 +28,7 @@ __doc__ = ""
 
 __all__ = [
     "Dataset",
+    "Experiment",
     "Sample",
     "Synthesis",
     "PhysicalParameters",
