@@ -263,7 +263,7 @@ Container for information regarding the CV-Setup and parameters
 - RE
   - Type: string
   - Description: Name of the used reference electrode
-- RE_salt:
+- RE_salt
   - Type: string
   - Description: Name of the refererence salt
 ### Author
