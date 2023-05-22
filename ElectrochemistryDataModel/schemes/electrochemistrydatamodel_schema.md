@@ -140,6 +140,7 @@ classDiagram
         +string WE
         +string CE
         +string RE
+        +string RE_salt:
     }
     
     class Author {

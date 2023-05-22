@@ -6,10 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potentialunits import PotentialUnits
-from .chargedensityunits import ChargeDensityUnits
-from .currentunits import CurrentUnits
 from .timeunits import TimeUnits
+from .chargedensityunits import ChargeDensityUnits
+from .potentialunits import PotentialUnits
+from .currentunits import CurrentUnits
 
 
 @forge_signature
@@ -53,5 +53,5 @@ class CP(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d50442bfa556d70e60ffddd71f1ddf9b63f3ef03"
+        default="beca177b218acaffb6190e8f60815c5bd7ce553e"
     )
