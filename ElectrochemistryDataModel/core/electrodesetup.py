@@ -1,61 +1,44 @@
 import sdRDM
 
-from typing import Optional, Union, List
-from pydantic import PrivateAttr, Field, validator
-from sdRDM.base.listplus import ListPlus
+from typing import Optional
+from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
-
 
 
 @forge_signature
 class ElectrodeSetup(sdRDM.DataModel):
 
-                
     """"""
-    
+
     id: str = Field(
-            description="Unique identifier of the given object.",
-            default_factory=IDGenerator("electrodesetupINDEX"),
-            xml="@id"
+        description="Unique identifier of the given object.",
+        default_factory=IDGenerator("electrodesetupINDEX"),
+        xml="@id",
     )
-    
+
     WE: Optional[str] = Field(
-    
-    
-    default=None,
-    
-    description="Name of the used working electrode",
-    
+        default=None,
+        description="Name of the used working electrode",
     )
 
     CE: Optional[str] = Field(
-    
-    
-    default=None,
-    
-    description="Name of the used counter electrode",
-    
+        default=None,
+        description="Name of the used counter electrode",
     )
 
     RE: Optional[str] = Field(
-    
-    
-    default=None,
-    
-    description="Name of the used reference electrode",
-    
+        default=None,
+        description="Name of the used reference electrode",
     )
 
-    RE_salt:: Optional[str] = Field(
-    
-    
-    default=None,
-    
-    description="Name of the refererence salt",
-    
+    RE_salt: Optional[str] = Field(
+        default=None,
+        description="Name of the refererence salt",
     )
 
-    __repo__: Optional[str] = PrivateAttr(default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git")
-    __commit__: Optional[str] = PrivateAttr(default="beca177b218acaffb6190e8f60815c5bd7ce553e")
-    
-
+    __repo__: Optional[str] = PrivateAttr(
+        default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
+    )
+    __commit__: Optional[str] = PrivateAttr(
+        default="5e770c102e285326cedede315ba28c07a90b868f"
+    )
