@@ -4,16 +4,9 @@
 
 ### Dataset
 
-- name
-  - Type: string
-  - Description: Name of the dataset
-- date_created
-  - Type: date
-  - Description: Date/time when the dataset was created
-- author
-  - Type: Author
-  - Multiple: True
-  - Description: Persons who worked on the dataset
+- general_information
+  - Type: GeneralInformation
+  - Description: General information about the data model
 - sample
   - Type: Sample
   - Multiple: True
@@ -36,9 +29,19 @@
 - experiments
   - Type: Experiment
   - Multiple: True
-  - Description: experiments
+  - Description: The experiments of the work
 
-
+### GeneralInformation
+- title
+  - Type: string
+  - Description: The title of the work
+- author
+  - Type: Author
+  - Multiple: True
+  - Description: Persons who worked on the dataset  
+- date_of_work
+  - Type: date
+  - Description: Date/time when the dataset was created
   
 
 
