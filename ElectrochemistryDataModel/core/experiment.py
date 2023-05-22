@@ -21,9 +21,14 @@ class Experiment(sdRDM.DataModel):
         description="Name of the experiment",
     )
 
+    experiment_filename: Optional[str] = Field(
+        default=None,
+        description="Name of the experiment file (with the path)",
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="e12cdd7d1cecbd5b55e603c47a87e2ffad4109b7"
+        default="d50442bfa556d70e60ffddd71f1ddf9b63f3ef03"
     )
