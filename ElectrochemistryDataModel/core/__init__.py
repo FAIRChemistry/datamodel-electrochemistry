@@ -1,5 +1,5 @@
 from .dataset import Dataset
-from .experiment import Experiment
+from .generalinformation import GeneralInformation
 from .sample import Sample
 from .synthesis import Synthesis
 from .physicalparameters import PhysicalParameters
@@ -10,7 +10,7 @@ from .datasetforplots import DatasetForPlots
 from .cp import CP
 from .ca import CA
 from .cv import CV
-from .ferrocene_reference import Ferrocene_reference
+from .experiment import Experiment
 from .electrodesetup import ElectrodeSetup
 from .author import Author
 from .chargedensityunits import ChargeDensityUnits
@@ -23,12 +23,13 @@ from .concentrationunits import ConcentrationUnits
 from .scanrateunits import ScanRateUnits
 from .currentunits import CurrentUnits
 from .potentialunits import PotentialUnits
+from .areaunits import AreaUnits
 
 __doc__ = ""
 
 __all__ = [
     "Dataset",
-    "Experiment",
+    "GeneralInformation",
     "Sample",
     "Synthesis",
     "PhysicalParameters",
@@ -39,7 +40,7 @@ __all__ = [
     "CP",
     "CA",
     "CV",
-    "Ferrocene_reference",
+    "Experiment",
     "ElectrodeSetup",
     "Author",
     "ChargeDensityUnits",
@@ -52,4 +53,5 @@ __all__ = [
     "ScanRateUnits",
     "CurrentUnits",
     "PotentialUnits",
+    "AreaUnits",
 ]

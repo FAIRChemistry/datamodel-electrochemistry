@@ -6,10 +6,11 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potentialunits import PotentialUnits
 from .currentunits import CurrentUnits
 from .scanrateunits import ScanRateUnits
-from .ferrocene_reference import Ferrocene_reference
+from .areaunits import AreaUnits
+from .potentialunits import PotentialUnits
+from .experiment import Experiment
 
 
 @forge_signature
@@ -23,13 +24,13 @@ class CV(sdRDM.DataModel):
         xml="@id",
     )
 
-    ferrocene_reference: List[Ferrocene_reference] = Field(
+    cp_experiments: List[Experiment] = Field(
         default_factory=ListPlus,
         multiple=True,
-        description="Parameters of the ferocene reference measurement",
+        description="experiments",
     )
 
-    halfe_wave_potential: List[PotentialUnits] = Field(
+    half_wave_potential: List[PotentialUnits] = Field(
         default_factory=ListPlus,
         multiple=True,
         description="The half-wave potential of the measurement",
@@ -93,33 +94,36 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="5e770c102e285326cedede315ba28c07a90b868f"
+        default="467f3e8f6d8b1de1aae94e39025cbac80bda24b9"
     )
 
-    def add_to_ferrocene_reference(
+    def add_to_cp_experiments(
         self,
-        ox_potential_E_pc_ferrocene: Optional[PotentialUnits] = None,
-        red_potential_E_pa_ferrocene: Optional[PotentialUnits] = None,
-        halfe_wave_potential_ferrocene: Optional[PotentialUnits] = None,
+        experiment_name: Optional[str] = None,
+        experiment_filename: Optional[str] = None,
+        WE_material: Optional[str] = None,
+        WE_area: Optional[AreaUnits] = None,
         id: Optional[str] = None,
     ) -> None:
         """
-        This method adds an object of type 'Ferrocene_reference' to attribute ferrocene_reference
+        This method adds an object of type 'Experiment' to attribute cp_experiments
 
         Args:
-            id (str): Unique identifier of the 'Ferrocene_reference' object. Defaults to 'None'.
-            ox_potential_E_pc_ferrocene (): Potential at the maximum of the cathodic peak (reduction) of the ferrocene reference. Defaults to None
-            red_potential_E_pa_ferrocene (): The current at the maximum of the anodic peak (oxidation) of the ferrocene reference. Defaults to None
-            halfe_wave_potential_ferrocene (): The half-wave potential of the ferrocene measurement. Defaults to None
+            id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
+            experiment_name (): Name of the experiment. Defaults to None
+            experiment_filename (): Name of the experiment file (with the path). Defaults to None
+            WE_material (): Name of the used working electrode material. Defaults to None
+            WE_area (): The area of the used working electrode. Defaults to None
         """
 
         params = {
-            "ox_potential_E_pc_ferrocene": ox_potential_E_pc_ferrocene,
-            "red_potential_E_pa_ferrocene": red_potential_E_pa_ferrocene,
-            "halfe_wave_potential_ferrocene": halfe_wave_potential_ferrocene,
+            "experiment_name": experiment_name,
+            "experiment_filename": experiment_filename,
+            "WE_material": WE_material,
+            "WE_area": WE_area,
         }
 
         if id is not None:
             params["id"] = id
 
-        self.ferrocene_reference.append(Ferrocene_reference(**params))
+        self.cp_experiments.append(Experiment(**params))

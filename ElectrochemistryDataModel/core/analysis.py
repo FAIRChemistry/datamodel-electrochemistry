@@ -7,14 +7,14 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .cv import CV
-from .chargedensityunits import ChargeDensityUnits
-from .potentialunits import PotentialUnits
-from .ca import CA
 from .currentunits import CurrentUnits
-from .cp import CP
 from .scanrateunits import ScanRateUnits
-from .ferrocene_reference import Ferrocene_reference
 from .timeunits import TimeUnits
+from .cp import CP
+from .ca import CA
+from .potentialunits import PotentialUnits
+from .experiment import Experiment
+from .chargedensityunits import ChargeDensityUnits
 
 
 @forge_signature
@@ -50,13 +50,13 @@ class Analysis(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="5e770c102e285326cedede315ba28c07a90b868f"
+        default="467f3e8f6d8b1de1aae94e39025cbac80bda24b9"
     )
 
     def add_to_cv(
         self,
-        ferrocene_reference: List[Ferrocene_reference] = ListPlus(),
-        halfe_wave_potential: List[PotentialUnits] = ListPlus(),
+        cp_experiments: List[Experiment] = ListPlus(),
+        half_wave_potential: List[PotentialUnits] = ListPlus(),
         scan_rate: Optional[ScanRateUnits] = None,
         start_potential: Optional[PotentialUnits] = None,
         stop_potential: Optional[PotentialUnits] = None,
@@ -74,8 +74,8 @@ class Analysis(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'CV' object. Defaults to 'None'.
-            ferrocene_reference (): Parameters of the ferocene reference measurement. Defaults to ListPlus()
-            halfe_wave_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
+            cp_experiments (): experiments. Defaults to ListPlus()
+            half_wave_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
             scan_rate (): The scan rate of the measurement. Defaults to None
             start_potential (): The starting value of the potential. Defaults to None
             stop_potential (): The stop value of the potential. Defaults to None
@@ -89,8 +89,8 @@ class Analysis(sdRDM.DataModel):
         """
 
         params = {
-            "ferrocene_reference": ferrocene_reference,
-            "halfe_wave_potential": halfe_wave_potential,
+            "cp_experiments": cp_experiments,
+            "half_wave_potential": half_wave_potential,
             "scan_rate": scan_rate,
             "start_potential": start_potential,
             "stop_potential": stop_potential,
@@ -114,6 +114,7 @@ class Analysis(sdRDM.DataModel):
         induced_potential_second: Optional[PotentialUnits] = None,
         time_duration: Optional[TimeUnits] = None,
         current_end_value: Optional[CurrentUnits] = None,
+        ca_experiments: List[Experiment] = ListPlus(),
         id: Optional[str] = None,
     ) -> None:
         """
@@ -125,6 +126,7 @@ class Analysis(sdRDM.DataModel):
             induced_potential_second (): The second induced potential. Defaults to None
             time_duration (): The duration time of the induced potential. Defaults to None
             current_end_value (): The current value at the end of the measurement. Defaults to None
+            ca_experiments (): experiments. Defaults to ListPlus()
         """
 
         params = {
@@ -132,6 +134,7 @@ class Analysis(sdRDM.DataModel):
             "induced_potential_second": induced_potential_second,
             "time_duration": time_duration,
             "current_end_value": current_end_value,
+            "ca_experiments": ca_experiments,
         }
 
         if id is not None:
@@ -146,6 +149,7 @@ class Analysis(sdRDM.DataModel):
         time_duration: Optional[TimeUnits] = None,
         potential_end_value: Optional[PotentialUnits] = None,
         charge_density: List[ChargeDensityUnits] = ListPlus(),
+        cp_experiments: List[Experiment] = ListPlus(),
         id: Optional[str] = None,
     ) -> None:
         """
@@ -158,6 +162,7 @@ class Analysis(sdRDM.DataModel):
             time_duration (): The duration time of the induced current. Defaults to None
             potential_end_value (): The potential value at the end of the measurement. Defaults to None
             charge_density (): The charge density of the measurement. Defaults to ListPlus()
+            cp_experiments (): experiments. Defaults to ListPlus()
         """
 
         params = {
@@ -166,6 +171,7 @@ class Analysis(sdRDM.DataModel):
             "time_duration": time_duration,
             "potential_end_value": potential_end_value,
             "charge_density": charge_density,
+            "cp_experiments": cp_experiments,
         }
 
         if id is not None:
