@@ -28,7 +28,7 @@
   - Type: string
   - Description: Name of the used salt
 - conducting_salt_concentration
-  - Type: enum
+  - Type: ConcentrationUnits
   - Description: Concentration of the conducting salt
 - electrode_setup
   - Type: ElectrodeSetup
@@ -38,13 +38,7 @@
   - Multiple: True
   - Description: experiments
 
-### Experiment
-- experiment_name
-  - Type: string
-  - Description: Name of the experiment
-- experiment_filename
-  - Type: string
-  - Description: Name of the experiment file (with the path)
+
   
 
 
@@ -177,6 +171,10 @@
   - Type: ChargeDensityUnits
   - Multiple: True
   - Description: The charge density of the measurement
+- cp_experiments
+  - Type: Experiment
+  - Multiple: True
+  - Description: experiments
 
 ### CA
 
@@ -192,16 +190,20 @@
 - current_end_value
   - Type: CurrentUnits
   - Description: The current value at the end of the measurement
+- ca_experiments
+  - Type: Experiment
+  - Multiple: True
+  - Description: experiments
 
 ### CV
 
 Container for information regarding the CV-Setup and parameters
 
-- ferrocene_reference
-  - Type: Ferrocene_reference
+- cp_experiments
+  - Type: Experiment
   - Multiple: True
-  - Description: Parameters of the ferocene reference measurement
-- halfe_wave_potential
+  - Description: experiments
+- half_wave_potential
   - Type: PotentialUnits
   - Multiple: True
   - Description: The half-wave potential of the measurement  
@@ -240,23 +242,22 @@ Container for information regarding the CV-Setup and parameters
   - Type: int
   - Description: The total cycle number
 
-### Ferrocene_reference
-
-- ox_potential_E_pc_ferrocene
-  - Type: PotentialUnits
-  - Description: Potential at the maximum of the cathodic peak (reduction) of the ferrocene reference
-- red_potential_E_pa_ferrocene
-  - Type: PotentialUnits
-  - Description: The current at the maximum of the anodic peak (oxidation) of the ferrocene reference
-- halfe_wave_potential_ferrocene
-  - Type: PotentialUnits
-  - Description: The half-wave potential of the ferrocene measurement
+### Experiment
+- experiment_name
+  - Type: string
+  - Description: Name of the experiment
+- experiment_filename
+  - Type: string
+  - Description: Name of the experiment file (with the path)
+- WE_material
+  - Type: string
+  - Description: Name of the used working electrode material
+- WE_area
+  - Type: AreaUnits
+  - Description: The area of the used working electrode
 
 ### ElectrodeSetup
 
-- WE
-  - Type: string
-  - Description: Name of the used working electrode
 - CE
   - Type: string
   - Description: Name of the used counter electrode  
@@ -265,10 +266,15 @@ Container for information regarding the CV-Setup and parameters
   - Description: Name of the used reference electrode
 - RE_salt
   - Type: string
-  - Description: Name of the refererence salt
-### Author
+  - Description: Name of the reference salt
+- RE_salt_concentration
+  - Type: float
+  - Description: Unit of the reference salt concentration
+- RE_salt_concentration_unit
+  - Type: ConcentrationUnits
+  - Description: Unit of the reference salt concentration
 
-Container for information regarding persons who worked on a dataset.
+### Author
 
 - name
   - Type: string
@@ -334,10 +340,10 @@ MICRO_SEC = "us"
 ### ConcentrationUnits
 
 ```python
-MOLAR = "mole / l"
-MILLI_MOLAR = "mmole / l"
-MICRO_MOLAR = "umole / l"
-NANO_MOLAR = "nmole / l"
+MOLAR = "M"
+MILLI_MOLAR = "mM"
+MICRO_MOLAR = "uM"
+NANO_MOLAR = "nM"
 GRAM_LITER = "g / l"
 MILLIGRAM_LITER = "mg / l"
 MICROGRAM_LITER = "ug / l"
@@ -368,4 +374,10 @@ VOLT = "V"
 MILLI_VOLT = "mV"
 MICRO_VOLT = "uV"
 NANO_VOLT = "nV"
+```
+### AreaUnits
+
+```python
+SQUARE_CM= "cm^2"
+SQUARE_MILLI_M = "mm^2"
 ```
