@@ -42,6 +42,10 @@
 - experiment_name
   - Type: string
   - Description: Name of the experiment
+- experiment_filename
+  - Type: string
+  - Description: Name of the experiment file (with the path)
+  
 
 
 ### Sample
