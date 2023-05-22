@@ -47,6 +47,7 @@ classDiagram
     
     class Experiment {
         +string experiment_name
+        +string experiment_filename
     }
     
     class Sample {
