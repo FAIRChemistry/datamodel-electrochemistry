@@ -26,10 +26,22 @@
 - electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
+- cp_experiments
+  - Type: Experiment
+  - Multiple: True
+  - Description: The experiments for chronopotentiometry
+- ca_experiments
+  - Type: Experiment
+  - Multiple: True
+  - Description: The experiments for chronoamperometry
+- cv_experiments
+  - Type: Experiment
+  - Multiple: True
+  - Description: The experiments for cyclic voltammetry
 - experiments
   - Type: Experiment
   - Multiple: True
-  - Description: The experiments of the work
+  - Description: The experiments for work
 
 ### GeneralInformation
 - title
@@ -43,7 +55,19 @@
   - Type: date
   - Description: Date/time when the dataset was created
   
-
+### Experiment
+- experiment_name
+  - Type: string
+  - Description: Name of the experiment
+- experiment_filename
+  - Type: string
+  - Description: Name of the experiment file (with the path)
+- WE_material
+  - Type: string
+  - Description: Name of the used working electrode material
+- WE_area
+  - Type: AreaUnits
+  - Description: The area of the used working electrode
 
 ### Sample
 
@@ -245,19 +269,7 @@ Container for information regarding the CV-Setup and parameters
   - Type: int
   - Description: The total cycle number
 
-### Experiment
-- experiment_name
-  - Type: string
-  - Description: Name of the experiment
-- experiment_filename
-  - Type: string
-  - Description: Name of the experiment file (with the path)
-- WE_material
-  - Type: string
-  - Description: Name of the used working electrode material
-- WE_area
-  - Type: AreaUnits
-  - Description: The area of the used working electrode
+
 
 ### ElectrodeSetup
 
