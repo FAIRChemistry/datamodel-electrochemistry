@@ -5,6 +5,9 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .concentrationunits import ConcentrationUnits
+
+
 @forge_signature
 class ElectrodeSetup(sdRDM.DataModel):
 
@@ -14,11 +17,6 @@ class ElectrodeSetup(sdRDM.DataModel):
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("electrodesetupINDEX"),
         xml="@id",
-    )
-
-    WE: Optional[str] = Field(
-        default=None,
-        description="Name of the used working electrode",
     )
 
     CE: Optional[str] = Field(
@@ -33,12 +31,22 @@ class ElectrodeSetup(sdRDM.DataModel):
 
     RE_salt: Optional[str] = Field(
         default=None,
-        description="Name of the refererence salt",
+        description="Name of the reference salt",
+    )
+
+    RE_salt_concentration: Optional[float] = Field(
+        default=None,
+        description="Unit of the reference salt concentration",
+    )
+
+    RE_salt_concentration_unit: Optional[ConcentrationUnits] = Field(
+        default=None,
+        description="Unit of the reference salt concentration",
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="5e770c102e285326cedede315ba28c07a90b868f"
+        default="467f3e8f6d8b1de1aae94e39025cbac80bda24b9"
     )

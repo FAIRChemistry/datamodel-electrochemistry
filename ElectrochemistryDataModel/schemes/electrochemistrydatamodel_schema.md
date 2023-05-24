@@ -1,10 +1,12 @@
 ```mermaid
 classDiagram
-    Dataset *-- Experiment
+    Dataset *-- ConcentrationUnits
+    Dataset *-- GeneralInformation
     Dataset *-- Sample
     Dataset *-- Analysis
+    Dataset *-- Experiment
     Dataset *-- ElectrodeSetup
-    Dataset *-- Author
+    GeneralInformation *-- Author
     Sample *-- MolecularWeightUnits
     Sample *-- Synthesis
     Sample *-- FilmPreparation
@@ -23,31 +25,33 @@ classDiagram
     CP *-- TimeUnits
     CP *-- CurrentUnits
     CP *-- PotentialUnits
+    CP *-- Experiment
     CA *-- TimeUnits
     CA *-- CurrentUnits
     CA *-- PotentialUnits
+    CA *-- Experiment
     CV *-- ScanRateUnits
     CV *-- CurrentUnits
     CV *-- PotentialUnits
-    CV *-- Ferrocene_reference
-    Ferrocene_reference *-- PotentialUnits
+    CV *-- Experiment
+    Experiment *-- AreaUnits
+    ElectrodeSetup *-- ConcentrationUnits
     
     class Dataset {
-        +string name
-        +date date_created
-        +Author[0..*] author
+        +GeneralInformation general_information
         +Sample[0..*] sample
         +Analysis analysis
         +string solvent
         +string conducting_salt
-        +enum conducting_salt_concentration
+        +ConcentrationUnits conducting_salt_concentration
         +ElectrodeSetup electrode_setup
         +Experiment[0..*] experiments
     }
     
-    class Experiment {
-        +string experiment_name
-        +string experiment_filename
+    class GeneralInformation {
+        +string title
+        +Author[0..*] author
+        +date date_of_work
     }
     
     class Sample {
@@ -106,6 +110,7 @@ classDiagram
         +TimeUnits time_duration
         +PotentialUnits potential_end_value
         +ChargeDensityUnits[0..*] charge_density
+        +Experiment[0..*] cp_experiments
     }
     
     class CA {
@@ -113,11 +118,12 @@ classDiagram
         +PotentialUnits induced_potential_second
         +TimeUnits time_duration
         +CurrentUnits current_end_value
+        +Experiment[0..*] ca_experiments
     }
     
     class CV {
-        +Ferrocene_reference[0..*] ferrocene_reference
-        +PotentialUnits[0..*] halfe_wave_potential
+        +Experiment[0..*] cp_experiments
+        +PotentialUnits[0..*] half_wave_potential
         +ScanRateUnits scan_rate
         +PotentialUnits start_potential
         +PotentialUnits stop_potential
@@ -130,17 +136,19 @@ classDiagram
         +int total_cycle_number
     }
     
-    class Ferrocene_reference {
-        +PotentialUnits ox_potential_E_pc_ferrocene
-        +PotentialUnits red_potential_E_pa_ferrocene
-        +PotentialUnits halfe_wave_potential_ferrocene
+    class Experiment {
+        +string experiment_name
+        +string experiment_filename
+        +string WE_material
+        +AreaUnits WE_area
     }
     
     class ElectrodeSetup {
-        +string WE
         +string CE
         +string RE
         +string RE_salt
+        +float RE_salt_concentration
+        +ConcentrationUnits RE_salt_concentration_unit
     }
     
     class Author {
@@ -223,6 +231,12 @@ classDiagram
         +MILLI_VOLT
         +MICRO_VOLT
         +NANO_VOLT
+    }
+    
+    class AreaUnits {
+        << Enumeration >>
+        +SQUARE_CM
+        +SQUARE_MILLI_M
     }
     
 ```
