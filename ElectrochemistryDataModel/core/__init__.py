@@ -1,5 +1,6 @@
 from .dataset import Dataset
 from .generalinformation import GeneralInformation
+from .experiment import Experiment
 from .sample import Sample
 from .synthesis import Synthesis
 from .physicalparameters import PhysicalParameters
@@ -10,7 +11,6 @@ from .datasetforplots import DatasetForPlots
 from .cp import CP
 from .ca import CA
 from .cv import CV
-from .experiment import Experiment
 from .electrodesetup import ElectrodeSetup
 from .author import Author
 from .chargedensityunits import ChargeDensityUnits
@@ -30,6 +30,7 @@ __doc__ = ""
 __all__ = [
     "Dataset",
     "GeneralInformation",
+    "Experiment",
     "Sample",
     "Synthesis",
     "PhysicalParameters",
@@ -40,7 +41,6 @@ __all__ = [
     "CP",
     "CA",
     "CV",
-    "Experiment",
     "ElectrodeSetup",
     "Author",
     "ChargeDensityUnits",
