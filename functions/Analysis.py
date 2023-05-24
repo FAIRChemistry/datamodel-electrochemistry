@@ -84,19 +84,35 @@ class ChronoPotentiometry(Analysis):
             plotname=input("Enter the name of the plot: ")
             fig.savefig(plotname,bbox_inches='tight')  
 
-    def end_value_fit(self):
+    def end_value_fit(self,save=False):
         def exponential_fit(x, a, b, c):
             return a * np.exp(-b * x) + c
         np.seterr(over='ignore')
         t_fit = np.linspace(0, self.df.shape[0], self.df.shape[0])
+        fig,ax =plt.subplots()     
         popt, pcov = curve_fit(exponential_fit,self.df["t"].values, self.df["E"].values)
         c=popt[2]
+        ax.plot(self.df["t"],self.df["E"],label=self.name)
+        ax.plot(t_fit, exponential_fit(t_fit, *popt), 'r-', label="Fit")
+        ax.legend(loc="best",frameon=False)
+        plt.show()
+        if save:
+            plotname=input("Enter the name of the plot: ")
+            fig.savefig(plotname,bbox_inches='tight')  
         return c
     
-    def end_value(self):
+    def end_value(self,save=False):
         last_values = self.df.tail(20)["E"].values[0]
-        average =last_values.mean()
-        return average
+        average = last_values.mean()
+        fig,ax =plt.subplots()   
+        ax.plot(self.df["t"],self.df["E"],label=self.name)
+        ax.plot(self.df["t"], [average] * len(self.df["t"]), 'r-', label="Average Line")
+        ax.legend(loc="best",frameon=False)
+        plt.show()
+        if save:
+            plotname=input("Enter the name of the plot: ")
+            fig.savefig(plotname,bbox_inches='tight')  
+        return average 
     
 class MultiChronoPotentiometry(Analysis):
     def __init__(self, metadata_list,change_reference=False):
@@ -160,17 +176,37 @@ class ChronoAmperometry(Analysis):
             plotname=input("Enter the name of the plot: ")
             fig.savefig(plotname,bbox_inches='tight')
 
-     def end_value_fit(self):
+     def end_value_fit(self,save=False):
          def exponential_fit(x, a, b, c):
             return a * np.exp(-b * x) + c
          popt, pcov = curve_fit(exponential_fit,self.df["t"].values, self.df["I"].values)
+         np.seterr(over='ignore')
+         t_fit = np.linspace(0, self.df.shape[0], self.df.shape[0])
+         fig,ax =plt.subplots()     
+         popt, pcov = curve_fit(exponential_fit,self.df["t"].values, self.df["I"].values)
          c=popt[2]
+         ax.plot(self.df["t"],self.df["I"],label=self.name)
+         ax.plot(t_fit, exponential_fit(t_fit, *popt), 'r-', label="Fit")
+         ax.legend(loc="best",frameon=False)
+         plt.show()
+         if save:
+            plotname=input("Enter the name of the plot: ")
+            fig.savefig(plotname,bbox_inches='tight')  
          return c
      
-     def end_value(self):
+     def end_value(self,save=False):
          last_values = self.df.tail(20)["I"].values[0]
          average =last_values.mean()
+         fig,ax =plt.subplots()   
+         ax.plot(self.df["t"],self.df["I"],label=self.name)
+         ax.plot(self.df["t"], [average] * len(self.df["t"]), 'r-', label="Average Line")
+         ax.legend(loc="best",frameon=False)
+         plt.show()
+         if save:
+            plotname=input("Enter the name of the plot: ")
+            fig.savefig(plotname,bbox_inches='tight')  
          return average
+
 class MultiChronoAmperometry(Analysis):
     def __init__(self, metadata_list,current_density=False):
         self.reference = metadata_list[0].reference
