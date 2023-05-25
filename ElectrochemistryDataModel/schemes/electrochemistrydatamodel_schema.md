@@ -2,11 +2,12 @@
 classDiagram
     Dataset *-- ConcentrationUnits
     Dataset *-- GeneralInformation
+    Dataset *-- Experiment
     Dataset *-- Sample
     Dataset *-- Analysis
-    Dataset *-- Experiment
     Dataset *-- ElectrodeSetup
     GeneralInformation *-- Author
+    Experiment *-- AreaUnits
     Sample *-- MolecularWeightUnits
     Sample *-- Synthesis
     Sample *-- FilmPreparation
@@ -34,7 +35,6 @@ classDiagram
     CV *-- CurrentUnits
     CV *-- PotentialUnits
     CV *-- Experiment
-    Experiment *-- AreaUnits
     ElectrodeSetup *-- ConcentrationUnits
     
     class Dataset {
@@ -45,6 +45,9 @@ classDiagram
         +string conducting_salt
         +ConcentrationUnits conducting_salt_concentration
         +ElectrodeSetup electrode_setup
+        +Experiment[0..*] cp_experiments
+        +Experiment[0..*] ca_experiments
+        +Experiment[0..*] cv_experiments
         +Experiment[0..*] experiments
     }
     
@@ -52,6 +55,13 @@ classDiagram
         +string title
         +Author[0..*] author
         +date date_of_work
+    }
+    
+    class Experiment {
+        +string experiment_name
+        +string experiment_filename
+        +string WE_material
+        +AreaUnits WE_area
     }
     
     class Sample {
@@ -134,13 +144,6 @@ classDiagram
         +PotentialUnits[0..*] ox_potential_E_pc
         +PotentialUnits[0..*] red_potential_E_pa
         +int total_cycle_number
-    }
-    
-    class Experiment {
-        +string experiment_name
-        +string experiment_filename
-        +string WE_material
-        +AreaUnits WE_area
     }
     
     class ElectrodeSetup {
