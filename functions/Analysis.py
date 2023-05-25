@@ -179,7 +179,6 @@ class ChronoAmperometry(Analysis):
      def end_value_fit(self,save=False):
          def exponential_fit(x, a, b, c):
             return a * np.exp(-b * x) + c
-         popt, pcov = curve_fit(exponential_fit,self.df["t"].values, self.df["I"].values)
          np.seterr(over='ignore')
          t_fit = np.linspace(0, self.df.shape[0], self.df.shape[0])
          fig,ax =plt.subplots()     
@@ -218,7 +217,6 @@ class MultiChronoAmperometry(Analysis):
             self.ylabel= f"$J$  ({J_unit})"
         else:
             self.A=1
-        print( self.metadata_list)
     def plot(self,save=False,label=False):
         xlabel=self.xlabel
         ylabel=self.ylabel

@@ -7,10 +7,6 @@
 - general_information
   - Type: GeneralInformation
   - Description: General information about the data model
-- sample
-  - Type: Sample
-  - Multiple: True
-  - Description: The sample which was measured
 - analysis
   - Type: Analysis
   - Description: The method which is used to gain the data
@@ -26,22 +22,11 @@
 - electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
-- cp_experiments
-  - Type: Experiment
-  - Multiple: True
-  - Description: The experiments for chronopotentiometry
-- ca_experiments
-  - Type: Experiment
-  - Multiple: True
-  - Description: The experiments for chronoamperometry
-- cv_experiments
-  - Type: Experiment
-  - Multiple: True
-  - Description: The experiments for cyclic voltammetry
 - experiments
   - Type: Experiment
   - Multiple: True
   - Description: The experiments for work
+
 
 ### GeneralInformation
 - title
@@ -56,10 +41,10 @@
   - Description: Date/time when the dataset was created
   
 ### Experiment
-- experiment_name
+- name
   - Type: string
   - Description: Name of the experiment
-- experiment_filename
+- filename
   - Type: string
   - Description: Name of the experiment file (with the path)
 - WE_material
@@ -68,6 +53,10 @@
 - WE_area
   - Type: AreaUnits
   - Description: The area of the used working electrode
+- type
+  - Type: Experiment_type
+  - Description: Type of experiment
+
 
 ### Sample
 
@@ -305,7 +294,12 @@ Container for information regarding the CV-Setup and parameters
   - Description: The ORCID of the author
 
 ## Enumerations
-
+### Experiment_type
+```python
+CV = "CV"
+CP = "CP"
+CA = "CA"
+```
 ### ChargeDensityUnits
 
 ``` python
