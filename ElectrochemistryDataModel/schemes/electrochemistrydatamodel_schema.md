@@ -3,10 +3,10 @@ classDiagram
     Dataset *-- ConcentrationUnits
     Dataset *-- GeneralInformation
     Dataset *-- Experiment
-    Dataset *-- Sample
     Dataset *-- Analysis
     Dataset *-- ElectrodeSetup
     GeneralInformation *-- Author
+    Experiment *-- Experiment_type
     Experiment *-- AreaUnits
     Sample *-- MolecularWeightUnits
     Sample *-- Synthesis
@@ -39,15 +39,11 @@ classDiagram
     
     class Dataset {
         +GeneralInformation general_information
-        +Sample[0..*] sample
         +Analysis analysis
         +string solvent
         +string conducting_salt
         +ConcentrationUnits conducting_salt_concentration
         +ElectrodeSetup electrode_setup
-        +Experiment[0..*] cp_experiments
-        +Experiment[0..*] ca_experiments
-        +Experiment[0..*] cv_experiments
         +Experiment[0..*] experiments
     }
     
@@ -58,10 +54,11 @@ classDiagram
     }
     
     class Experiment {
-        +string experiment_name
-        +string experiment_filename
+        +string name
+        +string filename
         +string WE_material
         +AreaUnits WE_area
+        +Experiment_type type
     }
     
     class Sample {
@@ -159,6 +156,13 @@ classDiagram
         +string affiliation
         +string email
         +string orcid
+    }
+    
+    class Experiment_type {
+        << Enumeration >>
+        +CV
+        +CP
+        +CA
     }
     
     class ChargeDensityUnits {

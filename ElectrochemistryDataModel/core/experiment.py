@@ -6,6 +6,7 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .areaunits import AreaUnits
+from .experiment_type import Experiment_type
 
 
 @forge_signature
@@ -19,12 +20,12 @@ class Experiment(sdRDM.DataModel):
         xml="@id",
     )
 
-    experiment_name: Optional[str] = Field(
+    name: Optional[str] = Field(
         default=None,
         description="Name of the experiment",
     )
 
-    experiment_filename: Optional[str] = Field(
+    filename: Optional[str] = Field(
         default=None,
         description="Name of the experiment file (with the path)",
     )
@@ -39,9 +40,14 @@ class Experiment(sdRDM.DataModel):
         description="The area of the used working electrode",
     )
 
+    type: Optional[Experiment_type] = Field(
+        default=None,
+        description="Type of experiment",
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="8867c2a3e77fe6c21d29d56abe5a449b7d1454cb"
+        default="ae94721c6a91e32b823419095623603050c8a538"
     )

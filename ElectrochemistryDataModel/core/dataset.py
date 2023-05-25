@@ -7,15 +7,12 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .electrodesetup import ElectrodeSetup
-from .generalinformation import GeneralInformation
-from .analysis import Analysis
-from .synthesis import Synthesis
-from .sample import Sample
-from .molecularweightunits import MolecularWeightUnits
-from .filmpreparation import FilmPreparation
-from .areaunits import AreaUnits
-from .experiment import Experiment
 from .concentrationunits import ConcentrationUnits
+from .areaunits import AreaUnits
+from .experiment_type import Experiment_type
+from .experiment import Experiment
+from .analysis import Analysis
+from .generalinformation import GeneralInformation
 
 
 @forge_signature
@@ -32,12 +29,6 @@ class Dataset(sdRDM.DataModel):
     general_information: Optional[GeneralInformation] = Field(
         default=None,
         description="General information about the data model",
-    )
-
-    sample: List[Sample] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The sample which was measured",
     )
 
     analysis: Optional[Analysis] = Field(
@@ -65,24 +56,6 @@ class Dataset(sdRDM.DataModel):
         description="Name of the used electrode materials",
     )
 
-    cp_experiments: List[Experiment] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The experiments for chronopotentiometry",
-    )
-
-    ca_experiments: List[Experiment] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The experiments for chronoamperometry",
-    )
-
-    cv_experiments: List[Experiment] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The experiments for cyclic voltammetry",
-    )
-
     experiments: List[Experiment] = Field(
         default_factory=ListPlus,
         multiple=True,
@@ -93,142 +66,16 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="8867c2a3e77fe6c21d29d56abe5a449b7d1454cb"
+        default="ae94721c6a91e32b823419095623603050c8a538"
     )
-
-    def add_to_sample(
-        self,
-        name_product: Optional[str] = None,
-        chemical_formula: Optional[str] = None,
-        molecular_weight: Optional[MolecularWeightUnits] = None,
-        synthesis: Optional[Synthesis] = None,
-        film_preparation: Optional[FilmPreparation] = None,
-        id: Optional[str] = None,
-    ) -> None:
-        """
-        This method adds an object of type 'Sample' to attribute sample
-
-        Args:
-            id (str): Unique identifier of the 'Sample' object. Defaults to 'None'.
-            name_product (): The name of the product. Defaults to None
-            chemical_formula (): The chemical formula of the product. Defaults to None
-            molecular_weight (): The molecular weight of the product. Defaults to None
-            synthesis (): The synthesis of the product. Defaults to None
-            film_preparation (): The film preparation of the product. Defaults to None
-        """
-
-        params = {
-            "name_product": name_product,
-            "chemical_formula": chemical_formula,
-            "molecular_weight": molecular_weight,
-            "synthesis": synthesis,
-            "film_preparation": film_preparation,
-        }
-
-        if id is not None:
-            params["id"] = id
-
-        self.sample.append(Sample(**params))
-
-    def add_to_cp_experiments(
-        self,
-        experiment_name: Optional[str] = None,
-        experiment_filename: Optional[str] = None,
-        WE_material: Optional[str] = None,
-        WE_area: Optional[AreaUnits] = None,
-        id: Optional[str] = None,
-    ) -> None:
-        """
-        This method adds an object of type 'Experiment' to attribute cp_experiments
-
-        Args:
-            id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
-            experiment_name (): Name of the experiment. Defaults to None
-            experiment_filename (): Name of the experiment file (with the path). Defaults to None
-            WE_material (): Name of the used working electrode material. Defaults to None
-            WE_area (): The area of the used working electrode. Defaults to None
-        """
-
-        params = {
-            "experiment_name": experiment_name,
-            "experiment_filename": experiment_filename,
-            "WE_material": WE_material,
-            "WE_area": WE_area,
-        }
-
-        if id is not None:
-            params["id"] = id
-
-        self.cp_experiments.append(Experiment(**params))
-
-    def add_to_ca_experiments(
-        self,
-        experiment_name: Optional[str] = None,
-        experiment_filename: Optional[str] = None,
-        WE_material: Optional[str] = None,
-        WE_area: Optional[AreaUnits] = None,
-        id: Optional[str] = None,
-    ) -> None:
-        """
-        This method adds an object of type 'Experiment' to attribute ca_experiments
-
-        Args:
-            id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
-            experiment_name (): Name of the experiment. Defaults to None
-            experiment_filename (): Name of the experiment file (with the path). Defaults to None
-            WE_material (): Name of the used working electrode material. Defaults to None
-            WE_area (): The area of the used working electrode. Defaults to None
-        """
-
-        params = {
-            "experiment_name": experiment_name,
-            "experiment_filename": experiment_filename,
-            "WE_material": WE_material,
-            "WE_area": WE_area,
-        }
-
-        if id is not None:
-            params["id"] = id
-
-        self.ca_experiments.append(Experiment(**params))
-
-    def add_to_cv_experiments(
-        self,
-        experiment_name: Optional[str] = None,
-        experiment_filename: Optional[str] = None,
-        WE_material: Optional[str] = None,
-        WE_area: Optional[AreaUnits] = None,
-        id: Optional[str] = None,
-    ) -> None:
-        """
-        This method adds an object of type 'Experiment' to attribute cv_experiments
-
-        Args:
-            id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
-            experiment_name (): Name of the experiment. Defaults to None
-            experiment_filename (): Name of the experiment file (with the path). Defaults to None
-            WE_material (): Name of the used working electrode material. Defaults to None
-            WE_area (): The area of the used working electrode. Defaults to None
-        """
-
-        params = {
-            "experiment_name": experiment_name,
-            "experiment_filename": experiment_filename,
-            "WE_material": WE_material,
-            "WE_area": WE_area,
-        }
-
-        if id is not None:
-            params["id"] = id
-
-        self.cv_experiments.append(Experiment(**params))
 
     def add_to_experiments(
         self,
-        experiment_name: Optional[str] = None,
-        experiment_filename: Optional[str] = None,
+        name: Optional[str] = None,
+        filename: Optional[str] = None,
         WE_material: Optional[str] = None,
         WE_area: Optional[AreaUnits] = None,
+        type: Optional[Experiment_type] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -236,17 +83,19 @@ class Dataset(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
-            experiment_name (): Name of the experiment. Defaults to None
-            experiment_filename (): Name of the experiment file (with the path). Defaults to None
+            name (): Name of the experiment. Defaults to None
+            filename (): Name of the experiment file (with the path). Defaults to None
             WE_material (): Name of the used working electrode material. Defaults to None
             WE_area (): The area of the used working electrode. Defaults to None
+            type (): Type of experiment. Defaults to None
         """
 
         params = {
-            "experiment_name": experiment_name,
-            "experiment_filename": experiment_filename,
+            "name": name,
+            "filename": filename,
             "WE_material": WE_material,
             "WE_area": WE_area,
+            "type": type,
         }
 
         if id is not None:
