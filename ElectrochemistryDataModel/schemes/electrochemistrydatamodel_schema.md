@@ -42,7 +42,8 @@ classDiagram
         +Analysis analysis
         +string solvent
         +string conducting_salt
-        +ConcentrationUnits conducting_salt_concentration
+        +float conducting_salt_concentration
+        +ConcentrationUnits conducting_salt_concentration_unit
         +ElectrodeSetup electrode_setup
         +Experiment[0..*] experiments
     }

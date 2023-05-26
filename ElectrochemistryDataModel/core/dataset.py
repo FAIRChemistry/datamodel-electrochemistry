@@ -6,13 +6,13 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .electrodesetup import ElectrodeSetup
-from .experiment import Experiment
 from .concentrationunits import ConcentrationUnits
 from .generalinformation import GeneralInformation
-from .areaunits import AreaUnits
 from .experiment_type import Experiment_type
+from .electrodesetup import ElectrodeSetup
 from .analysis import Analysis
+from .areaunits import AreaUnits
+from .experiment import Experiment
 
 
 @forge_signature
@@ -46,9 +46,14 @@ class Dataset(sdRDM.DataModel):
         description="Name of the used salt",
     )
 
-    conducting_salt_concentration: Optional[ConcentrationUnits] = Field(
+    conducting_salt_concentration: Optional[float] = Field(
         default=None,
         description="Concentration of the conducting salt",
+    )
+
+    conducting_salt_concentration_unit: Optional[ConcentrationUnits] = Field(
+        default=None,
+        description="Unit of the conducting salt concentration",
     )
 
     electrode_setup: Optional[ElectrodeSetup] = Field(
@@ -66,7 +71,7 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="062cbaac48733c97039835b9293079e0e0247db3"
+        default="fc0a36ae1845e309a2c7ab8b2e5a20832d179927"
     )
 
     def add_to_experiments(
