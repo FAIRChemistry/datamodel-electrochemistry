@@ -13,6 +13,7 @@ from .ca import CA
 from .cv import CV
 from .electrodesetup import ElectrodeSetup
 from .author import Author
+from .experiment_type import Experiment_type
 from .chargedensityunits import ChargeDensityUnits
 from .pressureunits import PressureUnits
 from .molecularweightunits import MolecularWeightUnits
@@ -43,6 +44,7 @@ __all__ = [
     "CV",
     "ElectrodeSetup",
     "Author",
+    "Experiment_type",
     "ChargeDensityUnits",
     "PressureUnits",
     "MolecularWeightUnits",

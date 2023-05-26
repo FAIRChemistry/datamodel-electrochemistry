@@ -6,11 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .areaunits import AreaUnits
+from .currentunits import CurrentUnits
 from .experiment import Experiment
+from .experiment_type import Experiment_type
 from .potentialunits import PotentialUnits
 from .scanrateunits import ScanRateUnits
-from .currentunits import CurrentUnits
-from .areaunits import AreaUnits
 
 
 @forge_signature
@@ -94,15 +95,16 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="8867c2a3e77fe6c21d29d56abe5a449b7d1454cb"
+        default="ae94721c6a91e32b823419095623603050c8a538"
     )
 
     def add_to_cp_experiments(
         self,
-        experiment_name: Optional[str] = None,
-        experiment_filename: Optional[str] = None,
+        name: Optional[str] = None,
+        filename: Optional[str] = None,
         WE_material: Optional[str] = None,
         WE_area: Optional[AreaUnits] = None,
+        type: Optional[Experiment_type] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -110,17 +112,19 @@ class CV(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
-            experiment_name (): Name of the experiment. Defaults to None
-            experiment_filename (): Name of the experiment file (with the path). Defaults to None
+            name (): Name of the experiment. Defaults to None
+            filename (): Name of the experiment file (with the path). Defaults to None
             WE_material (): Name of the used working electrode material. Defaults to None
             WE_area (): The area of the used working electrode. Defaults to None
+            type (): Type of experiment. Defaults to None
         """
 
         params = {
-            "experiment_name": experiment_name,
-            "experiment_filename": experiment_filename,
+            "name": name,
+            "filename": filename,
             "WE_material": WE_material,
             "WE_area": WE_area,
+            "type": type,
         }
 
         if id is not None:
