@@ -17,8 +17,11 @@
   - Type: string
   - Description: Name of the used salt
 - conducting_salt_concentration
-  - Type: ConcentrationUnits
+  - Type: float
   - Description: Concentration of the conducting salt
+- conducting_salt_concentration_unit
+  - Type: ConcentrationUnits
+  - Description: Unit of the conducting salt concentration 
 - electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
