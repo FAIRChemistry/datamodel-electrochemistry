@@ -5,9 +5,9 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .timeunits import TimeUnits
-from .pressureunits import PressureUnits
 from .temperatureunits import TemperatureUnits
+from .pressureunits import PressureUnits
+from .timeunits import TimeUnits
 
 
 @forge_signature
@@ -15,7 +15,7 @@ class PhysicalParameters(sdRDM.DataModel):
 
     """"""
 
-    id: str = Field(
+    id: Optional[str] = Field(
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("physicalparametersINDEX"),
         xml="@id",
@@ -40,5 +40,5 @@ class PhysicalParameters(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="915d216b340acec297c77e9d00eb9f0ab14862c5"
+        default="280da812bbe67ac37573911603da7f06dc791d1f"
     )

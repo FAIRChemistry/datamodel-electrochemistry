@@ -13,7 +13,7 @@ class Synthesis(sdRDM.DataModel):
 
     """"""
 
-    id: str = Field(
+    id: Optional[str] = Field(
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("synthesisINDEX"),
         xml="@id",
@@ -38,5 +38,5 @@ class Synthesis(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="915d216b340acec297c77e9d00eb9f0ab14862c5"
+        default="280da812bbe67ac37573911603da7f06dc791d1f"
     )
