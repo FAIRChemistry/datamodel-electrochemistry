@@ -6,9 +6,9 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .temperatureunits import TemperatureUnits
-from .volumeunits import VolumeUnits
 from .timeunits import TimeUnits
+from .volumeunits import VolumeUnits
+from .temperatureunits import TemperatureUnits
 
 
 @forge_signature
@@ -52,5 +52,5 @@ class SpinCoating(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="fc0a36ae1845e309a2c7ab8b2e5a20832d179927"
+        default="915d216b340acec297c77e9d00eb9f0ab14862c5"
     )
