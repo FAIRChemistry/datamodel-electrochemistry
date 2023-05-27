@@ -2,3 +2,7 @@
 *.dat
 data/CA2.DTA
 *.pdf
+.venv/bin/python3.10
+.venv/bin/python3
+data/
+.venv/
