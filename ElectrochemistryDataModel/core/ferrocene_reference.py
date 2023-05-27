@@ -13,7 +13,7 @@ class Ferrocene_reference(sdRDM.DataModel):
 
     """"""
 
-    id: str = Field(
+    id: Optional[str] = Field(
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("ferrocene_referenceINDEX"),
         xml="@id",
@@ -44,5 +44,5 @@ class Ferrocene_reference(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="b0ed58e1e837aad95d79afc0368f630fbc2c8e5a"
+        default="97ee0106f08f904374941d98c2f0f5525ed34c45"
     )
