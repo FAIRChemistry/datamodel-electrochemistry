@@ -6,12 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .experiment_type import Experiment_type
-from .areaunits import AreaUnits
-from .scanrateunits import ScanRateUnits
 from .currentunits import CurrentUnits
 from .experiment import Experiment
 from .potentialunits import PotentialUnits
+from .scanrateunits import ScanRateUnits
+from .experiment_type import Experiment_type
+from .areaunits import AreaUnits
 
 
 @forge_signature
@@ -95,7 +95,7 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="280da812bbe67ac37573911603da7f06dc791d1f"
+        default="5622c5ebe8090880fbfb344d4ee1d3274c05b99a"
     )
 
     def add_to_cp_experiments(
