@@ -7,12 +7,12 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .generalinformation import GeneralInformation
-from .concentrationunits import ConcentrationUnits
-from .electrodesetup import ElectrodeSetup
-from .analysis import Analysis
-from .areaunits import AreaUnits
-from .experiment_type import Experiment_type
 from .experiment import Experiment
+from .concentrationunits import ConcentrationUnits
+from .analysis import Analysis
+from .experiment_type import Experiment_type
+from .areaunits import AreaUnits
+from .electrodesetup import ElectrodeSetup
 
 
 @forge_signature
@@ -20,7 +20,7 @@ class Dataset(sdRDM.DataModel):
 
     """"""
 
-    id: str = Field(
+    id: Optional[str] = Field(
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("datasetINDEX"),
         xml="@id",
@@ -71,7 +71,7 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="915d216b340acec297c77e9d00eb9f0ab14862c5"
+        default="280da812bbe67ac37573911603da7f06dc791d1f"
     )
 
     def add_to_experiments(
