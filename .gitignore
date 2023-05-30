@@ -6,5 +6,4 @@ data/CA2.DTA
 .venv/bin/python3
 data/
 plots/
-e-chem_enviroment/
-
+.venv/
