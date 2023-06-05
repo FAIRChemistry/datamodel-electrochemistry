@@ -56,6 +56,12 @@
 - WE_area
   - Type: AreaUnits
   - Description: The area of the used working electrode
+- solvent_test
+  - Type: string
+  - Description: Name of the solvent
+- electrode_setup_test
+  - Type: ElectrodeSetup
+  - Description: Name of the used electrode materials
 - type
   - Type: Experiment_type
   - Description: Type of experiment
