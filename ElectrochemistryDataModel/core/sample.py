@@ -5,9 +5,9 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .molecularweightunits import MolecularWeightUnits
 from .synthesis import Synthesis
 from .filmpreparation import FilmPreparation
+from .molecularweightunits import MolecularWeightUnits
 
 
 @forge_signature
@@ -50,5 +50,5 @@ class Sample(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="ddd7d6672af897f07fe63fcc38cee589395d6df4"
+        default="335acb05751730a5198440bdad0c7b9bb4896787"
     )
