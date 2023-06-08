@@ -22,9 +22,6 @@
 - conducting_salt_concentration_unit
   - Type: ConcentrationUnits
   - Description: Unit of the conducting salt concentration 
-- electrode_setup
-  - Type: ElectrodeSetup
-  - Description: Name of the used electrode materials
 - experiments
   - Type: Experiment
   - Multiple: True
@@ -59,7 +56,7 @@
 - solvent_test
   - Type: string
   - Description: Name of the solvent
-- electrode_setup_test
+- electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
 - type

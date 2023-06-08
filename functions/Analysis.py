@@ -1,42 +1,42 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import os 
+import os
 import datetime
 from scipy.optimize import curve_fit
 from sdRDM import DataModel
 from tabulate import tabulate
 from scipy.integrate import trapz
+import ipywidgets as widgets
+from ipywidgets import interact, interactive, fixed, interact_manual
 class Analysis:
     def __init__(self):
-        self.Ref_values={"SHE":0, 
-              "RHE":-0.059, 
-              "Calomel (sat. KCl)":0.241,
-              "Calomel (3.5 M KCl)":0.250,
-              "Calomel (1 M KCl)":0.280,
-              "Calomel (0.1 M KCl)":0.334,
-              "Ag/AgCl (sat. KCl)":0.199,
-              "Ag/AgCl (3.5 M KCl)":0.205,
-              "Hg/HgO (1 M KOH)":0.140,
-              "Hg/HgO (0.1 M KOH)":0.165,
-              "Fc/Fc+":0.400
-              }  
-        self.table = [[x, y] for x, y in self.Ref_values.items()]
-        #print(tabulate(table, headers=["Reference", "Potential (V)"]))
+        self.reference_values = {
+            "SHE": 0, 
+            "RHE": -0.059, 
+            "Calomel (sat. KCl)": 0.241,
+            "Calomel (3.5 M KCl)": 0.250,
+            "Calomel (1 M KCl)": 0.280,
+            "Calomel (0.1 M KCl)": 0.334,
+            "Ag/AgCl (sat. KCl)": 0.199,
+            "Ag/AgCl (3.5 M KCl)": 0.205,
+            "Hg/HgO (1 M KOH)": 0.140,
+            "Hg/HgO (0.1 M KOH)": 0.165,
+            "Fc/Fc+": 0.400
+        }
+        self.table = [[old_reference, new_reference] for old_reference, new_reference in self.reference_values.items()]
+        self.reference_difference_value = None
+
     def reference_list(self):
         print(tabulate(self.table, headers=["Reference", "Potential (V)"]))
-    def reference_difference(self,x,y):
-       
-        if x in self.Ref_values and y in self.Ref_values:
-            if x=="RHE" or y== "RHE":
-                pH= input("enter pH value:")
-                self.Ref_values["RHE"]= -0.0592 * float(pH)
-                #print(Ref_values["RHE"])
-                return  self.Ref_values[x] - self.Ref_values[y]
-            else:
-                return  self.Ref_values[x] - self.Ref_values[y]
-        else: 
-            return None
+
+    def reference_difference(self):
+        def interactive(old_reference="Ag/AgCl (sat. KCl)", new_reference="SHE", pH="1", potential="0"):
+            if old_reference == "RHE" or new_reference == "RHE":
+                self.reference_values["RHE"] = -0.0592 * float(pH)
+            self.reference_difference_value = float(potential) + self.reference_values[new_reference] - self.reference_values[old_reference]
+            return self.reference_difference_value
+        widgets.interact(interactive, old_reference=list(self.reference_values.keys()), new_reference=list(self.reference_values.keys()))
 class ChronoPotentiometry(Analysis):
     def __init__(self,metadata,change_referene=False):
         self.df = pd.read_csv(metadata.filename, sep="\t", header=56, skiprows=[57], usecols=[2, 3], names=["t", "E"])
