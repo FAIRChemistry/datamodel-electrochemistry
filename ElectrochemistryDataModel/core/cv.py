@@ -6,12 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .experiment_type import Experiment_type
-from .currentunits import CurrentUnits
 from .potentialunits import PotentialUnits
+from .currentunits import CurrentUnits
 from .areaunits import AreaUnits
-from .experiment import Experiment
+from .experiment_type import Experiment_type
 from .scanrateunits import ScanRateUnits
+from .experiment import Experiment
 from .electrodesetup import ElectrodeSetup
 
 
@@ -96,7 +96,7 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="335acb05751730a5198440bdad0c7b9bb4896787"
+        default="396d0b56786086c8be6546c7ab4610c9ded2fbb1"
     )
 
     def add_to_cp_experiments(
@@ -106,7 +106,7 @@ class CV(sdRDM.DataModel):
         WE_material: Optional[str] = None,
         WE_area: Optional[AreaUnits] = None,
         solvent_test: Optional[str] = None,
-        electrode_setup_test: Optional[ElectrodeSetup] = None,
+        electrode_setup: Optional[ElectrodeSetup] = None,
         type: Optional[Experiment_type] = None,
         id: Optional[str] = None,
     ) -> None:
@@ -120,7 +120,7 @@ class CV(sdRDM.DataModel):
             WE_material (): Name of the used working electrode material. Defaults to None
             WE_area (): The area of the used working electrode. Defaults to None
             solvent_test (): Name of the solvent. Defaults to None
-            electrode_setup_test (): Name of the used electrode materials. Defaults to None
+            electrode_setup (): Name of the used electrode materials. Defaults to None
             type (): Type of experiment. Defaults to None
         """
 
@@ -130,7 +130,7 @@ class CV(sdRDM.DataModel):
             "WE_material": WE_material,
             "WE_area": WE_area,
             "solvent_test": solvent_test,
-            "electrode_setup_test": electrode_setup_test,
+            "electrode_setup": electrode_setup,
             "type": type,
         }
 
