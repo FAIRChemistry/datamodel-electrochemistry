@@ -8,6 +8,7 @@ classDiagram
     GeneralInformation *-- Author
     Experiment *-- Experiment_type
     Experiment *-- AreaUnits
+    Experiment *-- ElectrodeSetup
     Sample *-- MolecularWeightUnits
     Sample *-- Synthesis
     Sample *-- FilmPreparation
@@ -59,6 +60,8 @@ classDiagram
         +string filename
         +string WE_material
         +AreaUnits WE_area
+        +string solvent_test
+        +ElectrodeSetup electrode_setup_test
         +Experiment_type type
     }
     
