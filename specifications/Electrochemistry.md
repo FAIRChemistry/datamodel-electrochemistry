@@ -62,6 +62,9 @@
 - electrolyte
   - Type:Electrolyte
   - Description: The used electrolyte
+- analysis_methode_test
+  - Type: Analysis_methode
+  - Description: The method which is used to gain the data
 - type
   - Type: Experiment_type
   - Description: Type of experiment
