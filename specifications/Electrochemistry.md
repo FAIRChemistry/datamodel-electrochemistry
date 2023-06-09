@@ -7,8 +7,8 @@
 - general_information
   - Type: GeneralInformation
   - Description: General information about the data model
-- analysis_methode
-  - Type: Analysis_methode
+- analysis
+  - Type: Analysis
   - Description: The method which is used to gain the data
 - solvent
   - Type: string
@@ -60,15 +60,26 @@
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
 - electrolyte
-  - Type:Electrolyte
+  - Type: Electrolyte
   - Description: The used electrolyte
-- analysis_methode_test
-  - Type: Analysis_methode
-  - Description: The method which is used to gain the data
+- analytic
+  - Type: Analytic
+  - Description: Analytic
 - type
   - Type: Experiment_type
   - Description: Type of experiment
 
+
+### Analytic
+- cyclic_v
+  - Type: string
+  - Description: Cyclic voltammetry test
+- chrono_a
+  - Type: string
+  - Description: Chronoamperometry test
+- chrono_p
+  - Type: string
+  - Description: Chronopotentiometry test
 
 ### Electrolyte
 - solvent
@@ -153,7 +164,7 @@
   - Type: TimeUnits
   - Description: The annealing time for the film
 
-### Analysis_methode
+### Analysis
 - cv
   - Type: CV
   - Description: Cyclic voltammetry
