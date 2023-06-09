@@ -6,14 +6,15 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .experiment import Experiment
-from .currentunits import CurrentUnits
-from .potentialunits import PotentialUnits
 from .experiment_type import Experiment_type
-from .electrolyte import Electrolyte
-from .areaunits import AreaUnits
-from .timeunits import TimeUnits
 from .electrodesetup import ElectrodeSetup
+from .currentunits import CurrentUnits
+from .areaunits import AreaUnits
+from .electrolyte import Electrolyte
+from .timeunits import TimeUnits
+from .analytic import Analytic
+from .experiment import Experiment
+from .potentialunits import PotentialUnits
 
 
 @forge_signature
@@ -62,7 +63,7 @@ class CA(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="104c20baf27e49c578eb70468cffff3483cad6f0"
+        default="cb12f3561b0b49f85f04d80dd56ea6af4d04f764"
     )
 
     def add_to_ca_experiments(
@@ -74,6 +75,7 @@ class CA(sdRDM.DataModel):
         solvent_test: Optional[str] = None,
         electrode_setup: Optional[ElectrodeSetup] = None,
         electrolyte: Optional[Electrolyte] = None,
+        analytic: Optional[Analytic] = None,
         type: Optional[Experiment_type] = None,
         id: Optional[str] = None,
     ) -> None:
@@ -89,6 +91,7 @@ class CA(sdRDM.DataModel):
             solvent_test (): Name of the solvent. Defaults to None
             electrode_setup (): Name of the used electrode materials. Defaults to None
             electrolyte (): The used electrolyte. Defaults to None
+            analytic (): Analytic. Defaults to None
             type (): Type of experiment. Defaults to None
         """
 
@@ -100,6 +103,7 @@ class CA(sdRDM.DataModel):
             "solvent_test": solvent_test,
             "electrode_setup": electrode_setup,
             "electrolyte": electrolyte,
+            "analytic": analytic,
             "type": type,
         }
 
