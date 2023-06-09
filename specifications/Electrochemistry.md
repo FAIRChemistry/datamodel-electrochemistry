@@ -7,8 +7,8 @@
 - general_information
   - Type: GeneralInformation
   - Description: General information about the data model
-- analysis
-  - Type: Analysis
+- analysis_methode
+  - Type: Analysis_methode
   - Description: The method which is used to gain the data
 - solvent
   - Type: string
@@ -65,6 +65,7 @@
 - type
   - Type: Experiment_type
   - Description: Type of experiment
+
 
 ### Electrolyte
 - solvent
@@ -149,8 +150,7 @@
   - Type: TimeUnits
   - Description: The annealing time for the film
 
-### Analysis
-
+### Analysis_methode
 - cv
   - Type: CV
   - Description: Cyclic voltammetry
@@ -191,9 +191,13 @@
 
 ### CP
 
-- induced_current_first
+- induced_current
+  - Type: float
+  - Multiple: True
+  - Description: The induced current  
+- induced_current_unit
   - Type: CurrentUnits
-  - Description: The first induced current  
+  - Description: The induced current 
 - induced_current_second
   - Type: CurrentUnits
   - Description: The first induced current  
@@ -215,6 +219,9 @@
 ### CA
 
 - induced_potential_first
+  - Type: float
+  - Description: The first induced potential  
+- induced_potential_first_unit
   - Type: PotentialUnits
   - Description: The first induced potential  
 - induced_potential_second
