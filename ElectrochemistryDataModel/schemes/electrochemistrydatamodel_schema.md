@@ -4,7 +4,6 @@ classDiagram
     Dataset *-- GeneralInformation
     Dataset *-- Experiment
     Dataset *-- Analysis
-    Dataset *-- ElectrodeSetup
     GeneralInformation *-- Author
     Experiment *-- Experiment_type
     Experiment *-- AreaUnits
@@ -45,7 +44,6 @@ classDiagram
         +string conducting_salt
         +float conducting_salt_concentration
         +ConcentrationUnits conducting_salt_concentration_unit
-        +ElectrodeSetup electrode_setup
         +Experiment[0..*] experiments
     }
     
@@ -61,7 +59,7 @@ classDiagram
         +string WE_material
         +AreaUnits WE_area
         +string solvent_test
-        +ElectrodeSetup electrode_setup_test
+        +ElectrodeSetup electrode_setup
         +Experiment_type type
     }
     

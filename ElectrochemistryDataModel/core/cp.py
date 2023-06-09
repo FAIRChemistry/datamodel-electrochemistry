@@ -6,14 +6,14 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .experiment_type import Experiment_type
-from .chargedensityunits import ChargeDensityUnits
-from .timeunits import TimeUnits
 from .potentialunits import PotentialUnits
-from .experiment import Experiment
-from .areaunits import AreaUnits
-from .electrodesetup import ElectrodeSetup
+from .chargedensityunits import ChargeDensityUnits
 from .currentunits import CurrentUnits
+from .timeunits import TimeUnits
+from .areaunits import AreaUnits
+from .experiment_type import Experiment_type
+from .experiment import Experiment
+from .electrodesetup import ElectrodeSetup
 
 
 @forge_signature
@@ -63,7 +63,7 @@ class CP(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="335acb05751730a5198440bdad0c7b9bb4896787"
+        default="396d0b56786086c8be6546c7ab4610c9ded2fbb1"
     )
 
     def add_to_cp_experiments(
@@ -73,7 +73,7 @@ class CP(sdRDM.DataModel):
         WE_material: Optional[str] = None,
         WE_area: Optional[AreaUnits] = None,
         solvent_test: Optional[str] = None,
-        electrode_setup_test: Optional[ElectrodeSetup] = None,
+        electrode_setup: Optional[ElectrodeSetup] = None,
         type: Optional[Experiment_type] = None,
         id: Optional[str] = None,
     ) -> None:
@@ -87,7 +87,7 @@ class CP(sdRDM.DataModel):
             WE_material (): Name of the used working electrode material. Defaults to None
             WE_area (): The area of the used working electrode. Defaults to None
             solvent_test (): Name of the solvent. Defaults to None
-            electrode_setup_test (): Name of the used electrode materials. Defaults to None
+            electrode_setup (): Name of the used electrode materials. Defaults to None
             type (): Type of experiment. Defaults to None
         """
 
@@ -97,7 +97,7 @@ class CP(sdRDM.DataModel):
             "WE_material": WE_material,
             "WE_area": WE_area,
             "solvent_test": solvent_test,
-            "electrode_setup_test": electrode_setup_test,
+            "electrode_setup": electrode_setup,
             "type": type,
         }
 
