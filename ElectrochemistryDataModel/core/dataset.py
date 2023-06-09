@@ -6,13 +6,14 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .concentrationunits import ConcentrationUnits
-from .experiment_type import Experiment_type
-from .analysis import Analysis
 from .experiment import Experiment
-from .electrodesetup import ElectrodeSetup
+from .electrolyte import Electrolyte
+from .analysis_methode import Analysis_methode
+from .experiment_type import Experiment_type
 from .generalinformation import GeneralInformation
 from .areaunits import AreaUnits
+from .electrodesetup import ElectrodeSetup
+from .concentrationunits import ConcentrationUnits
 
 
 @forge_signature
@@ -31,7 +32,7 @@ class Dataset(sdRDM.DataModel):
         description="General information about the data model",
     )
 
-    analysis: Optional[Analysis] = Field(
+    analysis_methode: Optional[Analysis_methode] = Field(
         default=None,
         description="The method which is used to gain the data",
     )
@@ -66,7 +67,7 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="396d0b56786086c8be6546c7ab4610c9ded2fbb1"
+        default="104c20baf27e49c578eb70468cffff3483cad6f0"
     )
 
     def add_to_experiments(
@@ -77,6 +78,7 @@ class Dataset(sdRDM.DataModel):
         WE_area: Optional[AreaUnits] = None,
         solvent_test: Optional[str] = None,
         electrode_setup: Optional[ElectrodeSetup] = None,
+        electrolyte: Optional[Electrolyte] = None,
         type: Optional[Experiment_type] = None,
         id: Optional[str] = None,
     ) -> None:
@@ -91,6 +93,7 @@ class Dataset(sdRDM.DataModel):
             WE_area (): The area of the used working electrode. Defaults to None
             solvent_test (): Name of the solvent. Defaults to None
             electrode_setup (): Name of the used electrode materials. Defaults to None
+            electrolyte (): The used electrolyte. Defaults to None
             type (): Type of experiment. Defaults to None
         """
 
@@ -101,6 +104,7 @@ class Dataset(sdRDM.DataModel):
             "WE_area": WE_area,
             "solvent_test": solvent_test,
             "electrode_setup": electrode_setup,
+            "electrolyte": electrolyte,
             "type": type,
         }
 

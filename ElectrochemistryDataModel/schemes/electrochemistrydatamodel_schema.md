@@ -3,11 +3,13 @@ classDiagram
     Dataset *-- ConcentrationUnits
     Dataset *-- GeneralInformation
     Dataset *-- Experiment
-    Dataset *-- Analysis
+    Dataset *-- Analysis_methode
     GeneralInformation *-- Author
     Experiment *-- Experiment_type
     Experiment *-- AreaUnits
+    Experiment *-- Electrolyte
     Experiment *-- ElectrodeSetup
+    Electrolyte *-- ConcentrationUnits
     Sample *-- MolecularWeightUnits
     Sample *-- Synthesis
     Sample *-- FilmPreparation
@@ -19,9 +21,9 @@ classDiagram
     SpinCoating *-- TemperatureUnits
     SpinCoating *-- VolumeUnits
     SpinCoating *-- TimeUnits
-    Analysis *-- CP
-    Analysis *-- CA
-    Analysis *-- CV
+    Analysis_methode *-- CP
+    Analysis_methode *-- CA
+    Analysis_methode *-- CV
     CP *-- ChargeDensityUnits
     CP *-- TimeUnits
     CP *-- CurrentUnits
@@ -36,10 +38,11 @@ classDiagram
     CV *-- PotentialUnits
     CV *-- Experiment
     ElectrodeSetup *-- ConcentrationUnits
+    ElectrodeSetup *-- AreaUnits
     
     class Dataset {
         +GeneralInformation general_information
-        +Analysis analysis
+        +Analysis_methode analysis_methode
         +string solvent
         +string conducting_salt
         +float conducting_salt_concentration
@@ -60,7 +63,15 @@ classDiagram
         +AreaUnits WE_area
         +string solvent_test
         +ElectrodeSetup electrode_setup
+        +Electrolyte electrolyte
         +Experiment_type type
+    }
+    
+    class Electrolyte {
+        +string solvent
+        +string conducting_salt
+        +float conducting_salt_concentration
+        +ConcentrationUnits conducting_salt_concentration_unit
     }
     
     class Sample {
@@ -95,10 +106,10 @@ classDiagram
         +TimeUnits annealing_time
     }
     
-    class Analysis {
-        +CV[0..*] cv
-        +CA[0..*] ca
-        +CP[0..*] cp
+    class Analysis_methode {
+        +CV cv
+        +CA ca
+        +CP cp
     }
     
     class DatasetForPlots {
@@ -114,7 +125,8 @@ classDiagram
     }
     
     class CP {
-        +CurrentUnits induced_current_first
+        +float[0..*] induced_current
+        +CurrentUnits induced_current_unit
         +CurrentUnits induced_current_second
         +TimeUnits time_duration
         +PotentialUnits potential_end_value
@@ -123,7 +135,8 @@ classDiagram
     }
     
     class CA {
-        +PotentialUnits induced_potential_first
+        +float induced_potential_first
+        +PotentialUnits induced_potential_first_unit
         +PotentialUnits induced_potential_second
         +TimeUnits time_duration
         +CurrentUnits current_end_value
@@ -146,11 +159,13 @@ classDiagram
     }
     
     class ElectrodeSetup {
-        +string CE
-        +string RE
-        +string RE_salt
-        +float RE_salt_concentration
-        +ConcentrationUnits RE_salt_concentration_unit
+        +string working_electrode
+        +AreaUnits Working_electrode_area
+        +string conter_electrode
+        +string reference_electrode
+        +string reference_electrode_salt
+        +float reference_electrode_salt_concentration
+        +ConcentrationUnits reference_electrode_salt_concentration_unit
     }
     
     class Author {

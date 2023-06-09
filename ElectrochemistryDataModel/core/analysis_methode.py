@@ -5,33 +5,35 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .physicalparameters import PhysicalParameters
+from .cp import CP
+from .ca import CA
+from .cv import CV
 
 
 @forge_signature
-class Synthesis(sdRDM.DataModel):
+class Analysis_methode(sdRDM.DataModel):
 
     """"""
 
     id: Optional[str] = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("synthesisINDEX"),
+        default_factory=IDGenerator("analysis_methodeINDEX"),
         xml="@id",
     )
 
-    reagents: Optional[str] = Field(
+    cv: Optional[CV] = Field(
         default=None,
-        description="The reagents of the product",
+        description="Cyclic voltammetry",
     )
 
-    solvent: Optional[str] = Field(
+    ca: Optional[CA] = Field(
         default=None,
-        description="The solvent of the synthesis",
+        description="Chronoamperometry",
     )
 
-    physical_parameters: Optional[PhysicalParameters] = Field(
+    cp: Optional[CP] = Field(
         default=None,
-        description="The physical parameters of the synthesis",
+        description="Chronopotentiometry",
     )
 
     __repo__: Optional[str] = PrivateAttr(

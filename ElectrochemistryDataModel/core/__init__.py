@@ -1,12 +1,13 @@
 from .dataset import Dataset
 from .generalinformation import GeneralInformation
 from .experiment import Experiment
+from .electrolyte import Electrolyte
 from .sample import Sample
 from .synthesis import Synthesis
 from .physicalparameters import PhysicalParameters
 from .filmpreparation import FilmPreparation
 from .spincoating import SpinCoating
-from .analysis import Analysis
+from .analysis_methode import Analysis_methode
 from .datasetforplots import DatasetForPlots
 from .cp import CP
 from .ca import CA
@@ -32,12 +33,13 @@ __all__ = [
     "Dataset",
     "GeneralInformation",
     "Experiment",
+    "Electrolyte",
     "Sample",
     "Synthesis",
     "PhysicalParameters",
     "FilmPreparation",
     "SpinCoating",
-    "Analysis",
+    "Analysis_methode",
     "DatasetForPlots",
     "CP",
     "CA",

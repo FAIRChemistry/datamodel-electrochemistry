@@ -5,33 +5,38 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .physicalparameters import PhysicalParameters
+from .concentrationunits import ConcentrationUnits
 
 
 @forge_signature
-class Synthesis(sdRDM.DataModel):
+class Electrolyte(sdRDM.DataModel):
 
     """"""
 
     id: Optional[str] = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("synthesisINDEX"),
+        default_factory=IDGenerator("electrolyteINDEX"),
         xml="@id",
-    )
-
-    reagents: Optional[str] = Field(
-        default=None,
-        description="The reagents of the product",
     )
 
     solvent: Optional[str] = Field(
         default=None,
-        description="The solvent of the synthesis",
+        description="Name of the solvent",
     )
 
-    physical_parameters: Optional[PhysicalParameters] = Field(
+    conducting_salt: Optional[str] = Field(
         default=None,
-        description="The physical parameters of the synthesis",
+        description="Name of the used salt",
+    )
+
+    conducting_salt_concentration: Optional[float] = Field(
+        default=None,
+        description="Concentration of the conducting salt",
+    )
+
+    conducting_salt_concentration_unit: Optional[ConcentrationUnits] = Field(
+        default=None,
+        description="Unit of the conducting salt concentration",
     )
 
     __repo__: Optional[str] = PrivateAttr(
