@@ -59,10 +59,27 @@
 - electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
+- electrolyte
+  - Type:Electrolyte
+  - Description: The used electrolyte
 - type
   - Type: Experiment_type
   - Description: Type of experiment
 
+### Electrolyte
+- solvent
+  - Type: string
+  - Description: Name of the solvent
+- conducting_salt
+  - Type: string
+  - Description: Name of the used salt
+- conducting_salt_concentration
+  - Type: float
+  - Description: Concentration of the conducting salt
+- conducting_salt_concentration_unit
+  - Type: ConcentrationUnits
+  - Description: Unit of the conducting salt concentration
+ 
 
 ### Sample
 
@@ -136,15 +153,12 @@
 
 - cv
   - Type: CV
-  - Multiple: True
   - Description: Cyclic voltammetry
 - ca
   - Type: CA
-  - Multiple: True
   - Description: Chronoamperometry
 - cp
   - Type: CP
-  - Multiple: True
   - Description: Chronopotentiometry
 ### DatasetForPlots
 - filename
@@ -268,19 +282,25 @@ Container for information regarding the CV-Setup and parameters
 
 ### ElectrodeSetup
 
-- CE
+- working_electrode
+  - Type: string
+  - Description: Name of the used counter electrode
+- Working_electrode_area
+  - Type: AreaUnits
+  - Description: The area of the used working electrode 
+- conter_electrode
   - Type: string
   - Description: Name of the used counter electrode  
-- RE
+- reference_electrode
   - Type: string
   - Description: Name of the used reference electrode
-- RE_salt
+- reference_electrode_salt
   - Type: string
   - Description: Name of the reference salt
-- RE_salt_concentration
+- reference_electrode_salt_concentration
   - Type: float
   - Description: Unit of the reference salt concentration
-- RE_salt_concentration_unit
+- reference_electrode_salt_concentration_unit
   - Type: ConcentrationUnits
   - Description: Unit of the reference salt concentration
 
