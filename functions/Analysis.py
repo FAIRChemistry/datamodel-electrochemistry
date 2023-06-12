@@ -37,6 +37,8 @@ class Analysis:
             self.reference_difference_value = float(potential) + self.reference_values[new_reference] - self.reference_values[old_reference]
             return self.reference_difference_value
         widgets.interact(interactive, old_reference=list(self.reference_values.keys()), new_reference=list(self.reference_values.keys()))
+        return self.reference_difference_value
+
 class ChronoPotentiometry(Analysis):
     def __init__(self,metadata,change_referene=False):
         self.df = pd.read_csv(metadata.filename, sep="\t", header=56, skiprows=[57], usecols=[2, 3], names=["t", "E"])

@@ -62,24 +62,11 @@
 - electrolyte
   - Type: Electrolyte
   - Description: The used electrolyte
-- analytic
-  - Type: Analytic
-  - Description: Analytic
 - type
   - Type: Experiment_type
   - Description: Type of experiment
 
 
-### Analytic
-- cyclic_v
-  - Type: string
-  - Description: Cyclic voltammetry test
-- chrono_a
-  - Type: string
-  - Description: Chronoamperometry test
-- chrono_p
-  - Type: string
-  - Description: Chronopotentiometry test
 
 ### Electrolyte
 - solvent
