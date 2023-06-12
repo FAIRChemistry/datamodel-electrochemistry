@@ -7,7 +7,6 @@ classDiagram
     GeneralInformation *-- Author
     Experiment *-- Experiment_type
     Experiment *-- AreaUnits
-    Experiment *-- Analytic
     Experiment *-- Electrolyte
     Experiment *-- ElectrodeSetup
     Electrolyte *-- ConcentrationUnits
@@ -65,14 +64,7 @@ classDiagram
         +string solvent_test
         +ElectrodeSetup electrode_setup
         +Electrolyte electrolyte
-        +Analytic analytic
         +Experiment_type type
-    }
-    
-    class Analytic {
-        +string cyclic_v
-        +string chrono_a
-        +string chrono_p
     }
     
     class Electrolyte {

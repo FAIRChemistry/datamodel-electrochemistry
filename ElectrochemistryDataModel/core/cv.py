@@ -6,15 +6,14 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .experiment_type import Experiment_type
-from .scanrateunits import ScanRateUnits
 from .electrodesetup import ElectrodeSetup
-from .currentunits import CurrentUnits
-from .areaunits import AreaUnits
-from .electrolyte import Electrolyte
-from .analytic import Analytic
 from .experiment import Experiment
 from .potentialunits import PotentialUnits
+from .currentunits import CurrentUnits
+from .scanrateunits import ScanRateUnits
+from .areaunits import AreaUnits
+from .electrolyte import Electrolyte
+from .experiment_type import Experiment_type
 
 
 @forge_signature
@@ -98,7 +97,7 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="cb12f3561b0b49f85f04d80dd56ea6af4d04f764"
+        default="122b947ee62a907093952580635d1c9eea3881a6"
     )
 
     def add_to_cp_experiments(
@@ -110,7 +109,6 @@ class CV(sdRDM.DataModel):
         solvent_test: Optional[str] = None,
         electrode_setup: Optional[ElectrodeSetup] = None,
         electrolyte: Optional[Electrolyte] = None,
-        analytic: Optional[Analytic] = None,
         type: Optional[Experiment_type] = None,
         id: Optional[str] = None,
     ) -> None:
@@ -126,7 +124,6 @@ class CV(sdRDM.DataModel):
             solvent_test (): Name of the solvent. Defaults to None
             electrode_setup (): Name of the used electrode materials. Defaults to None
             electrolyte (): The used electrolyte. Defaults to None
-            analytic (): Analytic. Defaults to None
             type (): Type of experiment. Defaults to None
         """
 
@@ -138,7 +135,6 @@ class CV(sdRDM.DataModel):
             "solvent_test": solvent_test,
             "electrode_setup": electrode_setup,
             "electrolyte": electrolyte,
-            "analytic": analytic,
             "type": type,
         }
 
