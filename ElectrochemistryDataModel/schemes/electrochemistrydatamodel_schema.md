@@ -3,10 +3,11 @@ classDiagram
     Dataset *-- ConcentrationUnits
     Dataset *-- GeneralInformation
     Dataset *-- Experiment
-    Dataset *-- Analysis_methode
+    Dataset *-- Analysis
     GeneralInformation *-- Author
     Experiment *-- Experiment_type
     Experiment *-- AreaUnits
+    Experiment *-- Analytic
     Experiment *-- Electrolyte
     Experiment *-- ElectrodeSetup
     Electrolyte *-- ConcentrationUnits
@@ -21,9 +22,9 @@ classDiagram
     SpinCoating *-- TemperatureUnits
     SpinCoating *-- VolumeUnits
     SpinCoating *-- TimeUnits
-    Analysis_methode *-- CP
-    Analysis_methode *-- CA
-    Analysis_methode *-- CV
+    Analysis *-- CP
+    Analysis *-- CA
+    Analysis *-- CV
     CP *-- ChargeDensityUnits
     CP *-- TimeUnits
     CP *-- CurrentUnits
@@ -42,7 +43,7 @@ classDiagram
     
     class Dataset {
         +GeneralInformation general_information
-        +Analysis_methode analysis_methode
+        +Analysis analysis
         +string solvent
         +string conducting_salt
         +float conducting_salt_concentration
@@ -64,7 +65,14 @@ classDiagram
         +string solvent_test
         +ElectrodeSetup electrode_setup
         +Electrolyte electrolyte
+        +Analytic analytic
         +Experiment_type type
+    }
+    
+    class Analytic {
+        +string cyclic_v
+        +string chrono_a
+        +string chrono_p
     }
     
     class Electrolyte {
@@ -106,7 +114,7 @@ classDiagram
         +TimeUnits annealing_time
     }
     
-    class Analysis_methode {
+    class Analysis {
         +CV cv
         +CA ca
         +CP cp

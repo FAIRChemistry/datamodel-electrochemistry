@@ -5,35 +5,30 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .cp import CP
-from .cv import CV
-from .ca import CA
-
-
 @forge_signature
-class Analysis(sdRDM.DataModel):
+class Analytic(sdRDM.DataModel):
 
     """"""
 
     id: Optional[str] = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("analysisINDEX"),
+        default_factory=IDGenerator("analyticINDEX"),
         xml="@id",
     )
 
-    cv: Optional[CV] = Field(
+    cyclic_v: Optional[str] = Field(
         default=None,
-        description="Cyclic voltammetry",
+        description="Cyclic voltammetry test",
     )
 
-    ca: Optional[CA] = Field(
+    chrono_a: Optional[str] = Field(
         default=None,
-        description="Chronoamperometry",
+        description="Chronoamperometry test",
     )
 
-    cp: Optional[CP] = Field(
+    chrono_p: Optional[str] = Field(
         default=None,
-        description="Chronopotentiometry",
+        description="Chronopotentiometry test",
     )
 
     __repo__: Optional[str] = PrivateAttr(

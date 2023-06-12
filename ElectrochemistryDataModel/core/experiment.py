@@ -6,9 +6,10 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .experiment_type import Experiment_type
-from .electrolyte import Electrolyte
-from .areaunits import AreaUnits
 from .electrodesetup import ElectrodeSetup
+from .areaunits import AreaUnits
+from .electrolyte import Electrolyte
+from .analytic import Analytic
 
 
 @forge_signature
@@ -57,6 +58,11 @@ class Experiment(sdRDM.DataModel):
         description="The used electrolyte",
     )
 
+    analytic: Optional[Analytic] = Field(
+        default=None,
+        description="Analytic",
+    )
+
     type: Optional[Experiment_type] = Field(
         default=None,
         description="Type of experiment",
@@ -66,5 +72,5 @@ class Experiment(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="104c20baf27e49c578eb70468cffff3483cad6f0"
+        default="cb12f3561b0b49f85f04d80dd56ea6af4d04f764"
     )
