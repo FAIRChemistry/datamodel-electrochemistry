@@ -25,7 +25,7 @@ class Analysis:
             "Fc/Fc+": 0.400
         }
         self.table = [[old_reference, new_reference] for old_reference, new_reference in self.reference_values.items()]
-        self.reference_difference_value = None
+        #self.reference_difference_value = None
 
     def reference_list(self):
         print(tabulate(self.table, headers=["Reference", "Potential (V)"]))
@@ -37,7 +37,8 @@ class Analysis:
             self.reference_difference_value = float(potential) + self.reference_values[new_reference] - self.reference_values[old_reference]
             return self.reference_difference_value
         widgets.interact(interactive, old_reference=list(self.reference_values.keys()), new_reference=list(self.reference_values.keys()))
-        return self.reference_difference_value
+        #return self.reference_difference_value
+        
 
 class ChronoPotentiometry(Analysis):
     def __init__(self,metadata,change_referene=False):
