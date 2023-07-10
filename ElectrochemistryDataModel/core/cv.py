@@ -6,10 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .scanrateunits import ScanRateUnits
 from .currentunits import CurrentUnits
+from .scanrateunits import ScanRateUnits
 from .potentialunits import PotentialUnits
-from .ferrocene_reference import Ferrocene_reference
+from .cycle import Cycle
 
 
 @forge_signature
@@ -23,21 +23,40 @@ class CV(sdRDM.DataModel):
         xml="@id",
     )
 
-    ferrocene_reference: List[Ferrocene_reference] = Field(
+    changing_potential: List[float] = Field(
         default_factory=ListPlus,
         multiple=True,
-        description="Parameters of the ferocene reference measurement",
+        description="The potential which should be added",
     )
 
-    halfe_wave_potential: List[PotentialUnits] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The half-wave potential of the measurement",
+    changing_potential_unit: Optional[float] = Field(
+        default=None,
+        description="The unit of the added potential",
     )
 
-    scan_rate: Optional[ScanRateUnits] = Field(
+    ferrocene_potential: Optional[float] = Field(
+        default=None,
+        description="ferrocene_potential",
+    )
+
+    measurement_current_unit: Optional[CurrentUnits] = Field(
+        default=None,
+        description="The current unit of the measurement",
+    )
+
+    measurement_potential_unit: Optional[PotentialUnits] = Field(
+        default=None,
+        description="The unit of the Potential",
+    )
+
+    scan_rate: Optional[float] = Field(
         default=None,
         description="The scan rate of the measurement",
+    )
+
+    scan_rate_unit: Optional[ScanRateUnits] = Field(
+        default=None,
+        description="The scan rate unit of the measurement",
     )
 
     start_potential: Optional[PotentialUnits] = Field(
@@ -60,66 +79,14 @@ class CV(sdRDM.DataModel):
         description="The upper limit of the potential",
     )
 
-    i_pc_ox: List[CurrentUnits] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The current at the maximum of the cathodic peak (oxidation)",
-    )
-
-    i_pa_red: List[CurrentUnits] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The current at the maximum of the anodic peak (reduction)",
-    )
-
-    ox_potential_E_pc: List[PotentialUnits] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="Potential at the maximum of the cathodic peak (reduction)",
-    )
-
-    red_potential_E_pa: List[PotentialUnits] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The current at the maximum of the anodic peak (oxidation)",
-    )
-
-    total_cycle_number: Optional[int] = Field(
+    cycles: Optional[Cycle] = Field(
         default=None,
-        description="The total cycle number",
+        description="The cycles",
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="97ee0106f08f904374941d98c2f0f5525ed34c45"
+        default="65794cd39ea7a9558c9962ff1fa4049d3a3e581d"
     )
-
-    def add_to_ferrocene_reference(
-        self,
-        ox_potential_E_pc_ferrocene: Optional[PotentialUnits] = None,
-        red_potential_E_pa_ferrocene: Optional[PotentialUnits] = None,
-        halfe_wave_potential_ferrocene: Optional[PotentialUnits] = None,
-        id: Optional[str] = None,
-    ) -> None:
-        """
-        This method adds an object of type 'Ferrocene_reference' to attribute ferrocene_reference
-
-        Args:
-            id (str): Unique identifier of the 'Ferrocene_reference' object. Defaults to 'None'.
-            ox_potential_E_pc_ferrocene (): Potential at the maximum of the cathodic peak (reduction) of the ferrocene reference. Defaults to None
-            red_potential_E_pa_ferrocene (): The current at the maximum of the anodic peak (oxidation) of the ferrocene reference. Defaults to None
-            halfe_wave_potential_ferrocene (): The half-wave potential of the ferrocene measurement. Defaults to None
-        """
-
-        params = {
-            "ox_potential_E_pc_ferrocene": ox_potential_E_pc_ferrocene,
-            "red_potential_E_pa_ferrocene": red_potential_E_pa_ferrocene,
-            "halfe_wave_potential_ferrocene": halfe_wave_potential_ferrocene,
-        }
-
-        if id is not None:
-            params["id"] = id
-
-        self.ferrocene_reference.append(Ferrocene_reference(**params))

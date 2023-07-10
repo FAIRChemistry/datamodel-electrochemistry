@@ -6,10 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .currentunits import CurrentUnits
 from .chargedensityunits import ChargeDensityUnits
-from .potentialunits import PotentialUnits
+from .currentunits import CurrentUnits
 from .timeunits import TimeUnits
+from .potentialunits import PotentialUnits
 
 
 @forge_signature
@@ -23,19 +23,35 @@ class CP(sdRDM.DataModel):
         xml="@id",
     )
 
-    induced_current_first: Optional[CurrentUnits] = Field(
+    measurement_potential_unit: Optional[PotentialUnits] = Field(
         default=None,
-        description="The first induced current",
+        description="The potential unit of the measurement",
     )
 
-    induced_current_second: Optional[CurrentUnits] = Field(
+    measurement_time_unit: Optional[TimeUnits] = Field(
         default=None,
-        description="The first induced current",
+        description="The time unit of the measurement",
     )
 
-    time_duration: Optional[TimeUnits] = Field(
+    induced_current: List[float] = Field(
+        default_factory=ListPlus,
+        multiple=True,
+        description="The induced current",
+    )
+
+    induced_current_unit: Optional[CurrentUnits] = Field(
+        default=None,
+        description="The induced current unit",
+    )
+
+    time_duration: Optional[float] = Field(
         default=None,
         description="The duration time of the induced current",
+    )
+
+    time_duration_unit: Optional[TimeUnits] = Field(
+        default=None,
+        description="The duration time unit of the induced current",
     )
 
     potential_end_value: Optional[PotentialUnits] = Field(
@@ -53,5 +69,5 @@ class CP(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="97ee0106f08f904374941d98c2f0f5525ed34c45"
+        default="65794cd39ea7a9558c9962ff1fa4049d3a3e581d"
     )

@@ -1,9 +1,13 @@
 ```mermaid
 classDiagram
-    Dataset *-- Sample
-    Dataset *-- Analysis
-    Dataset *-- ElectrodeSetup
-    Dataset *-- Author
+    Dataset *-- GeneralInformation
+    Dataset *-- Experiment
+    GeneralInformation *-- Author
+    Experiment *-- Experiment_type
+    Experiment *-- Electrolyte
+    Experiment *-- Analysis
+    Experiment *-- ElectrodeSetup
+    Electrolyte *-- ConcentrationUnits
     Sample *-- MolecularWeightUnits
     Sample *-- Synthesis
     Sample *-- FilmPreparation
@@ -28,20 +32,37 @@ classDiagram
     CV *-- ScanRateUnits
     CV *-- CurrentUnits
     CV *-- PotentialUnits
-    CV *-- Ferrocene_reference
-    Ferrocene_reference *-- PotentialUnits
+    CV *-- Cycle
+    ElectrodeSetup *-- ConcentrationUnits
+    ElectrodeSetup *-- AreaUnits
     
     class Dataset {
-        +string name
-        +date date_created
+        +GeneralInformation general_information
+        +Experiment[0..*] experiments
+    }
+    
+    class GeneralInformation {
+        +string title
         +Author[0..*] author
-        +Sample[0..*] sample
+        +date date_of_work
+    }
+    
+    class Experiment {
+        +string name
+        +string filename
+        +string solvent_test
+        +ElectrodeSetup electrode_setup
+        +Electrolyte electrolyte
         +Analysis analysis
+        +Experiment_type type
+    }
+    
+    class Electrolyte {
         +string solvent
         +string conducting_salt
-        +enum conducting_salt_concentration
-        +ElectrodeSetup electrode_setup
-        +string[0..*] experiment
+        +float conducting_salt_concentration
+        +ConcentrationUnits conducting_salt_concentration_unit
+        +float pH
     }
     
     class Sample {
@@ -77,63 +98,63 @@ classDiagram
     }
     
     class Analysis {
-        +CV[0..*] cv
-        +CA[0..*] ca
-        +CP[0..*] cp
-    }
-    
-    class DatasetForPlots {
-        +string filename
-        +string reference
-        +string name
-        +string conducting_salt
-        +string concentration
-        +string solvent
-        +string pH
-        +string scan_rate
-        +string substrate
+        +CP cp
+        +CA ca
+        +CV cv
     }
     
     class CP {
-        +CurrentUnits induced_current_first
-        +CurrentUnits induced_current_second
-        +TimeUnits time_duration
+        +PotentialUnits measurement_potential_unit
+        +TimeUnits measurement_time_unit
+        +float[0..*] induced_current
+        +CurrentUnits induced_current_unit
+        +float time_duration
+        +TimeUnits time_duration_unit
         +PotentialUnits potential_end_value
         +ChargeDensityUnits[0..*] charge_density
     }
     
     class CA {
-        +PotentialUnits induced_potential_first
-        +PotentialUnits induced_potential_second
-        +TimeUnits time_duration
+        +CurrentUnits measurement_current_unit
+        +TimeUnits measurement_time_unit
+        +float[0..*] induced_potential
+        +PotentialUnits induced_potential_unit
+        +float time_duration
+        +TimeUnits time_duration_unit
         +CurrentUnits current_end_value
     }
     
     class CV {
-        +Ferrocene_reference[0..*] ferrocene_reference
-        +PotentialUnits[0..*] halfe_wave_potential
-        +ScanRateUnits scan_rate
+        +float[0..*] changing_potential
+        +float changing_potential_unit
+        +float ferrocene_potential
+        +CurrentUnits measurement_current_unit
+        +PotentialUnits measurement_potential_unit
+        +float scan_rate
+        +ScanRateUnits scan_rate_unit
         +PotentialUnits start_potential
         +PotentialUnits stop_potential
         +PotentialUnits potential_lower_limit
         +PotentialUnits potential_upper_limit
-        +CurrentUnits[0..*] i_pc_ox
-        +CurrentUnits[0..*] i_pa_red
-        +PotentialUnits[0..*] ox_potential_E_pc
-        +PotentialUnits[0..*] red_potential_E_pa
-        +int total_cycle_number
+        +Cycle cycles
     }
     
-    class Ferrocene_reference {
-        +PotentialUnits ox_potential_E_pc_ferrocene
-        +PotentialUnits red_potential_E_pa_ferrocene
-        +PotentialUnits halfe_wave_potential_ferrocene
+    class Cycle {
+        +int[0..*] cycles
+        +float[0..*] peak_maxima
+        +float[0..*] peak_minima
+        +float[0..*] half_wave_potential
     }
     
     class ElectrodeSetup {
-        +string WE
-        +string CE
-        +string RE
+        +string working_electrode
+        +float working_electrode_area
+        +AreaUnits working_electrode_area_unit
+        +string counter_electrode
+        +string reference_electrode
+        +string reference_electrode_salt
+        +float reference_electrode_salt_concentration
+        +ConcentrationUnits reference_electrode_salt_concentration_unit
     }
     
     class Author {
@@ -141,6 +162,13 @@ classDiagram
         +string affiliation
         +string email
         +string orcid
+    }
+    
+    class Experiment_type {
+        << Enumeration >>
+        +CV
+        +CP
+        +CA
     }
     
     class ChargeDensityUnits {
@@ -216,6 +244,12 @@ classDiagram
         +MILLI_VOLT
         +MICRO_VOLT
         +NANO_VOLT
+    }
+    
+    class AreaUnits {
+        << Enumeration >>
+        +SQUARE_CM
+        +SQUARE_MILLI_M
     }
     
 ```
