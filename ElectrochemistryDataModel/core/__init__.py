@@ -8,7 +8,6 @@ from .physicalparameters import PhysicalParameters
 from .filmpreparation import FilmPreparation
 from .spincoating import SpinCoating
 from .analysis import Analysis
-from .datasetforplots import DatasetForPlots
 from .cp import CP
 from .ca import CA
 from .cv import CV
@@ -40,7 +39,6 @@ __all__ = [
     "FilmPreparation",
     "SpinCoating",
     "Analysis",
-    "DatasetForPlots",
     "CP",
     "CA",
     "CV",

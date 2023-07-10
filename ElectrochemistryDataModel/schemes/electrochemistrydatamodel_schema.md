@@ -1,13 +1,11 @@
 ```mermaid
 classDiagram
-    Dataset *-- ConcentrationUnits
     Dataset *-- GeneralInformation
     Dataset *-- Experiment
-    Dataset *-- Analysis
     GeneralInformation *-- Author
     Experiment *-- Experiment_type
-    Experiment *-- AreaUnits
     Experiment *-- Electrolyte
+    Experiment *-- Analysis
     Experiment *-- ElectrodeSetup
     Electrolyte *-- ConcentrationUnits
     Sample *-- MolecularWeightUnits
@@ -28,25 +26,17 @@ classDiagram
     CP *-- TimeUnits
     CP *-- CurrentUnits
     CP *-- PotentialUnits
-    CP *-- Experiment
     CA *-- TimeUnits
     CA *-- CurrentUnits
     CA *-- PotentialUnits
-    CA *-- Experiment
     CV *-- ScanRateUnits
     CV *-- CurrentUnits
     CV *-- PotentialUnits
-    CV *-- Experiment
     ElectrodeSetup *-- ConcentrationUnits
     ElectrodeSetup *-- AreaUnits
     
     class Dataset {
         +GeneralInformation general_information
-        +Analysis analysis
-        +string solvent
-        +string conducting_salt
-        +float conducting_salt_concentration
-        +ConcentrationUnits conducting_salt_concentration_unit
         +Experiment[0..*] experiments
     }
     
@@ -59,11 +49,10 @@ classDiagram
     class Experiment {
         +string name
         +string filename
-        +string WE_material
-        +AreaUnits WE_area
         +string solvent_test
         +ElectrodeSetup electrode_setup
         +Electrolyte electrolyte
+        +Analysis analysis
         +Experiment_type type
     }
     
@@ -72,6 +61,7 @@ classDiagram
         +string conducting_salt
         +float conducting_salt_concentration
         +ConcentrationUnits conducting_salt_concentration_unit
+        +float pH
     }
     
     class Sample {
@@ -107,61 +97,51 @@ classDiagram
     }
     
     class Analysis {
-        +CV cv
-        +CA ca
         +CP cp
-    }
-    
-    class DatasetForPlots {
-        +string filename
-        +string reference
-        +string name
-        +string conducting_salt
-        +string concentration
-        +string solvent
-        +string pH
-        +string scan_rate
-        +string substrate
+        +CA ca
+        +CV cv
     }
     
     class CP {
+        +PotentialUnits measurement_potential_unit
+        +TimeUnits measurement_time_unit
         +float[0..*] induced_current
         +CurrentUnits induced_current_unit
-        +CurrentUnits induced_current_second
-        +TimeUnits time_duration
+        +float time_duration
+        +TimeUnits time_duration_unit
         +PotentialUnits potential_end_value
         +ChargeDensityUnits[0..*] charge_density
-        +Experiment[0..*] cp_experiments
     }
     
     class CA {
-        +float induced_potential_first
-        +PotentialUnits induced_potential_first_unit
-        +PotentialUnits induced_potential_second
-        +TimeUnits time_duration
+        +CurrentUnits measurement_current_unit
+        +TimeUnits measurement_time_unit
+        +float[0..*] induced_potential
+        +PotentialUnits induced_potential_unit
+        +float time_duration
+        +TimeUnits time_duration_unit
         +CurrentUnits current_end_value
-        +Experiment[0..*] ca_experiments
     }
     
     class CV {
-        +Experiment[0..*] cp_experiments
-        +PotentialUnits[0..*] half_wave_potential
-        +ScanRateUnits scan_rate
+        +float[0..*] changing_potential
+        +float changing_potential_unit
+        +float ferrocene_potential
+        +CurrentUnits measurement_current_unit
+        +PotentialUnits measurement_potential_unit
+        +float scan_rate
+        +ScanRateUnits scan_rate_unit
         +PotentialUnits start_potential
         +PotentialUnits stop_potential
         +PotentialUnits potential_lower_limit
         +PotentialUnits potential_upper_limit
-        +CurrentUnits[0..*] i_pc_ox
-        +CurrentUnits[0..*] i_pa_red
-        +PotentialUnits[0..*] ox_potential_E_pc
-        +PotentialUnits[0..*] red_potential_E_pa
-        +int total_cycle_number
     }
     
     class ElectrodeSetup {
         +string working_electrode
-        +AreaUnits Working_electrode_area
-        +string conter_electrode
+        +float working_electrode_area
+        +AreaUnits working_electrode_area_unit
+        +string counter_electrode
         +string reference_electrode
         +string reference_electrode_salt
         +float reference_electrode_salt_concentration
