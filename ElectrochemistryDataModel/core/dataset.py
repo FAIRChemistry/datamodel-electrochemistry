@@ -6,14 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .experiment_type import Experiment_type
-from .experiment import Experiment
-from .generalinformation import GeneralInformation
-from .electrolyte import Electrolyte
-from .electrodesetup import ElectrodeSetup
 from .analysis import Analysis
-from .areaunits import AreaUnits
-from .concentrationunits import ConcentrationUnits
+from .generalinformation import GeneralInformation
+from .experiment_type import Experiment_type
+from .electrolyte import Electrolyte
+from .experiment import Experiment
+from .electrodesetup import ElectrodeSetup
 
 
 @forge_signature
@@ -32,31 +30,6 @@ class Dataset(sdRDM.DataModel):
         description="General information about the data model",
     )
 
-    analysis: Optional[Analysis] = Field(
-        default=None,
-        description="The method which is used to gain the data",
-    )
-
-    solvent: Optional[str] = Field(
-        default=None,
-        description="Name of the solvent",
-    )
-
-    conducting_salt: Optional[str] = Field(
-        default=None,
-        description="Name of the used salt",
-    )
-
-    conducting_salt_concentration: Optional[float] = Field(
-        default=None,
-        description="Concentration of the conducting salt",
-    )
-
-    conducting_salt_concentration_unit: Optional[ConcentrationUnits] = Field(
-        default=None,
-        description="Unit of the conducting salt concentration",
-    )
-
     experiments: List[Experiment] = Field(
         default_factory=ListPlus,
         multiple=True,
@@ -67,18 +40,17 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="122b947ee62a907093952580635d1c9eea3881a6"
+        default="1a8c6823d01c72e09f4c7124deac681fd829e414"
     )
 
     def add_to_experiments(
         self,
         name: Optional[str] = None,
         filename: Optional[str] = None,
-        WE_material: Optional[str] = None,
-        WE_area: Optional[AreaUnits] = None,
         solvent_test: Optional[str] = None,
         electrode_setup: Optional[ElectrodeSetup] = None,
         electrolyte: Optional[Electrolyte] = None,
+        analysis: Optional[Analysis] = None,
         type: Optional[Experiment_type] = None,
         id: Optional[str] = None,
     ) -> None:
@@ -89,22 +61,20 @@ class Dataset(sdRDM.DataModel):
             id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
             name (): Name of the experiment. Defaults to None
             filename (): Name of the experiment file (with the path). Defaults to None
-            WE_material (): Name of the used working electrode material. Defaults to None
-            WE_area (): The area of the used working electrode. Defaults to None
             solvent_test (): Name of the solvent. Defaults to None
             electrode_setup (): Name of the used electrode materials. Defaults to None
             electrolyte (): The used electrolyte. Defaults to None
+            analysis (): The analysis type of the experiment. Defaults to None
             type (): Type of experiment. Defaults to None
         """
 
         params = {
             "name": name,
             "filename": filename,
-            "WE_material": WE_material,
-            "WE_area": WE_area,
             "solvent_test": solvent_test,
             "electrode_setup": electrode_setup,
             "electrolyte": electrolyte,
+            "analysis": analysis,
             "type": type,
         }
 

@@ -5,9 +5,9 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .cp import CP
 from .ca import CA
 from .cv import CV
+from .cp import CP
 
 
 @forge_signature
@@ -21,9 +21,9 @@ class Analysis(sdRDM.DataModel):
         xml="@id",
     )
 
-    cv: Optional[CV] = Field(
+    cp: Optional[CP] = Field(
         default=None,
-        description="Cyclic voltammetry",
+        description="Chronopotentiometry",
     )
 
     ca: Optional[CA] = Field(
@@ -31,14 +31,14 @@ class Analysis(sdRDM.DataModel):
         description="Chronoamperometry",
     )
 
-    cp: Optional[CP] = Field(
+    cv: Optional[CV] = Field(
         default=None,
-        description="Chronopotentiometry",
+        description="Cyclic Voltammetry",
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="122b947ee62a907093952580635d1c9eea3881a6"
+        default="1a8c6823d01c72e09f4c7124deac681fd829e414"
     )
