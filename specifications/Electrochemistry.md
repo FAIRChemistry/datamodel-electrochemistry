@@ -32,9 +32,6 @@
 - filename
   - Type: string
   - Description: Name of the experiment file (with the path)
-- solvent_test
-  - Type: string
-  - Description: Name of the solvent
 - electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
