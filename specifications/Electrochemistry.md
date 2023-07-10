@@ -4,23 +4,53 @@
 
 ### Dataset
 
-- name
+- general_information
+  - Type: GeneralInformation
+  - Description: General information about the data model
+- experiments
+  - Type: Experiment
+  - Multiple: True
+  - Description: The experiments for work
+
+
+### GeneralInformation
+- title
   - Type: string
-  - Description: Name of the dataset
-- date_created
-  - Type: date
-  - Description: Date/time when the dataset was created
+  - Description: The title of the work
 - author
   - Type: Author
   - Multiple: True
-  - Description: Persons who worked on the dataset
-- sample
-  - Type: Sample
-  - Multiple: True
-  - Description: The sample which was measured
+  - Description: Persons who worked on the dataset  
+- date_of_work
+  - Type: date
+  - Description: Date/time when the dataset was created
+  
+### Experiment
+- name
+  - Type: string
+  - Description: Name of the experiment
+- filename
+  - Type: string
+  - Description: Name of the experiment file (with the path)
+- solvent_test
+  - Type: string
+  - Description: Name of the solvent
+- electrode_setup
+  - Type: ElectrodeSetup
+  - Description: Name of the used electrode materials
+- electrolyte
+  - Type: Electrolyte
+  - Description: The used electrolyte
 - analysis
   - Type: Analysis
-  - Description: The method which is used to gain the data
+  - Description: The analysis type of the experiment
+- type
+  - Type: Experiment_type
+  - Description: Type of experiment
+
+
+
+### Electrolyte
 - solvent
   - Type: string
   - Description: Name of the solvent
@@ -28,17 +58,14 @@
   - Type: string
   - Description: Name of the used salt
 - conducting_salt_concentration
-  - Type: enum
+  - Type: float
   - Description: Concentration of the conducting salt
-- electrode_setup
-  - Type: ElectrodeSetup
-  - Description: Name of the used electrode materials
-- experiment
-  - Type: string
-  - Multiple: True
-  - Description: Name of the experiment files
-
-
+- conducting_salt_concentration_unit
+  - Type: ConcentrationUnits
+  - Description: Unit of the conducting salt concentration
+- pH
+  - Type: float
+  - Description: The pH value
 
 ### Sample
 
@@ -109,59 +136,36 @@
   - Description: The annealing time for the film
 
 ### Analysis
-
-- cv
-  - Type: CV
-  - Multiple: True
-  - Description: Cyclic voltammetry
-- ca
-  - Type: CA
-  - Multiple: True
-  - Description: Chronoamperometry
 - cp
   - Type: CP
-  - Multiple: True
   - Description: Chronopotentiometry
-### DatasetForPlots
-- filename
-  - Type: string
-  - Description: The filename with path
-- reference
-  - Type: string
-  - Description: The reference
-- name
-  - Type: string
-  - Description: The name
-- conducting_salt
-  - Type: string
-  - Description: The conducting_salt
-- concentration
-  - Type: string
-  - Description: The conducted_salt_concentration
-- solvent
-  - Type: string
-  - Description: The solvent
-- pH
-  - Type: string
-  - Description: The pH value
-- scan_rate
-  - Type: string
-  - Description: The scan rate
-- substrate
-  - Type: string
-  - Description: name of the substrate (WE)
-
+- ca
+  - Type: CA
+  - Description: Chronoamperometry
+- cv
+  - Type: CV
+  - Description: Cyclic Voltammetry
+  
 ### CP
-
-- induced_current_first
-  - Type: CurrentUnits
-  - Description: The first induced current  
-- induced_current_second
-  - Type: CurrentUnits
-  - Description: The first induced current  
-- time_duration
+- measurement_potential_unit
+  - Type: PotentialUnits
+  - Description: The potential unit of the measurement 
+- measurement_time_unit
   - Type: TimeUnits
+  - Description: The time unit of the measurement
+- induced_current
+  - Type: float
+  - Multiple: True
+  - Description: The induced current  
+- induced_current_unit
+  - Type: CurrentUnits
+  - Description: The induced current unit
+- time_duration
+  - Type: float
   - Description: The duration time of the induced current
+- time_duration_unit
+  - Type: TimeUnits
+  - Description: The duration time unit of the induced current
 - potential_end_value
   - Type: PotentialUnits
   - Description: The potential value at the end of the measurement
@@ -170,17 +174,30 @@
   - Multiple: True
   - Description: The charge density of the measurement
 
-### CA
 
-- induced_potential_first
-  - Type: PotentialUnits
-  - Description: The first induced potential  
-- induced_potential_second
-  - Type: PotentialUnits
-  - Description: The second induced potential
-- time_duration
+
+
+
+### CA
+- measurement_current_unit
+  - Type: CurrentUnits
+  - Description: The current unit of the measurement 
+- measurement_time_unit
   - Type: TimeUnits
-  - Description: The duration time of the induced potential
+  - Description: The time unit of the measurement
+- induced_potential
+  - Type: float
+  - Multiple: True
+  - Description: The induced current  
+- induced_potential_unit
+  - Type: PotentialUnits
+  - Description: The induced current unit
+- time_duration
+  - Type: float
+  - Description: The duration time of the induced current
+- time_duration_unit
+  - Type: TimeUnits
+  - Description: The duration time unit of the induced current
 - current_end_value
   - Type: CurrentUnits
   - Description: The current value at the end of the measurement
@@ -188,18 +205,28 @@
 ### CV
 
 Container for information regarding the CV-Setup and parameters
-
-- ferrocene_reference
-  - Type: Ferrocene_reference
+- changing_potential
+  - Type: float
   - Multiple: True
-  - Description: Parameters of the ferocene reference measurement
-- halfe_wave_potential
+  - Description: The potential which should be added 
+- changing_potential_unit
+  - Type: float
+  - Description: The unit of the added potential 
+- ferrocene_potential
+  - Type: float
+  - Description: ferrocene_potential
+- measurement_current_unit
+  - Type: CurrentUnits
+  - Description: The current unit of the measurement 
+- measurement_potential_unit
   - Type: PotentialUnits
-  - Multiple: True
-  - Description: The half-wave potential of the measurement  
+  - Description: The unit of the Potential
 - scan_rate
-  - Type: ScanRateUnits
+  - Type: float
   - Description: The scan rate of the measurement
+- scan_rate_unit
+  - Type: ScanRateUnits
+  - Description: The scan rate unit of the measurement
 - start_potential
   - Type: PotentialUnits
   - Description: The starting value of the potential
@@ -212,53 +239,56 @@ Container for information regarding the CV-Setup and parameters
 - potential_upper_limit
   - Type: PotentialUnits
   - Description: The upper limit of the potential
-- i_pc_ox
-  - Type: CurrentUnits
-  - Multiple: True
-  - Description: The current at the maximum of the cathodic peak (oxidation)
-- i_pa_red
-  - Type: CurrentUnits
-  - Multiple: True
-  - Description: The current at the maximum of the anodic peak (reduction)
-- ox_potential_E_pc
-  - Type: PotentialUnits
-  - Multiple: True
-  - Description: Potential at the maximum of the cathodic peak (reduction)
-- red_potential_E_pa
-  - Type: PotentialUnits
-  - Multiple: True
-  - Description: The current at the maximum of the anodic peak (oxidation)
-- total_cycle_number
+- cycles
+  - Type: Cycle
+  - Description: The cycles
+
+### Cycle
+- cycles
   - Type: int
-  - Description: The total cycle number
-
-### Ferrocene_reference
-
-- ox_potential_E_pc_ferrocene
-  - Type: PotentialUnits
-  - Description: Potential at the maximum of the cathodic peak (reduction) of the ferrocene reference
-- red_potential_E_pa_ferrocene
-  - Type: PotentialUnits
-  - Description: The current at the maximum of the anodic peak (oxidation) of the ferrocene reference
-- halfe_wave_potential_ferrocene
-  - Type: PotentialUnits
-  - Description: The half-wave potential of the ferrocene measurement
+  - Multiple: True
+  - Description: A list of the cycles
+- peak_maxima
+  - Type: float
+  - Multiple: True
+  - Description: A list of the peak maxima
+- peak_minima
+  - Type: float
+  - Multiple: True
+  - Description: A list of the peak minima
+- half_wave_potential
+  - Type: float
+  - Multiple: True
+  - Description: The half-wave potential of the measurement 
 
 ### ElectrodeSetup
 
-- WE
+- working_electrode
   - Type: string
-  - Description: Name of the used working electrode
-- CE
+  - Description: Name of the used working electrode 
+- working_electrode_area
+  - Type: float
+  - Description: The area of the used working electrode
+- working_electrode_area_unit
+  - Type: AreaUnits
+  - Description: The area of the used working electrode
+- counter_electrode
   - Type: string
   - Description: Name of the used counter electrode  
-- RE
+- reference_electrode
   - Type: string
   - Description: Name of the used reference electrode
+- reference_electrode_salt
+  - Type: string
+  - Description: Name of the reference salt
+- reference_electrode_salt_concentration
+  - Type: float
+  - Description: Unit of the reference salt concentration
+- reference_electrode_salt_concentration_unit
+  - Type: ConcentrationUnits
+  - Description: Unit of the reference salt concentration
 
 ### Author
-
-Container for information regarding persons who worked on a dataset.
 
 - name
   - Type: string
@@ -274,7 +304,12 @@ Container for information regarding persons who worked on a dataset.
   - Description: The ORCID of the author
 
 ## Enumerations
-
+### Experiment_type
+```python
+CV = "CV"
+CP = "CP"
+CA = "CA"
+```
 ### ChargeDensityUnits
 
 ``` python
@@ -307,7 +342,7 @@ KELVIN = "K"
 
 ```python
 MILLI_LITER = "ml"
-MICRO_LITER = "ul" 
+MICRO_LITER = "µl" 
 NANO_LITER = "nl"
 ```
 
@@ -324,22 +359,22 @@ MICRO_SEC = "us"
 ### ConcentrationUnits
 
 ```python
-MOLAR = "mole / l"
-MILLI_MOLAR = "mmole / l"
-MICRO_MOLAR = "umole / l"
-NANO_MOLAR = "nmole / l"
-GRAM_LITER = "g / l"
-MILLIGRAM_LITER = "mg / l"
-MICROGRAM_LITER = "ug / l"
-NANGRAM_LITER = "ng / l"
+MOLAR = "M"
+MILLI_MOLAR = "mM"
+MICRO_MOLAR = "µM"
+NANO_MOLAR = "nM"
+GRAM_LITER = "g/l"
+MILLIGRAM_LITER = "mg/l"
+MICROGRAM_LITER = "ug/l"
+NANGRAM_LITER = "ng/l"
 ```
 
 ### ScanRateUnits
 
 ```python
-VOLT_PER_SEC = "V / s"
-MILLI_VOLT_PER_SEC = "mV / s"
-MICRO_VOLT_PER_SEC = "uV / s"
+VOLT_PER_SEC = "V/s"
+MILLI_VOLT_PER_SEC = "mV/s"
+MICRO_VOLT_PER_SEC = "uV/s"
 ```
 
 ### CurrentUnits
@@ -347,7 +382,7 @@ MICRO_VOLT_PER_SEC = "uV / s"
 ```python
 AMPERE = "A"
 MILLI_AMPERE = "mA"
-MICRO_AMPERE = "uA"
+MICRO_AMPERE = "µA"
 NANO_AMPERE = "nA"
 ```
 
@@ -356,6 +391,12 @@ NANO_AMPERE = "nA"
 ```python
 VOLT = "V"
 MILLI_VOLT = "mV"
-MICRO_VOLT = "uV"
+MICRO_VOLT = "µV"
 NANO_VOLT = "nV"
+```
+### AreaUnits
+
+```python
+SQUARE_CM= "cm^2"
+SQUARE_MILLI_M = "mm^2"
 ```
