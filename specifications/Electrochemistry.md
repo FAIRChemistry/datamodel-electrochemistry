@@ -32,9 +32,6 @@
 - filename
   - Type: string
   - Description: Name of the experiment file (with the path)
-- solvent_test
-  - Type: string
-  - Description: Name of the solvent
 - electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
@@ -239,11 +236,11 @@ Container for information regarding the CV-Setup and parameters
 - potential_upper_limit
   - Type: PotentialUnits
   - Description: The upper limit of the potential
-<!-- - cycles
+- cycles
   - Type: Cycle
-  - Description: The cycles -->
+  - Description: The cycles
 
-<!-- ### Cycle
+### Cycle
 - cycles
   - Type: int
   - Multiple: True
@@ -259,7 +256,7 @@ Container for information regarding the CV-Setup and parameters
 - half_wave_potential
   - Type: float
   - Multiple: True
-  - Description: The half-wave potential of the measurement  -->
+  - Description: The half-wave potential of the measurement 
 
 ### ElectrodeSetup
 
