@@ -9,11 +9,11 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 from .potentialunits import PotentialUnits
 from .currentunits import CurrentUnits
 from .scanrateunits import ScanRateUnits
+from .cycle import Cycle
 
 
 @forge_signature
 class CV(sdRDM.DataModel):
-
     """Container for information regarding the CV-Setup and parameters"""
 
     id: Optional[str] = Field(
@@ -78,9 +78,14 @@ class CV(sdRDM.DataModel):
         description="The upper limit of the potential",
     )
 
+    cycles: Optional[Cycle] = Field(
+        default=None,
+        description="The cycles",
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="1a8c6823d01c72e09f4c7124deac681fd829e414"
+        default="364c2e153127cad84616ce81e74a77ebf6f06045"
     )

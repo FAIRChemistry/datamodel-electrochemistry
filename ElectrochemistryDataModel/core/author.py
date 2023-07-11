@@ -7,7 +7,6 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 @forge_signature
 class Author(sdRDM.DataModel):
-
     """"""
 
     id: Optional[str] = Field(
@@ -40,5 +39,5 @@ class Author(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="1a8c6823d01c72e09f4c7124deac681fd829e414"
+        default="364c2e153127cad84616ce81e74a77ebf6f06045"
     )

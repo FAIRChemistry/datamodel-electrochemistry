@@ -12,7 +12,6 @@ from .author import Author
 
 @forge_signature
 class GeneralInformation(sdRDM.DataModel):
-
     """"""
 
     id: Optional[str] = Field(
@@ -41,7 +40,7 @@ class GeneralInformation(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="1a8c6823d01c72e09f4c7124deac681fd829e414"
+        default="364c2e153127cad84616ce81e74a77ebf6f06045"
     )
 
     def add_to_author(

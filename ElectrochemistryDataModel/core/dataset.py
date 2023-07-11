@@ -7,16 +7,15 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .analysis import Analysis
+from .experiment import Experiment
+from .electrolyte import Electrolyte
 from .generalinformation import GeneralInformation
 from .experiment_type import Experiment_type
-from .electrolyte import Electrolyte
-from .experiment import Experiment
 from .electrodesetup import ElectrodeSetup
 
 
 @forge_signature
 class Dataset(sdRDM.DataModel):
-
     """"""
 
     id: Optional[str] = Field(
@@ -40,14 +39,13 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="1a8c6823d01c72e09f4c7124deac681fd829e414"
+        default="364c2e153127cad84616ce81e74a77ebf6f06045"
     )
 
     def add_to_experiments(
         self,
         name: Optional[str] = None,
         filename: Optional[str] = None,
-        solvent_test: Optional[str] = None,
         electrode_setup: Optional[ElectrodeSetup] = None,
         electrolyte: Optional[Electrolyte] = None,
         analysis: Optional[Analysis] = None,
@@ -61,7 +59,6 @@ class Dataset(sdRDM.DataModel):
             id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
             name (): Name of the experiment. Defaults to None
             filename (): Name of the experiment file (with the path). Defaults to None
-            solvent_test (): Name of the solvent. Defaults to None
             electrode_setup (): Name of the used electrode materials. Defaults to None
             electrolyte (): The used electrolyte. Defaults to None
             analysis (): The analysis type of the experiment. Defaults to None
@@ -71,7 +68,6 @@ class Dataset(sdRDM.DataModel):
         params = {
             "name": name,
             "filename": filename,
-            "solvent_test": solvent_test,
             "electrode_setup": electrode_setup,
             "electrolyte": electrolyte,
             "analysis": analysis,
