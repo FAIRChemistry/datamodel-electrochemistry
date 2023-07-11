@@ -8,7 +8,6 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 @forge_signature
 class Cycle(sdRDM.DataModel):
-
     """"""
 
     id: Optional[str] = Field(
@@ -45,5 +44,5 @@ class Cycle(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="3de21a829fdaca4b3d164bfc43164bab1645da2e"
+        default="2acb02b62b7f6a63829827e9feb609cd663e8a48"
     )

@@ -6,13 +6,12 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .cv import CV
-from .ca import CA
 from .cp import CP
+from .ca import CA
 
 
 @forge_signature
 class Analysis(sdRDM.DataModel):
-
     """"""
 
     id: Optional[str] = Field(
@@ -40,5 +39,5 @@ class Analysis(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="3de21a829fdaca4b3d164bfc43164bab1645da2e"
+        default="2acb02b62b7f6a63829827e9feb609cd663e8a48"
     )
