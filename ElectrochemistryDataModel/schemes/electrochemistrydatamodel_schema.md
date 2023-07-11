@@ -32,6 +32,7 @@ classDiagram
     CV *-- ScanRateUnits
     CV *-- CurrentUnits
     CV *-- PotentialUnits
+    CV *-- Cycle
     ElectrodeSetup *-- ConcentrationUnits
     ElectrodeSetup *-- AreaUnits
     
@@ -49,7 +50,6 @@ classDiagram
     class Experiment {
         +string name
         +string filename
-        +string solvent_test
         +ElectrodeSetup electrode_setup
         +Electrolyte electrolyte
         +Analysis analysis
@@ -135,6 +135,14 @@ classDiagram
         +PotentialUnits stop_potential
         +PotentialUnits potential_lower_limit
         +PotentialUnits potential_upper_limit
+        +Cycle cycles
+    }
+    
+    class Cycle {
+        +int[0..*] cycles
+        +float[0..*] peak_maxima
+        +float[0..*] peak_minima
+        +float[0..*] half_wave_potential
     }
     
     class ElectrodeSetup {
