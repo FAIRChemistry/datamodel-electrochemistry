@@ -32,6 +32,9 @@
 - filename
   - Type: string
   - Description: Name of the experiment file (with the path)
+- information
+  - Type: string
+  - Description: Information of the experiment
 - electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
