@@ -7,8 +7,8 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from .analysis import Analysis
 from .electrolyte import Electrolyte
-from .electrodesetup import ElectrodeSetup
 from .experiment_type import Experiment_type
+from .electrodesetup import ElectrodeSetup
 
 
 @forge_signature
@@ -29,6 +29,11 @@ class Experiment(sdRDM.DataModel):
     filename: Optional[str] = Field(
         default=None,
         description="Name of the experiment file (with the path)",
+    )
+
+    information: Optional[str] = Field(
+        default=None,
+        description="Information of the experiment",
     )
 
     electrode_setup: Optional[ElectrodeSetup] = Field(
@@ -55,5 +60,5 @@ class Experiment(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="db576895faf5121d684a16e4c923576553c0e86d"
+        default="c015f97e761c6ae4fab6005d7ec6e2fcf75ec68a"
     )

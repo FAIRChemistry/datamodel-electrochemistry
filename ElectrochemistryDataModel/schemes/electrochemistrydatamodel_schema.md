@@ -50,6 +50,7 @@ classDiagram
     class Experiment {
         +string name
         +string filename
+        +string information
         +ElectrodeSetup electrode_setup
         +Electrolyte electrolyte
         +Analysis analysis
