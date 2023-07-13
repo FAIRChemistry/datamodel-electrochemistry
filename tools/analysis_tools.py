@@ -58,8 +58,11 @@ class Chronopotentiometry:
         area_unit=mapping_dict[self.e_chem.experiments[experiment_list[0]].electrode_setup.working_electrode_area_unit]
         self.induced_current_density_unit=self.e_chem.experiments[experiment_list[0]].analysis.cp.induced_current_unit + "/"+ area_unit
         for experiment in range(0,len(self.e_chem.experiments)):
-            if self.e_chem.experiments[experiment].type=="CP":
-                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=56, skiprows=[57], usecols=[2,3,4,5],names=["t","E","I","V"])
+            if self.e_chem.experiments[experiment].type=="CP_header_57":
+                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=57, usecols=[2,3,4,5],names=["t","E","I","V"])#pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=56, skiprows=[57], usecols=[2,3,4,5],names=["t","E","I","V"])
+                self.df_liste.append(df)
+            elif self.e_chem.experiments[experiment].type=="CP_header_63":
+                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=63, usecols=[2,3,4,5],names=["t","E","I","V"])#pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=56, skiprows=[57], usecols=[2,3,4,5],names=["t","E","I","V"])
                 self.df_liste.append(df)
             else:
                 self.df_liste.append(None)
@@ -90,7 +93,7 @@ class Chronopotentiometry:
         if self.e_chem.experiments[self.experiment_list[0]].electrolyte.solvent=="H$_2$O":
             annotate_text=f"{self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration_unit} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.solvent} pH={self.e_chem.experiments[self.experiment_list[0]].electrolyte.pH} \n$J$={self.induced_current_density} {self.induced_current_density_unit}"
         else:
-            annotate_text=f"{self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration_unit} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.solvent} \n$J$={self.induced_current_density} {self.induced_current_density_unit}"
+            annotate_text=f"{self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration_unit} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.solvent} \n$J$={self.induced_current_density}  {self.induced_current_density_unit}"
         def interactive(xlabel=self.xlabel, ylabel=self.ylabel,savename="CP_plot.pdf",xcoord=0.55,ycoord=0.05,annotate_text=widgets.Textarea(value=annotate_text),save=False,annotate=True,legend=True):
             fig, ax = plt.subplots() 
             for experiment in self.experiment_list:
@@ -277,10 +280,10 @@ class CyclicVoltammetry:
             self.reference=new_reference_name
             for df in self.cycle_df:
                 df['E'] = df['E'] + delta_E
-        self.xlabel= f"$E$ vs. {self.reference}  ({self.e_chem.experiments[experiment].analysis.cv.measurement_potential_unit})"
-        self.ylabel= f"$I$  ({self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit})" ### \textmu if latex rendering
+        self.xlabel= f"$E$ vs. {self.reference} ({self.e_chem.experiments[experiment].analysis.cv.measurement_potential_unit})"
+        self.ylabel= f"$I$ ({self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit})" ### \textmu if latex rendering
         if current_density:
-            self.ylabel=f"$J$ ({self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit} / {area_unit})"
+            self.ylabel=f"$J$ ({self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit}/{area_unit})"
             for df in self.cycle_df:
                 df["I"] = df["I"] / self.e_chem.experiments[experiment].electrode_setup.working_electrode_area
     def plot(self):
@@ -358,10 +361,10 @@ class CyclicVoltammetry:
                 if vertex_line:
                     ax.axhline(y=I_vertex , color='black', linestyle='-')
             if E_hwp_average:
-                print(average_hwp)
-            self.df_peaks = pd.DataFrame(list(zip(Cycles,E_min,I_min,E_max,I_max,E_hwp,I_vertex_list)), columns=["Cycles",'E_at_min',"I min",'E_at_max',"I max","E1/2","I_vertex"])  
+                print("The average of the half-wave potential of all used cycles is:",average_hwp)
+            self.df_peaks = pd.DataFrame(list(zip(Cycles,E_min,I_min,E_max,I_max,E_hwp,I_vertex_list)), columns=["Cycles",'E_at_min',"I min",'E_at_max',"I max","E1/2","I_vertex"]) 
             if save:
-                fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename)
+                fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename,bbox_inches='tight')
 
             return self.df_peaks
         widgets.interact(interactive,E_Min=(x_min,x_max),E_Max=(x_min,x_max))
@@ -372,7 +375,7 @@ class CyclicVoltammetry:
         x_min = self.cycle_df[0]['E'].min()
         xlabel=self.xlabel
         ylabel=self.ylabel
-        def interactive(E_min=(x_min-0.1,x_max,0.01),E_max=(x_min,x_max,0.01),E_min_back=(x_min-0.1,x_max,0.01),E_max_back=(x_min,x_max,0.01),savename="integration_plot.pdf",save=False):
+        def interactive(E_min=(x_min-0.1,x_max,0.01),E_max=(x_min,x_max,0.01),E_min_back=(x_min-0.1,x_max,0.01),E_max_back=(x_min,x_max,0.01),savename="integration.pdf",save=False):
             Cycles=[]
             Integral_forward=[]
             Integral_backward=[]
@@ -423,21 +426,21 @@ class CyclicVoltammetry:
                     ax.set_ylabel(ylabel)
                     ax.legend(frameon=False)
                     if save:
-                        fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename)
+                        fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename,bbox_inches='tight')
 
-                    df= pd.DataFrame(zip(Cycles,Integral_forward,Integral_backward), columns=["Cycles","Integration Area forward","Integration Area backward"])
+                    self.df_integration= pd.DataFrame(zip(Cycles,Integral_forward,Integral_backward), columns=["Cycles","Integration Area forward","Integration Area backward"])
 
-            return df
+            return self.df_integration
 
         widgets.interact(interactive)
-    def ferrocene_reference(self,experiment2,cycles2=None):
+    def ferrocene_reference(self,experiment2):
         if self.e_chem.experiments[experiment2].type=="CV"  and self.e_chem.experiments[experiment2].filename.endswith(".csv"):
             self.df2 = pd.read_csv(self.e_chem.experiments[experiment2].filename,header=5,skipfooter=1,engine="python")
         elif self.e_chem.experiments[experiment2].type=="CV"  and self.e_chem.experiments[experiment2].filename.endswith(".xlsx"):
             self.df2=pd.read_excel(self.e_chem.experiments[experiment2].filename,header=1)
         self.total_cycles2=len(self.df2.columns) // 2
         self.all_cycles_list2= [i for i in range(1,self.total_cycles2+1)]
-        self.cycles2= cycles2 if cycles2 is not None else self.all_cycles_list2
+        self.cycles2= self.all_cycles_list2
         self.E2 = ["E" for i in range(self.total_cycles)]
         self.I2 = ["I" for i in range(self.total_cycles)]
         self.df2.columns = [name for pair in zip(self.E2, self.I2) for name in pair]
@@ -487,15 +490,15 @@ class CyclicVoltammetry:
                 E_max_ferrocene.append(pot_at_max)
                 E_min_ferrocene.append(pot_at_min)
                 E_hwp_ferrocene.append((pot_at_max+pot_at_min)/2 )
-                for df in self.cycle_df_ferrocene:
-                    df['E'] = df['E'] - ((pot_at_max+pot_at_min)/2)
+            for i in range(len(self.cycle_df_ferrocene)):
+                if i in self.cycles:
+                    self.cycle_df_ferrocene[i]['E'] = self.cycle_df_ferrocene[i]['E'] - ((pot_at_max + pot_at_min) / 2)
             for i in self.cycles:
                 fig, ax=plt.subplots()
                 ax.set_xlabel("$E$ vs. Fc/Fc$^+$ (V)")
                 ax.set_ylabel(ylabel)
                 ax.set_title("measurement with ferrocene calibration ")
                 ax.plot(self.cycle_df_ferrocene[i]["E"],self.cycle_df_ferrocene[i]["I"],label="Cycle: {}".format(i+1))
-
                 ax.legend(frameon=False)
                 indices_sample = np.where((self.cycle_df_ferrocene[i]["E"] >= E_min_sample) & (self.cycle_df_ferrocene[i]["E"] <= E_max_sample))[0]
                 max_index_sample = indices_sample[np.argmax(self.cycle_df_ferrocene[i]["I"][indices_sample])]
@@ -547,6 +550,6 @@ class CyclicVoltammetry:
                 print("peak max")
                 self.df_reference = pd.DataFrame(list(zip(Cycles,E_max_sample_list,E_max_sec_list,delta_E_max_list)), columns=["Cycles","E_at_max/Fc measurement","E_at_max/Fc measurement/without Fc","Delta_E"])
             if sample_point=='half-wave potential':
-                self.df_reference = pd.DataFrame(list(zip(Cycles,E_hwp_sample_list,E_hwp_sec_list,delta_E_hwp_list)), columns=["Cycles","E1/2/Fc measurement","E1/2/without Fc measurement","Delta_E"])
-            return self.df_reference
+                self.df_ferrocene_reference = pd.DataFrame(list(zip(Cycles,E_hwp_sample_list,E_hwp_sec_list,delta_E_hwp_list)), columns=["Cycles","E1/2/Fc measurement","E1/2/without Fc measurement","Delta_E"])
+            return self.df_ferrocene_reference
         widgets.interact(interactive,E_min_Fc=(x_min,x_max,0.05),E_max_Fc=(x_min,x_max,0.05),E_min_sample=(x_min-0.45,x_max-0.4,0.05),E_max_sample=(x_min-0.45,x_max-0.3,0.05),E_min_sec=(x_min_sec,x_max_sec,0.05),E_max_sec=(x_min_sec,x_max_sec,0.05),sample_point= ['peak minimum', 'peak maximum', 'half-wave potential'])
