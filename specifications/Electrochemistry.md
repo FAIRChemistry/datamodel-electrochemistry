@@ -304,13 +304,14 @@ Container for information regarding the CV-Setup and parameters
 ### Experiment_type
 ```python
 CV = "CV"
-CP = "CP"
+CP_header57= "CP_header_57"
+CP_header63= "CP_header_63"
 CA = "CA"
 ```
 ### ChargeDensityUnits
 
 ``` python
-COULOMB_PER_CUBIC_METER = "C / m**3"
+COULOMB_PER_CUBIC_METER = "C / m^3"
 ```
 
 ### PressureUnits
