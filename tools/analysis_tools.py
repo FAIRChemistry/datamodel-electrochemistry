@@ -10,6 +10,7 @@ from tabulate import tabulate
 from scipy.integrate import trapz
 import ipywidgets as widgets
 from ipywidgets import interact, interactive, fixed, interact_manual
+import re
 # path_program=os.getcwd()
 # print(path_program)
 
@@ -58,11 +59,13 @@ class Chronopotentiometry:
         area_unit=mapping_dict[self.e_chem.experiments[experiment_list[0]].electrode_setup.working_electrode_area_unit]
         self.induced_current_density_unit=self.e_chem.experiments[experiment_list[0]].analysis.cp.induced_current_unit + "/"+ area_unit
         for experiment in range(0,len(self.e_chem.experiments)):
-            if self.e_chem.experiments[experiment].type=="CP_header_57":
-                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=57, usecols=[2,3,4,5],names=["t","E","I","V"])#pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=56, skiprows=[57], usecols=[2,3,4,5],names=["t","E","I","V"])
-                self.df_liste.append(df)
-            elif self.e_chem.experiments[experiment].type=="CP_header_63":
-                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=63, usecols=[2,3,4,5],names=["t","E","I","V"])#pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=56, skiprows=[57], usecols=[2,3,4,5],names=["t","E","I","V"])
+            if self.e_chem.experiments[experiment].type=="CP":
+                with open(self.e_chem.experiments[experiment].filename, 'r') as file:
+                    for line_num, line in enumerate(file, start=1):
+                        if re.match(r'CURVE\sTABLE\s3600', line):
+                            header=line_num+2
+                            break
+                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=header, usecols=[2,3,4,5],names=["t","E","I","V"])
                 self.df_liste.append(df)
             else:
                 self.df_liste.append(None)
