@@ -44,5 +44,5 @@ class Cycle(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="c015f97e761c6ae4fab6005d7ec6e2fcf75ec68a"
+        default="4e917b8a3743734f658746f6497e543d73ee5fe2"
     )

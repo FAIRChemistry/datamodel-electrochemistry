@@ -167,8 +167,7 @@ classDiagram
     class Experiment_type {
         << Enumeration >>
         +CV
-        +CP_header57
-        +CP_header63
+        +CP
         +CA
     }
     

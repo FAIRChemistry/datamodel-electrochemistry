@@ -6,12 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .electrolyte import Electrolyte
 from .electrodesetup import ElectrodeSetup
-from .analysis import Analysis
-from .generalinformation import GeneralInformation
 from .experiment import Experiment
+from .generalinformation import GeneralInformation
 from .experiment_type import Experiment_type
+from .electrolyte import Electrolyte
+from .analysis import Analysis
 
 
 @forge_signature
@@ -39,7 +39,7 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="c015f97e761c6ae4fab6005d7ec6e2fcf75ec68a"
+        default="4e917b8a3743734f658746f6497e543d73ee5fe2"
     )
 
     def add_to_experiments(
