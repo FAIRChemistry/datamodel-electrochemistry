@@ -32,6 +32,9 @@
 - filename
   - Type: string
   - Description: Name of the experiment file (with the path)
+- information
+  - Type: string
+  - Description: Information of the experiment
 - electrode_setup
   - Type: ElectrodeSetup
   - Description: Name of the used electrode materials
@@ -238,11 +241,12 @@ Container for information regarding the CV-Setup and parameters
   - Description: The upper limit of the potential
 - cycles
   - Type: Cycle
+  - Multiple: True
   - Description: The cycles
 
 ### Cycle
-- cycles
-  - Type: int
+- cycle_number
+  - Type: string
   - Multiple: True
   - Description: A list of the cycles
 - peak_maxima
@@ -304,8 +308,7 @@ Container for information regarding the CV-Setup and parameters
 ### Experiment_type
 ```python
 CV = "CV"
-CP_header57= "CP_header_57"
-CP_header63= "CP_header_63"
+CP = "CP"
 CA = "CA"
 ```
 ### ChargeDensityUnits

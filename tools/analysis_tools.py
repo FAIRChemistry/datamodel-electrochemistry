@@ -10,6 +10,9 @@ from tabulate import tabulate
 from scipy.integrate import trapz
 import ipywidgets as widgets
 from ipywidgets import interact, interactive, fixed, interact_manual
+import re
+from IPython.display import display
+lib = DataModel.from_markdown("specifications/Electrochemistry.md")
 # path_program=os.getcwd()
 # print(path_program)
 
@@ -58,11 +61,13 @@ class Chronopotentiometry:
         area_unit=mapping_dict[self.e_chem.experiments[experiment_list[0]].electrode_setup.working_electrode_area_unit]
         self.induced_current_density_unit=self.e_chem.experiments[experiment_list[0]].analysis.cp.induced_current_unit + "/"+ area_unit
         for experiment in range(0,len(self.e_chem.experiments)):
-            if self.e_chem.experiments[experiment].type=="CP_header_57":
-                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=57, usecols=[2,3,4,5],names=["t","E","I","V"])#pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=56, skiprows=[57], usecols=[2,3,4,5],names=["t","E","I","V"])
-                self.df_liste.append(df)
-            elif self.e_chem.experiments[experiment].type=="CP_header_63":
-                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=63, usecols=[2,3,4,5],names=["t","E","I","V"])#pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=56, skiprows=[57], usecols=[2,3,4,5],names=["t","E","I","V"])
+            if self.e_chem.experiments[experiment].type=="CP":
+                with open(self.e_chem.experiments[experiment].filename, 'r') as file:
+                    for line_num, line in enumerate(file, start=1):
+                        if re.match(r'CURVE\sTABLE\s3600', line):
+                            header=line_num+2
+                            break
+                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=header, usecols=[2,3,4,5],names=["t","E","I","V"])
                 self.df_liste.append(df)
             else:
                 self.df_liste.append(None)
@@ -286,6 +291,16 @@ class CyclicVoltammetry:
             self.ylabel=f"$J$ ({self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit}/{area_unit})"
             for df in self.cycle_df:
                 df["I"] = df["I"] / self.e_chem.experiments[experiment].electrode_setup.working_electrode_area
+        if len(e_chem.experiments[experiment].analysis.cv.cycles) == 0:
+            for cycle in self.all_cycles_list:
+                ##
+                Cycle=lib.Cycle()
+                e_chem.experiments[experiment].analysis.cv.cycles.append(Cycle)
+                print(e_chem.experiments[experiment].analysis.cv.cycles)
+                ###
+                #e_chem.experiments[experiment].analysis.cv.cycles[cycle].cycle_number.append(cycle)
+                #e_chem.experiments[experiment].analysis.cv.cycles[cycle].cycle_number.append("Cycle{}".format(cycle))
+                #e_chem.experiments[experiment].analysis.cv.cycles.append("Cycle{}".format
     def plot(self):
         xlabel=self.xlabel
         ylabel=self.ylabel
@@ -326,6 +341,14 @@ class CyclicVoltammetry:
             I_min=[]
             I_vertex_list=[]
             for i in self.cycles:
+                def on_button_click(_):
+                    # Cycle=lib.Cycle()
+                    # self.e_chem.experiments[self.experiment].analysis.cv.cycles.append(Cycle)
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_maxima.append(pot_at_max)
+                    #self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].append(peak_maxima=[self.cycle_df[i]["I"][max_E]])
+                    print(self.e_chem.experiments[4].analysis.cv.cycles[i])
+                    print("Saved")
+                button = widgets.Button(description="Maxima2Model")
                 fig, ax=plt.subplots()
                 ax.set_xlabel(xlabel)
                 ax.set_ylabel(ylabel)
@@ -362,6 +385,8 @@ class CyclicVoltammetry:
                     ax.axhline(y=I_vertex , color='black', linestyle='-')
             if E_hwp_average:
                 print("The average of the half-wave potential of all used cycles is:",average_hwp)
+            button.on_click(on_button_click)
+            display(button)
             self.df_peaks = pd.DataFrame(list(zip(Cycles,E_min,I_min,E_max,I_max,E_hwp,I_vertex_list)), columns=["Cycles",'E_at_min',"I min",'E_at_max',"I max","E1/2","I_vertex"]) 
             if save:
                 fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename,bbox_inches='tight')
