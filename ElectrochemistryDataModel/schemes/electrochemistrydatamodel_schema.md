@@ -50,6 +50,7 @@ classDiagram
     class Experiment {
         +string name
         +string filename
+        +string information
         +ElectrodeSetup electrode_setup
         +Electrolyte electrolyte
         +Analysis analysis
@@ -135,11 +136,11 @@ classDiagram
         +PotentialUnits stop_potential
         +PotentialUnits potential_lower_limit
         +PotentialUnits potential_upper_limit
-        +Cycle cycles
+        +Cycle[0..*] cycles
     }
     
     class Cycle {
-        +int[0..*] cycles
+        +string[0..*] cycle_number
         +float[0..*] peak_maxima
         +float[0..*] peak_minima
         +float[0..*] half_wave_potential
@@ -166,8 +167,7 @@ classDiagram
     class Experiment_type {
         << Enumeration >>
         +CV
-        +CP_header57
-        +CP_header63
+        +CP
         +CA
     }
     

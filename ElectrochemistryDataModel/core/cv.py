@@ -6,10 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .currentunits import CurrentUnits
-from .scanrateunits import ScanRateUnits
-from .potentialunits import PotentialUnits
 from .cycle import Cycle
+from .scanrateunits import ScanRateUnits
+from .currentunits import CurrentUnits
+from .potentialunits import PotentialUnits
 
 
 @forge_signature
@@ -78,8 +78,9 @@ class CV(sdRDM.DataModel):
         description="The upper limit of the potential",
     )
 
-    cycles: Optional[Cycle] = Field(
-        default=None,
+    cycles: List[Cycle] = Field(
+        default_factory=ListPlus,
+        multiple=True,
         description="The cycles",
     )
 
@@ -87,5 +88,36 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="67d4373c403628a1beff2520f76af64b15019f0d"
+        default="5abdf055175ec1845bee4fce936bab8038dd6f5f"
     )
+
+    def add_to_cycles(
+        self,
+        cycle_number: List[str] = ListPlus(),
+        peak_maxima: List[float] = ListPlus(),
+        peak_minima: List[float] = ListPlus(),
+        half_wave_potential: List[float] = ListPlus(),
+        id: Optional[str] = None,
+    ) -> None:
+        """
+        This method adds an object of type 'Cycle' to attribute cycles
+
+        Args:
+            id (str): Unique identifier of the 'Cycle' object. Defaults to 'None'.
+            cycle_number (): A list of the cycles. Defaults to ListPlus()
+            peak_maxima (): A list of the peak maxima. Defaults to ListPlus()
+            peak_minima (): A list of the peak minima. Defaults to ListPlus()
+            half_wave_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
+        """
+
+        params = {
+            "cycle_number": cycle_number,
+            "peak_maxima": peak_maxima,
+            "peak_minima": peak_minima,
+            "half_wave_potential": half_wave_potential,
+        }
+
+        if id is not None:
+            params["id"] = id
+
+        self.cycles.append(Cycle(**params))
