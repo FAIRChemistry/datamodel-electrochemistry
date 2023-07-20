@@ -245,10 +245,6 @@ Container for information regarding the CV-Setup and parameters
   - Description: The cycles
 
 ### Cycle
-- cycle_number
-  - Type: string
-  - Multiple: True
-  - Description: A list of the cycles
 - peak_maxima
   - Type: float
   - Multiple: True
