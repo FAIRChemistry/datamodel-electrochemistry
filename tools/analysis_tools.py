@@ -280,27 +280,29 @@ class CyclicVoltammetry:
         self.cycles = [cycle -1 for cycle in self.cycles]
         self.experiment=experiment
         new_reference_name=new_reference_name if new_reference_name is not None else "Fc/Fc$^{+}$"
+        self.xunit=f"{self.e_chem.experiments[experiment].analysis.cv.measurement_potential_unit}"
+        self.yunit=f"{self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit}"
         if change_reference:
             delta_E=add_potential_value
             self.reference=new_reference_name
             for df in self.cycle_df:
                 df['E'] = df['E'] + delta_E
         self.xlabel= f"$E$ vs. {self.reference} ({self.e_chem.experiments[experiment].analysis.cv.measurement_potential_unit})"
-        self.ylabel= f"$I$ ({self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit})" ### \textmu if latex rendering
+        self.ylabel= f"$I$ ({self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit})"
         if current_density:
             self.ylabel=f"$J$ ({self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit}/{area_unit})"
+            self.yunit=f"{self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit}/{self.e_chem.experiments[experiment].electrode_setup.working_electrode_area_unit}"
             for df in self.cycle_df:
                 df["I"] = df["I"] / self.e_chem.experiments[experiment].electrode_setup.working_electrode_area
         if len(e_chem.experiments[experiment].analysis.cv.cycles) == 0:
             for cycle in self.all_cycles_list:
                 ##
-                Cycle=lib.Cycle()
-                e_chem.experiments[experiment].analysis.cv.cycles.append(Cycle)
-                print(e_chem.experiments[experiment].analysis.cv.cycles)
+                # Cycle=lib.Cycle()
+                # e_chem.experiments[experiment].analysis.cv.cycles.append(Cycle)
                 ###
-                #e_chem.experiments[experiment].analysis.cv.cycles[cycle].cycle_number.append(cycle)
-                #e_chem.experiments[experiment].analysis.cv.cycles[cycle].cycle_number.append("Cycle{}".format(cycle))
-                #e_chem.experiments[experiment].analysis.cv.cycles.append("Cycle{}".format
+                Cycle = lib.Cycle(number=cycle)
+                e_chem.experiments[experiment].analysis.cv.cycles.append(Cycle)
+                #print(e_chem.experiments[experiment].analysis.cv.cycles)
     def plot(self):
         xlabel=self.xlabel
         ylabel=self.ylabel
@@ -341,19 +343,33 @@ class CyclicVoltammetry:
             I_min=[]
             I_vertex_list=[]
             for i in self.cycles:
-                def on_button_click(_):
-                    # Cycle=lib.Cycle()
-                    # self.e_chem.experiments[self.experiment].analysis.cv.cycles.append(Cycle)
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_maxima.append(pot_at_max)
-                    #self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].append(peak_maxima=[self.cycle_df[i]["I"][max_E]])
-                    print(self.e_chem.experiments[4].analysis.cv.cycles[i])
-                    print("Saved")
-                button = widgets.Button(description="Maxima2Model")
+            # Here are interactive buttons, which allowing to save the peaks to the data model
+                def on_button_click_min(_):
+                    Peak_min=(pot_at_min,current_at_min,"µA")
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_minima.append(Peak_min)
+                    print()
+                    #print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i])
+                    print("Minimum Peak:",Peak_min,"was added to the datamodel")
+                button_min = widgets.Button(description="Minima2Model")
+                def on_button_click_max(_):
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_maxima.append((pot_at_max,current_at_max))
+                    print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i])
+                    print("Maximum Saved")
+                button_max = widgets.Button(description="Maxima2Model")
+                def on_button_click_hwp(_):
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_minima.append((pot_at_min,current_at_min))
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_maxima.append((pot_at_max,current_at_max))
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].half_wave_potential.append(hwp)
+                    print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i])
+                    print("Peaks and half-wave potential Saved")
+                button_hwp = widgets.Button(description="Peaks+Hwp2Model")
+                # Following is for the plot
                 fig, ax=plt.subplots()
                 ax.set_xlabel(xlabel)
                 ax.set_ylabel(ylabel)
                 ax.plot(self.cycle_df[i]["E"],self.cycle_df[i]["I"],label="Cycle: {}".format(i+1))
                 Cycles.append("Cycle: {}".format(i+1))
+                # The range for the peak seach
                 indices = np.where((self.cycle_df[i]["E"] >= E_Min) & (self.cycle_df[i]["E"] <= E_Max))[0]
                 max_index = indices[np.argmax(self.cycle_df[i]["I"][indices])]
                 pot_at_max = self.cycle_df[i]["E"][max_index]
@@ -376,7 +392,8 @@ class CyclicVoltammetry:
                     I_vertex=I_at_min_E
                 E_max.append(pot_at_max)
                 E_min.append(pot_at_min)
-                E_hwp.append((pot_at_max+pot_at_min)/2 )
+                hwp=(pot_at_max+pot_at_min)/2
+                E_hwp.append(hwp)
                 average_hwp = np.average(E_hwp)
                 I_min.append(current_at_min)
                 I_max.append(current_at_max)
@@ -385,8 +402,12 @@ class CyclicVoltammetry:
                     ax.axhline(y=I_vertex , color='black', linestyle='-')
             if E_hwp_average:
                 print("The average of the half-wave potential of all used cycles is:",average_hwp)
-            button.on_click(on_button_click)
-            display(button)
+            button_min.on_click(on_button_click_min)
+            display(button_min)
+            button_max.on_click(on_button_click_max)
+            display(button_max)
+            button_hwp.on_click(on_button_click_hwp)
+            display(button_hwp)
             self.df_peaks = pd.DataFrame(list(zip(Cycles,E_min,I_min,E_max,I_max,E_hwp,I_vertex_list)), columns=["Cycles",'E_at_min',"I min",'E_at_max',"I max","E1/2","I_vertex"]) 
             if save:
                 fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename,bbox_inches='tight')
@@ -405,8 +426,24 @@ class CyclicVoltammetry:
             Integral_forward=[]
             Integral_backward=[]
             for i in self.cycles:
+                    # Interactive Buttons
+                    def on_button_click_forward(_):
+                        Peak=lib.PeakIntegration(lower_limit_potential=E_min,upper_limit_potential=E_max,integration_area=area_forward,integration_area_unit=f"{self.yunit}*{self.xunit}",integration_direction="Forward")
+                        self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration.append(Peak)
+                        print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration)
+                        print("Forward Integration Saved")
+                    # For the plot
+                    button_forward = widgets.Button(description="ForwardArea2Model")
+                    def on_button_click_backward(_):
+                        Peak=lib.PeakIntegration(lower_limit_potential=E_min,upper_limit_potential=E_max,integration_area=area_forward,integration_direction="Backward")
+                        self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration.append(Peak)
+                        print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration)
+                        print("Backward Integration Saved")
+                    # For the plot
+                    button_backward = widgets.Button(description="BackwardArea2Model")
                     Cycles.append("Cycle: {}".format(i+1)) 
                     fig,ax=plt.subplots()
+                    # Split a Cycle into forward and backward
                     df=self.cycle_df[i]
                     half= len(df)//2
                     forward_cycle=df.iloc[:half,:]
@@ -450,6 +487,10 @@ class CyclicVoltammetry:
                     ax.set_xlabel(xlabel)
                     ax.set_ylabel(ylabel)
                     ax.legend(frameon=False)
+                    button_forward.on_click(on_button_click_forward)
+                    display(button_forward)
+                    button_backward.on_click(on_button_click_backward)
+                    display(button_backward)
                     if save:
                         fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename,bbox_inches='tight')
 

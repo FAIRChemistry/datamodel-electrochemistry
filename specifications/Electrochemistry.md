@@ -245,6 +245,9 @@ Container for information regarding the CV-Setup and parameters
   - Description: The cycles
 
 ### Cycle
+- number
+  - Type: int
+  - Description: The cycle number
 - peak_maxima
   - Type: float
   - Multiple: True
@@ -256,7 +259,27 @@ Container for information regarding the CV-Setup and parameters
 - half_wave_potential
   - Type: float
   - Multiple: True
-  - Description: The half-wave potential of the measurement 
+  - Description: The half-wave potential of the measurement
+- peak_integration
+  - Type: PeakIntegration
+  - Multiple: True
+  - Description: The peak integration
+### PeakIntegration
+- lower_limit_potential
+  - Type: float
+  - Description: Name of the used working electrode 
+- upper_limit_potential
+  - Type: float
+  - Description: Name of the used working electrode 
+- integration_area
+  - Type: float
+  - Description: Name of the used working electrode
+- integration_area_unit
+  - Type: string
+  - Description: Name of the used working electrode
+- integration_direction
+  - Type: string
+  - Description: The integration direction.
 
 ### ElectrodeSetup
 
@@ -324,8 +347,8 @@ MILLI_BAR = "mbar"
 ### MolecularWeightUnits
 
 ```python
-GRAM_PER_MOLE = "g / mole "
-GRAM_PER_MILLI_MOLE = "g / mmole"
+GRAM_PER_MOLE = "g/mole "
+GRAM_PER_MILLI_MOLE = "g/mmole"
 ```
 
 ### TemperatureUnits
