@@ -12,6 +12,7 @@ from .cp import CP
 from .ca import CA
 from .cv import CV
 from .cycle import Cycle
+from .peakintegration import PeakIntegration
 from .electrodesetup import ElectrodeSetup
 from .author import Author
 from .experiment_type import Experiment_type
@@ -44,6 +45,7 @@ __all__ = [
     "CA",
     "CV",
     "Cycle",
+    "PeakIntegration",
     "ElectrodeSetup",
     "Author",
     "Experiment_type",

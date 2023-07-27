@@ -33,6 +33,7 @@ classDiagram
     CV *-- CurrentUnits
     CV *-- PotentialUnits
     CV *-- Cycle
+    Cycle *-- PeakIntegration
     ElectrodeSetup *-- ConcentrationUnits
     ElectrodeSetup *-- AreaUnits
     
@@ -140,10 +141,19 @@ classDiagram
     }
     
     class Cycle {
-        +string[0..*] cycle_number
+        +int number
         +float[0..*] peak_maxima
         +float[0..*] peak_minima
         +float[0..*] half_wave_potential
+        +PeakIntegration[0..*] peak_integration
+    }
+    
+    class PeakIntegration {
+        +float lower_limit_potential
+        +float upper_limit_potential
+        +float integration_area
+        +string integration_area_unit
+        +string integration_direction
     }
     
     class ElectrodeSetup {

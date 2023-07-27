@@ -6,10 +6,11 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .cycle import Cycle
-from .scanrateunits import ScanRateUnits
 from .currentunits import CurrentUnits
+from .cycle import Cycle
 from .potentialunits import PotentialUnits
+from .scanrateunits import ScanRateUnits
+from .peakintegration import PeakIntegration
 
 
 @forge_signature
@@ -88,15 +89,16 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="5abdf055175ec1845bee4fce936bab8038dd6f5f"
+        default="ce235b09a292fbf86d3ec367d054958dbe6889e1"
     )
 
     def add_to_cycles(
         self,
-        cycle_number: List[str] = ListPlus(),
+        number: Optional[int] = None,
         peak_maxima: List[float] = ListPlus(),
         peak_minima: List[float] = ListPlus(),
         half_wave_potential: List[float] = ListPlus(),
+        peak_integration: List[PeakIntegration] = ListPlus(),
         id: Optional[str] = None,
     ) -> None:
         """
@@ -104,17 +106,19 @@ class CV(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'Cycle' object. Defaults to 'None'.
-            cycle_number (): A list of the cycles. Defaults to ListPlus()
+            number (): The cycle number. Defaults to None
             peak_maxima (): A list of the peak maxima. Defaults to ListPlus()
             peak_minima (): A list of the peak minima. Defaults to ListPlus()
             half_wave_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
+            peak_integration (): The peak integration. Defaults to ListPlus()
         """
 
         params = {
-            "cycle_number": cycle_number,
+            "number": number,
             "peak_maxima": peak_maxima,
             "peak_minima": peak_minima,
             "half_wave_potential": half_wave_potential,
+            "peak_integration": peak_integration,
         }
 
         if id is not None:

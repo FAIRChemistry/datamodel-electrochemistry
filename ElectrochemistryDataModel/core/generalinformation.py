@@ -40,7 +40,7 @@ class GeneralInformation(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="5abdf055175ec1845bee4fce936bab8038dd6f5f"
+        default="ce235b09a292fbf86d3ec367d054958dbe6889e1"
     )
 
     def add_to_author(
