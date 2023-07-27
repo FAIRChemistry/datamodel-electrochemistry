@@ -17,31 +17,54 @@ lib = DataModel.from_markdown("specifications/Electrochemistry.md")
 # print(path_program)
 
 class ReferenceCalculator:
-    def __init__(self):
+    def __init__(self,e_chem,experiment_list=None):
         self.reference_values = {
             "SHE": 0, 
             "RHE": -0.0592, 
-            "Calomel (sat. KCl)": 0.241,
-            "Calomel (3.5 M KCl)": 0.250,
-            "Calomel (1 M KCl)": 0.280,
-            "Calomel (0.1 M KCl)": 0.334,
+            "Hg/Hg2Cl2 (sat. KCl)": 0.241,
+            "Hg/Hg2Cl2 (3.5 M KCl)": 0.250,
+            "Hg/Hg2Cl2 (1 M KCl)": 0.280,
+            "Hg/Hg2Cl2 (0.1 M KCl)": 0.334,
             "Ag/AgCl (sat. KCl)": 0.199,
             "Ag/AgCl (3.5 M KCl)": 0.205,
             "Hg/HgO (1 M KOH)": 0.140,
             "Hg/HgO (0.1 M KOH)": 0.165,
             "Fc/Fc+": 0.400
         }
+        self.e_chem=e_chem
+        self.experiment_list=experiment_list
         self.table = [[old_reference, new_reference] for old_reference, new_reference in self.reference_values.items()]
 
     def reference_list(self):
         print(tabulate(self.table, headers=["Reference", "Potential (V)"]))
 
     def reference_difference(self):
+        def extract_name(reference):
+            return reference.split('(')[0].strip()
         def interactive(old_reference="Ag/AgCl (sat. KCl)", new_reference="SHE", pH="1", potential="0"):
             if old_reference == "RHE" or new_reference == "RHE":
                 self.reference_values["RHE"] = -0.0592 * float(pH)
             self.reference_difference_value = float(potential) + self.reference_values[new_reference] - self.reference_values[old_reference]
+            new_reference_name = extract_name(new_reference)
+            def on_button_click(_):
+                    for experiment in self.experiment_list:
+                        if self.e_chem.experiments[experiment].type == "CP" and (self.reference_difference_value, new_reference_name, "V") not in self.e_chem.experiments[experiment].analysis.cp.change_potential:
+                            self.e_chem.experiments[experiment].analysis.cp.change_potential.append((self.reference_difference_value, new_reference_name, "V"))
+                        elif self.e_chem.experiments[experiment].type == "CV" and (self.reference_difference_value, new_reference_name, "V") not in self.e_chem.experiments[experiment].analysis.cv.change_potential:
+                            self.e_chem.experiments[experiment].analysis.cv.change_potential.append((self.reference_difference_value, new_reference_name, "V"))
+                        elif self.e_chem.experiments[experiment].type == "CA":
+                            print("Experiment is from type CA and don't need a change_potential value")
+                        else:
+                            print("Reference potential is already saved")
+                        # if self.e_chem.experiments[experiment].type=="CP":
+                        #     self.e_chem.experiments[experiment].analysis.cp.change_potential.append((self.reference_difference_value,new_reference_name,"V"))
+                        #     print("The potential values:",(self.reference_difference_value,new_reference_name,"V"),"are added to the experiments")
+                    
+            button = widgets.Button(description="Potential2Model")
+            button.on_click(on_button_click)
+            display(button)
             return self.reference_difference_value
+
         widgets.interact(interactive, old_reference=list(self.reference_values.keys()), new_reference=list(self.reference_values.keys()))
         
         
@@ -283,10 +306,12 @@ class CyclicVoltammetry:
         self.xunit=f"{self.e_chem.experiments[experiment].analysis.cv.measurement_potential_unit}"
         self.yunit=f"{self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit}"
         if change_reference:
-            delta_E=add_potential_value
+            self.delta_E=add_potential_value
             self.reference=new_reference_name
             for df in self.cycle_df:
-                df['E'] = df['E'] + delta_E
+                df['E'] = df['E'] + self.delta_E
+        else:
+            self.delta_E = 0
         self.xlabel= f"$E$ vs. {self.reference} ({self.e_chem.experiments[experiment].analysis.cv.measurement_potential_unit})"
         self.ylabel= f"$I$ ({self.e_chem.experiments[experiment].analysis.cv.measurement_current_unit})"
         if current_density:
@@ -347,9 +372,13 @@ class CyclicVoltammetry:
                 def on_button_click_min(_):
                     Peak_min=(pot_at_min,current_at_min,"µA")
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_minima.append(Peak_min)
-                    print()
+                    #
+                    min_peak=lib.PeaksAndHalfPotential(current_minimum=current_at_min,current_unit=f"{self.yunit}",potential_minimum=pot_at_min,change_reference_potential=self.delta_E)
+                    #print()
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peaks_and_half_potential.append(min_peak)
                     #print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i])
-                    print("Minimum Peak:",Peak_min,"was added to the datamodel")
+                    print(min_peak)
+                    print("Minimum peak was added to the datamodel")
                 button_min = widgets.Button(description="Minima2Model")
                 def on_button_click_max(_):
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_maxima.append((pot_at_max,current_at_max))

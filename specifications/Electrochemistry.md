@@ -173,6 +173,10 @@
   - Type: ChargeDensityUnits
   - Multiple: True
   - Description: The charge density of the measurement
+- change_potential
+  - Type: float
+  - Multiple: True
+  - Description: A list of potential values, which could be used to transform reference potential scale 
 
 
 
@@ -239,6 +243,10 @@ Container for information regarding the CV-Setup and parameters
 - potential_upper_limit
   - Type: PotentialUnits
   - Description: The upper limit of the potential
+- change_potential
+  - Type: float
+  - Multiple: True
+  - Description: A list of potential values, which could be used to transform reference potential scale 
 - cycles
   - Type: Cycle
   - Multiple: True
@@ -260,10 +268,36 @@ Container for information regarding the CV-Setup and parameters
   - Type: float
   - Multiple: True
   - Description: The half-wave potential of the measurement
+- peaks_and_half_potential
+  - Type:PeaksAndHalfPotential
+  - Multiple: True
+  - Description: The half-wave potential of the measurement
 - peak_integration
   - Type: PeakIntegration
   - Multiple: True
   - Description: The peak integration
+### PeaksAndHalfPotential
+- current_maximum
+  - Type: float
+  - Description: A list of the peak maxima
+- current_minimum
+  - Type: float
+  - Description: A list of the peak minima
+- potential_maximum
+  - Type: float
+  - Description: A list of the peak maxima
+- potential_minimum
+  - Type: float
+  - Description: A list of the peak minima
+- current_unit
+  - Type: string
+  - Description: A list of the peak minima
+- change_reference_potential
+  - Type: float
+  - Description: A list of the peak minima
+- half_wave_potential
+  - Type: float
+  - Description: The half-wave potential of the measurement
 ### PeakIntegration
 - lower_limit_potential
   - Type: float
@@ -333,7 +367,7 @@ CA = "CA"
 ### ChargeDensityUnits
 
 ``` python
-COULOMB_PER_CUBIC_METER = "C / m^3"
+COULOMB_PER_CUBIC_METER = "C/m^3"
 ```
 
 ### PressureUnits
