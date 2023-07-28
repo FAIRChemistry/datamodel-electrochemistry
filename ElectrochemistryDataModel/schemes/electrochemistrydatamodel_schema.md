@@ -33,6 +33,7 @@ classDiagram
     CV *-- CurrentUnits
     CV *-- PotentialUnits
     CV *-- Cycle
+    Cycle *-- PeaksAndHalfPotential
     Cycle *-- PeakIntegration
     ElectrodeSetup *-- ConcentrationUnits
     ElectrodeSetup *-- AreaUnits
@@ -113,6 +114,7 @@ classDiagram
         +TimeUnits time_duration_unit
         +PotentialUnits potential_end_value
         +ChargeDensityUnits[0..*] charge_density
+        +float[0..*] change_potential
     }
     
     class CA {
@@ -137,6 +139,7 @@ classDiagram
         +PotentialUnits stop_potential
         +PotentialUnits potential_lower_limit
         +PotentialUnits potential_upper_limit
+        +float[0..*] change_potential
         +Cycle[0..*] cycles
     }
     
@@ -145,7 +148,18 @@ classDiagram
         +float[0..*] peak_maxima
         +float[0..*] peak_minima
         +float[0..*] half_wave_potential
+        +PeaksAndHalfPotential[0..*] peaks_and_half_potential
         +PeakIntegration[0..*] peak_integration
+    }
+    
+    class PeaksAndHalfPotential {
+        +float current_maximum
+        +float current_minimum
+        +float potential_maximum
+        +float potential_minimum
+        +string current_unit
+        +float change_reference_potential
+        +float half_wave_potential
     }
     
     class PeakIntegration {

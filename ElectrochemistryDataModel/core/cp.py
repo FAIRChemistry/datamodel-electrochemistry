@@ -7,9 +7,9 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .chargedensityunits import ChargeDensityUnits
+from .timeunits import TimeUnits
 from .currentunits import CurrentUnits
 from .potentialunits import PotentialUnits
-from .timeunits import TimeUnits
 
 
 @forge_signature
@@ -64,9 +64,18 @@ class CP(sdRDM.DataModel):
         description="The charge density of the measurement",
     )
 
+    change_potential: List[float] = Field(
+        default_factory=ListPlus,
+        multiple=True,
+        description=(
+            "A list of potential values, which could be used to transform reference"
+            " potential scale"
+        ),
+    )
+
     __repo__: Optional[str] = PrivateAttr(
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="ce235b09a292fbf86d3ec367d054958dbe6889e1"
+        default="09f758dacf013767da0149a401609b1d469526a8"
     )
