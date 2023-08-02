@@ -18,6 +18,7 @@ lib = DataModel.from_markdown("specifications/Electrochemistry.md")
 
 class ReferenceCalculator:
     def __init__(self,e_chem,experiment_list=None):
+        #Dictionary with the reference names and potentials
         self.reference_values = {
             "SHE": 0, 
             "RHE": -0.0592, 
@@ -39,6 +40,7 @@ class ReferenceCalculator:
         print(tabulate(self.table, headers=["Reference", "Potential (V)"]))
 
     def reference_difference(self):
+        #Extract method to save only the reference name without the concentration
         def extract_name(reference):
             return reference.split('(')[0].strip()
         def interactive(old_reference="Ag/AgCl (sat. KCl)", new_reference="SHE", pH="1", potential="0"):
@@ -46,20 +48,20 @@ class ReferenceCalculator:
                 self.reference_values["RHE"] = -0.0592 * float(pH)
             self.reference_difference_value = float(potential) + self.reference_values[new_reference] - self.reference_values[old_reference]
             new_reference_name = extract_name(new_reference)
+            #Interactive button to save the potential values into the data model
             def on_button_click(_):
                     for experiment in self.experiment_list:
-                        if self.e_chem.experiments[experiment].type == "CP" and (self.reference_difference_value, new_reference_name, "V") not in self.e_chem.experiments[experiment].analysis.cp.change_potential:
-                            self.e_chem.experiments[experiment].analysis.cp.change_potential.append((self.reference_difference_value, new_reference_name, "V"))
-                        elif self.e_chem.experiments[experiment].type == "CV" and (self.reference_difference_value, new_reference_name, "V") not in self.e_chem.experiments[experiment].analysis.cv.change_potential:
-                            self.e_chem.experiments[experiment].analysis.cv.change_potential.append((self.reference_difference_value, new_reference_name, "V"))
+                        if self.e_chem.experiments[experiment].type == "CP" and (self.reference_difference_value, new_reference_name) not in self.e_chem.experiments[experiment].analysis.cp.change_potential:
+                            self.e_chem.experiments[experiment].analysis.cp.change_potential.append((self.reference_difference_value, new_reference_name))
+                            print("Potential value:", self.reference_difference_value, new_reference_name,"was saved to experiment:", experiment)
+                        elif self.e_chem.experiments[experiment].type == "CV" and (self.reference_difference_value, new_reference_name) not in self.e_chem.experiments[experiment].analysis.cv.change_potential:
+                            self.e_chem.experiments[experiment].analysis.cv.change_potential.append((self.reference_difference_value, new_reference_name))
                         elif self.e_chem.experiments[experiment].type == "CA":
                             print("Experiment is from type CA and don't need a change_potential value")
                         else:
                             print("Reference potential is already saved")
-                        # if self.e_chem.experiments[experiment].type=="CP":
-                        #     self.e_chem.experiments[experiment].analysis.cp.change_potential.append((self.reference_difference_value,new_reference_name,"V"))
-                        #     print("The potential values:",(self.reference_difference_value,new_reference_name,"V"),"are added to the experiments")
-                    
+                            break    
+
             button = widgets.Button(description="Potential2Model")
             button.on_click(on_button_click)
             display(button)
@@ -71,7 +73,7 @@ class ReferenceCalculator:
 
 
 class Chronopotentiometry:
-    def __init__(self,e_chem,experiment_list,add_potential_value=None,new_reference_name=None,change_reference=False):
+    def __init__(self,e_chem,experiment_list,change_reference_list_index=None,change_reference=False):
         self.e_chem = e_chem
         self.reference = self.e_chem.experiments[experiment_list[0]].electrode_setup.reference_electrode
         self.experiment_list=experiment_list
@@ -94,15 +96,23 @@ class Chronopotentiometry:
                 self.df_liste.append(df)
             else:
                 self.df_liste.append(None)
+        mapping_dict_reference_names={"SHE":"SHE",
+                      "RHE":"RHE",
+                      "Hg/Hg2Cl2": "Hg/Hg$_2$Cl$_2$",
+                      "Ag/AgCl":"Ag/AgCl",
+                      "Hg/HgO": "Hg/HgO",
+                      "Fc/Fc+": "Fc/Fc$^{+}"}
         if change_reference:
-            self.delta_E=add_potential_value
-            self.reference=new_reference_name
+            self.delta_E=self.e_chem.experiments[experiment_list[0]].analysis.cp.change_potential[change_reference_list_index][0]
+            self.reference=mapping_dict_reference_names[self.e_chem.experiments[experiment_list[0]].analysis.cp.change_potential[change_reference_list_index][1]]
             self.ylabel=f"$E$ vs. {self.reference} ({self.e_chem.experiments[experiment_list[0]].analysis.cp.measurement_potential_unit})"
             for df in self.df_liste:
                 if df is not None:
                     df['E'] = df['E'] + self.delta_E
         else:
             pass
+
+
     def quick_plot(self):
         for experiment in self.experiment_list:
             f, (ax,ax2,ax3) = plt.subplots(3,1)
@@ -321,13 +331,22 @@ class CyclicVoltammetry:
                 df["I"] = df["I"] / self.e_chem.experiments[experiment].electrode_setup.working_electrode_area
         if len(e_chem.experiments[experiment].analysis.cv.cycles) == 0:
             for cycle in self.all_cycles_list:
-                ##
-                # Cycle=lib.Cycle()
-                # e_chem.experiments[experiment].analysis.cv.cycles.append(Cycle)
-                ###
                 Cycle = lib.Cycle(number=cycle)
                 e_chem.experiments[experiment].analysis.cv.cycles.append(Cycle)
-                #print(e_chem.experiments[experiment].analysis.cv.cycles)
+        # Determination of the lowest/highest current for the zoom option in the plot method
+        max_value = -np.inf  
+        min_value = np.inf         
+        for i in self.cycles:
+            current_max = np.max(self.cycle_df[i]["I"])
+            current_min = np.min(self.cycle_df[i]["I"])
+            potential_max = np.max(self.cycle_df[i]["E"])
+            potential_min = np.min(self.cycle_df[i]["E"])
+            self.max_current_value = max(max_value,current_max)
+            self.min_current_value= min(min_value,current_min)
+            self.max_potential_value = max(max_value,potential_max)
+            self.min_potential_value= min(min_value,potential_min)
+            self.min_current_value -= 1
+            self.max_current_value += 1
     def plot(self):
         xlabel=self.xlabel
         ylabel=self.ylabel
@@ -335,7 +354,7 @@ class CyclicVoltammetry:
             annotate_text=f"{self.electrolyte}/pH={self.e_chem.experiments[self.experiment].electrolyte.pH}/{self.substrate}\n$v$={self.scan_rate}"
         else:
             annotate_text=f"{self.electrolyte}/{self.substrate}\n$v$={self.scan_rate}"
-        def interactive(xlabel=xlabel, ylabel=ylabel,savename="CV_plot.pdf",text_xcoord=0.55,text_ycoord=0.05,annotate_text=widgets.Textarea(value=annotate_text),save=False,annotate=True,legend=True,arrow=True,y_arrow_position=self.cycle_df[0]['I'][0]+2, arrow_width=1,arrow_end=15): #
+        def interactive(xlabel=xlabel, ylabel=ylabel,savename="CV_plot.pdf",text_xcoord=0.55,text_ycoord=0.05,annotate_text=widgets.Textarea(value=annotate_text),save=False,annotate=True,legend=True,arrow=True,y_arrow_position=self.cycle_df[0]['I'][0]+1, arrow_width=1,arrow_end=15,zoom_x=False,zoom_x_min=self.cycle_df[0]['E'].min()-0.1,zoom_x_max=self.cycle_df[0]['E'].max()+0.1,zoom_y=False,zoom_y_min=self.min_current_value,zoom_y_max=self.max_current_value): 
             fig, ax = plt.subplots()
             for i in self.cycles: 
                 ax.plot(self.cycle_df[i]["E"],self.cycle_df[i]["I"],label="Cycle: {}".format(i+1))
@@ -343,16 +362,19 @@ class CyclicVoltammetry:
                 ax.set_ylabel(ylabel)
             if legend:
                 ax.legend(loc="best",frameon=False)
-           
             if annotate:
                 ax.annotate(annotate_text, xy=(text_xcoord,text_ycoord), xycoords="axes fraction")
             if arrow:
                 self.cycle_df[0]['E'] = self.cycle_df[0]['E'].astype(float)
                 self.cycle_df[0]['I'] = self.cycle_df[0]['I'].astype(float)
-                ax.arrow(self.cycle_df[0]['E'][0],y_arrow_position, dx=self.cycle_df[0]['E'][arrow_end]-self.cycle_df[0]['E'][0], dy=0, head_width=(self.cycle_df[0]['I'].max()--self.cycle_df[0]['I'].min())/10*arrow_width, head_length=(self.cycle_df[0]['E'].max()-self.cycle_df[0]['E'].min())/12, fc='black', ec='black')
+                ax.arrow(self.cycle_df[0]['E'][0],y_arrow_position, dx=self.cycle_df[0]['E'][arrow_end]-self.cycle_df[0]['E'][0], dy=0, head_width=(self.max_current_value-self.min_current_value)/25*arrow_width, head_length=(self.cycle_df[0]['E'].max()-self.cycle_df[0]['E'].min())/12, fc='black', ec='black')
+            if zoom_x:
+                ax.set_xlim(zoom_x_min,zoom_x_max)
+            if zoom_y:
+                ax.set_ylim(zoom_y_min,zoom_y_max)
             if save:
                 fig.savefig("plots/" + savename,bbox_inches='tight')
-        widgets.interact(interactive,text_xcoord=(0,1.2,0.05),text_ycoord=(0,1.2,0.05),y_arrow_position=(self.cycle_df[0]['I'].min(),self.cycle_df[0]['I'].max()),arrow_width=(0.5,10,0.5),arrow_end=(1,100,1))
+        widgets.interact(interactive,text_xcoord=(0,1.2,0.05),text_ycoord=(0,1.2,0.05),y_arrow_position=(self.cycle_df[0]['I'].min(),self.cycle_df[0]['I'].max()),arrow_width=(0.5,10,0.5),arrow_end=(1,100,1),zoom_x_min=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_y_min=(self.min_current_value,self.max_current_value),zoom_y_max=(self.min_current_value,self.max_current_value))
     def peaks(self):
         x_max = self.cycle_df[0]['E'].max()
         x_min = self.cycle_df[0]['E'].min()
@@ -370,25 +392,20 @@ class CyclicVoltammetry:
             for i in self.cycles:
             # Here are interactive buttons, which allowing to save the peaks to the data model
                 def on_button_click_min(_):
-                    Peak_min=(pot_at_min,current_at_min,"µA")
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_minima.append(Peak_min)
-                    #
                     min_peak=lib.PeaksAndHalfPotential(current_minimum=current_at_min,current_unit=f"{self.yunit}",potential_minimum=pot_at_min,change_reference_potential=self.delta_E)
-                    #print()
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peaks_and_half_potential.append(min_peak)
-                    #print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i])
                     print(min_peak)
                     print("Minimum peak was added to the datamodel")
                 button_min = widgets.Button(description="Minima2Model")
                 def on_button_click_max(_):
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_maxima.append((pot_at_max,current_at_max))
-                    print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i])
+                    max_peak=lib.PeaksAndHalfPotential(current_maximum=current_at_max,current_unit=f"{self.yunit}",potential_maximum=pot_at_max,change_reference_potential=self.delta_E)
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peaks_and_half_potential.append(max_peak)
+                    print(max_peak)
                     print("Maximum Saved")
                 button_max = widgets.Button(description="Maxima2Model")
                 def on_button_click_hwp(_):
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_minima.append((pot_at_min,current_at_min))
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_maxima.append((pot_at_max,current_at_max))
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].half_wave_potential.append(hwp)
+                    peaks_and_hwp=lib.PeaksAndHalfPotential(current_minimum=current_at_min,potential_minimum=pot_at_min,current_maximum=current_at_max,current_unit=f"{self.yunit}",potential_maximum=pot_at_max,change_reference_potential=self.delta_E,half_wave_potential=hwp)
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peaks_and_half_potential.append(peaks_and_hwp)
                     print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i])
                     print("Peaks and half-wave potential Saved")
                 button_hwp = widgets.Button(description="Peaks+Hwp2Model")
