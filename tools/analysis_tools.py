@@ -345,8 +345,8 @@ class CyclicVoltammetry:
             self.min_current_value= min(min_value,current_min)
             self.max_potential_value = max(max_value,potential_max)
             self.min_potential_value= min(min_value,potential_min)
-            self.min_current_value -= 1
-            self.max_current_value += 1
+            self.min_current_value -= 2
+            self.max_current_value += 2
     def plot(self):
         xlabel=self.xlabel
         ylabel=self.ylabel
@@ -354,7 +354,7 @@ class CyclicVoltammetry:
             annotate_text=f"{self.electrolyte}/pH={self.e_chem.experiments[self.experiment].electrolyte.pH}/{self.substrate}\n$v$={self.scan_rate}"
         else:
             annotate_text=f"{self.electrolyte}/{self.substrate}\n$v$={self.scan_rate}"
-        def interactive(xlabel=xlabel, ylabel=ylabel,savename="CV_plot.pdf",text_xcoord=0.55,text_ycoord=0.05,annotate_text=widgets.Textarea(value=annotate_text),save=False,annotate=True,legend=True,arrow=True,y_arrow_position=self.cycle_df[0]['I'][0]+1, arrow_width=1,arrow_end=15,zoom_x=False,zoom_x_min=self.cycle_df[0]['E'].min()-0.1,zoom_x_max=self.cycle_df[0]['E'].max()+0.1,zoom_y=False,zoom_y_min=self.min_current_value,zoom_y_max=self.max_current_value): 
+        def interactive(xlabel=xlabel, ylabel=ylabel,savename="CV_plot.pdf",text_xcoord=0.55,text_ycoord=0.05,annotate_text=widgets.Textarea(value=annotate_text),save=False,annotate=False,legend=True,arrow=True,y_arrow_position=self.cycle_df[0]['I'][0]+1, arrow_width=1,arrow_end=15,zoom_x=False,zoom_x_min=self.cycle_df[0]['E'].min()-0.1,zoom_x_max=self.cycle_df[0]['E'].max()+0.1,zoom_y=False,zoom_y_min=self.min_current_value,zoom_y_max=self.max_current_value): 
             fig, ax = plt.subplots()
             for i in self.cycles: 
                 ax.plot(self.cycle_df[i]["E"],self.cycle_df[i]["I"],label="Cycle: {}".format(i+1))
@@ -367,24 +367,23 @@ class CyclicVoltammetry:
             if arrow:
                 self.cycle_df[0]['E'] = self.cycle_df[0]['E'].astype(float)
                 self.cycle_df[0]['I'] = self.cycle_df[0]['I'].astype(float)
-                ax.arrow(self.cycle_df[0]['E'][0],y_arrow_position, dx=self.cycle_df[0]['E'][arrow_end]-self.cycle_df[0]['E'][0], dy=0, head_width=(self.max_current_value-self.min_current_value)/25*arrow_width, head_length=(self.cycle_df[0]['E'].max()-self.cycle_df[0]['E'].min())/12, fc='black', ec='black')
+                ax.arrow(self.cycle_df[0]['E'][0],y_arrow_position, dx=self.cycle_df[0]['E'][arrow_end]-self.cycle_df[0]['E'][0], dy=0, head_width=(self.max_current_value-self.min_current_value)/30*arrow_width, head_length=(self.cycle_df[0]['E'].max()-self.cycle_df[0]['E'].min())/12, fc='black', ec='black')
             if zoom_x:
                 ax.set_xlim(zoom_x_min,zoom_x_max)
             if zoom_y:
                 ax.set_ylim(zoom_y_min,zoom_y_max)
             if save:
                 fig.savefig("plots/" + savename,bbox_inches='tight')
-        widgets.interact(interactive,text_xcoord=(0,1.2,0.05),text_ycoord=(0,1.2,0.05),y_arrow_position=(self.cycle_df[0]['I'].min(),self.cycle_df[0]['I'].max()),arrow_width=(0.5,10,0.5),arrow_end=(1,100,1),zoom_x_min=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_y_min=(self.min_current_value,self.max_current_value),zoom_y_max=(self.min_current_value,self.max_current_value))
+        widgets.interact(interactive,text_xcoord=(0,1.2,0.05),text_ycoord=(0,1.2,0.05),y_arrow_position=(self.cycle_df[0]['I'].min(),self.cycle_df[0]['I'].max()),arrow_width=(0.1,5,0.5),arrow_end=(1,100,1),zoom_x_min=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_y_min=(self.min_current_value,self.max_current_value),zoom_y_max=(self.min_current_value,self.max_current_value))
     def peaks(self):
         x_max = self.cycle_df[0]['E'].max()
         x_min = self.cycle_df[0]['E'].min()
         xlabel=self.xlabel
         ylabel=self.ylabel
-        def interactive(E_Min=x_min,E_Max=x_max,vertex_line=False, E_hwp_average=False,savename="CV_peaks.pdf",save=False): 
+        def interactive(E_Min=x_min,E_Max=x_max,vertex_line=False,savename="CV_peaks.pdf",save=False,zoom_x=False,zoom_x_min=self.cycle_df[0]['E'].min()-0.1,zoom_x_max=self.cycle_df[0]['E'].max()+0.1,zoom_y=False,zoom_y_min=self.min_current_value,zoom_y_max=self.max_current_value): 
             E_min=[]
             E_max=[]
             E_hwp=[]
-            E_hwp_mean=[]
             Cycles=[]
             I_max=[]
             I_min=[]
@@ -413,6 +412,10 @@ class CyclicVoltammetry:
                 fig, ax=plt.subplots()
                 ax.set_xlabel(xlabel)
                 ax.set_ylabel(ylabel)
+                if zoom_x:
+                    ax.set_xlim(zoom_x_min,zoom_x_max)
+                if zoom_y:
+                    ax.set_ylim(zoom_y_min,zoom_y_max)
                 ax.plot(self.cycle_df[i]["E"],self.cycle_df[i]["I"],label="Cycle: {}".format(i+1))
                 Cycles.append("Cycle: {}".format(i+1))
                 # The range for the peak seach
@@ -446,8 +449,15 @@ class CyclicVoltammetry:
                 I_vertex_list.append(I_vertex)
                 if vertex_line:
                     ax.axhline(y=I_vertex , color='black', linestyle='-')
-            if E_hwp_average:
-                print("The average of the half-wave potential of all used cycles is:",average_hwp)
+            # if E_hwp_average:
+            #     print("The average of the half-wave potential of all used cycles is:",average_hwp)
+            Cycles.append("Average")
+            E_hwp.append(average_hwp)
+            I_min.append(np.average(I_min))
+            I_max.append(np.average(I_max))
+            E_min.append(np.average(E_min))
+            E_max.append(np.average(E_max))
+            I_vertex_list.append(np.average(I_vertex_list))
             button_min.on_click(on_button_click_min)
             display(button_min)
             button_max.on_click(on_button_click_max)
@@ -459,7 +469,7 @@ class CyclicVoltammetry:
                 fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename,bbox_inches='tight')
 
             return self.df_peaks
-        widgets.interact(interactive,E_Min=(x_min,x_max),E_Max=(x_min,x_max))
+        widgets.interact(interactive,E_Min=(x_min,x_max),E_Max=(x_min,x_max),zoom_x_min=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_y_min=(self.min_current_value,self.max_current_value),zoom_y_max=(self.min_current_value,self.max_current_value))
         
         return 
     def integration(self):
@@ -467,7 +477,7 @@ class CyclicVoltammetry:
         x_min = self.cycle_df[0]['E'].min()
         xlabel=self.xlabel
         ylabel=self.ylabel
-        def interactive(E_min=(x_min-0.1,x_max,0.01),E_max=(x_min,x_max,0.01),E_min_back=(x_min-0.1,x_max,0.01),E_max_back=(x_min,x_max,0.01),savename="integration.pdf",save=False):
+        def interactive(E_min=(x_min-0.1,x_max,0.01),E_max=(x_min,x_max,0.01),E_min_back=(x_min-0.1,x_max,0.01),E_max_back=(x_min,x_max,0.01),savename="integration.pdf",save=False,zoom_x=False,zoom_x_min=self.cycle_df[0]['E'].min()-0.1,zoom_x_max=self.cycle_df[0]['E'].max()+0.1,zoom_y=False,zoom_y_min=self.min_current_value,zoom_y_max=self.max_current_value):
             Cycles=[]
             Integral_forward=[]
             Integral_backward=[]
@@ -489,6 +499,10 @@ class CyclicVoltammetry:
                     button_backward = widgets.Button(description="BackwardArea2Model")
                     Cycles.append("Cycle: {}".format(i+1)) 
                     fig,ax=plt.subplots()
+                    if zoom_x:
+                        ax.set_xlim(zoom_x_min,zoom_x_max)
+                    if zoom_y:
+                        ax.set_ylim(zoom_y_min,zoom_y_max)
                     # Split a Cycle into forward and backward
                     df=self.cycle_df[i]
                     half= len(df)//2
@@ -533,18 +547,18 @@ class CyclicVoltammetry:
                     ax.set_xlabel(xlabel)
                     ax.set_ylabel(ylabel)
                     ax.legend(frameon=False)
-                    button_forward.on_click(on_button_click_forward)
-                    display(button_forward)
-                    button_backward.on_click(on_button_click_backward)
-                    display(button_backward)
+
                     if save:
                         fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename,bbox_inches='tight')
 
                     self.df_integration= pd.DataFrame(zip(Cycles,Integral_forward,Integral_backward), columns=["Cycles","Integration Area forward","Integration Area backward"])
-
+            button_forward.on_click(on_button_click_forward)
+            display(button_forward)
+            button_backward.on_click(on_button_click_backward)
+            display(button_backward)
             return self.df_integration
 
-        widgets.interact(interactive)
+        widgets.interact(interactive,zoom_x_min=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_y_min=(self.min_current_value,self.max_current_value),zoom_y_max=(self.min_current_value,self.max_current_value))
     def ferrocene_reference(self,experiment2):
         if self.e_chem.experiments[experiment2].type=="CV"  and self.e_chem.experiments[experiment2].filename.endswith(".csv"):
             self.df2 = pd.read_csv(self.e_chem.experiments[experiment2].filename,header=5,skipfooter=1,engine="python")
