@@ -8,9 +8,10 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from .currentunits import CurrentUnits
 from .cycle import Cycle
-from .potentialunits import PotentialUnits
 from .scanrateunits import ScanRateUnits
+from .potentialunits import PotentialUnits
 from .peakintegration import PeakIntegration
+from .peaksandhalfpotential import PeaksAndHalfPotential
 
 
 @forge_signature
@@ -79,6 +80,15 @@ class CV(sdRDM.DataModel):
         description="The upper limit of the potential",
     )
 
+    change_potential: List[float] = Field(
+        default_factory=ListPlus,
+        multiple=True,
+        description=(
+            "A list of potential values, which could be used to transform reference"
+            " potential scale"
+        ),
+    )
+
     cycles: List[Cycle] = Field(
         default_factory=ListPlus,
         multiple=True,
@@ -89,7 +99,7 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="ce235b09a292fbf86d3ec367d054958dbe6889e1"
+        default="09f758dacf013767da0149a401609b1d469526a8"
     )
 
     def add_to_cycles(
@@ -98,6 +108,7 @@ class CV(sdRDM.DataModel):
         peak_maxima: List[float] = ListPlus(),
         peak_minima: List[float] = ListPlus(),
         half_wave_potential: List[float] = ListPlus(),
+        peaks_and_half_potential: List[PeaksAndHalfPotential] = ListPlus(),
         peak_integration: List[PeakIntegration] = ListPlus(),
         id: Optional[str] = None,
     ) -> None:
@@ -110,6 +121,7 @@ class CV(sdRDM.DataModel):
             peak_maxima (): A list of the peak maxima. Defaults to ListPlus()
             peak_minima (): A list of the peak minima. Defaults to ListPlus()
             half_wave_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
+            peaks_and_half_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
             peak_integration (): The peak integration. Defaults to ListPlus()
         """
 
@@ -118,6 +130,7 @@ class CV(sdRDM.DataModel):
             "peak_maxima": peak_maxima,
             "peak_minima": peak_minima,
             "half_wave_potential": half_wave_potential,
+            "peaks_and_half_potential": peaks_and_half_potential,
             "peak_integration": peak_integration,
         }
 

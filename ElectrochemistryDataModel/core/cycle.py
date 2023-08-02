@@ -7,6 +7,7 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .peakintegration import PeakIntegration
+from .peaksandhalfpotential import PeaksAndHalfPotential
 
 
 @forge_signature
@@ -42,6 +43,12 @@ class Cycle(sdRDM.DataModel):
         description="The half-wave potential of the measurement",
     )
 
+    peaks_and_half_potential: List[PeaksAndHalfPotential] = Field(
+        default_factory=ListPlus,
+        multiple=True,
+        description="The half-wave potential of the measurement",
+    )
+
     peak_integration: List[PeakIntegration] = Field(
         default_factory=ListPlus,
         multiple=True,
@@ -52,8 +59,48 @@ class Cycle(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="ce235b09a292fbf86d3ec367d054958dbe6889e1"
+        default="09f758dacf013767da0149a401609b1d469526a8"
     )
+
+    def add_to_peaks_and_half_potential(
+        self,
+        current_maximum: Optional[float] = None,
+        current_minimum: Optional[float] = None,
+        potential_maximum: Optional[float] = None,
+        potential_minimum: Optional[float] = None,
+        current_unit: Optional[str] = None,
+        change_reference_potential: Optional[float] = None,
+        half_wave_potential: Optional[float] = None,
+        id: Optional[str] = None,
+    ) -> None:
+        """
+        This method adds an object of type 'PeaksAndHalfPotential' to attribute peaks_and_half_potential
+
+        Args:
+            id (str): Unique identifier of the 'PeaksAndHalfPotential' object. Defaults to 'None'.
+            current_maximum (): A list of the peak maxima. Defaults to None
+            current_minimum (): A list of the peak minima. Defaults to None
+            potential_maximum (): A list of the peak maxima. Defaults to None
+            potential_minimum (): A list of the peak minima. Defaults to None
+            current_unit (): A list of the peak minima. Defaults to None
+            change_reference_potential (): A list of the peak minima. Defaults to None
+            half_wave_potential (): The half-wave potential of the measurement. Defaults to None
+        """
+
+        params = {
+            "current_maximum": current_maximum,
+            "current_minimum": current_minimum,
+            "potential_maximum": potential_maximum,
+            "potential_minimum": potential_minimum,
+            "current_unit": current_unit,
+            "change_reference_potential": change_reference_potential,
+            "half_wave_potential": half_wave_potential,
+        }
+
+        if id is not None:
+            params["id"] = id
+
+        self.peaks_and_half_potential.append(PeaksAndHalfPotential(**params))
 
     def add_to_peak_integration(
         self,
