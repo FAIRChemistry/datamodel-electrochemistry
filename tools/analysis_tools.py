@@ -71,7 +71,7 @@ class ReferenceCalculator:
                             print("Reference potential is already saved")
                             break    
 
-            button = widgets.Button(description="Potential2Model")
+            button = widgets.Button(description="Save Potential")
             button.on_click(on_button_click)
             display(button)
             return self.reference_difference_value
@@ -130,7 +130,6 @@ class Chronopotentiometry:
         else:
              self.delta_E = 0
 
-
     def quick_plot(self):
         """ Quick plot method, which allows to see the potential, the current and the potential in the whole cell"""
         for experiment in self.experiment_list:
@@ -152,6 +151,7 @@ class Chronopotentiometry:
             annotate_text=f"{self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration_unit} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.solvent} pH={self.e_chem.experiments[self.experiment_list[0]].electrolyte.pH} \n$J$={self.induced_current_density} {self.induced_current_density_unit}"
         else:
             annotate_text=f"{self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt_concentration_unit} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.conducting_salt} {self.e_chem.experiments[self.experiment_list[0]].electrolyte.solvent} \n$J$={self.induced_current_density}  {self.induced_current_density_unit}"
+        """ Interactive function"""    
         def interactive(xlabel=self.xlabel, ylabel=self.ylabel,savename="CP_plot.pdf",xcoord=0.55,ycoord=0.05,annotate_text=widgets.Textarea(value=annotate_text),save=False,annotate=True,legend=True):
             fig, ax = plt.subplots() 
             for experiment in self.experiment_list:
@@ -165,12 +165,11 @@ class Chronopotentiometry:
             if save:
                 fig.savefig("plots/" + savename,bbox_inches='tight')
         widgets.interact(interactive,xcoord=(0,1.2,0.05),ycoord=(0,1.2,0.05))
-
+    """ The end_value method determines the end potential via the average of the last points"""
     def end_value(self):
         def interactive(xlabel=self.xlabel, ylabel=self.ylabel,savename="CP_plot.pdf",last_points=100,save=False,last_points_line=False):
             names=[]
             end_values=[] 
-            average_list=[]
             fig,ax =plt.subplots()
             """ Interactive button"""
             def on_button_click(_):
@@ -180,23 +179,21 @@ class Chronopotentiometry:
                     print(end_potential)
                 print("Potential was added to the datamodel")
             button = widgets.Button(description="Save potential")
+            """ For the plot"""
             for experiment in self.experiment_list:
                 last_values = self.df_liste[experiment].tail(last_points)["E"].values[0]
                 average = last_values.mean()
-                average_list.append(average)
                 ax.set_xlabel(xlabel)
                 ax.set_ylabel(ylabel)
-                print(average)
-                #print(experiment)
                 ax.plot(self.df_liste[experiment]["t"], self.df_liste[experiment]["E"],label=self.e_chem.experiments[experiment].name)
                 ax.plot(self.df_liste[experiment]["t"], [average] * len(self.df_liste[experiment]["t"]), linewidth=3,linestyle='dotted', label="{} average".format(self.e_chem.experiments[experiment].name))
                 ax.legend(loc="best",frameon=False)
-                
+                names.append(self.e_chem.experiments[experiment].name)
+                end_values.append(average) 
+
                 if last_points_line:
                     ax.axvline(x=self.df_liste[experiment].tail(last_points)["t"].values[0], color='black', linestyle='--', label="last points")
 
-                names.append(self.e_chem.experiments[experiment].name)
-                end_values.append(average) 
                 if save:
                     fig.savefig("plots/" + savename,bbox_inches='tight') 
             button.on_click(on_button_click)
@@ -206,12 +203,13 @@ class Chronopotentiometry:
             return  self.end_value_df
         widgets.interact(interactive,last_points=(1,400))
     def end_value_fit(self):
-        def exponential_fit(x, a, b, c):
-            return a * np.exp(-b/2 * x) + c
         names=[]
         end_values=[]
+        """ The exponential fit function"""
+        def exponential_fit(x, a, b, c):
+            return a * np.exp(-b/2 * x) + c
         def interactive(xlabel=self.xlabel, ylabel=self.ylabel,savename="CA_plot.pdf",save=False):
-            fig,ax =plt.subplots()
+            """ Interactive Button"""
             def on_button_click(_):
                 for experiment in self.experiment_list:
                     end_potential=lib.PotentialEndValue(method="Fit function",fit_function="a*exp(-b/2 * x)+ c",end_value=end_values[experiment],change_reference_potential=self.delta_E,reference_name=self.reference_name)
@@ -219,22 +217,29 @@ class Chronopotentiometry:
                     print(end_potential)
                 print("Potential was added to the datamodel")
             button = widgets.Button(description="Save potential")
+            """ Plot and fit functions"""
+            fig,ax =plt.subplots()
             for experiment in self.experiment_list:
                 t_fit = np.linspace(0, self.df_liste[experiment]["t"].max(), self.df_liste[experiment].shape[0])
                 popt, pcov = curve_fit(exponential_fit,self.df_liste[experiment]["t"], self.df_liste[experiment]["E"])
+                """ The constant c is the end potential"""
                 c=popt[2]
                 names.append(self.e_chem.experiments[experiment].name)
                 end_values.append(c)
+
                 ax.set_xlabel(xlabel)
                 ax.set_ylabel(ylabel)
                 ax.plot(self.df_liste[experiment]["t"], self.df_liste[experiment]["E"],label=self.e_chem.experiments[experiment].name)
                 ax.plot(t_fit, exponential_fit(t_fit, *popt),linewidth=3,linestyle='dotted', label="{} fit".format(self.e_chem.experiments[experiment].name))
                 ax.legend(loc="best",frameon=False)
+                """ To save the plot"""
                 if save:
                     fig.savefig("plots/" + savename,bbox_inches='tight')
                 self.end_value_fit_df = pd.DataFrame(list(zip(names,end_values)), columns=["Name","End value"])
+
             button.on_click(on_button_click)
-            display(button)   
+            display(button) 
+
             return  self.end_value_fit_df
         widgets.interact(interactive)
 
@@ -247,6 +252,7 @@ class Chronoamperometry:
         self.df_liste=[]
         self.xlabel=f"$t$ ({self.e_chem.experiments[experiment_list[0]].analysis.ca.measurement_time_unit})"
         self.ylabel=f"$I$ ({self.e_chem.experiments[experiment_list[0]].analysis.ca.measurement_current_unit})" 
+        self.yunit=f"{self.e_chem.experiments[experiment_list[0]].analysis.ca.measurement_current_unit}"
         mapping_dict={"cm^2":"cm$^2$",
                       "mm^2":"mm$^2$"}
         area_unit=mapping_dict[self.e_chem.experiments[experiment_list[0]].electrode_setup.working_electrode_area_unit]
@@ -263,8 +269,10 @@ class Chronoamperometry:
             else:
                 self.df_liste.append(None)
                 pass 
+        
         if current_density:
             self.ylabel=f"$J$ ({self.e_chem.experiments[experiment_list[0]].analysis.ca.measurement_current_unit}/{area_unit})"
+            self.y_unit=f"{self.e_chem.experiments[experiment_list[0]].analysis.ca.measurement_current_unit}/{area_unit}"
             for df in self.df_liste:
                 if df is not None:
                     for experiment in range(len(self.e_chem.experiments)):
@@ -289,12 +297,54 @@ class Chronoamperometry:
             if annotate:
                 ax.annotate(annotate_text,xy=(xcoord,ycoord),xycoords="axes fraction")
         widgets.interact(interactive,xcoord=(0,1.2,0.05),ycoord=(0,1.2,0.05))
+    def end_value(self):
+        def interactive(xlabel=self.xlabel, ylabel=self.ylabel,savename="CA_plot.pdf",last_points=100,save=False,last_points_line=False):
+            def on_button_click(_):
+                for experiment in self.experiment_list:
+                    end_potential=lib.CurrentEndValue(method="average over last values",end_value=end_values[experiment],last_average_points=last_points,y_unit=f"{self.y_unit}")
+                    self.e_chem.experiments[experiment].analysis.ca.potential_end_value.append(end_potential)
+                    print(end_potential)
+                print("Current was added to the datamodel")
+            button = widgets.Button(description="Save current")
+            names=[]
+            end_values=[] 
+            """ For the plot and average determination"""
+            fig,ax =plt.subplots()
+            for experiment in self.experiment_list:
+                last_values = self.df_liste[experiment].tail(last_points)["I"].values[0]
+                average = last_values.mean()
+                ax.set_xlabel(xlabel)
+                ax.set_ylabel(ylabel)
+                ax.plot(self.df_liste[experiment]["t"], self.df_liste[experiment]["I"],label=self.e_chem.experiments[experiment].name)
+                ax.plot(self.df_liste[experiment]["t"], [average] * len(self.df_liste[experiment]["t"]), linewidth=3,linestyle='dotted', label="{} average".format(self.e_chem.experiments[experiment].name))
+                ax.legend(loc="best",frameon=False)
+                names.append(self.e_chem.experiments[experiment].name)
+                end_values.append(average) 
+
+                if last_points_line:
+                    ax.axvline(x=self.df_liste[experiment].tail(last_points)["t"].values[0], color='black', linestyle='--', label="last points")
+                if save:
+                    fig.savefig("plots/" + savename,bbox_inches='tight')
+
+            button.on_click(on_button_click)
+            display(button)
+            self.end_value_df = pd.DataFrame(list(zip(names,end_values)), columns=["Name", f"Average of the last {last_points} points"]) 
+            return  self.end_value_df
+        widgets.interact(interactive,last_points=(1,10000,500))
     def end_value_fit(self):
         def exponential_fit(x, a, b, c):
             return a * np.exp(-b/2 * x) + c
         names=[]
         end_values=[]
         def interactive(xlabel=self.xlabel, ylabel=self.ylabel,savename="CA_plot.pdf",save=False):
+            def on_button_click(_):
+                for experiment in self.experiment_list:
+                    end_potential=lib.CurrentEndValue(method="average over last values",end_value=end_values[experiment],y_unit=f"{self.y_unit}",fit_function="a*exp(-b/2 * x)+ c")
+                    self.e_chem.experiments[experiment].analysis.ca.potential_end_value.append(end_potential)
+                    print(end_potential)
+                print("Current was added to the datamodel")
+            button = widgets.Button(description="Save current")
+            """ For the plot and average determination"""
             fig,ax =plt.subplots()
             for experiment in self.experiment_list:
                 t_fit = np.linspace(0, self.df_liste[experiment]["t"].max(), self.df_liste[experiment].shape[0])
@@ -309,29 +359,12 @@ class Chronoamperometry:
                 ax.legend(loc="best",frameon=False)
                 if save:
                     fig.savefig("plots/" + savename,bbox_inches='tight')
-                self.end_value_fit_df = pd.DataFrame(list(zip(names,end_values)), columns=["Name","End value"])   
+                self.end_value_fit_df = pd.DataFrame(list(zip(names,end_values)), columns=["Name","End value"]) 
+            button.on_click(on_button_click)
+            display(button)  
             return  self.end_value_fit_df
         widgets.interact(interactive)
-    def end_value(self):
-        def interactive(xlabel=self.xlabel, ylabel=self.ylabel,savename="CA_plot.pdf",last_points=75,save=False):
-            names=[]
-            end_values=[] 
-            fig,ax =plt.subplots()
-            for experiment in self.experiment_list:
-                last_values = self.df_liste[experiment].tail(last_points)["I"].values[0]
-                average = last_values.mean()
-                ax.set_xlabel(xlabel)
-                ax.set_ylabel(ylabel)
-                ax.plot(self.df_liste[experiment]["t"], self.df_liste[experiment]["I"],label=self.e_chem.experiments[experiment].name)
-                ax.plot(self.df_liste[experiment]["t"], [average] * len(self.df_liste[experiment]["t"]), linewidth=3,linestyle='dotted', label="{} average".format(self.e_chem.experiments[experiment].name))
-                ax.legend(loc="best",frameon=False)
-                names.append(self.e_chem.experiments[experiment].name)
-                end_values.append(average) 
-                if save:
-                    fig.savefig("plots/" + savename,bbox_inches='tight') 
-            self.end_value_df = pd.DataFrame(list(zip(names,end_values)), columns=["Name", f"Average of the last {last_points} points"]) 
-            return  self.end_value_df
-        widgets.interact(interactive,last_points=(1,200))
+
 
 class CyclicVoltammetry:
     def __init__(self,e_chem,experiment,cycles=None,change_reference_list_index=None,current_density=False,change_reference=False):

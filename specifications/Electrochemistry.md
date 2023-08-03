@@ -238,8 +238,25 @@
   - Type: TimeUnits
   - Description: The duration time unit of the induced current
 - current_end_value
-  - Type: CurrentUnits
+  - Type: CurrentEndValue
   - Description: The current value at the end of the measurement
+
+### CurrentEndValue
+- method
+  - Type: string
+  - Description: The method, which was used to determine this value
+- end_value
+  - Type: float
+  - Description: The end value current or current density
+- y_unit
+  - Type: string
+  - Description: The y unit 
+- last_average_points
+  - Type: int
+  - Description: The last points, which were used to calculate the average
+- fit_function
+  - Type: string
+  - Description: The fit function, if the fit function was used 
 
 ### CV
 
