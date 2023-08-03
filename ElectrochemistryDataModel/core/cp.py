@@ -6,8 +6,9 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .timeunits import TimeUnits
 from .potentialunits import PotentialUnits
+from .timeunits import TimeUnits
+from .potentialendvalue import PotentialEndValue
 from .currentunits import CurrentUnits
 from .chargedensityunits import ChargeDensityUnits
 
@@ -53,8 +54,9 @@ class CP(sdRDM.DataModel):
         description="The duration time unit of the induced current",
     )
 
-    potential_end_value: Optional[PotentialUnits] = Field(
-        default=None,
+    potential_end_value: List[PotentialEndValue] = Field(
+        default_factory=ListPlus,
+        multiple=True,
         description="The potential value at the end of the measurement",
     )
 
@@ -77,5 +79,42 @@ class CP(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="32407172e3bb02a3b0d7ef553c1bed6f4e9badc7"
+        default="d9d822779074bba7ddf44d090fbda712f160e506"
     )
+
+    def add_to_potential_end_value(
+        self,
+        method: Optional[str] = None,
+        end_value: Optional[float] = None,
+        reference_name: Optional[str] = None,
+        change_reference_potential: Optional[float] = None,
+        last_average_points: Optional[int] = None,
+        fit_function: Optional[str] = None,
+        id: Optional[str] = None,
+    ) -> None:
+        """
+        This method adds an object of type 'PotentialEndValue' to attribute potential_end_value
+
+        Args:
+            id (str): Unique identifier of the 'PotentialEndValue' object. Defaults to 'None'.
+            method (): The method, which was used to determine this value. Defaults to None
+            end_value (): The end value potential. Defaults to None
+            reference_name (): The used reference scale. Defaults to None
+            change_reference_potential (): The change_reference potential. Defaults to None
+            last_average_points (): The last points, which were used to calculate the average. Defaults to None
+            fit_function (): The fit function, if the fit function was used. Defaults to None
+        """
+
+        params = {
+            "method": method,
+            "end_value": end_value,
+            "reference_name": reference_name,
+            "change_reference_potential": change_reference_potential,
+            "last_average_points": last_average_points,
+            "fit_function": fit_function,
+        }
+
+        if id is not None:
+            params["id"] = id
+
+        self.potential_end_value.append(PotentialEndValue(**params))

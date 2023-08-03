@@ -26,6 +26,7 @@ classDiagram
     CP *-- TimeUnits
     CP *-- CurrentUnits
     CP *-- PotentialUnits
+    CP *-- PotentialEndValue
     CA *-- TimeUnits
     CA *-- CurrentUnits
     CA *-- PotentialUnits
@@ -37,6 +38,7 @@ classDiagram
     Cycle *-- PeakIntegration
     ElectrodeSetup *-- ConcentrationUnits
     ElectrodeSetup *-- AreaUnits
+    ElectrodeSetup *-- ReferenceElectrode
     
     class Dataset {
         +GeneralInformation general_information
@@ -112,9 +114,18 @@ classDiagram
         +CurrentUnits induced_current_unit
         +float time_duration
         +TimeUnits time_duration_unit
-        +PotentialUnits potential_end_value
+        +PotentialEndValue[0..*] potential_end_value
         +ChargeDensityUnits[0..*] charge_density
         +float[0..*] change_potential
+    }
+    
+    class PotentialEndValue {
+        +string method
+        +float end_value
+        +string reference_name
+        +float change_reference_potential
+        +int last_average_points
+        +string fit_function
     }
     
     class CA {
@@ -145,9 +156,6 @@ classDiagram
     
     class Cycle {
         +int number
-        +float[0..*] peak_maxima
-        +float[0..*] peak_minima
-        +float[0..*] half_wave_potential
         +PeaksAndHalfPotential[0..*] peaks_and_half_potential
         +PeakIntegration[0..*] peak_integration
     }
@@ -157,8 +165,9 @@ classDiagram
         +float current_minimum
         +float potential_maximum
         +float potential_minimum
-        +string current_unit
+        +string y_unit
         +float change_reference_potential
+        +string reference_name
         +float half_wave_potential
     }
     
@@ -175,7 +184,7 @@ classDiagram
         +float working_electrode_area
         +AreaUnits working_electrode_area_unit
         +string counter_electrode
-        +string reference_electrode
+        +ReferenceElectrode reference_electrode
         +string reference_electrode_salt
         +float reference_electrode_salt_concentration
         +ConcentrationUnits reference_electrode_salt_concentration_unit
@@ -274,6 +283,18 @@ classDiagram
         << Enumeration >>
         +SQUARE_CM
         +SQUARE_MILLI_M
+    }
+    
+    class ReferenceElectrode {
+        << Enumeration >>
+        +SHE
+        +RHE
+        +Ag_AgCl
+        +Ag_AgSO4
+        +Hg_HgO
+        +Hg_Hg2Cl2
+        +Hg_Hg2SO4
+        +Fc_Fc
     }
     
 ```

@@ -7,10 +7,10 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .potentialunits import PotentialUnits
-from .currentunits import CurrentUnits
 from .scanrateunits import ScanRateUnits
-from .peakintegration import PeakIntegration
 from .peaksandhalfpotential import PeaksAndHalfPotential
+from .peakintegration import PeakIntegration
+from .currentunits import CurrentUnits
 from .cycle import Cycle
 
 
@@ -84,8 +84,8 @@ class CV(sdRDM.DataModel):
         default_factory=ListPlus,
         multiple=True,
         description=(
-            "A list of potential values, which could be used to transform reference"
-            " potential scale"
+            "A tuple list of potential values, which could be used to transform"
+            " reference potential scale"
         ),
     )
 
@@ -99,15 +99,12 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="32407172e3bb02a3b0d7ef553c1bed6f4e9badc7"
+        default="d9d822779074bba7ddf44d090fbda712f160e506"
     )
 
     def add_to_cycles(
         self,
         number: Optional[int] = None,
-        peak_maxima: List[float] = ListPlus(),
-        peak_minima: List[float] = ListPlus(),
-        half_wave_potential: List[float] = ListPlus(),
         peaks_and_half_potential: List[PeaksAndHalfPotential] = ListPlus(),
         peak_integration: List[PeakIntegration] = ListPlus(),
         id: Optional[str] = None,
@@ -118,18 +115,12 @@ class CV(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'Cycle' object. Defaults to 'None'.
             number (): The cycle number. Defaults to None
-            peak_maxima (): A list of the peak maxima. Defaults to ListPlus()
-            peak_minima (): A list of the peak minima. Defaults to ListPlus()
-            half_wave_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
             peaks_and_half_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
             peak_integration (): The peak integration. Defaults to ListPlus()
         """
 
         params = {
             "number": number,
-            "peak_maxima": peak_maxima,
-            "peak_minima": peak_minima,
-            "half_wave_potential": half_wave_potential,
             "peaks_and_half_potential": peaks_and_half_potential,
             "peak_integration": peak_integration,
         }

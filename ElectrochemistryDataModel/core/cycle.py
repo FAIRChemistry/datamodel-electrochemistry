@@ -6,8 +6,8 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .peakintegration import PeakIntegration
 from .peaksandhalfpotential import PeaksAndHalfPotential
+from .peakintegration import PeakIntegration
 
 
 @forge_signature
@@ -23,24 +23,6 @@ class Cycle(sdRDM.DataModel):
     number: Optional[int] = Field(
         default=None,
         description="The cycle number",
-    )
-
-    peak_maxima: List[float] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="A list of the peak maxima",
-    )
-
-    peak_minima: List[float] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="A list of the peak minima",
-    )
-
-    half_wave_potential: List[float] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The half-wave potential of the measurement",
     )
 
     peaks_and_half_potential: List[PeaksAndHalfPotential] = Field(
@@ -59,7 +41,7 @@ class Cycle(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="32407172e3bb02a3b0d7ef553c1bed6f4e9badc7"
+        default="d9d822779074bba7ddf44d090fbda712f160e506"
     )
 
     def add_to_peaks_and_half_potential(
@@ -68,8 +50,9 @@ class Cycle(sdRDM.DataModel):
         current_minimum: Optional[float] = None,
         potential_maximum: Optional[float] = None,
         potential_minimum: Optional[float] = None,
-        current_unit: Optional[str] = None,
+        y_unit: Optional[str] = None,
         change_reference_potential: Optional[float] = None,
+        reference_name: Optional[str] = None,
         half_wave_potential: Optional[float] = None,
         id: Optional[str] = None,
     ) -> None:
@@ -82,8 +65,9 @@ class Cycle(sdRDM.DataModel):
             current_minimum (): A list of the peak minima. Defaults to None
             potential_maximum (): A list of the peak maxima. Defaults to None
             potential_minimum (): A list of the peak minima. Defaults to None
-            current_unit (): A list of the peak minima. Defaults to None
-            change_reference_potential (): A list of the peak minima. Defaults to None
+            y_unit (): The y unit. Defaults to None
+            change_reference_potential (): The change_reference potential. Defaults to None
+            reference_name (): The used reference scale. Defaults to None
             half_wave_potential (): The half-wave potential of the measurement. Defaults to None
         """
 
@@ -92,8 +76,9 @@ class Cycle(sdRDM.DataModel):
             "current_minimum": current_minimum,
             "potential_maximum": potential_maximum,
             "potential_minimum": potential_minimum,
-            "current_unit": current_unit,
+            "y_unit": y_unit,
             "change_reference_potential": change_reference_potential,
+            "reference_name": reference_name,
             "half_wave_potential": half_wave_potential,
         }
 

@@ -35,14 +35,19 @@ class PeaksAndHalfPotential(sdRDM.DataModel):
         description="A list of the peak minima",
     )
 
-    current_unit: Optional[str] = Field(
+    y_unit: Optional[str] = Field(
         default=None,
-        description="A list of the peak minima",
+        description="The y unit",
     )
 
     change_reference_potential: Optional[float] = Field(
         default=None,
-        description="A list of the peak minima",
+        description="The change_reference potential",
+    )
+
+    reference_name: Optional[str] = Field(
+        default=None,
+        description="The used reference scale",
     )
 
     half_wave_potential: Optional[float] = Field(
@@ -54,5 +59,5 @@ class PeaksAndHalfPotential(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="32407172e3bb02a3b0d7ef553c1bed6f4e9badc7"
+        default="d9d822779074bba7ddf44d090fbda712f160e506"
     )
