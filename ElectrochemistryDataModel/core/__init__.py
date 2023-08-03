@@ -9,6 +9,7 @@ from .filmpreparation import FilmPreparation
 from .spincoating import SpinCoating
 from .analysis import Analysis
 from .cp import CP
+from .potentialendvalue import PotentialEndValue
 from .ca import CA
 from .cv import CV
 from .cycle import Cycle
@@ -28,6 +29,7 @@ from .scanrateunits import ScanRateUnits
 from .currentunits import CurrentUnits
 from .potentialunits import PotentialUnits
 from .areaunits import AreaUnits
+from .referenceelectrode import ReferenceElectrode
 
 __doc__ = ""
 
@@ -43,6 +45,7 @@ __all__ = [
     "SpinCoating",
     "Analysis",
     "CP",
+    "PotentialEndValue",
     "CA",
     "CV",
     "Cycle",
@@ -62,4 +65,5 @@ __all__ = [
     "CurrentUnits",
     "PotentialUnits",
     "AreaUnits",
+    "ReferenceElectrode",
 ]

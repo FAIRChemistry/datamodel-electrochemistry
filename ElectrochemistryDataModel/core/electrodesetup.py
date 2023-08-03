@@ -7,6 +7,7 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 from .concentrationunits import ConcentrationUnits
 from .areaunits import AreaUnits
+from .referenceelectrode import ReferenceElectrode
 
 
 @forge_signature
@@ -39,7 +40,7 @@ class ElectrodeSetup(sdRDM.DataModel):
         description="Name of the used counter electrode",
     )
 
-    reference_electrode: Optional[str] = Field(
+    reference_electrode: Optional[ReferenceElectrode] = Field(
         default=None,
         description="Name of the used reference electrode",
     )
@@ -63,5 +64,5 @@ class ElectrodeSetup(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="32407172e3bb02a3b0d7ef553c1bed6f4e9badc7"
+        default="d9d822779074bba7ddf44d090fbda712f160e506"
     )
