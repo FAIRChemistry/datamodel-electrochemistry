@@ -25,6 +25,31 @@ class Cycle(sdRDM.DataModel):
         description="The cycle number",
     )
 
+    current_vertex: Optional[float] = Field(
+        default=None,
+        description="The vertex current",
+    )
+
+    y_unit: Optional[str] = Field(
+        default=None,
+        description="The y unit",
+    )
+
+    change_reference_potential: Optional[float] = Field(
+        default=None,
+        description="The change_reference potential",
+    )
+
+    reference_name: Optional[str] = Field(
+        default=None,
+        description="The used reference scale",
+    )
+
+    potential_vertex: Optional[float] = Field(
+        default=None,
+        description="The vertex potential",
+    )
+
     peaks_and_half_potential: List[PeaksAndHalfPotential] = Field(
         default_factory=ListPlus,
         multiple=True,
@@ -41,7 +66,7 @@ class Cycle(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d9d822779074bba7ddf44d090fbda712f160e506"
+        default="a39428cabbbbcba7c89935626bf374b54c6f797a"
     )
 
     def add_to_peaks_and_half_potential(

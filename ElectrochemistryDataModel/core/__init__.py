@@ -1,6 +1,7 @@
 from .dataset import Dataset
 from .generalinformation import GeneralInformation
 from .experiment import Experiment
+from .purging import Purging
 from .electrolyte import Electrolyte
 from .sample import Sample
 from .synthesis import Synthesis
@@ -37,6 +38,7 @@ __all__ = [
     "Dataset",
     "GeneralInformation",
     "Experiment",
+    "Purging",
     "Electrolyte",
     "Sample",
     "Synthesis",

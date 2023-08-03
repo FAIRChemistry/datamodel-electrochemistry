@@ -7,10 +7,12 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .generalinformation import GeneralInformation
+from .electrolyte import Electrolyte
 from .electrodesetup import ElectrodeSetup
 from .experiment import Experiment
-from .electrolyte import Electrolyte
 from .analysis import Analysis
+from .sample import Sample
+from .purging import Purging
 from .experiment_type import Experiment_type
 
 
@@ -39,16 +41,18 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d9d822779074bba7ddf44d090fbda712f160e506"
+        default="a39428cabbbbcba7c89935626bf374b54c6f797a"
     )
 
     def add_to_experiments(
         self,
         name: Optional[str] = None,
+        sample: Optional[Sample] = None,
         filename: Optional[str] = None,
         information: Optional[str] = None,
         electrode_setup: Optional[ElectrodeSetup] = None,
         electrolyte: Optional[Electrolyte] = None,
+        purging: Optional[Purging] = None,
         analysis: Optional[Analysis] = None,
         type: Optional[Experiment_type] = None,
         id: Optional[str] = None,
@@ -59,20 +63,24 @@ class Dataset(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'Experiment' object. Defaults to 'None'.
             name (): Name of the experiment. Defaults to None
+            sample (): Information about the sample. Defaults to None
             filename (): Name of the experiment file (with the path). Defaults to None
             information (): Information of the experiment. Defaults to None
             electrode_setup (): Name of the used electrode materials. Defaults to None
             electrolyte (): The used electrolyte. Defaults to None
+            purging (): The purging information for the experiment. Defaults to None
             analysis (): The analysis type of the experiment. Defaults to None
             type (): Type of experiment. Defaults to None
         """
 
         params = {
             "name": name,
+            "sample": sample,
             "filename": filename,
             "information": information,
             "electrode_setup": electrode_setup,
             "electrolyte": electrolyte,
+            "purging": purging,
             "analysis": analysis,
             "type": type,
         }

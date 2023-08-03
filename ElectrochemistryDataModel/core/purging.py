@@ -5,32 +5,37 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .physicalparameters import PhysicalParameters
+from .timeunits import TimeUnits
 
 
 @forge_signature
-class Synthesis(sdRDM.DataModel):
+class Purging(sdRDM.DataModel):
     """"""
 
     id: Optional[str] = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("synthesisINDEX"),
+        default_factory=IDGenerator("purgingINDEX"),
         xml="@id",
     )
 
-    reagents: Optional[str] = Field(
+    gas: Optional[str] = Field(
         default=None,
-        description="The reagents of the product",
+        description="The used purging gas",
     )
 
-    solvent: Optional[str] = Field(
+    purging_time: Optional[int] = Field(
         default=None,
-        description="The solvent of the synthesis",
+        description="The purging time",
     )
 
-    physical_parameters: Optional[PhysicalParameters] = Field(
+    purging_time_unit: Optional[TimeUnits] = Field(
         default=None,
-        description="The physical parameters of the synthesis",
+        description="The purging time unit",
+    )
+
+    purging_repeatitions: Optional[int] = Field(
+        default=None,
+        description="The number of times the purging is repeated",
     )
 
     __repo__: Optional[str] = PrivateAttr(
