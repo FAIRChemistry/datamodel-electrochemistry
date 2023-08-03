@@ -6,8 +6,8 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .concentrationunits import ConcentrationUnits
-from .areaunits import AreaUnits
 from .referenceelectrode import ReferenceElectrode
+from .areaunits import AreaUnits
 
 
 @forge_signature
@@ -64,5 +64,5 @@ class ElectrodeSetup(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d9d822779074bba7ddf44d090fbda712f160e506"
+        default="a39428cabbbbcba7c89935626bf374b54c6f797a"
     )

@@ -5,9 +5,11 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .electrodesetup import ElectrodeSetup
 from .electrolyte import Electrolyte
+from .electrodesetup import ElectrodeSetup
 from .analysis import Analysis
+from .sample import Sample
+from .purging import Purging
 from .experiment_type import Experiment_type
 
 
@@ -24,6 +26,11 @@ class Experiment(sdRDM.DataModel):
     name: Optional[str] = Field(
         default=None,
         description="Name of the experiment",
+    )
+
+    sample: Optional[Sample] = Field(
+        default=None,
+        description="Information about the sample",
     )
 
     filename: Optional[str] = Field(
@@ -46,6 +53,11 @@ class Experiment(sdRDM.DataModel):
         description="The used electrolyte",
     )
 
+    purging: Optional[Purging] = Field(
+        default=None,
+        description="The purging information for the experiment",
+    )
+
     analysis: Optional[Analysis] = Field(
         default=None,
         description="The analysis type of the experiment",
@@ -60,5 +72,5 @@ class Experiment(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d9d822779074bba7ddf44d090fbda712f160e506"
+        default="a39428cabbbbcba7c89935626bf374b54c6f797a"
     )

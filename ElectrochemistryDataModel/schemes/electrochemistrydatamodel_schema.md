@@ -4,9 +4,12 @@ classDiagram
     Dataset *-- Experiment
     GeneralInformation *-- Author
     Experiment *-- Experiment_type
+    Experiment *-- Purging
     Experiment *-- Electrolyte
+    Experiment *-- Sample
     Experiment *-- Analysis
     Experiment *-- ElectrodeSetup
+    Purging *-- TimeUnits
     Electrolyte *-- ConcentrationUnits
     Sample *-- MolecularWeightUnits
     Sample *-- Synthesis
@@ -53,12 +56,21 @@ classDiagram
     
     class Experiment {
         +string name
+        +Sample sample
         +string filename
         +string information
         +ElectrodeSetup electrode_setup
         +Electrolyte electrolyte
+        +Purging purging
         +Analysis analysis
         +Experiment_type type
+    }
+    
+    class Purging {
+        +string gas
+        +int purging_time
+        +TimeUnits purging_time_unit
+        +int purging_repeatitions
     }
     
     class Electrolyte {
@@ -156,6 +168,11 @@ classDiagram
     
     class Cycle {
         +int number
+        +float current_vertex
+        +string y_unit
+        +float change_reference_potential
+        +string reference_name
+        +float potential_vertex
         +PeaksAndHalfPotential[0..*] peaks_and_half_potential
         +PeakIntegration[0..*] peak_integration
     }

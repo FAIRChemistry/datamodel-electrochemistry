@@ -6,12 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potentialunits import PotentialUnits
 from .scanrateunits import ScanRateUnits
-from .peaksandhalfpotential import PeaksAndHalfPotential
-from .peakintegration import PeakIntegration
 from .currentunits import CurrentUnits
+from .peaksandhalfpotential import PeaksAndHalfPotential
 from .cycle import Cycle
+from .potentialunits import PotentialUnits
+from .peakintegration import PeakIntegration
 
 
 @forge_signature
@@ -99,12 +99,17 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="d9d822779074bba7ddf44d090fbda712f160e506"
+        default="a39428cabbbbcba7c89935626bf374b54c6f797a"
     )
 
     def add_to_cycles(
         self,
         number: Optional[int] = None,
+        current_vertex: Optional[float] = None,
+        y_unit: Optional[str] = None,
+        change_reference_potential: Optional[float] = None,
+        reference_name: Optional[str] = None,
+        potential_vertex: Optional[float] = None,
         peaks_and_half_potential: List[PeaksAndHalfPotential] = ListPlus(),
         peak_integration: List[PeakIntegration] = ListPlus(),
         id: Optional[str] = None,
@@ -115,12 +120,22 @@ class CV(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'Cycle' object. Defaults to 'None'.
             number (): The cycle number. Defaults to None
+            current_vertex (): The vertex current. Defaults to None
+            y_unit (): The y unit. Defaults to None
+            change_reference_potential (): The change_reference potential. Defaults to None
+            reference_name (): The used reference scale. Defaults to None
+            potential_vertex (): The vertex potential. Defaults to None
             peaks_and_half_potential (): The half-wave potential of the measurement. Defaults to ListPlus()
             peak_integration (): The peak integration. Defaults to ListPlus()
         """
 
         params = {
             "number": number,
+            "current_vertex": current_vertex,
+            "y_unit": y_unit,
+            "change_reference_potential": change_reference_potential,
+            "reference_name": reference_name,
+            "potential_vertex": potential_vertex,
             "peaks_and_half_potential": peaks_and_half_potential,
             "peak_integration": peak_integration,
         }
