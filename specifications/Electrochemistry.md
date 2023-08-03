@@ -167,7 +167,8 @@
   - Type: TimeUnits
   - Description: The duration time unit of the induced current
 - potential_end_value
-  - Type: PotentialUnits
+  - Type: PotentialEndValue
+  - Multiple: True
   - Description: The potential value at the end of the measurement
 - charge_density
   - Type: ChargeDensityUnits
@@ -178,8 +179,25 @@
   - Multiple: True
   - Description: A list of potential values, which could be used to transform reference potential scale 
 
-
-
+### PotentialEndValue
+- method
+  - Type: string
+  - Description: The method, which was used to determine this value
+- end_value
+  - Type: float
+  - Description: The end value potential
+- reference_name
+  - Type: string
+  - Description: The used reference scale
+- change_reference_potential
+  - Type: float
+  - Description: The change_reference potential
+- last_average_points
+  - Type: int
+  - Description: The last points, which were used to calculate the average
+- fit_function
+  - Type: string
+  - Description: The fit function, if the fit function was used 
 
 
 ### CA
@@ -246,7 +264,7 @@ Container for information regarding the CV-Setup and parameters
 - change_potential
   - Type: float
   - Multiple: True
-  - Description: A list of potential values, which could be used to transform reference potential scale 
+  - Description: A tuple list of potential values, which could be used to transform reference potential scale 
 - cycles
   - Type: Cycle
   - Multiple: True
@@ -256,18 +274,6 @@ Container for information regarding the CV-Setup and parameters
 - number
   - Type: int
   - Description: The cycle number
-- peak_maxima
-  - Type: float
-  - Multiple: True
-  - Description: A list of the peak maxima
-- peak_minima
-  - Type: float
-  - Multiple: True
-  - Description: A list of the peak minima
-- half_wave_potential
-  - Type: float
-  - Multiple: True
-  - Description: The half-wave potential of the measurement
 - peaks_and_half_potential
   - Type:PeaksAndHalfPotential
   - Multiple: True
@@ -289,12 +295,15 @@ Container for information regarding the CV-Setup and parameters
 - potential_minimum
   - Type: float
   - Description: A list of the peak minima
-- current_unit
+- y_unit
   - Type: string
-  - Description: A list of the peak minima
+  - Description: The y unit 
 - change_reference_potential
   - Type: float
-  - Description: A list of the peak minima
+  - Description: The change_reference potential
+- reference_name
+  - Type: string
+  - Description: The used reference scale
 - half_wave_potential
   - Type: float
   - Description: The half-wave potential of the measurement
@@ -330,7 +339,7 @@ Container for information regarding the CV-Setup and parameters
   - Type: string
   - Description: Name of the used counter electrode  
 - reference_electrode
-  - Type: string
+  - Type: ReferenceElectrode
   - Description: Name of the used reference electrode
 - reference_electrode_salt
   - Type: string
@@ -453,4 +462,15 @@ NANO_VOLT = "nV"
 ```python
 SQUARE_CM= "cm^2"
 SQUARE_MILLI_M = "mm^2"
+```
+### ReferenceElectrode
+```python
+SHE= "SHE"
+RHE = "RHE"
+Ag_AgCl= "Ag/AgCl"
+Ag_AgSO4="Ag/Ag2SO4"
+Hg_HgO="Hg/HgO"
+Hg_Hg2Cl2="Hg/Hg2Cl2"
+Hg_Hg2SO4="Hg/Hg2SO4"
+Fc_Fc="Fc/Fc+"
 ```
