@@ -47,5 +47,5 @@ class Electrolyte(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="a39428cabbbbcba7c89935626bf374b54c6f797a"
+        default="dc67c22265598c1101fdc2de1850336d9dfc714f"
     )

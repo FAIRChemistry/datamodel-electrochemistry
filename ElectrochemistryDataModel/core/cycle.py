@@ -6,8 +6,8 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .peaksandhalfpotential import PeaksAndHalfPotential
 from .peakintegration import PeakIntegration
+from .peaksandhalfpotential import PeaksAndHalfPotential
 
 
 @forge_signature
@@ -66,7 +66,7 @@ class Cycle(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="a39428cabbbbcba7c89935626bf374b54c6f797a"
+        default="dc67c22265598c1101fdc2de1850336d9dfc714f"
     )
 
     def add_to_peaks_and_half_potential(

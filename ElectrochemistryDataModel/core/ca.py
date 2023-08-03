@@ -6,9 +6,10 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potentialunits import PotentialUnits
-from .currentunits import CurrentUnits
 from .timeunits import TimeUnits
+from .currentendvalue import CurrentEndValue
+from .currentunits import CurrentUnits
+from .potentialunits import PotentialUnits
 
 
 @forge_signature
@@ -52,7 +53,7 @@ class CA(sdRDM.DataModel):
         description="The duration time unit of the induced current",
     )
 
-    current_end_value: Optional[CurrentUnits] = Field(
+    current_end_value: Optional[CurrentEndValue] = Field(
         default=None,
         description="The current value at the end of the measurement",
     )
@@ -61,5 +62,5 @@ class CA(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="a39428cabbbbcba7c89935626bf374b54c6f797a"
+        default="dc67c22265598c1101fdc2de1850336d9dfc714f"
     )
