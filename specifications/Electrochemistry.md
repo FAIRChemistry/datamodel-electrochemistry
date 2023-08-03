@@ -65,8 +65,8 @@
   - Type: TimeUnits
   - Description: The purging time unit
 - purging_repeatitions
-  Type: int
-  Description: The number of times the purging is repeated
+  - Type: int
+  - Description: The number of times the purging is repeated
 ### Electrolyte
 - solvent
   - Type: string
