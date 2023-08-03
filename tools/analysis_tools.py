@@ -37,7 +37,8 @@ class ReferenceCalculator:
             "Ag/Ag2SO4 (1 M H2SO4)": 0.71,
             "Ag/Ag2SO4 (sat. K2SO4)": 0.68,
             "Hg/HgO (0.1 M NaOH)": 0.165,
-            "Hg/HgO (1 M NaOH)": 0.140
+            "Hg/HgO (1 M NaOH)": 0.140,
+            "Fc/Fc+ (0.05 M  nBu4NPF6/MeCN)":0.64,
         }
         self.e_chem=e_chem
         self.experiment_list=experiment_list
@@ -171,14 +172,15 @@ class Chronopotentiometry:
             end_values=[] 
             average_list=[]
             fig,ax =plt.subplots()
+            """ Interactive button"""
+            def on_button_click(_):
+                for experiment in self.experiment_list:
+                    end_potential=lib.PotentialEndValue(method="average over last values",end_value=end_values[experiment],last_average_points=last_points,change_reference_potential=self.delta_E,reference_name=self.reference_name)
+                    self.e_chem.experiments[experiment].analysis.cp.potential_end_value.append(end_potential)
+                    print(end_potential)
+                print("Potential was added to the datamodel")
+            button = widgets.Button(description="Save potential")
             for experiment in self.experiment_list:
-                def on_button_click(_):
-                    for experiment in self.experiment_list:
-                        end_potential=lib.PotentialEndValue(method="average over  last values",end_value=average_list[experiment],last_average_points=last_points,change_reference_potential=self.delta_E,reference_name=self.reference_name)
-                        self.e_chem.experiments[experiment].analysis.cp.potential_end_value.append(end_potential)
-                        print(end_potential)
-                        print("Potential was added to the datamodel")
-                button = widgets.Button(description="Save potential")
                 last_values = self.df_liste[experiment].tail(last_points)["E"].values[0]
                 average = last_values.mean()
                 average_list.append(average)
@@ -210,6 +212,13 @@ class Chronopotentiometry:
         end_values=[]
         def interactive(xlabel=self.xlabel, ylabel=self.ylabel,savename="CA_plot.pdf",save=False):
             fig,ax =plt.subplots()
+            def on_button_click(_):
+                for experiment in self.experiment_list:
+                    end_potential=lib.PotentialEndValue(method="Fit function",fit_function="a*exp(-b/2 * x)+ c",end_value=end_values[experiment],change_reference_potential=self.delta_E,reference_name=self.reference_name)
+                    self.e_chem.experiments[experiment].analysis.cp.potential_end_value.append(end_potential)
+                    print(end_potential)
+                print("Potential was added to the datamodel")
+            button = widgets.Button(description="Save potential")
             for experiment in self.experiment_list:
                 t_fit = np.linspace(0, self.df_liste[experiment]["t"].max(), self.df_liste[experiment].shape[0])
                 popt, pcov = curve_fit(exponential_fit,self.df_liste[experiment]["t"], self.df_liste[experiment]["E"])
@@ -223,7 +232,9 @@ class Chronopotentiometry:
                 ax.legend(loc="best",frameon=False)
                 if save:
                     fig.savefig("plots/" + savename,bbox_inches='tight')
-                self.end_value_fit_df = pd.DataFrame(list(zip(names,end_values)), columns=["Name","End value"])   
+                self.end_value_fit_df = pd.DataFrame(list(zip(names,end_values)), columns=["Name","End value"])
+            button.on_click(on_button_click)
+            display(button)   
             return  self.end_value_fit_df
         widgets.interact(interactive)
 
@@ -444,24 +455,27 @@ class CyclicVoltammetry:
             I_max=[]
             I_min=[]
             I_vertex_list=[]
-            for i in self.cycles:
+            for cycle in self.cycles:
             # Here are interactive buttons, which allowing to save the peaks to the data model
                 def on_button_click_min(_):
-                    min_peak=lib.PeaksAndHalfPotential(current_minimum=current_at_min,y_unit=f"{self.yunit}",potential_minimum=pot_at_min,change_reference_potential=self.delta_E,reference_name=self.reference_name)
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peaks_and_half_potential.append(min_peak)
-                    print(min_peak)
+                    for cycle in self.cycles:
+                        min_peak=lib.PeaksAndHalfPotential(current_minimum=I_min[cycle],y_unit=f"{self.yunit}",potential_minimum=E_min[cycle],change_reference_potential=self.delta_E,reference_name=self.reference_name)
+                        self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].peaks_and_half_potential.append(min_peak)
+                        print(min_peak)
                     print("Minimum peak was added to the datamodel")
                 button_min = widgets.Button(description="Save only Minimum")
                 def on_button_click_max(_):
-                    max_peak=lib.PeaksAndHalfPotential(current_maximum=current_at_max,y_unit=f"{self.yunit}",potential_maximum=pot_at_max,change_reference_potential=self.delta_E,reference_name=self.reference_name)
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peaks_and_half_potential.append(max_peak)
-                    print(max_peak)
+                    for cycle in self.cycles:
+                        max_peak=lib.PeaksAndHalfPotential(current_maximum=I_max[cycle],y_unit=f"{self.yunit}",potential_maximum=I_max[cycle],change_reference_potential=self.delta_E,reference_name=self.reference_name)
+                        self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].peaks_and_half_potential.append(max_peak)
+                        print(max_peak)
                     print("Maximum Saved")
                 button_max = widgets.Button(description="Save only Maximum")
                 def on_button_click_hwp(_):
-                    peaks_and_hwp=lib.PeaksAndHalfPotential(current_minimum=current_at_min,potential_minimum=pot_at_min,current_maximum=current_at_max,y_unit=f"{self.yunit}",potential_maximum=pot_at_max,change_reference_potential=self.delta_E,half_wave_potential=hwp,reference_name=self.reference_name)
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peaks_and_half_potential.append(peaks_and_hwp)
-                    print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i])
+                    for cycle in self.cycle_df:
+                        peaks_and_hwp=lib.PeaksAndHalfPotential(current_minimum=I_min[cycle],potential_minimum=E_min[cycle],current_maximum=I_max[cycle],y_unit=f"{self.yunit}",potential_maximum=E_max[cycle],change_reference_potential=self.delta_E,half_wave_potential=E_hwp[cycle],reference_name=self.reference_name)
+                        self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].peaks_and_half_potential.append(peaks_and_hwp)
+                        print(peaks_and_hwp)
                     print("Peaks and half-wave potential Saved")
                 button_hwp = widgets.Button(description="Save Peaks and HWP")
                 # Following is for the plot
@@ -472,29 +486,46 @@ class CyclicVoltammetry:
                     ax.set_xlim(zoom_x_min,zoom_x_max)
                 if zoom_y:
                     ax.set_ylim(zoom_y_min,zoom_y_max)
-                ax.plot(self.cycle_df[i]["E"],self.cycle_df[i]["I"],label="Cycle: {}".format(i+1))
-                Cycles.append("Cycle: {}".format(i+1))
+                ax.plot(self.cycle_df[cycle]["E"],self.cycle_df[cycle]["I"],label="Cycle: {}".format(cycle+1))
+                Cycles.append("Cycle: {}".format(cycle+1))
                 # The range for the peak seach
-                indices = np.where((self.cycle_df[i]["E"] >= E_Min) & (self.cycle_df[i]["E"] <= E_Max))[0]
-                max_index = indices[np.argmax(self.cycle_df[i]["I"][indices])]
-                pot_at_max = self.cycle_df[i]["E"][max_index]
-                current_at_max = self.cycle_df[i]["I"][max_index]
-                min_index = indices[np.argmin(self.cycle_df[i]["I"][indices])]
-                pot_at_min = self.cycle_df[i]["E"][min_index]
-                current_at_min = self.cycle_df[i]["I"][min_index]
-                max_E= np.argmax(self.cycle_df[i]["E"])
-                min_E= np.argmin(self.cycle_df[i]["E"])
-                I_at_max_E=self.cycle_df[i]["I"][max_E]
-                I_at_min_E=self.cycle_df[i]["I"][min_E]
-                I_start=self.cycle_df[i]["I"][0]
+                indices = np.where((self.cycle_df[cycle]["E"] >= E_Min) & (self.cycle_df[cycle]["E"] <= E_Max))[0]
+                max_index = indices[np.argmax(self.cycle_df[cycle]["I"][indices])]
+                pot_at_max = self.cycle_df[cycle]["E"][max_index]
+                current_at_max = self.cycle_df[cycle]["I"][max_index]
+                min_index = indices[np.argmin(self.cycle_df[cycle]["I"][indices])]
+                pot_at_min = self.cycle_df[cycle]["E"][min_index]
+                current_at_min = self.cycle_df[cycle]["I"][min_index]
+                max_E= np.argmax(self.cycle_df[cycle]["E"])
+                min_E= np.argmin(self.cycle_df[cycle]["E"])
+                I_at_max_E=self.cycle_df[cycle]["I"][max_E]
+                I_at_min_E=self.cycle_df[cycle]["I"][min_E]
+                I_start=self.cycle_df[cycle]["I"][0]
+                """ Lines for the peaks and half-wave potential"""
                 ax.axvline(x=(pot_at_max+pot_at_min)/2 , color='red', linestyle='--',linewidth=2)
                 ax.axvline(x=pot_at_min , color='darkgreen', linestyle=':',linewidth=2)
                 ax.axvline(x=pot_at_max , color='orange', linestyle=':')
+                """ The legend"""
                 ax.legend(frameon=False)
+                """ Adding vertex to cycles"""
                 if self.cycle_df[0]["E"][0]< self.cycle_df[0]["E"][10]:
                     I_vertex=I_at_max_E
+                    E_vertex=self.cycle_df[cycle]["I"][max_E]
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].potential_vertex= E_vertex
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].current_vertex=I_vertex
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].y_unit=f"{self.yunit}"
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].change_reference_potential=self.delta_E
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].reference_name=self.reference_name
+
                 else:
                     I_vertex=I_at_min_E
+                    E_vertex=self.cycle_df[cycle]["I"][min_E]
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].potential_vertex= E_vertex
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].current_vertex=I_vertex
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].y_unit=f"{self.yunit}"
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].change_reference_potential=self.delta_E
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].reference_name=self.reference_name
+                """ Adding values to list"""
                 E_max.append(pot_at_max)
                 E_min.append(pot_at_min)
                 hwp=(pot_at_max+pot_at_min)/2
@@ -520,7 +551,7 @@ class CyclicVoltammetry:
             display(button_hwp)
             self.df_peaks = pd.DataFrame(list(zip(Cycles,E_min,I_min,E_max,I_max,E_hwp,I_vertex_list)), columns=["Cycles",'E_at_min',"I min",'E_at_max',"I max","E1/2","I_vertex"]) 
             if save:
-                fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename,bbox_inches='tight')
+                fig.savefig("plots/" +"Cycle{}_".format(cycle+1)+savename,bbox_inches='tight')
 
             return self.df_peaks
         widgets.interact(interactive,E_Min=(x_min,x_max),E_Max=(x_min,x_max),zoom_x_min=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_y_min=(self.min_current_value,self.max_current_value),zoom_y_max=(self.min_current_value,self.max_current_value))

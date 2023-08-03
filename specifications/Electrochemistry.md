@@ -29,6 +29,9 @@
 - name
   - Type: string
   - Description: Name of the experiment
+- sample
+  - Type: Sample
+  - Description: Information about the sample
 - filename
   - Type: string
   - Description: Name of the experiment file (with the path)
@@ -41,6 +44,9 @@
 - electrolyte
   - Type: Electrolyte
   - Description: The used electrolyte
+- purging
+  - Type: Purging
+  - Description: The purging information for the experiment
 - analysis
   - Type: Analysis
   - Description: The analysis type of the experiment
@@ -48,8 +54,19 @@
   - Type: Experiment_type
   - Description: Type of experiment
 
-
-
+### Purging
+- gas
+  - Type: string
+  - Description: The used purging gas
+- purging_time
+  - Type: int
+  - Description: The purging time 
+- purging_time_unit
+  - Type: TimeUnits
+  - Description: The purging time unit
+- purging_repeatitions
+  Type: int
+  Description: The number of times the purging is repeated
 ### Electrolyte
 - solvent
   - Type: string
@@ -274,6 +291,21 @@ Container for information regarding the CV-Setup and parameters
 - number
   - Type: int
   - Description: The cycle number
+- current_vertex
+  - Type: float
+  - Description: The vertex current
+- y_unit
+  - Type: string
+  - Description: The y unit 
+- change_reference_potential
+  - Type: float
+  - Description: The change_reference potential
+- reference_name
+  - Type: string
+  - Description: The used reference scale
+- potential_vertex
+  - Type: float
+  - Description: The vertex potential
 - peaks_and_half_potential
   - Type:PeaksAndHalfPotential
   - Multiple: True
