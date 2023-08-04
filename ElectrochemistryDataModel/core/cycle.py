@@ -6,6 +6,7 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .scanrateunits import ScanRateUnits
 from .peakintegration import PeakIntegration
 from .peaksandhalfpotential import PeaksAndHalfPotential
 
@@ -25,12 +26,22 @@ class Cycle(sdRDM.DataModel):
         description="The cycle number",
     )
 
+    scan_rate: Optional[float] = Field(
+        default=None,
+        description="The scan rate of the measurement",
+    )
+
+    scan_rate_unit: Optional[ScanRateUnits] = Field(
+        default=None,
+        description="The scan rate unit of the measurement",
+    )
+
     current_vertex: Optional[float] = Field(
         default=None,
         description="The vertex current",
     )
 
-    y_unit: Optional[str] = Field(
+    y_unit_vertex: Optional[str] = Field(
         default=None,
         description="The y unit",
     )
@@ -66,7 +77,7 @@ class Cycle(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="dc67c22265598c1101fdc2de1850336d9dfc714f"
+        default="4fbb3e43762626469aab95adc8818f6004de25fe"
     )
 
     def add_to_peaks_and_half_potential(
