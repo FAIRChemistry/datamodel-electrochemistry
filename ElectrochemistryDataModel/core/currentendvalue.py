@@ -6,38 +6,38 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 @forge_signature
-class PeakIntegration(sdRDM.DataModel):
+class CurrentEndValue(sdRDM.DataModel):
     """"""
 
     id: Optional[str] = Field(
         description="Unique identifier of the given object.",
-        default_factory=IDGenerator("peakintegrationINDEX"),
+        default_factory=IDGenerator("currentendvalueINDEX"),
         xml="@id",
     )
 
-    lower_limit_potential: Optional[float] = Field(
+    method: Optional[str] = Field(
         default=None,
-        description="Name of the used working electrode",
+        description="The method, which was used to determine this value",
     )
 
-    upper_limit_potential: Optional[float] = Field(
+    end_value: Optional[float] = Field(
         default=None,
-        description="Name of the used working electrode",
+        description="The end value current or current density",
     )
 
-    integration_area: Optional[float] = Field(
+    y_unit: Optional[str] = Field(
         default=None,
-        description="Name of the used working electrode",
+        description="The y unit",
     )
 
-    integration_area_unit: Optional[str] = Field(
+    last_average_points: Optional[int] = Field(
         default=None,
-        description="Name of the used working electrode",
+        description="The last points, which were used to calculate the average",
     )
 
-    integration_direction: Optional[str] = Field(
+    fit_function: Optional[str] = Field(
         default=None,
-        description="The integration direction.",
+        description="The fit function, if the fit function was used",
     )
 
     __repo__: Optional[str] = PrivateAttr(

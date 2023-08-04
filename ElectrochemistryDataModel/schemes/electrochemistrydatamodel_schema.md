@@ -33,6 +33,7 @@ classDiagram
     CA *-- TimeUnits
     CA *-- CurrentUnits
     CA *-- PotentialUnits
+    CA *-- CurrentEndValue
     CV *-- ScanRateUnits
     CV *-- CurrentUnits
     CV *-- PotentialUnits
@@ -147,7 +148,15 @@ classDiagram
         +PotentialUnits induced_potential_unit
         +float time_duration
         +TimeUnits time_duration_unit
-        +CurrentUnits current_end_value
+        +CurrentEndValue current_end_value
+    }
+    
+    class CurrentEndValue {
+        +string method
+        +float end_value
+        +string y_unit
+        +int last_average_points
+        +string fit_function
     }
     
     class CV {
