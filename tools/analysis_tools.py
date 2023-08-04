@@ -431,7 +431,7 @@ class CyclicVoltammetry:
                 df["I"] = df["I"] / self.e_chem.experiments[experiment].electrode_setup.working_electrode_area
         if len(e_chem.experiments[experiment].analysis.cv.cycles) == 0:
             for cycle in self.all_cycles_list:
-                Cycle = lib.Cycle(number=cycle)
+                Cycle = lib.Cycle(number=cycle,scan_rate=e_chem.experiments[experiment].analysis.cv.scan_rate,scan_rate_unit=e_chem.experiments[experiment].analysis.cv.scan_rate_unit)
                 e_chem.experiments[experiment].analysis.cv.cycles.append(Cycle)
         # Determination of the lowest/highest current for the zoom option in the plot method
         max_value = -np.inf  
@@ -537,7 +537,7 @@ class CyclicVoltammetry:
                 """ Lines for the peaks and half-wave potential"""
                 ax.axvline(x=(pot_at_max+pot_at_min)/2 , color='red', linestyle='--',linewidth=2)
                 ax.axvline(x=pot_at_min , color='darkgreen', linestyle=':',linewidth=2)
-                ax.axvline(x=pot_at_max , color='orange', linestyle=':')
+                ax.axvline(x=pot_at_max , color='orange', linestyle=':',linewidth=2)
                 """ The legend"""
                 ax.legend(frameon=False)
                 """ Adding vertex to cycles"""
@@ -546,7 +546,7 @@ class CyclicVoltammetry:
                     E_vertex=self.cycle_df[cycle]["I"][max_E]
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].potential_vertex= E_vertex
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].current_vertex=I_vertex
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].y_unit=f"{self.yunit}"
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].y_unit_vertex=f"{self.yunit}"
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].change_reference_potential=self.delta_E
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].reference_name=self.reference_name
 
@@ -555,7 +555,7 @@ class CyclicVoltammetry:
                     E_vertex=self.cycle_df[cycle]["I"][min_E]
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].potential_vertex= E_vertex
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].current_vertex=I_vertex
-                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].y_unit=f"{self.yunit}"
+                    self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].y_unit_vertex=f"{self.yunit}"
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].change_reference_potential=self.delta_E
                     self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].reference_name=self.reference_name
                 """ Adding values to list"""
@@ -602,19 +602,21 @@ class CyclicVoltammetry:
             for i in self.cycles:
                     # Interactive Buttons
                     def on_button_click_forward(_):
-                        Peak=lib.PeakIntegration(lower_limit_potential=E_min,upper_limit_potential=E_max,integration_area=area_forward,integration_area_unit=f"{self.yunit}*{self.xunit}",integration_direction="Forward")
-                        self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration.append(Peak)
-                        print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration)
+                        for i in self.cycle_df:
+                            Peak=lib.PeakIntegration(lower_limit_potential=E_min,upper_limit_potential=E_max,integration_area=area_forward,integration_area_unit=f"{self.yunit}*{self.xunit}",integration_direction="Forward")
+                            self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration.append(Peak)
+                            print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration)
                         print("Forward Integration Saved")
                     # For the plot
-                    button_forward = widgets.Button(description="ForwardArea2Model")
+                    button_forward = widgets.Button(description=" Save Forward Area")
                     def on_button_click_backward(_):
-                        Peak=lib.PeakIntegration(lower_limit_potential=E_min,upper_limit_potential=E_max,integration_area=area_forward,integration_direction="Backward")
-                        self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration.append(Peak)
-                        print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration)
+                        for i in self.cycle_df:
+                            Peak=lib.PeakIntegration(lower_limit_potential=E_min,upper_limit_potential=E_max,integration_area=area_forward,integration_direction="Backward")
+                            self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration.append(Peak)
+                            print(self.e_chem.experiments[self.experiment].analysis.cv.cycles[i].peak_integration)
                         print("Backward Integration Saved")
                     # For the plot
-                    button_backward = widgets.Button(description="BackwardArea2Model")
+                    button_backward = widgets.Button(description="Save Backward Area")
                     Cycles.append("Cycle: {}".format(i+1)) 
                     fig,ax=plt.subplots()
                     if zoom_x:
@@ -624,29 +626,36 @@ class CyclicVoltammetry:
                     # Split a Cycle into forward and backward
                     df=self.cycle_df[i]
                     half= len(df)//2
+                    """Spit the cycle into 2 half (forward and backward)"""
                     forward_cycle=df.iloc[:half,:]
                     backward_cycle=df.iloc[half:,:]
+                    """The range for the peak integration for the forward cycle was used"""
                     forward_cycle_peak = forward_cycle[(forward_cycle['E'] >= E_min) & (forward_cycle['E'] <= E_max)]
-                    #new regression
+                    """Regression line for integration (black line which shows start end end of integration)"""
                     start_value = forward_cycle_peak.iloc[0]['E']
                     end_value = forward_cycle_peak.iloc[-1]['E']
                     forward_slope = (forward_cycle_peak.iloc[-1]['I'] - forward_cycle_peak.iloc[0]['I']) / (end_value - start_value)
                     intercept = forward_cycle_peak.iloc[0]['I'] - forward_slope * start_value
+                    """Linear function for the forward cycle"""
                     def line_func(x):
                         return forward_slope * x + intercept
                     y_pred1 = line_func(forward_cycle_peak['E'].values)
+                    """ The area of the forward cycle and the plotting"""
                     area_forward = trapz(forward_cycle_peak['I'] - y_pred1.flatten(), forward_cycle_peak['E'])
                     ax.plot(forward_cycle_peak['E'], y_pred1.flatten(),color="black", linestyle='--')
-                    #ax.fill_between(forward_cycle_peak['E'], forward_cycle_peak['I'], y_pred1.flatten(), where=(forward_cycle_peak['I'] > y_pred1.flatten()), alpha=0.3)
+                    """ The parameter alpha is for the transparency of the integration area"""
                     ax.fill_between(forward_cycle_peak['E'], forward_cycle_peak['I'], y_pred1.flatten(), alpha=0.3)
+                    """The range for the peak integration for the forward cycle was used"""
                     backward_cycle_peak = backward_cycle[(backward_cycle['E'] >= E_min_back) & (backward_cycle['E'] <= E_max_back)]
                     start_value_back = backward_cycle_peak.iloc[0]['E']
                     end_value_back = backward_cycle_peak.iloc[-1]['E']
                     backward_slope = (backward_cycle_peak.iloc[-1]['I'] - backward_cycle_peak.iloc[0]['I']) / (end_value_back - start_value_back)
                     intercept_back = backward_cycle_peak.iloc[0]['I'] - backward_slope * start_value_back
+                    """Regression line for integration backward (black line which shows start end end of integration)"""
                     def line_func_back(x):
                         return backward_slope * x + intercept_back
                     y_pred2 = line_func_back(backward_cycle_peak['E'].values)
+                    """ The area of the forward cycle and the plotting"""
                     area_backward = trapz(backward_cycle_peak['I'] - y_pred2.flatten(), backward_cycle_peak['E'])
                     ax.plot(backward_cycle_peak['E'], y_pred2.flatten(), color='black', linestyle='--')
                     ax.fill_between(backward_cycle_peak['E'], backward_cycle_peak['I'], y_pred2.flatten(), where=(backward_cycle_peak['I'] > y_pred2.flatten()), alpha=0.3)
@@ -655,12 +664,9 @@ class CyclicVoltammetry:
                     end_value_back = backward_cycle_peak.iloc[-1]['E']
                     backward_slope = (backward_cycle_peak.iloc[-1]['I'] - backward_cycle_peak.iloc[0]['I']) / (end_value_back - start_value_back)
                     intercept_back = backward_cycle_peak.iloc[0]['I'] - backward_slope * start_value_back
-
-                    ax.fill_between(backward_cycle_peak['E'], backward_cycle_peak['I'], y_pred2.flatten(), alpha=0.3)# where=(backward_cycle_peak['I'] < y_pred2.flatten())
-   
+                    ax.fill_between(backward_cycle_peak['E'], backward_cycle_peak['I'], y_pred2.flatten(), alpha=0.3)
                     Integral_forward.append(area_forward)
                     Integral_backward.append(area_backward)
-
                     ax.plot(df["E"],df["I"],label="Cycle: {}".format(i+1))
                     ax.set_xlabel(xlabel)
                     ax.set_ylabel(ylabel)
@@ -669,15 +675,17 @@ class CyclicVoltammetry:
                     if save:
                         fig.savefig("plots/" +"Cycle{}_".format(i+1)+savename,bbox_inches='tight')
 
-                    self.df_integration= pd.DataFrame(zip(Cycles,Integral_forward,Integral_backward), columns=["Cycles","Integration Area forward","Integration Area backward"])
+                    self.integration_df= pd.DataFrame(zip(Cycles,Integral_forward,Integral_backward), columns=["Cycles","Integration Area forward","Integration Area backward"])
             button_forward.on_click(on_button_click_forward)
             display(button_forward)
             button_backward.on_click(on_button_click_backward)
             display(button_backward)
-            return self.df_integration
+            return self.integration_df
 
         widgets.interact(interactive,zoom_x_min=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df[0]['E'].min()-0.1,self.cycle_df[0]['E'].max()+0.1),zoom_y_min=(self.min_current_value,self.max_current_value),zoom_y_max=(self.min_current_value,self.max_current_value))
     def ferrocene_reference(self,experiment2):
+        """New parser for the second measurement, which should be the experiment without the ferrocene"""
+        self.experiment2=experiment2
         if self.e_chem.experiments[experiment2].type=="CV"  and self.e_chem.experiments[experiment2].filename.endswith(".csv"):
             self.df2 = pd.read_csv(self.e_chem.experiments[experiment2].filename,header=5,skipfooter=1,engine="python")
         elif self.e_chem.experiments[experiment2].type=="CV"  and self.e_chem.experiments[experiment2].filename.endswith(".xlsx"):
@@ -693,12 +701,11 @@ class CyclicVoltammetry:
         self.cycles2 = [cycle -1 for cycle in self.cycles2]
         x_max_sec = self.cycle_df2[0]['E'].max()
         x_min_sec = self.cycle_df2[0]['E'].min()
-
         x_max = self.cycle_df[0]['E'].max()
         x_min = self.cycle_df[0]['E'].min()
         xlabel=self.xlabel
         ylabel=self.ylabel
-        def interactive(E_min_Fc=0.2,E_max_Fc=0.6,sample_point= 'half-wave potential',E_min_sample=x_min-0.45,E_max_sample=x_max-0.4,E_min_sec=x_min_sec,E_max_sec=x_max_sec): 
+        def interactive(E_min_Fc=0.2,E_max_Fc=0.6,sample_point= 'half-wave potential',E_min_sample=x_min-0.45,E_max_sample=x_max-0.4,E_min_sec=x_min_sec,E_max_sec=x_max_sec,index_value_save=(0,len(self.cycles)),zoom_x=False,zoom_x_min=self.cycle_df2[0]['E'].min()-0.1,zoom_x_max=self.cycle_df2[0]['E'].max()+0.1): 
             E_min_ferrocene=[]
             E_max_ferrocene=[]
             E_hwp_ferrocene=[]
@@ -713,6 +720,26 @@ class CyclicVoltammetry:
             delta_E_hwp_list=[]
             Cycles=[]
             self.cycle_df_ferrocene = copy.deepcopy(self.cycle_df)
+            def on_button_click(_):
+                if sample_point=='half-wave potential' and (delta_E_hwp_list[index_value_save], "Fc/Fc+") not in self.e_chem.experiments[self.experiment2].analysis.cv.change_potential:
+                        self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_hwp_list[index_value_save], "Fc/Fc+"))
+                        print((delta_E_hwp_list[index_value_save], "Fc/Fc+"))
+                        print("Potential saved")
+                else:
+                    print("Potential already saved")
+                if sample_point=='peak minimum' and (delta_E_min_list[index_value_save], "Fc/Fc+") not in self.e_chem.experiments[self.experiment2].analysis.cv.change_potential:
+                    self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_min_list[index_value_save], "Fc/Fc+"))
+                    print((delta_E_min_list[index_value_save], "Fc/Fc+"))
+                    print("Potential saved")
+                else:
+                    print("Potential already saved")
+                if sample_point=='peak maximum' and (delta_E_max_list[index_value_save], "Fc/Fc+") not in self.e_chem.experiments[self.experiment2].analysis.cv.change_potential:
+                    self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_max_list[index_value_save], "Fc/Fc+"))
+                    print((delta_E_max_list[index_value_save], "Fc/Fc+"))
+                    print("Potential saved")
+                else:
+                    print("Potential already saved")
+            button= widgets.Button(description="Save Potential")
             for i in self.cycles:
                 fig, ax=plt.subplots()
                 ax.set_xlabel(xlabel)
@@ -729,7 +756,7 @@ class CyclicVoltammetry:
                 current_at_min = self.cycle_df[i]["I"][min_index]
                 ax.axvline(x=(pot_at_max+pot_at_min)/2 , color='red', linestyle='--',linewidth=2)
                 ax.axvline(x=pot_at_min , color='darkgreen', linestyle=':',linewidth=2)
-                ax.axvline(x=pot_at_max , color='orange', linestyle=':')
+                ax.axvline(x=pot_at_max , color='orange', linestyle=':',linewidth=2)
                 ax.legend(frameon=False)
                 E_max_ferrocene.append(pot_at_max)
                 E_min_ferrocene.append(pot_at_min)
@@ -756,9 +783,12 @@ class CyclicVoltammetry:
                 E_hwp_sample_list.append((pot_at_max_sample+pot_at_min_sample)/2 )
                 if sample_point=='half-wave potential':
                     ax.axvline(x=(pot_at_max_sample+pot_at_min_sample)/2 , color='red', linestyle='--',linewidth=2)
-                    
+                    ax.axvline(x=pot_at_min_sample , color='darkgreen', linestyle=':',linewidth=1)
+                    ax.axvline(x=pot_at_max_sample , color='orange', linestyle=':',linewidth=1)
+            
                 if sample_point=='peak minimum':
                     ax.axvline(x=pot_at_min_sample , color='darkgreen', linestyle=':',linewidth=2)
+
                 if sample_point=='peak maximum':
                     ax.axvline(x=pot_at_max_sample , color='orange', linestyle=':')
             
@@ -784,16 +814,33 @@ class CyclicVoltammetry:
                 delta_E_hwp_list.append(((pot_at_max_sec+pot_at_min_sec)/2)-((pot_at_max_sample+pot_at_min_sample)/2))
                 if sample_point=='half-wave potential':
                     ax.axvline(x=(pot_at_max_sec+pot_at_min_sec)/2 , color='red', linestyle='--',linewidth=2)
+                    ax.axvline(x=pot_at_min_sec , color='darkgreen', linestyle=':',linewidth=1)
+                    ax.axvline(x=pot_at_max_sec , color='orange', linestyle=':',linewidth=1)
                 if sample_point=='peak minimum':
                     ax.axvline(x=pot_at_min_sec , color='darkgreen', linestyle=':',linewidth=2)
                 if sample_point=='peak maximum':
-                    ax.axvline(x=pot_at_max_sec , color='orange', linestyle=':')
+                    ax.axvline(x=pot_at_max_sec , color='orange', linestyle=':',linewidth=2)
+                if zoom_x:
+                    ax.set_xlim(zoom_x_min,zoom_x_max)
+            average_hwp_ferrocene = np.average(E_hwp_sample_list)
+            average_hwp_second_measurement = np.average(E_hwp_sec_list)
+            average_delta_E_min=np.average(delta_E_min_list)
+            average_delta_E_max=np.average(delta_E_max_list)
+            average_delta_E_hwp=np.average(delta_E_hwp_list)
+            Cycles.append("Average")
+            E_hwp_sample_list.append(average_hwp_ferrocene)
+            E_hwp_sec_list.append(average_hwp_second_measurement)
+            delta_E_min_list.append(average_delta_E_min)
+            delta_E_max_list.append(average_delta_E_max)
+            delta_E_hwp_list.append(average_delta_E_hwp)
+            button.on_click(on_button_click)
+            display(button)
             if sample_point=='peak minimum':
                 self.df_reference = pd.DataFrame(list(zip(Cycles,E_min_sample_list,E_min_sec_list,delta_E_min_list)), columns=["Cycles ","E_at_min/Fc measurement","E_at_min/without Fc","Delta_E"])
             if sample_point=='peak maximum':
                 print("peak max")
                 self.df_reference = pd.DataFrame(list(zip(Cycles,E_max_sample_list,E_max_sec_list,delta_E_max_list)), columns=["Cycles","E_at_max/Fc measurement","E_at_max/Fc measurement/without Fc","Delta_E"])
             if sample_point=='half-wave potential':
-                self.df_ferrocene_reference = pd.DataFrame(list(zip(Cycles,E_hwp_sample_list,E_hwp_sec_list,delta_E_hwp_list)), columns=["Cycles","E1/2/Fc measurement","E1/2/without Fc measurement","Delta_E"])
-            return self.df_ferrocene_reference
-        widgets.interact(interactive,E_min_Fc=(x_min,x_max,0.05),E_max_Fc=(x_min,x_max,0.05),E_min_sample=(x_min-0.45,x_max-0.4,0.05),E_max_sample=(x_min-0.45,x_max-0.3,0.05),E_min_sec=(x_min_sec,x_max_sec,0.05),E_max_sec=(x_min_sec,x_max_sec,0.05),sample_point= ['peak minimum', 'peak maximum', 'half-wave potential'])
+                self.ferrocene_reference_df = pd.DataFrame(list(zip(Cycles,E_hwp_sample_list,E_hwp_sec_list,delta_E_hwp_list)), columns=["Cycles","E1/2/Fc measurement","E1/2/without Fc measurement","Delta_E"])
+            return self.ferrocene_reference_df
+        widgets.interact(interactive,E_min_Fc=(x_min,x_max,0.05),E_max_Fc=(x_min,x_max,0.05),E_min_sample=(x_min-0.45,x_max-0.4,0.05),E_max_sample=(x_min-0.45,x_max-0.3,0.05),E_min_sec=(x_min_sec,x_max_sec,0.05),E_max_sec=(x_min_sec,x_max_sec,0.05),sample_point= ['peak minimum', 'peak maximum', 'half-wave potential'],zoom_x_min=(self.cycle_df2[0]['E'].min()-0.1,self.cycle_df2[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df2[0]['E'].min()-0.1,self.cycle_df2[0]['E'].max()+0.1))

@@ -308,10 +308,16 @@ Container for information regarding the CV-Setup and parameters
 - number
   - Type: int
   - Description: The cycle number
+- scan_rate
+  - Type: float
+  - Description: The scan rate of the measurement
+- scan_rate_unit
+  - Type: ScanRateUnits
+  - Description: The scan rate unit of the measurement
 - current_vertex
   - Type: float
   - Description: The vertex current
-- y_unit
+- y_unit_vertex
   - Type: string
   - Description: The y unit 
 - change_reference_potential
