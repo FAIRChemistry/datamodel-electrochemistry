@@ -78,7 +78,7 @@ classDiagram
     class Electrolyte {
         +string solvent
         +string conducting_salt
-        +float conducting_salt_concentration
+        +float, string conducting_salt_concentration
         +ConcentrationUnits conducting_salt_concentration_unit
         +float pH
     }

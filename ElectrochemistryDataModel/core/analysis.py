@@ -5,9 +5,9 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
+from .ca import CA
 from .cp import CP
 from .cv import CV
-from .ca import CA
 
 
 @forge_signature
@@ -39,5 +39,5 @@ class Analysis(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="4fbb3e43762626469aab95adc8818f6004de25fe"
+        default="39da9bafbb61bf78fe477f027188a2597d57b967"
     )
