@@ -75,7 +75,7 @@
   - Type: string
   - Description: Name of the used salt
 - conducting_salt_concentration
-  - Type: float
+  - Type: float,string
   - Description: Concentration of the conducting salt
 - conducting_salt_concentration_unit
   - Type: ConcentrationUnits

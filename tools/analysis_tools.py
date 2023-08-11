@@ -38,6 +38,7 @@ class ReferenceCalculator:
             "Ag/Ag2SO4 (sat. K2SO4)": 0.68,
             "Hg/HgO (0.1 M NaOH)": 0.165,
             "Hg/HgO (1 M NaOH)": 0.140,
+             "Hg/HgO (1 M KOH)": 0.098,
             "Fc/Fc+ (0.05 M  nBu4NPF6/MeCN)":0.64,
         }
         self.e_chem=e_chem
@@ -505,7 +506,7 @@ class CyclicVoltammetry:
                     print("Maximum Saved")
                 button_max = widgets.Button(description="Save only Maximum")
                 def on_button_click_hwp(_):
-                    for cycle in self.cycle_df:
+                    for cycle in self.cycles:
                         peaks_and_hwp=lib.PeaksAndHalfPotential(current_minimum=I_min[cycle],potential_minimum=E_min[cycle],current_maximum=I_max[cycle],y_unit=f"{self.yunit}",potential_maximum=E_max[cycle],change_reference_potential=self.delta_E,half_wave_potential=E_hwp[cycle],reference_name=self.reference_name)
                         self.e_chem.experiments[self.experiment].analysis.cv.cycles[cycle].peaks_and_half_potential.append(peaks_and_hwp)
                         print(peaks_and_hwp)
