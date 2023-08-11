@@ -6,12 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .cycle import Cycle
-from .peakintegration import PeakIntegration
-from .scanrateunits import ScanRateUnits
-from .peaksandhalfpotential import PeaksAndHalfPotential
 from .currentunits import CurrentUnits
 from .potentialunits import PotentialUnits
+from .scanrateunits import ScanRateUnits
+from .peakintegration import PeakIntegration
+from .peaksandhalfpotential import PeaksAndHalfPotential
+from .cycle import Cycle
 
 
 @forge_signature
@@ -99,14 +99,16 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="dc67c22265598c1101fdc2de1850336d9dfc714f"
+        default="4fbb3e43762626469aab95adc8818f6004de25fe"
     )
 
     def add_to_cycles(
         self,
         number: Optional[int] = None,
+        scan_rate: Optional[float] = None,
+        scan_rate_unit: Optional[ScanRateUnits] = None,
         current_vertex: Optional[float] = None,
-        y_unit: Optional[str] = None,
+        y_unit_vertex: Optional[str] = None,
         change_reference_potential: Optional[float] = None,
         reference_name: Optional[str] = None,
         potential_vertex: Optional[float] = None,
@@ -120,8 +122,10 @@ class CV(sdRDM.DataModel):
         Args:
             id (str): Unique identifier of the 'Cycle' object. Defaults to 'None'.
             number (): The cycle number. Defaults to None
+            scan_rate (): The scan rate of the measurement. Defaults to None
+            scan_rate_unit (): The scan rate unit of the measurement. Defaults to None
             current_vertex (): The vertex current. Defaults to None
-            y_unit (): The y unit. Defaults to None
+            y_unit_vertex (): The y unit. Defaults to None
             change_reference_potential (): The change_reference potential. Defaults to None
             reference_name (): The used reference scale. Defaults to None
             potential_vertex (): The vertex potential. Defaults to None
@@ -131,8 +135,10 @@ class CV(sdRDM.DataModel):
 
         params = {
             "number": number,
+            "scan_rate": scan_rate,
+            "scan_rate_unit": scan_rate_unit,
             "current_vertex": current_vertex,
-            "y_unit": y_unit,
+            "y_unit_vertex": y_unit_vertex,
             "change_reference_potential": change_reference_potential,
             "reference_name": reference_name,
             "potential_vertex": potential_vertex,

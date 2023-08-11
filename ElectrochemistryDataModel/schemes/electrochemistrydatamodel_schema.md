@@ -38,6 +38,7 @@ classDiagram
     CV *-- CurrentUnits
     CV *-- PotentialUnits
     CV *-- Cycle
+    Cycle *-- ScanRateUnits
     Cycle *-- PeaksAndHalfPotential
     Cycle *-- PeakIntegration
     ElectrodeSetup *-- ConcentrationUnits
@@ -177,8 +178,10 @@ classDiagram
     
     class Cycle {
         +int number
+        +float scan_rate
+        +ScanRateUnits scan_rate_unit
         +float current_vertex
-        +string y_unit
+        +string y_unit_vertex
         +float change_reference_potential
         +string reference_name
         +float potential_vertex
