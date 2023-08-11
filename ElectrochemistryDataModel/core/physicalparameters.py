@@ -6,8 +6,8 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .pressureunits import PressureUnits
-from .timeunits import TimeUnits
 from .temperatureunits import TemperatureUnits
+from .timeunits import TimeUnits
 
 
 @forge_signature
@@ -39,5 +39,5 @@ class PhysicalParameters(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="4fbb3e43762626469aab95adc8818f6004de25fe"
+        default="39da9bafbb61bf78fe477f027188a2597d57b967"
     )
