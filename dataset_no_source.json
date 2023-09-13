@@ -1,0 +1,326 @@
+{
+  "id": "dataset0",
+  "experiments": [
+    {
+      "id": "experiment0",
+      "name": "Cu 12 nm",
+      "filename": "data/Cu12nm.DTA",
+      "electrode_setup": {
+        "id": "electrodesetup0",
+        "working_electrode": "Au",
+        "working_electrode_area": 1.0,
+        "working_electrode_area_unit": "cm^2",
+        "counter_electrode": "Pt",
+        "reference_electrode": "Hg/HgO",
+        "reference_electrode_salt": "KCl",
+        "reference_electrode_salt_concentration": 1.0,
+        "reference_electrode_salt_concentration_unit": "M"
+      },
+      "electrolyte": {
+        "id": "electrolyte0",
+        "solvent": "H$_2$O",
+        "conducting_salt": "KOH",
+        "conducting_salt_concentration": 1.0,
+        "conducting_salt_concentration_unit": "M",
+        "pH": 10.0
+      },
+      "analysis": {
+        "id": "analysis0",
+        "cp": {
+          "id": "cp0",
+          "measurement_potential_unit": "V",
+          "measurement_time_unit": "s",
+          "induced_current": [
+            200.0
+          ],
+          "induced_current_unit": "mA"
+        }
+      },
+      "type": "CP"
+    },
+    {
+      "id": "experiment1",
+      "name": "Cu 14 nm",
+      "filename": "data/Cu14nm.DTA",
+      "electrode_setup": {
+        "id": "electrodesetup1",
+        "working_electrode": "Au",
+        "working_electrode_area": 1.0,
+        "working_electrode_area_unit": "cm^2",
+        "counter_electrode": "Pt",
+        "reference_electrode": "Ag/AgCl",
+        "reference_electrode_salt": "KCl",
+        "reference_electrode_salt_concentration": 1.0,
+        "reference_electrode_salt_concentration_unit": "M"
+      },
+      "electrolyte": {
+        "id": "electrolyte1",
+        "solvent": "MeCN",
+        "conducting_salt": "KOH",
+        "conducting_salt_concentration": 1.0,
+        "conducting_salt_concentration_unit": "M",
+        "pH": 10.0
+      },
+      "analysis": {
+        "id": "analysis1",
+        "cp": {
+          "id": "cp1",
+          "measurement_potential_unit": "V",
+          "measurement_time_unit": "s",
+          "induced_current": [
+            200.0
+          ],
+          "induced_current_unit": "mA"
+        }
+      },
+      "type": "CP"
+    },
+    {
+      "id": "experiment2",
+      "name": "CA1",
+      "filename": "data/CA1.dat",
+      "electrode_setup": {
+        "id": "electrodesetup2",
+        "working_electrode_area": 1.0,
+        "working_electrode_area_unit": "cm^2",
+        "counter_electrode": "Pt",
+        "reference_electrode": "Hg/HgO",
+        "reference_electrode_salt": "KCl",
+        "reference_electrode_salt_concentration": 1.0,
+        "reference_electrode_salt_concentration_unit": "M"
+      },
+      "electrolyte": {
+        "id": "electrolyte2",
+        "solvent": "H$_2$O",
+        "conducting_salt": "KOH",
+        "conducting_salt_concentration": 1.0,
+        "conducting_salt_concentration_unit": "M",
+        "pH": 10.0
+      },
+      "analysis": {
+        "id": "analysis2",
+        "ca": {
+          "id": "ca0",
+          "measurement_current_unit": "A",
+          "measurement_time_unit": "s",
+          "induced_potential": [
+            20.0
+          ],
+          "induced_potential_unit": "V"
+        }
+      },
+      "type": "CA"
+    },
+    {
+      "id": "experiment3",
+      "name": "CA",
+      "filename": "data/CA_Sarkar.txt",
+      "electrode_setup": {
+        "id": "electrodesetup3",
+        "working_electrode_area": 1.0,
+        "working_electrode_area_unit": "cm^2",
+        "counter_electrode": "Pt",
+        "reference_electrode": "Ag/AgCl",
+        "reference_electrode_salt": "KCl",
+        "reference_electrode_salt_concentration": 1.0,
+        "reference_electrode_salt_concentration_unit": "M"
+      },
+      "electrolyte": {
+        "id": "electrolyte3",
+        "solvent": "MeCN",
+        "conducting_salt": "KOH",
+        "conducting_salt_concentration": 1.0,
+        "conducting_salt_concentration_unit": "M",
+        "pH": 10.0
+      },
+      "analysis": {
+        "id": "analysis3",
+        "ca": {
+          "id": "ca1",
+          "measurement_current_unit": "A",
+          "measurement_time_unit": "s",
+          "induced_potential": [
+            20.0
+          ],
+          "induced_potential_unit": "V"
+        }
+      },
+      "type": "CA"
+    },
+    {
+      "id": "experiment4",
+      "name": "CV",
+      "filename": "data/SarkarCV_utf8.csv",
+      "electrode_setup": {
+        "id": "electrodesetup4",
+        "working_electrode": "Au",
+        "working_electrode_area": 2.0,
+        "working_electrode_area_unit": "cm^2",
+        "counter_electrode": "Pt",
+        "reference_electrode": "Ag/AgCl",
+        "reference_electrode_salt": "KCl",
+        "reference_electrode_salt_concentration": 1.0,
+        "reference_electrode_salt_concentration_unit": "M"
+      },
+      "electrolyte": {
+        "id": "electrolyte4",
+        "solvent": "H$_2$O",
+        "conducting_salt": "KOH",
+        "conducting_salt_concentration": 1.0,
+        "conducting_salt_concentration_unit": "M",
+        "pH": 10.0
+      },
+      "analysis": {
+        "id": "analysis4",
+        "cv": {
+          "id": "cv0",
+          "measurement_current_unit": "\u00b5A",
+          "measurement_potential_unit": "V",
+          "scan_rate": 20.0,
+          "scan_rate_unit": "mV/s"
+        }
+      },
+      "type": "CV"
+    },
+    {
+      "id": "experiment5",
+      "name": "CV",
+      "filename": "data/CV_all2.xlsx",
+      "electrode_setup": {
+        "id": "electrodesetup5",
+        "working_electrode": "Au",
+        "working_electrode_area": 2.0,
+        "working_electrode_area_unit": "cm^2",
+        "counter_electrode": "Pt",
+        "reference_electrode": "Ag/AgCl",
+        "reference_electrode_salt": "KCl",
+        "reference_electrode_salt_concentration": 1.0,
+        "reference_electrode_salt_concentration_unit": "M"
+      },
+      "electrolyte": {
+        "id": "electrolyte5",
+        "solvent": "MeCN",
+        "conducting_salt": "[Bu$_4$N][PF$_6$]",
+        "conducting_salt_concentration": 1.0,
+        "conducting_salt_concentration_unit": "M",
+        "pH": 10.0
+      },
+      "analysis": {
+        "id": "analysis5",
+        "cv": {
+          "id": "cv1",
+          "measurement_current_unit": "\u00b5A",
+          "measurement_potential_unit": "V",
+          "scan_rate": 20.0,
+          "scan_rate_unit": "mV/s"
+        }
+      },
+      "type": "CV"
+    },
+    {
+      "id": "experiment6",
+      "name": "CV",
+      "filename": "data/CV_all.xlsx",
+      "electrode_setup": {
+        "id": "electrodesetup6",
+        "working_electrode": "Au",
+        "working_electrode_area": 2.0,
+        "working_electrode_area_unit": "cm^2",
+        "counter_electrode": "Pt",
+        "reference_electrode": "Ag/AgCl",
+        "reference_electrode_salt": "KCl",
+        "reference_electrode_salt_concentration": 1.0,
+        "reference_electrode_salt_concentration_unit": "M"
+      },
+      "electrolyte": {
+        "id": "electrolyte6",
+        "solvent": "H$_2$O",
+        "conducting_salt": "KOH",
+        "conducting_salt_concentration": 1.0,
+        "conducting_salt_concentration_unit": "M",
+        "pH": 10.0
+      },
+      "analysis": {
+        "id": "analysis6",
+        "cv": {
+          "id": "cv2",
+          "measurement_current_unit": "\u00b5A",
+          "measurement_potential_unit": "V",
+          "scan_rate": 20.0,
+          "scan_rate_unit": "mV/s"
+        }
+      },
+      "type": "CV"
+    },
+    {
+      "id": "experiment7",
+      "name": "Re Complex",
+      "filename": "data/Ox_100mVs.csv",
+      "electrode_setup": {
+        "id": "electrodesetup7",
+        "working_electrode": "Au",
+        "working_electrode_area": 2.0,
+        "working_electrode_area_unit": "cm^2",
+        "counter_electrode": "Pt",
+        "reference_electrode": "Ag/AgCl",
+        "reference_electrode_salt": "KCl",
+        "reference_electrode_salt_concentration": 1.0,
+        "reference_electrode_salt_concentration_unit": "M"
+      },
+      "electrolyte": {
+        "id": "electrolyte7",
+        "solvent": "H$_2$O",
+        "conducting_salt": "KOH",
+        "conducting_salt_concentration": 1.0,
+        "conducting_salt_concentration_unit": "M",
+        "pH": 10.0
+      },
+      "analysis": {
+        "id": "analysis7",
+        "cv": {
+          "id": "cv3",
+          "measurement_current_unit": "\u00b5A",
+          "measurement_potential_unit": "V",
+          "scan_rate": 100.0,
+          "scan_rate_unit": "mV/s"
+        }
+      },
+      "type": "CV"
+    },
+    {
+      "id": "experiment8",
+      "name": "Fc",
+      "filename": "data/Ref_Fc_100mVs.csv",
+      "electrode_setup": {
+        "id": "electrodesetup8",
+        "working_electrode": "Au",
+        "working_electrode_area": 2.0,
+        "working_electrode_area_unit": "cm^2",
+        "counter_electrode": "Pt",
+        "reference_electrode": "Ag/AgCl",
+        "reference_electrode_salt": "KCl",
+        "reference_electrode_salt_concentration": 1.0,
+        "reference_electrode_salt_concentration_unit": "M"
+      },
+      "electrolyte": {
+        "id": "electrolyte8",
+        "solvent": "H$_2$O",
+        "conducting_salt": "KOH",
+        "conducting_salt_concentration": 1.0,
+        "conducting_salt_concentration_unit": "M",
+        "pH": 10.0
+      },
+      "analysis": {
+        "id": "analysis8",
+        "cv": {
+          "id": "cv4",
+          "measurement_current_unit": "\u00b5A",
+          "measurement_potential_unit": "V",
+          "scan_rate": 100.0,
+          "scan_rate_unit": "mV/s"
+        }
+      },
+      "type": "CV"
+    }
+  ]
+}
