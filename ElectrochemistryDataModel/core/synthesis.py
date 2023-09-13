@@ -5,7 +5,10 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .physicalparameters import PhysicalParameters
+from .timeunits import TimeUnits
+from .temperatureunits import TemperatureUnits
+from .pressureunits import PressureUnits
+from .purging import Purging
 
 
 @forge_signature
@@ -28,14 +31,44 @@ class Synthesis(sdRDM.DataModel):
         description="The solvent of the synthesis",
     )
 
-    physical_parameters: Optional[PhysicalParameters] = Field(
+    reaction_time: Optional[float] = Field(
         default=None,
-        description="The physical parameters of the synthesis",
+        description="The reaction time",
+    )
+
+    reaction_time_unit: Optional[TimeUnits] = Field(
+        default=None,
+        description="The reaction time",
+    )
+
+    reaction_temperature: Optional[float] = Field(
+        default=None,
+        description="The reaction temperature",
+    )
+
+    reaction_temperature_unit: Optional[TemperatureUnits] = Field(
+        default=None,
+        description="The reaction temperature unit",
+    )
+
+    reaction_pressure: Optional[float] = Field(
+        default=None,
+        description="The reaction pressure",
+    )
+
+    reaction_pressure_unit: Optional[PressureUnits] = Field(
+        default=None,
+        description="The reaction pressure unit",
+    )
+
+    purging: Optional[Purging] = Field(
+        default=None,
+        description="The purging information for the synthesis experiment",
     )
 
     __repo__: Optional[str] = PrivateAttr(
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="1b2fb8a569b792ea51ff85ef5ca4c4cb080b4d71"
+        default="1dbb322a6d12cf7b3c1a8d97cf3cd32f605007fd"
     )

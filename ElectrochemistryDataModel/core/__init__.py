@@ -5,7 +5,6 @@ from .purging import Purging
 from .electrolyte import Electrolyte
 from .sample import Sample
 from .synthesis import Synthesis
-from .physicalparameters import PhysicalParameters
 from .filmpreparation import FilmPreparation
 from .spincoating import SpinCoating
 from .analysis import Analysis
@@ -43,7 +42,6 @@ __all__ = [
     "Electrolyte",
     "Sample",
     "Synthesis",
-    "PhysicalParameters",
     "FilmPreparation",
     "SpinCoating",
     "Analysis",
