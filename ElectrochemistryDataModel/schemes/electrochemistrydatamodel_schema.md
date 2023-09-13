@@ -14,10 +14,10 @@ classDiagram
     Sample *-- MolecularWeightUnits
     Sample *-- Synthesis
     Sample *-- FilmPreparation
-    Synthesis *-- PhysicalParameters
-    PhysicalParameters *-- PressureUnits
-    PhysicalParameters *-- TemperatureUnits
-    PhysicalParameters *-- TimeUnits
+    Synthesis *-- PressureUnits
+    Synthesis *-- TemperatureUnits
+    Synthesis *-- TimeUnits
+    Synthesis *-- Purging
     FilmPreparation *-- SpinCoating
     SpinCoating *-- TemperatureUnits
     SpinCoating *-- VolumeUnits
@@ -94,13 +94,13 @@ classDiagram
     class Synthesis {
         +string reagents
         +string solvent
-        +PhysicalParameters physical_parameters
-    }
-    
-    class PhysicalParameters {
-        +TemperatureUnits temperature
-        +PressureUnits pressure
-        +TimeUnits time
+        +float reaction_time
+        +TimeUnits reaction_time_unit
+        +float reaction_temperature
+        +TemperatureUnits reaction_temperature_unit
+        +float reaction_pressure
+        +PressureUnits reaction_pressure_unit
+        +Purging purging
     }
     
     class FilmPreparation {
