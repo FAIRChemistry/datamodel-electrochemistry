@@ -17,6 +17,9 @@
 - title
   - Type: string
   - Description: The title of the work
+- information
+  - Type: string
+  - Description: Other information about this work
 - author
   - Type: Author
   - Multiple: True
