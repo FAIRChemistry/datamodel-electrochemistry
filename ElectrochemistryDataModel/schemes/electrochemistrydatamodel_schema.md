@@ -247,8 +247,8 @@ classDiagram
     
     class MolecularWeightUnits {
         << Enumeration >>
-        +GRAM_PER_MOLE
-        +GRAM_PER_MILLI_MOLE
+        +GRAM_PER_MOL
+        +GRAM_PER_MILLI_MOL
     }
     
     class TemperatureUnits {
