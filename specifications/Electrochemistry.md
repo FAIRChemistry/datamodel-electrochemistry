@@ -452,8 +452,8 @@ MILLI_BAR = "mbar"
 ### MolecularWeightUnits
 
 ```python
-GRAM_PER_MOLE = "g/mole "
-GRAM_PER_MILLI_MOLE = "g/mmole"
+GRAM_PER_MOL = "g/mol "
+GRAM_PER_MILLI_MOL = "g/mmol"
 ```
 
 ### TemperatureUnits
