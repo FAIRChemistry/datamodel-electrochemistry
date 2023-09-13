@@ -110,21 +110,28 @@
 - solvent
   - Type: string
   - Description: The solvent of the synthesis
-- physical_parameters
-  - Type: PhysicalParameters
-  - Description: The physical parameters of the synthesis
-
-### PhysicalParameters
-
-- temperature
-  - Type: TemperatureUnits
-  - Description: The used temperature for the synthesis
-- pressure
-  - Type: PressureUnits
-  - Description: The used pressure for the synthesis
-- time
+- reaction_time
+  - Type: float
+  - Description: The reaction time 
+- reaction_time_unit
   - Type: TimeUnits
-  - Description: The used time for the synthesis  
+  - Description: The reaction time 
+- reaction_temperature
+  - Type: float
+  - Description: The reaction temperature
+- reaction_temperature_unit
+  - Type: TemperatureUnits
+  - Description: The reaction temperature unit
+- reaction_pressure
+  - Type: float
+  - Description: The reaction pressure
+- reaction_pressure_unit
+  - Type: PressureUnits
+  - Description: The reaction pressure unit
+- purging
+  - Type: Purging
+  - Description: The purging information for the synthesis experiment
+ 
 
 ### FilmPreparation
 
