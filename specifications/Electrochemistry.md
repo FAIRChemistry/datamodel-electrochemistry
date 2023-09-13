@@ -410,7 +410,7 @@ Container for information regarding the CV-Setup and parameters
   - Type: string
   - Description: Name of the reference salt
 - reference_electrode_salt_concentration
-  - Type: float
+  - Type: float,string
   - Description: Unit of the reference salt concentration
 - reference_electrode_salt_concentration_unit
   - Type: ConcentrationUnits
