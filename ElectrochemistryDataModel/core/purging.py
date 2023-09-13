@@ -42,5 +42,5 @@ class Purging(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="71ea62e398e551ac3c1b6d331979e164d0887883"
+        default="77a7042bf9b874e52d61bfd2279e0089580e09f5"
     )

@@ -52,6 +52,7 @@ classDiagram
     
     class GeneralInformation {
         +string title
+        +string information
         +Author[0..*] author
         +date date_of_work
     }
