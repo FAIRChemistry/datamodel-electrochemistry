@@ -24,7 +24,7 @@
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset  
-- date
+- date_of_work
   - Type: date
   - Description: Date/time when the dataset was created
   
@@ -56,9 +56,7 @@
 - type
   - Type: Experiment_type
   - Description: Type of experiment
-- date
-  - Type: date
-  - Description: Date/time when the experiment was made
+
 ### Purging
 - gas
   - Type: string
@@ -420,12 +418,9 @@ Container for information regarding the CV-Setup and parameters
 
 ### Author
 
-- first_name
+- name
   - Type: string
-  - Description: First name of the author
-- last_name
-  - Type: string
-  - Description: Last name of the author
+  - Description: Full name of the author
 - affiliation
   - Type: string
   - Description: Organization the author is affiliated with
