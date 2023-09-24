@@ -6,14 +6,14 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .generalinformation import GeneralInformation
+from .electrodesetup import ElectrodeSetup
+from .experiment import Experiment
+from .sample import Sample
 from .analysis import Analysis
 from .purging import Purging
-from .electrodesetup import ElectrodeSetup
-from .experiment_type import Experiment_type
 from .electrolyte import Electrolyte
-from .sample import Sample
-from .experiment import Experiment
+from .experiment_type import Experiment_type
+from .generalinformation import GeneralInformation
 
 
 @forge_signature
@@ -41,7 +41,7 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="cb390714d6b6eb8ab09b6299c7b2dcd2ee05c7f9"
+        default="418b6230fb2c65662a83c99ad901093819dabeff"
     )
 
     def add_to_experiments(
@@ -55,6 +55,7 @@ class Dataset(sdRDM.DataModel):
         purging: Optional[Purging] = None,
         analysis: Optional[Analysis] = None,
         type: Optional[Experiment_type] = None,
+        date_of_work: Optional[str] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -71,6 +72,7 @@ class Dataset(sdRDM.DataModel):
             purging (): The purging information for the experiment. Defaults to None
             analysis (): The analysis type of the experiment. Defaults to None
             type (): Type of experiment. Defaults to None
+            date_of_work (): Date/time when the experiment was created. Defaults to None
         """
 
         params = {
@@ -83,6 +85,7 @@ class Dataset(sdRDM.DataModel):
             "purging": purging,
             "analysis": analysis,
             "type": type,
+            "date_of_work": date_of_work,
         }
 
         if id is not None:

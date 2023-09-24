@@ -5,7 +5,6 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
-from datetime import date
 
 from .author import Author
 
@@ -36,7 +35,7 @@ class GeneralInformation(sdRDM.DataModel):
         description="Persons who worked on the dataset",
     )
 
-    date_of_work: Optional[date] = Field(
+    date_of_work: Optional[str] = Field(
         default=None,
         description="Date/time when the dataset was created",
     )
@@ -45,12 +44,13 @@ class GeneralInformation(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="cb390714d6b6eb8ab09b6299c7b2dcd2ee05c7f9"
+        default="418b6230fb2c65662a83c99ad901093819dabeff"
     )
 
     def add_to_author(
         self,
-        name: Optional[str] = None,
+        first_name: Optional[str] = None,
+        last_name: Optional[str] = None,
         affiliation: Optional[str] = None,
         email: Optional[str] = None,
         orcid: Optional[str] = None,
@@ -61,14 +61,16 @@ class GeneralInformation(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'Author' object. Defaults to 'None'.
-            name (): Full name of the author. Defaults to None
+            first_name (): First name of the author. Defaults to None
+            last_name (): Last name of the author. Defaults to None
             affiliation (): Organization the author is affiliated with. Defaults to None
             email (): Contact e-mail address of the author. Defaults to None
             orcid (): The ORCID of the author. Defaults to None
         """
 
         params = {
-            "name": name,
+            "first_name": first_name,
+            "last_name": last_name,
             "affiliation": affiliation,
             "email": email,
             "orcid": orcid,
