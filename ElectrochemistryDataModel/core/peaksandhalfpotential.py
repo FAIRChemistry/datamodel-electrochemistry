@@ -59,5 +59,5 @@ class PeaksAndHalfPotential(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="bfee64395b5701fee73bb03b4c18f5b144c8d82d"
+        default="a1c6eab16e0b0b7e3ab6aa62c9f1d897ddab5d5f"
     )
