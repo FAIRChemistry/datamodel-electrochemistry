@@ -5,15 +5,16 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
+from datetime import date
 
-from .electrodesetup import ElectrodeSetup
-from .experiment import Experiment
 from .generalinformation import GeneralInformation
-from .analysis import Analysis
-from .experiment_type import Experiment_type
-from .purging import Purging
-from .sample import Sample
 from .electrolyte import Electrolyte
+from .purging import Purging
+from .analysis import Analysis
+from .experiment import Experiment
+from .sample import Sample
+from .electrodesetup import ElectrodeSetup
+from .experiment_type import Experiment_type
 
 
 @forge_signature
@@ -41,7 +42,7 @@ class Dataset(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="bfee64395b5701fee73bb03b4c18f5b144c8d82d"
+        default="a1c6eab16e0b0b7e3ab6aa62c9f1d897ddab5d5f"
     )
 
     def add_to_experiments(
@@ -55,6 +56,7 @@ class Dataset(sdRDM.DataModel):
         purging: Optional[Purging] = None,
         analysis: Optional[Analysis] = None,
         type: Optional[Experiment_type] = None,
+        date: Optional[date] = None,
         id: Optional[str] = None,
     ) -> None:
         """
@@ -71,6 +73,7 @@ class Dataset(sdRDM.DataModel):
             purging (): The purging information for the experiment. Defaults to None
             analysis (): The analysis type of the experiment. Defaults to None
             type (): Type of experiment. Defaults to None
+            date (): Date/time when the experiment was made. Defaults to None
         """
 
         params = {
@@ -83,6 +86,7 @@ class Dataset(sdRDM.DataModel):
             "purging": purging,
             "analysis": analysis,
             "type": type,
+            "date": date,
         }
 
         if id is not None:
