@@ -15,14 +15,9 @@ class Author(sdRDM.DataModel):
         xml="@id",
     )
 
-    first_name: Optional[str] = Field(
+    name: Optional[str] = Field(
         default=None,
-        description="First name of the author",
-    )
-
-    last_name: Optional[str] = Field(
-        default=None,
-        description="Last name of the author",
+        description="Full name of the author",
     )
 
     affiliation: Optional[str] = Field(
@@ -44,5 +39,5 @@ class Author(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="a1c6eab16e0b0b7e3ab6aa62c9f1d897ddab5d5f"
+        default="cb390714d6b6eb8ab09b6299c7b2dcd2ee05c7f9"
     )
