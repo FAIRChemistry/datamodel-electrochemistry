@@ -24,7 +24,7 @@
   - Type: Author
   - Multiple: True
   - Description: Persons who worked on the dataset  
-- date_of_work
+- date
   - Type: date
   - Description: Date/time when the dataset was created
   
@@ -56,7 +56,9 @@
 - type
   - Type: Experiment_type
   - Description: Type of experiment
-
+- date
+  - Type: date
+  - Description: Date/time when the experiment was made
 ### Purging
 - gas
   - Type: string

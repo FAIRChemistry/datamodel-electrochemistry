@@ -76,7 +76,7 @@ class ReferenceCalculator:
             button.on_click(on_button_click)
             display(button)
             return self.reference_difference_value
-
+            
         widgets.interact(interactive, old_reference=list(self.reference_values.keys()), new_reference=list(self.reference_values.keys()))
         
         

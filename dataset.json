@@ -2,11 +2,11 @@
   "id": "dataset0",
   "experiments": [
     {
-      "id": "experiment0",
+      "id": "experiment9",
       "name": "Cu 12 nm",
       "filename": "data/Cu12nm.DTA",
       "electrode_setup": {
-        "id": "electrodesetup0",
+        "id": "electrodesetup9",
         "working_electrode": "Au",
         "working_electrode_area": 1.0,
         "working_electrode_area_unit": "cm^2",
@@ -17,7 +17,7 @@
         "reference_electrode_salt_concentration_unit": "M"
       },
       "electrolyte": {
-        "id": "electrolyte0",
+        "id": "electrolyte9",
         "solvent": "H$_2$O",
         "conducting_salt": "KOH",
         "conducting_salt_concentration": 1.0,
@@ -25,9 +25,9 @@
         "pH": 10.0
       },
       "analysis": {
-        "id": "analysis0",
+        "id": "analysis9",
         "cp": {
-          "id": "cp0",
+          "id": "cp2",
           "measurement_potential_unit": "V",
           "measurement_time_unit": "s",
           "induced_current": [
@@ -39,11 +39,11 @@
       "type": "CP"
     },
     {
-      "id": "experiment1",
+      "id": "experiment10",
       "name": "Cu 14 nm",
       "filename": "data/Cu14nm.DTA",
       "electrode_setup": {
-        "id": "electrodesetup1",
+        "id": "electrodesetup10",
         "working_electrode": "Au",
         "working_electrode_area": 1.0,
         "working_electrode_area_unit": "cm^2",
@@ -54,7 +54,7 @@
         "reference_electrode_salt_concentration_unit": "M"
       },
       "electrolyte": {
-        "id": "electrolyte1",
+        "id": "electrolyte10",
         "solvent": "MeCN",
         "conducting_salt": "KOH",
         "conducting_salt_concentration": 1.0,
@@ -62,9 +62,9 @@
         "pH": 10.0
       },
       "analysis": {
-        "id": "analysis1",
+        "id": "analysis10",
         "cp": {
-          "id": "cp1",
+          "id": "cp3",
           "measurement_potential_unit": "V",
           "measurement_time_unit": "s",
           "induced_current": [
@@ -76,11 +76,11 @@
       "type": "CP"
     },
     {
-      "id": "experiment2",
+      "id": "experiment11",
       "name": "CA1",
       "filename": "data/CA1.dat",
       "electrode_setup": {
-        "id": "electrodesetup2",
+        "id": "electrodesetup11",
         "working_electrode_area": 1.0,
         "working_electrode_area_unit": "cm^2",
         "counter_electrode": "Pt",
@@ -90,7 +90,7 @@
         "reference_electrode_salt_concentration_unit": "M"
       },
       "electrolyte": {
-        "id": "electrolyte2",
+        "id": "electrolyte11",
         "solvent": "H$_2$O",
         "conducting_salt": "KOH",
         "conducting_salt_concentration": 1.0,
@@ -98,9 +98,9 @@
         "pH": 10.0
       },
       "analysis": {
-        "id": "analysis2",
+        "id": "analysis11",
         "ca": {
-          "id": "ca0",
+          "id": "ca2",
           "measurement_current_unit": "A",
           "measurement_time_unit": "s",
           "induced_potential": [
@@ -112,11 +112,11 @@
       "type": "CA"
     },
     {
-      "id": "experiment3",
+      "id": "experiment12",
       "name": "CA",
       "filename": "data/CA_Sarkar.txt",
       "electrode_setup": {
-        "id": "electrodesetup3",
+        "id": "electrodesetup12",
         "working_electrode_area": 1.0,
         "working_electrode_area_unit": "cm^2",
         "counter_electrode": "Pt",
@@ -126,7 +126,7 @@
         "reference_electrode_salt_concentration_unit": "M"
       },
       "electrolyte": {
-        "id": "electrolyte3",
+        "id": "electrolyte12",
         "solvent": "MeCN",
         "conducting_salt": "KOH",
         "conducting_salt_concentration": 1.0,
@@ -134,9 +134,9 @@
         "pH": 10.0
       },
       "analysis": {
-        "id": "analysis3",
+        "id": "analysis12",
         "ca": {
-          "id": "ca1",
+          "id": "ca3",
           "measurement_current_unit": "A",
           "measurement_time_unit": "s",
           "induced_potential": [
@@ -148,11 +148,11 @@
       "type": "CA"
     },
     {
-      "id": "experiment4",
+      "id": "experiment13",
       "name": "CV",
       "filename": "data/SarkarCV_utf8.csv",
       "electrode_setup": {
-        "id": "electrodesetup4",
+        "id": "electrodesetup13",
         "working_electrode": "Au",
         "working_electrode_area": 2.0,
         "working_electrode_area_unit": "cm^2",
@@ -163,7 +163,7 @@
         "reference_electrode_salt_concentration_unit": "M"
       },
       "electrolyte": {
-        "id": "electrolyte4",
+        "id": "electrolyte13",
         "solvent": "H$_2$O",
         "conducting_salt": "KOH",
         "conducting_salt_concentration": 1.0,
@@ -171,9 +171,9 @@
         "pH": 10.0
       },
       "analysis": {
-        "id": "analysis4",
+        "id": "analysis13",
         "cv": {
-          "id": "cv0",
+          "id": "cv5",
           "measurement_current_unit": "\u00b5A",
           "measurement_potential_unit": "V",
           "scan_rate": 20.0,
@@ -183,11 +183,11 @@
       "type": "CV"
     },
     {
-      "id": "experiment5",
+      "id": "experiment14",
       "name": "CV",
       "filename": "data/CV_all2.xlsx",
       "electrode_setup": {
-        "id": "electrodesetup5",
+        "id": "electrodesetup14",
         "working_electrode": "Au",
         "working_electrode_area": 2.0,
         "working_electrode_area_unit": "cm^2",
@@ -198,7 +198,7 @@
         "reference_electrode_salt_concentration_unit": "M"
       },
       "electrolyte": {
-        "id": "electrolyte5",
+        "id": "electrolyte14",
         "solvent": "MeCN",
         "conducting_salt": "[Bu$_4$N][PF$_6$]",
         "conducting_salt_concentration": 1.0,
@@ -206,9 +206,9 @@
         "pH": 10.0
       },
       "analysis": {
-        "id": "analysis5",
+        "id": "analysis14",
         "cv": {
-          "id": "cv1",
+          "id": "cv6",
           "measurement_current_unit": "\u00b5A",
           "measurement_potential_unit": "V",
           "scan_rate": 20.0,
@@ -218,11 +218,11 @@
       "type": "CV"
     },
     {
-      "id": "experiment6",
+      "id": "experiment15",
       "name": "CV",
       "filename": "data/CV_all.xlsx",
       "electrode_setup": {
-        "id": "electrodesetup6",
+        "id": "electrodesetup15",
         "working_electrode": "Au",
         "working_electrode_area": 2.0,
         "working_electrode_area_unit": "cm^2",
@@ -233,7 +233,7 @@
         "reference_electrode_salt_concentration_unit": "M"
       },
       "electrolyte": {
-        "id": "electrolyte6",
+        "id": "electrolyte15",
         "solvent": "H$_2$O",
         "conducting_salt": "KOH",
         "conducting_salt_concentration": 1.0,
@@ -241,9 +241,9 @@
         "pH": 10.0
       },
       "analysis": {
-        "id": "analysis6",
+        "id": "analysis15",
         "cv": {
-          "id": "cv2",
+          "id": "cv7",
           "measurement_current_unit": "\u00b5A",
           "measurement_potential_unit": "V",
           "scan_rate": 20.0,
@@ -253,11 +253,11 @@
       "type": "CV"
     },
     {
-      "id": "experiment7",
+      "id": "experiment16",
       "name": "Re Complex",
       "filename": "data/Ox_100mVs.csv",
       "electrode_setup": {
-        "id": "electrodesetup7",
+        "id": "electrodesetup16",
         "working_electrode": "Au",
         "working_electrode_area": 2.0,
         "working_electrode_area_unit": "cm^2",
@@ -268,7 +268,7 @@
         "reference_electrode_salt_concentration_unit": "M"
       },
       "electrolyte": {
-        "id": "electrolyte7",
+        "id": "electrolyte16",
         "solvent": "H$_2$O",
         "conducting_salt": "KOH",
         "conducting_salt_concentration": 1.0,
@@ -276,9 +276,9 @@
         "pH": 10.0
       },
       "analysis": {
-        "id": "analysis7",
+        "id": "analysis16",
         "cv": {
-          "id": "cv3",
+          "id": "cv8",
           "measurement_current_unit": "\u00b5A",
           "measurement_potential_unit": "V",
           "scan_rate": 100.0,
@@ -288,11 +288,11 @@
       "type": "CV"
     },
     {
-      "id": "experiment8",
+      "id": "experiment17",
       "name": "Fc",
       "filename": "data/Ref_Fc_100mVs.csv",
       "electrode_setup": {
-        "id": "electrodesetup8",
+        "id": "electrodesetup17",
         "working_electrode": "Au",
         "working_electrode_area": 2.0,
         "working_electrode_area_unit": "cm^2",
@@ -303,7 +303,7 @@
         "reference_electrode_salt_concentration_unit": "M"
       },
       "electrolyte": {
-        "id": "electrolyte8",
+        "id": "electrolyte17",
         "solvent": "H$_2$O",
         "conducting_salt": "KOH",
         "conducting_salt_concentration": 1.0,
@@ -311,9 +311,9 @@
         "pH": 10.0
       },
       "analysis": {
-        "id": "analysis8",
+        "id": "analysis17",
         "cv": {
-          "id": "cv4",
+          "id": "cv9",
           "measurement_current_unit": "\u00b5A",
           "measurement_potential_unit": "V",
           "scan_rate": 100.0,
@@ -324,9 +324,6 @@
     }
   ],
   "__source__": {
-    "root": "Dataset",
-    "repo": "https://github.com/FAIRChemistry/datamodel-electrochemistry.git",
-    "commit": "e207833be5f60ff55cab09edb332bbeafe18914b",
-    "url": "https://github.com/FAIRChemistry/datamodel-electrochemistry/tree/e207833be5f60ff55cab09edb332bbeafe18914b"
+    "root": "Dataset"
   }
 }
