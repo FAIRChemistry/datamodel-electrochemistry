@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-import datetime
 import copy
 from scipy.optimize import curve_fit
 from sdRDM import DataModel
@@ -12,6 +11,7 @@ import ipywidgets as widgets
 from ipywidgets import interact, interactive, fixed, interact_manual
 import re
 from IPython.display import display
+import json
 lib = DataModel.from_markdown("specifications/Electrochemistry.md")
 # path_program=os.getcwd()
 # print(path_program)
@@ -58,6 +58,7 @@ class ReferenceCalculator:
                 self.reference_values["RHE"] = -0.0592 * float(pH)
             self.reference_difference_value = float(potential) + self.reference_values[new_reference] - self.reference_values[old_reference]
             new_reference_name = extract_name(new_reference)
+            print(self.reference_difference_value)
             """Interactive button to save the potential values into the data model"""
             def on_button_click(_):
                     for experiment in self.experiment_list:
@@ -845,3 +846,14 @@ class CyclicVoltammetry:
                 self.ferrocene_reference_df = pd.DataFrame(list(zip(Cycles,E_hwp_sample_list,E_hwp_sec_list,delta_E_hwp_list)), columns=["Cycles","E1/2/Fc measurement","E1/2/without Fc measurement","Delta_E"])
             return self.ferrocene_reference_df
         widgets.interact(interactive,E_min_Fc=(x_min,x_max,0.05),E_max_Fc=(x_min,x_max,0.05),E_min_sample=(x_min-0.45,x_max-0.4,0.05),E_max_sample=(x_min-0.45,x_max-0.3,0.05),E_min_sec=(x_min_sec,x_max_sec,0.05),E_max_sec=(x_min_sec,x_max_sec,0.05),sample_point= ['peak minimum', 'peak maximum', 'half-wave potential'],zoom_x_min=(self.cycle_df2[0]['E'].min()-0.1,self.cycle_df2[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df2[0]['E'].min()-0.1,self.cycle_df2[0]['E'].max()+0.1))
+
+def save_data(e_chem):
+    with open("./e_chem_dataset.json", "w") as f:
+        data = e_chem.to_dict()
+    # Remove source for demo
+        del data["__source__"]
+        json.dump(data, f, indent=2)
+
+def load_data(e_chem):
+    dataset = lib.Dataset.from_json(open("./e_chem_dataset.json"))
+    print(dataset)

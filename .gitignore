@@ -8,3 +8,4 @@ data/
 plots/
 .venv/
 e_chem_enviroment/
+*.json
