@@ -56,7 +56,9 @@
 - type
   - Type: Experiment_type
   - Description: Type of experiment
-
+- date
+  - Type: date
+  - Description: Date/time when the experiment was created
 ### Purging
 - gas
   - Type: string
