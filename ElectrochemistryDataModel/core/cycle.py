@@ -77,7 +77,7 @@ class Cycle(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="418b6230fb2c65662a83c99ad901093819dabeff"
+        default="ba6aa04635d73779d00c7c6b39e863c4ba93ef80"
     )
 
     def add_to_peaks_and_half_potential(
