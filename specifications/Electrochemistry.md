@@ -420,9 +420,12 @@ Container for information regarding the CV-Setup and parameters
 
 ### Author
 
-- name
+- first_name
   - Type: string
-  - Description: Full name of the author
+  - Description: First name of the author
+- last_name
+  - Type: string
+  - Description: Last name of the author
 - affiliation
   - Type: string
   - Description: Organization the author is affiliated with
