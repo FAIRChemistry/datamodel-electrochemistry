@@ -216,7 +216,7 @@ classDiagram
         +string counter_electrode
         +ReferenceElectrode reference_electrode
         +string reference_electrode_salt
-        +float reference_electrode_salt_concentration
+        +float, string reference_electrode_salt_concentration
         +ConcentrationUnits reference_electrode_salt_concentration_unit
     }
     

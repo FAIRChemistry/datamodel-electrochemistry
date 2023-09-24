@@ -1,6 +1,6 @@
 import sdRDM
 
-from typing import Optional
+from typing import Optional, Union
 from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
@@ -50,7 +50,7 @@ class ElectrodeSetup(sdRDM.DataModel):
         description="Name of the reference salt",
     )
 
-    reference_electrode_salt_concentration: Optional[float] = Field(
+    reference_electrode_salt_concentration: Union[float, str, None] = Field(
         default=None,
         description="Unit of the reference salt concentration",
     )
@@ -64,5 +64,5 @@ class ElectrodeSetup(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="77a7042bf9b874e52d61bfd2279e0089580e09f5"
+        default="bfee64395b5701fee73bb03b4c18f5b144c8d82d"
     )
