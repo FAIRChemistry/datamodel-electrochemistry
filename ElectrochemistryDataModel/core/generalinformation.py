@@ -36,7 +36,7 @@ class GeneralInformation(sdRDM.DataModel):
         description="Persons who worked on the dataset",
     )
 
-    date: Optional[date] = Field(
+    date_of_work: Optional[date] = Field(
         default=None,
         description="Date/time when the dataset was created",
     )
@@ -45,13 +45,12 @@ class GeneralInformation(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="a1c6eab16e0b0b7e3ab6aa62c9f1d897ddab5d5f"
+        default="cb390714d6b6eb8ab09b6299c7b2dcd2ee05c7f9"
     )
 
     def add_to_author(
         self,
-        first_name: Optional[str] = None,
-        last_name: Optional[str] = None,
+        name: Optional[str] = None,
         affiliation: Optional[str] = None,
         email: Optional[str] = None,
         orcid: Optional[str] = None,
@@ -62,16 +61,14 @@ class GeneralInformation(sdRDM.DataModel):
 
         Args:
             id (str): Unique identifier of the 'Author' object. Defaults to 'None'.
-            first_name (): First name of the author. Defaults to None
-            last_name (): Last name of the author. Defaults to None
+            name (): Full name of the author. Defaults to None
             affiliation (): Organization the author is affiliated with. Defaults to None
             email (): Contact e-mail address of the author. Defaults to None
             orcid (): The ORCID of the author. Defaults to None
         """
 
         params = {
-            "first_name": first_name,
-            "last_name": last_name,
+            "name": name,
             "affiliation": affiliation,
             "email": email,
             "orcid": orcid,

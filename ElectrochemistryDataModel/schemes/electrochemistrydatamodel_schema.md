@@ -54,7 +54,7 @@ classDiagram
         +string title
         +string information
         +Author[0..*] author
-        +date date
+        +date date_of_work
     }
     
     class Experiment {
@@ -67,7 +67,6 @@ classDiagram
         +Purging purging
         +Analysis analysis
         +Experiment_type type
-        +date date
     }
     
     class Purging {
@@ -222,8 +221,7 @@ classDiagram
     }
     
     class Author {
-        +string first_name
-        +string last_name
+        +string name
         +string affiliation
         +string email
         +string orcid
