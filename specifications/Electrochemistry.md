@@ -204,7 +204,7 @@
   - Multiple: True
   - Description: The charge density of the measurement
 - change_potential
-  - Type: float
+  - Type: ChangePotential
   - Multiple: True
   - Description: A list of potential values, which could be used to transform reference potential scale 
 
@@ -308,14 +308,21 @@ Container for information regarding the CV-Setup and parameters
   - Type: PotentialUnits
   - Description: The upper limit of the potential
 - change_potential
-  - Type: float
+  - Type: ChangePotential
   - Multiple: True
   - Description: A tuple list of potential values, which could be used to transform reference potential scale 
 - cycles
   - Type: Cycle
   - Multiple: True
   - Description: The cycles
+### ChangePotential
 
+- change_potential_value
+  - Type: float
+  - Description: The change potential value
+- new_reference_scale_name
+  - Type: string
+  - Description: The new reference scale name
 ### Cycle
 - number
   - Type: int

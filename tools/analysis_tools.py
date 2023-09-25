@@ -62,11 +62,16 @@ class ReferenceCalculator:
             """Interactive button to save the potential values into the data model"""
             def on_button_click(_):
                     for experiment in self.experiment_list:
-                        if self.e_chem.experiments[experiment].type == "CP" and (self.reference_difference_value, new_reference_name) not in self.e_chem.experiments[experiment].analysis.cp.change_potential:
-                            self.e_chem.experiments[experiment].analysis.cp.change_potential.append((self.reference_difference_value, new_reference_name))
+                        # if self.e_chem.experiments[experiment].type == "CP" and (self.reference_difference_value, new_reference_name) not in self.e_chem.experiments[experiment].analysis.cp.change_potential:
+                        #     self.e_chem.experiments[experiment].analysis.cp.change_potential.append((self.reference_difference_value, new_reference_name))
+                        if self.e_chem.experiments[experiment].type == "CP":
+                            change_potential=lib.ChangePotential(change_potential_value=self.reference_difference_value,new_reference_scale_name=new_reference_name)
+                            self.e_chem.experiments[experiment].analysis.cp.change_potential.append(change_potential)
                             print("Potential value:", self.reference_difference_value, new_reference_name,"was saved to experiment:", experiment)
-                        elif self.e_chem.experiments[experiment].type == "CV" and (self.reference_difference_value, new_reference_name) not in self.e_chem.experiments[experiment].analysis.cv.change_potential:
-                            self.e_chem.experiments[experiment].analysis.cv.change_potential.append((self.reference_difference_value, new_reference_name))
+                        elif self.e_chem.experiments[experiment].type == "CV" :
+                            change_potential=lib.ChangePotential(change_potential_value=self.reference_difference_value,new_reference_scale_name=new_reference_name)
+                            self.e_chem.experiments[experiment].analysis.cv.change_potential.append(change_potential)
+                            print("Potential value:", self.reference_difference_value, new_reference_name,"was saved to experiment:", experiment)
                         elif self.e_chem.experiments[experiment].type == "CA":
                             print("Experiment is from type CA and don't need a change_potential value")
                         else:
@@ -84,7 +89,7 @@ class ReferenceCalculator:
 
 
 class Chronopotentiometry:
-    def __init__(self,e_chem,experiment_list,change_reference_list_index=None,change_reference=False):
+    def __init__(self,e_chem,experiment_list,change_reference_list_index=0,change_reference=False):
         self.e_chem = e_chem
         self.experiment_list=experiment_list
         self.df_liste=[]
@@ -122,9 +127,9 @@ class Chronopotentiometry:
         self.ylabel=f"$E$ vs. {self.reference} ({self.e_chem.experiments[experiment_list[0]].analysis.cp.measurement_potential_unit})"
         """ The change_reference statement, which allow the transformation and work with a new reference scale"""
         if change_reference:
-            self.delta_E=self.e_chem.experiments[experiment_list[0]].analysis.cp.change_potential[change_reference_list_index][0]
-            self.reference=self.mapping_dict_reference_names[self.e_chem.experiments[experiment_list[0]].analysis.cp.change_potential[change_reference_list_index][1]]
-            self.reference_name=self.e_chem.experiments[experiment_list[0]].analysis.cp.change_potential[change_reference_list_index][1]
+            self.delta_E=self.e_chem.experiments[experiment_list[0]].analysis.cp.change_potential[change_reference_list_index].change_potential_value
+            self.reference=self.mapping_dict_reference_names[self.e_chem.experiments[experiment_list[0]].analysis.cp.change_potential[change_reference_list_index].new_reference_scale_name]
+            self.reference_name=self.e_chem.experiments[experiment_list[0]].analysis.cp.change_potential[change_reference_list_index].new_reference_scale_name
             self.ylabel=f"$E$ vs. {self.reference} ({self.e_chem.experiments[experiment_list[0]].analysis.cp.measurement_potential_unit})"
             for df in self.df_liste:
                 if df is not None:
@@ -369,7 +374,7 @@ class Chronoamperometry:
 
 
 class CyclicVoltammetry:
-    def __init__(self,e_chem,experiment,cycles=None,change_reference_list_index=None,current_density=False,change_reference=False):
+    def __init__(self,e_chem,experiment,cycles=None,change_reference_list_index=0,current_density=False,change_reference=False):
         self.e_chem=e_chem
         if self.e_chem.experiments[experiment].type=="CV"  and self.e_chem.experiments[experiment].filename.endswith(".csv"):
             self.df = pd.read_csv(self.e_chem.experiments[experiment].filename,header=5,skipfooter=1,engine="python")#
@@ -416,9 +421,9 @@ class CyclicVoltammetry:
                       "Hg/HgO": "Hg/HgO",
                       "Fc/Fc+": "Fc/Fc$^{+}"}
         if change_reference:
-            self.delta_E=self.e_chem.experiments[experiment].analysis.cv.change_potential[change_reference_list_index][0]
-            self.reference=mapping_dict_reference_names[self.e_chem.experiments[experiment].analysis.cv.change_potential[change_reference_list_index][1]]
-            self.reference_name=self.e_chem.experiments[experiment].analysis.cv.change_potential[change_reference_list_index][1]
+            self.delta_E=self.e_chem.experiments[experiment].analysis.cv.change_potential[change_reference_list_index].change_potential_value
+            self.reference=mapping_dict_reference_names[self.e_chem.experiments[experiment].analysis.cv.change_potential[change_reference_list_index].new_reference_scale_name]
+            self.reference_name=self.e_chem.experiments[experiment].analysis.cv.change_potential[change_reference_list_index].new_reference_scale_name
             self.ylabel=f"$E$ vs. {self.reference} ({self.e_chem.experiments[experiment].analysis.cv.measurement_potential_unit})"
             for df in  self.cycle_df:
                     df['E'] = df['E'] + self.delta_E
