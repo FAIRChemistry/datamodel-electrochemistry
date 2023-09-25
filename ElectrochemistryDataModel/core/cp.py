@@ -6,11 +6,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potentialendvalue import PotentialEndValue
-from .timeunits import TimeUnits
-from .chargedensityunits import ChargeDensityUnits
 from .potentialunits import PotentialUnits
 from .currentunits import CurrentUnits
+from .changepotential import ChangePotential
+from .timeunits import TimeUnits
+from .chargedensityunits import ChargeDensityUnits
+from .potentialendvalue import PotentialEndValue
 
 
 @forge_signature
@@ -66,7 +67,7 @@ class CP(sdRDM.DataModel):
         description="The charge density of the measurement",
     )
 
-    change_potential: List[float] = Field(
+    change_potential: List[ChangePotential] = Field(
         default_factory=ListPlus,
         multiple=True,
         description=(
@@ -79,7 +80,7 @@ class CP(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="ba6aa04635d73779d00c7c6b39e863c4ba93ef80"
+        default="19b32ef48fbfdcb7e10006a6dae1fc2240d23a9e"
     )
 
     def add_to_potential_end_value(
@@ -118,3 +119,28 @@ class CP(sdRDM.DataModel):
             params["id"] = id
 
         self.potential_end_value.append(PotentialEndValue(**params))
+
+    def add_to_change_potential(
+        self,
+        change_potential_value: Optional[float] = None,
+        new_reference_scale_name: Optional[str] = None,
+        id: Optional[str] = None,
+    ) -> None:
+        """
+        This method adds an object of type 'ChangePotential' to attribute change_potential
+
+        Args:
+            id (str): Unique identifier of the 'ChangePotential' object. Defaults to 'None'.
+            change_potential_value (): The change potential value. Defaults to None
+            new_reference_scale_name (): The new reference scale name. Defaults to None
+        """
+
+        params = {
+            "change_potential_value": change_potential_value,
+            "new_reference_scale_name": new_reference_scale_name,
+        }
+
+        if id is not None:
+            params["id"] = id
+
+        self.change_potential.append(ChangePotential(**params))

@@ -30,6 +30,7 @@ classDiagram
     CP *-- CurrentUnits
     CP *-- PotentialUnits
     CP *-- PotentialEndValue
+    CP *-- ChangePotential
     CA *-- TimeUnits
     CA *-- CurrentUnits
     CA *-- PotentialUnits
@@ -37,6 +38,7 @@ classDiagram
     CV *-- ScanRateUnits
     CV *-- CurrentUnits
     CV *-- PotentialUnits
+    CV *-- ChangePotential
     CV *-- Cycle
     Cycle *-- ScanRateUnits
     Cycle *-- PeaksAndHalfPotential
@@ -132,7 +134,7 @@ classDiagram
         +TimeUnits time_duration_unit
         +PotentialEndValue[0..*] potential_end_value
         +ChargeDensityUnits[0..*] charge_density
-        +float[0..*] change_potential
+        +ChangePotential[0..*] change_potential
     }
     
     class PotentialEndValue {
@@ -174,8 +176,13 @@ classDiagram
         +PotentialUnits stop_potential
         +PotentialUnits potential_lower_limit
         +PotentialUnits potential_upper_limit
-        +float[0..*] change_potential
+        +ChangePotential[0..*] change_potential
         +Cycle[0..*] cycles
+    }
+    
+    class ChangePotential {
+        +float change_potential_value
+        +string new_reference_scale_name
     }
     
     class Cycle {

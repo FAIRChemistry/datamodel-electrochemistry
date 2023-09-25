@@ -13,6 +13,7 @@ from .potentialendvalue import PotentialEndValue
 from .ca import CA
 from .currentendvalue import CurrentEndValue
 from .cv import CV
+from .changepotential import ChangePotential
 from .cycle import Cycle
 from .peaksandhalfpotential import PeaksAndHalfPotential
 from .peakintegration import PeakIntegration
@@ -50,6 +51,7 @@ __all__ = [
     "CA",
     "CurrentEndValue",
     "CV",
+    "ChangePotential",
     "Cycle",
     "PeaksAndHalfPotential",
     "PeakIntegration",
