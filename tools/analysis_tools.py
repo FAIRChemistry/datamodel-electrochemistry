@@ -62,8 +62,6 @@ class ReferenceCalculator:
             """Interactive button to save the potential values into the data model"""
             def on_button_click(_):
                     for experiment in self.experiment_list:
-                        # if self.e_chem.experiments[experiment].type == "CP" and (self.reference_difference_value, new_reference_name) not in self.e_chem.experiments[experiment].analysis.cp.change_potential:
-                        #     self.e_chem.experiments[experiment].analysis.cp.change_potential.append((self.reference_difference_value, new_reference_name))
                         if self.e_chem.experiments[experiment].type == "CP":
                             change_potential=lib.ChangePotential(change_potential_value=self.reference_difference_value,new_reference_scale_name=new_reference_name)
                             self.e_chem.experiments[experiment].analysis.cp.change_potential.append(change_potential)
@@ -419,7 +417,7 @@ class CyclicVoltammetry:
                       "Hg/Hg2Cl2": "Hg/Hg$_2$Cl$_2$",
                       "Ag/AgCl":"Ag/AgCl",
                       "Hg/HgO": "Hg/HgO",
-                      "Fc/Fc+": "Fc/Fc$^{+}"}
+                      "Fc/Fc+": "Fc/Fc$^{+}$"}
         if change_reference:
             self.delta_E=self.e_chem.experiments[experiment].analysis.cv.change_potential[change_reference_list_index].change_potential_value
             self.reference=mapping_dict_reference_names[self.e_chem.experiments[experiment].analysis.cv.change_potential[change_reference_list_index].new_reference_scale_name]
@@ -728,24 +726,24 @@ class CyclicVoltammetry:
             Cycles=[]
             self.cycle_df_ferrocene = copy.deepcopy(self.cycle_df)
             def on_button_click(_):
-                if sample_point=='half-wave potential' and (delta_E_hwp_list[index_value_save], "Fc/Fc+") not in self.e_chem.experiments[self.experiment2].analysis.cv.change_potential:
-                        self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_hwp_list[index_value_save], "Fc/Fc+"))
+                if sample_point=='half-wave potential':#and (delta_E_hwp_list[index_value_save], "Fc/Fc+") not in self.e_chem.experiments[self.experiment2].analysis.cv.change_potential
+                        #self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_hwp_list[index_value_save], "Fc/Fc+"))
+                        change_potential=lib.ChangePotential(change_potential_value=delta_E_hwp_list[index_value_save],new_reference_scale_name= "Fc/Fc+")
+                        self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append(change_potential)
                         print((delta_E_hwp_list[index_value_save], "Fc/Fc+"))
                         print("Potential saved")
-                else:
-                    print("Potential already saved")
-                if sample_point=='peak minimum' and (delta_E_min_list[index_value_save], "Fc/Fc+") not in self.e_chem.experiments[self.experiment2].analysis.cv.change_potential:
-                    self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_min_list[index_value_save], "Fc/Fc+"))
+                if sample_point=='peak minimum':
+                    #self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_min_list[index_value_save], "Fc/Fc+"))
+                    change_potential=lib.ChangePotential(change_potential_value=delta_E_min_list[index_value_save],new_reference_scale_name= "Fc/Fc+")
+                    self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append(change_potential)
                     print((delta_E_min_list[index_value_save], "Fc/Fc+"))
                     print("Potential saved")
-                else:
-                    print("Potential already saved")
                 if sample_point=='peak maximum' and (delta_E_max_list[index_value_save], "Fc/Fc+") not in self.e_chem.experiments[self.experiment2].analysis.cv.change_potential:
-                    self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_max_list[index_value_save], "Fc/Fc+"))
+                    #self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_max_list[index_value_save], "Fc/Fc+"))
+                    change_potential=lib.ChangePotential(change_potential_value=delta_E_max_list[index_value_save],new_reference_scale_name= "Fc/Fc+")
+                    self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append(change_potential)
                     print((delta_E_max_list[index_value_save], "Fc/Fc+"))
                     print("Potential saved")
-                else:
-                    print("Potential already saved")
             button= widgets.Button(description="Save Potential")
             for i in self.cycles:
                 fig, ax=plt.subplots()
@@ -860,5 +858,6 @@ def save_data(e_chem):
         json.dump(data, f, indent=2)
 
 def load_data(e_chem):
-    dataset = lib.Dataset.from_json(open("./e_chem_dataset.json"))
-    print(dataset)
+    e_chem = lib.Dataset.from_json(open("./e_chem_dataset.json"))
+    print(e_chem)
+    return e_chem

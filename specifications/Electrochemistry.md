@@ -273,13 +273,6 @@
 ### CV
 
 Container for information regarding the CV-Setup and parameters
-- changing_potential
-  - Type: float
-  - Multiple: True
-  - Description: The potential which should be added 
-- changing_potential_unit
-  - Type: float
-  - Description: The unit of the added potential 
 - ferrocene_potential
   - Type: float
   - Description: ferrocene_potential
@@ -539,6 +532,7 @@ NANO_VOLT = "nV"
 ```python
 SQUARE_CM= "cm^2"
 SQUARE_MILLI_M = "mm^2"
+SQUARE_MICRO_M = "µm^2"
 ```
 ### ReferenceElectrode
 ```python
