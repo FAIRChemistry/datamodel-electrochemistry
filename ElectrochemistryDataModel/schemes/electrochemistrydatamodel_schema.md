@@ -165,8 +165,6 @@ classDiagram
     }
     
     class CV {
-        +float[0..*] changing_potential
-        +float changing_potential_unit
         +float ferrocene_potential
         +CurrentUnits measurement_current_unit
         +PotentialUnits measurement_potential_unit
@@ -322,6 +320,7 @@ classDiagram
         << Enumeration >>
         +SQUARE_CM
         +SQUARE_MILLI_M
+        +SQUARE_MICRO_M
     }
     
     class ReferenceElectrode {

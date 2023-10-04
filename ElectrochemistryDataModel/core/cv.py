@@ -7,12 +7,12 @@ from sdRDM.base.utils import forge_signature, IDGenerator
 
 
 from .potentialunits import PotentialUnits
-from .scanrateunits import ScanRateUnits
-from .peaksandhalfpotential import PeaksAndHalfPotential
-from .changepotential import ChangePotential
-from .peakintegration import PeakIntegration
 from .cycle import Cycle
 from .currentunits import CurrentUnits
+from .scanrateunits import ScanRateUnits
+from .peaksandhalfpotential import PeaksAndHalfPotential
+from .peakintegration import PeakIntegration
+from .changepotential import ChangePotential
 
 
 @forge_signature
@@ -23,17 +23,6 @@ class CV(sdRDM.DataModel):
         description="Unique identifier of the given object.",
         default_factory=IDGenerator("cvINDEX"),
         xml="@id",
-    )
-
-    changing_potential: List[float] = Field(
-        default_factory=ListPlus,
-        multiple=True,
-        description="The potential which should be added",
-    )
-
-    changing_potential_unit: Optional[float] = Field(
-        default=None,
-        description="The unit of the added potential",
     )
 
     ferrocene_potential: Optional[float] = Field(
@@ -100,7 +89,7 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="19b32ef48fbfdcb7e10006a6dae1fc2240d23a9e"
+        default="ddb33876bfe0e592851dc7c84d0ad9f3f5b28ec6"
     )
 
     def add_to_change_potential(
