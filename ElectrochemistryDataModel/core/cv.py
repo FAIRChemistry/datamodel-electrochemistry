@@ -6,13 +6,13 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .potentialunits import PotentialUnits
-from .cycle import Cycle
 from .currentunits import CurrentUnits
 from .scanrateunits import ScanRateUnits
+from .potentialunits import PotentialUnits
 from .peaksandhalfpotential import PeaksAndHalfPotential
-from .peakintegration import PeakIntegration
+from .cycle import Cycle
 from .changepotential import ChangePotential
+from .peakintegration import PeakIntegration
 
 
 @forge_signature
@@ -50,22 +50,22 @@ class CV(sdRDM.DataModel):
         description="The scan rate unit of the measurement",
     )
 
-    start_potential: Optional[PotentialUnits] = Field(
+    start_potential: Optional[float] = Field(
         default=None,
         description="The starting value of the potential",
     )
 
-    stop_potential: Optional[PotentialUnits] = Field(
+    stop_potential: Optional[float] = Field(
         default=None,
         description="The stop value of the potential",
     )
 
-    potential_lower_limit: Optional[PotentialUnits] = Field(
+    potential_lower_limit: Optional[float] = Field(
         default=None,
         description="The lower limit of the potential",
     )
 
-    potential_upper_limit: Optional[PotentialUnits] = Field(
+    potential_upper_limit: Optional[float] = Field(
         default=None,
         description="The upper limit of the potential",
     )
@@ -89,7 +89,7 @@ class CV(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="ddb33876bfe0e592851dc7c84d0ad9f3f5b28ec6"
+        default="683376ca9e7631a0eec2a69d9aa8a1d1e3a9a01e"
     )
 
     def add_to_change_potential(

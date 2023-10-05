@@ -91,7 +91,7 @@ classDiagram
         +string name_product
         +string chemical_formula
         +MolecularWeightUnits molecular_weight
-        +Synthesis synthesis
+        +Synthesis[0..*] synthesis
         +FilmPreparation film_preparation
     }
     
@@ -170,10 +170,10 @@ classDiagram
         +PotentialUnits measurement_potential_unit
         +float scan_rate
         +ScanRateUnits scan_rate_unit
-        +PotentialUnits start_potential
-        +PotentialUnits stop_potential
-        +PotentialUnits potential_lower_limit
-        +PotentialUnits potential_upper_limit
+        +float start_potential
+        +float stop_potential
+        +float potential_lower_limit
+        +float potential_upper_limit
         +ChangePotential[0..*] change_potential
         +Cycle[0..*] cycles
     }
