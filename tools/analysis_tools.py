@@ -259,7 +259,8 @@ class Chronoamperometry:
         self.ylabel=f"$I$ ({self.e_chem.experiments[experiment_list[0]].analysis.ca.measurement_current_unit})" 
         self.yunit=f"{self.e_chem.experiments[experiment_list[0]].analysis.ca.measurement_current_unit}"
         mapping_dict={"cm^2":"cm$^2$",
-                      "mm^2":"mm$^2$"}
+                      "mm^2":"mm$^2$",
+                      "µm^2":"µm$^2$"}
         area_unit=mapping_dict[self.e_chem.experiments[experiment_list[0]].electrode_setup.working_electrode_area_unit]
         for experiment in range(0,len(self.e_chem.experiments)):
             if self.e_chem.experiments[experiment].type=="CA" and self.e_chem.experiments[experiment].filename.endswith(".dat"):
@@ -452,6 +453,13 @@ class CyclicVoltammetry:
             self.min_potential_value= min(min_value,potential_min)
             self.min_current_value -= 2
             self.max_current_value += 2
+
+        ### Adding start and stop to the datamodel
+        self.e_chem.experiments[experiment].analysis.cv.start_potential=self.cycle_df[0]["E"][0]
+        self.e_chem.experiments[experiment].analysis.cv.stop_potential=self.cycle_df[0]["E"].iloc[-1]
+        self.e_chem.experiments[experiment].analysis.cv.potential_lower_limit=self.cycle_df[0]["E"].min()
+        self.e_chem.experiments[experiment].analysis.cv.potential_upper_limit=self.cycle_df[0]["E"].max()
+
     def plot(self):
         xlabel=self.xlabel
         ylabel=self.ylabel
@@ -726,22 +734,22 @@ class CyclicVoltammetry:
             Cycles=[]
             self.cycle_df_ferrocene = copy.deepcopy(self.cycle_df)
             def on_button_click(_):
-                if sample_point=='half-wave potential':#and (delta_E_hwp_list[index_value_save], "Fc/Fc+") not in self.e_chem.experiments[self.experiment2].analysis.cv.change_potential
-                        #self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_hwp_list[index_value_save], "Fc/Fc+"))
+                if sample_point=='half-wave potential':
                         change_potential=lib.ChangePotential(change_potential_value=delta_E_hwp_list[index_value_save],new_reference_scale_name= "Fc/Fc+")
                         self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append(change_potential)
+                        self.e_chem.experiments[self.experiment2].analysis.cv.ferrocene_potential=delta_E_hwp_list[index_value_save]
                         print((delta_E_hwp_list[index_value_save], "Fc/Fc+"))
                         print("Potential saved")
                 if sample_point=='peak minimum':
-                    #self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_min_list[index_value_save], "Fc/Fc+"))
                     change_potential=lib.ChangePotential(change_potential_value=delta_E_min_list[index_value_save],new_reference_scale_name= "Fc/Fc+")
                     self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append(change_potential)
+                    self.e_chem.experiments[self.experiment2].analysis.cv.ferrocene_potential=delta_E_min_list[index_value_save]
                     print((delta_E_min_list[index_value_save], "Fc/Fc+"))
                     print("Potential saved")
                 if sample_point=='peak maximum' and (delta_E_max_list[index_value_save], "Fc/Fc+") not in self.e_chem.experiments[self.experiment2].analysis.cv.change_potential:
-                    #self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append((delta_E_max_list[index_value_save], "Fc/Fc+"))
                     change_potential=lib.ChangePotential(change_potential_value=delta_E_max_list[index_value_save],new_reference_scale_name= "Fc/Fc+")
                     self.e_chem.experiments[self.experiment2].analysis.cv.change_potential.append(change_potential)
+                    self.e_chem.experiments[self.experiment2].analysis.cv.ferrocene_potential=delta_E_max_list[index_value_save]
                     print((delta_E_max_list[index_value_save], "Fc/Fc+"))
                     print("Potential saved")
             button= widgets.Button(description="Save Potential")

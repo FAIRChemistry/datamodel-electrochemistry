@@ -102,6 +102,7 @@
   - Description: The molecular weight of the product
 - synthesis
   - Type: Synthesis
+  - Multiple: True
   - Description: The synthesis of the product
 - film_preparation
   - Type: FilmPreparation
@@ -289,16 +290,16 @@ Container for information regarding the CV-Setup and parameters
   - Type: ScanRateUnits
   - Description: The scan rate unit of the measurement
 - start_potential
-  - Type: PotentialUnits
+  - Type: float
   - Description: The starting value of the potential
 - stop_potential
-  - Type: PotentialUnits
+  - Type: float
   - Description: The stop value of the potential
 - potential_lower_limit
-  - Type: PotentialUnits
+  - Type: float
   - Description: The lower limit of the potential
 - potential_upper_limit
-  - Type: PotentialUnits
+  - Type: float
   - Description: The upper limit of the potential
 - change_potential
   - Type: ChangePotential
