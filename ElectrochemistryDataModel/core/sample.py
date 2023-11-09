@@ -6,13 +6,13 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .timeunits import TimeUnits
-from .molecularweightunits import MolecularWeightUnits
-from .pressureunits import PressureUnits
-from .filmpreparation import FilmPreparation
-from .synthesis import Synthesis
 from .temperatureunits import TemperatureUnits
 from .purging import Purging
+from .synthesis import Synthesis
+from .pressureunits import PressureUnits
+from .timeunits import TimeUnits
+from .molecularweightunits import MolecularWeightUnits
+from .filmpreparation import FilmPreparation
 
 
 @forge_signature
@@ -55,7 +55,7 @@ class Sample(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="5963f2318dc43e8e7589f7f8899e25bd9513c22b"
+        default="e38a84311a8ea08c702d1783cdb18badc2653aa8"
     )
 
     def add_to_synthesis(

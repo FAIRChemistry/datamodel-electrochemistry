@@ -5,9 +5,9 @@ from pydantic import Field, PrivateAttr
 from sdRDM.base.utils import forge_signature, IDGenerator
 
 
-from .areaunits import AreaUnits
-from .concentrationunits import ConcentrationUnits
 from .referenceelectrode import ReferenceElectrode
+from .concentrationunits import ConcentrationUnits
+from .areaunits import AreaUnits
 
 
 @forge_signature
@@ -64,5 +64,5 @@ class ElectrodeSetup(sdRDM.DataModel):
         default="https://github.com/FAIRChemistry/datamodel-electrochemistry.git"
     )
     __commit__: Optional[str] = PrivateAttr(
-        default="5963f2318dc43e8e7589f7f8899e25bd9513c22b"
+        default="e38a84311a8ea08c702d1783cdb18badc2653aa8"
     )
