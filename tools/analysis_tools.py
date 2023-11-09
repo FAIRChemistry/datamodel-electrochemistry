@@ -103,10 +103,10 @@ class Chronopotentiometry:
                 """ Reader to find the header line"""
                 with open(self.e_chem.experiments[experiment].filename, 'r') as file:
                     for line_num, line in enumerate(file, start=1):
-                        if re.match(r'CURVE\sTABLE\s3600', line):
-                            header=line_num+2
+                        if re.match(r'COMPLIANCEVOLTAGE\sIQUANT\s0\sCompliance Voltage', line):
+                            header=line_num+3 
                             break
-                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=header, usecols=[2,3,4,5],names=["t","E","I","V"])
+                df = pd.read_csv(self.e_chem.experiments[experiment].filename, sep="\t", header=header, usecols=[2,3,4,5],names=["t","E","I","V"],encoding="ISO-8859-1")
                 self.df_liste.append(df)
             else:
                 self.df_liste.append(None)
@@ -857,6 +857,7 @@ class CyclicVoltammetry:
                 self.ferrocene_reference_df = pd.DataFrame(list(zip(Cycles,E_hwp_sample_list,E_hwp_sec_list,delta_E_hwp_list)), columns=["Cycles","E1/2/Fc measurement","E1/2/without Fc measurement","Delta_E"])
             return self.ferrocene_reference_df
         widgets.interact(interactive,E_min_Fc=(x_min,x_max,0.05),E_max_Fc=(x_min,x_max,0.05),E_min_sample=(x_min-0.45,x_max-0.4,0.05),E_max_sample=(x_min-0.45,x_max-0.3,0.05),E_min_sec=(x_min_sec,x_max_sec,0.05),E_max_sec=(x_min_sec,x_max_sec,0.05),sample_point= ['peak minimum', 'peak maximum', 'half-wave potential'],zoom_x_min=(self.cycle_df2[0]['E'].min()-0.1,self.cycle_df2[0]['E'].max()+0.1),zoom_x_max=(self.cycle_df2[0]['E'].min()-0.1,self.cycle_df2[0]['E'].max()+0.1))
+
 
 def save_data(e_chem):
     with open("./e_chem_dataset.json", "w") as f:
